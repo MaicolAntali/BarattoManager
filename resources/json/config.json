@@ -1,0 +1,8 @@
+{
+  "app": {
+    "name": "BarattoManager",
+    "version": "1.0.0",
+    "user_file": "users.json",
+    "category_file": "categories.json"
+  }
+}

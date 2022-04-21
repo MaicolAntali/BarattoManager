@@ -1,0 +1,14 @@
+{
+  "configurator": {
+    "username": "Configurator",
+    "password": "123",
+    "is_admin": true,
+    "@type": "Configurator"
+  },
+  "maicol": {
+    "username": "Maicol",
+    "password": "12345",
+    "is_admin": true,
+    "@type": "Configurator"
+  }
+}
