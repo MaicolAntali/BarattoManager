@@ -1,5 +1,6 @@
 package com.barattoManager.user;
 
+import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.PasswordNotMatch;
 import com.barattoManager.exception.UserAlreadyExist;
 import com.barattoManager.exception.UserNotFound;
@@ -38,12 +39,12 @@ class UserManagerTest {
 
 	@Test
 	void addAlreadyExistUser() {
-		assertThrows(UserAlreadyExist.class, () -> instance.addNewUser("Configurator", "123", false));
+		assertThrows(UserAlreadyExist.class, () -> instance.addNewUser("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_psw"), false));
 	}
 
 	@Test
 	void userNotFound() {
-		assertThrows(UserNotFound.class, () -> instance.checkCredential("NotValidUsername", "123"));
+		assertThrows(UserNotFound.class, () -> instance.checkCredential("NotValidUsername", AppConfigurator.getInstance().getPasswordSetting("default_psw")));
 	}
 
 	@Test
@@ -55,13 +56,13 @@ class UserManagerTest {
 	void userCorrectPassword() {
 		User user;
 		try {
-			user = instance.checkCredential("Configurator", "123");
+			user = instance.checkCredential("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_psw"));
 		} catch (UserNotFound | PasswordNotMatch e) {
 			throw new RuntimeException(e);
 		}
 
 		assertInstanceOf(Configurator.class, user);
 		assertEquals(user.getUsername(), "Configurator");
-		assertEquals(user.getPassword(), "123");
+		assertEquals(user.getPassword(), AppConfigurator.getInstance().getPasswordSetting("default_psw"));
 	}
 }

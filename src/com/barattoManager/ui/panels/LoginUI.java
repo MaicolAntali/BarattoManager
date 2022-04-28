@@ -1,5 +1,6 @@
 package com.barattoManager.ui.panels;
 
+import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.PasswordNotMatch;
 import com.barattoManager.exception.UserNotFound;
 import com.barattoManager.ui.components.SetNewPassword;
@@ -40,7 +41,7 @@ public class LoginUI extends JPanel {
 
 
 				// check if the user need to update password
-				if (Objects.equals(user.getPassword(), "123")) {
+				if (Objects.equals(user.getPassword(), AppConfigurator.getInstance().getPasswordSetting("default_psw"))) {
 					var setNewPassword = new SetNewPassword();
 					var isValidPassword = false;
 					String password = "";

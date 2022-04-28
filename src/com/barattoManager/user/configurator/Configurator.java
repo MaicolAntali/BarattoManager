@@ -13,17 +13,12 @@ public class Configurator extends User {
     @JsonProperty("password")
     private String password;
 
-    @JsonProperty("is_admin")
-    private Boolean isAdmin;
-
     public Configurator(
             @JsonProperty("username") String username,
-            @JsonProperty("password") String password,
-            @JsonProperty("is_admin") Boolean isAdmin
+            @JsonProperty("password") String password
     ) {
         this.username = username;
         this.password = password;
-        this.isAdmin = isAdmin;
     }
 
     @Override

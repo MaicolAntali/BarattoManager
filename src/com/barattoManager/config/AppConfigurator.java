@@ -46,4 +46,22 @@ public final class AppConfigurator {
 	public String getAppDataAsText(String nodeName) {
 		return node.get("app").get(nodeName).asText();
 	}
+
+	/**
+	 * Method used to get file name as a {@link String}
+	 * @param nodeName Name of the data to retrive.
+	 * @return {@link String} that represent the value
+	 */
+	public String getFileName(String nodeName) {
+		return node.get("file").get(nodeName).asText();
+	}
+
+	/**
+	 * Method used to get password settings as a {@link String}
+	 * @param nodeName Name of the data to retrive.
+	 * @return {@link String} that represent the value
+	 */
+	public String getPasswordSetting(String nodeName) {
+		return node.get("password").get(nodeName).asText();
+	}
 }

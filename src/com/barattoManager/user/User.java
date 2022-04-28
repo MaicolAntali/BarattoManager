@@ -1,5 +1,6 @@
 package com.barattoManager.user;
 
+import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.user.configurator.Configurator;
 import com.barattoManager.user.viewer.Viewer;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,6 +28,6 @@ public abstract class User {
 	public abstract String getPassword();
 
 	public boolean isPasswordValid(String password) {
-		return !Objects.equals(password, "123") && password.length() >= 5;
+		return !Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_psw")) && password.length() >= 5;
 	}
 }

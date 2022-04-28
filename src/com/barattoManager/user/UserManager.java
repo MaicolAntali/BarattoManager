@@ -24,7 +24,7 @@ public final class UserManager {
 	public static final String ERROR_USER_NOT_FOUND = "L'utente inserito non esiste. Riprovare";
 	public static final String ERROR_PASSWORD_NOT_MATCH = "La password inserita non è coretta. Riprovare";
 
-	private final File usersFile = new File(AppConfigurator.getInstance().getAppDataAsText("user_file"));
+	private final File usersFile = new File(AppConfigurator.getInstance().getFileName("user_file"));
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	private final HashMap<String, User> userMap;
 
@@ -40,10 +40,10 @@ public final class UserManager {
 		else {
 			userMap = new HashMap<>();
 			try {
-				addNewUser("Configurator", "123", true);
+				addNewUser("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_psw"), true);
 				JOptionPane.showMessageDialog(
 						null,
-						"Sono state impostate delle credenziali di base per il primo configuratore. \n\nUsername: Configurator\nPassword: 123",
+						"Sono state impostate delle credenziali di base per il primo configuratore. \n\nUsername: Configurator\nPassword: %s".formatted(AppConfigurator.getInstance().getPasswordSetting("default_psw")),
 						"Credenziali Base",
 						JOptionPane.INFORMATION_MESSAGE
 				);
@@ -90,10 +90,10 @@ public final class UserManager {
 			throw new UserAlreadyExist(ERROR_USER_ALREADY_EXIST.formatted(username));
 		else {
 			if (Objects.requireNonNull(isAdmin, ERROR_NEW_USER_NULL_PARAM)) {
-				user = new Configurator(username, password, true);
+				user = new Configurator(username, password);
 			}
 			else {
-				user = new Viewer(username, password, false);
+				user = new Viewer(username, password);
 			}
 
 			userMap.put(username.toLowerCase(), user);

@@ -15,7 +15,7 @@ import java.util.HashMap;
  * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the categories.
  */
 public final class CategoryManager {
-	private final File categoriesFile = new File(AppConfigurator.getInstance().getAppDataAsText("category_file"));
+	private final File categoriesFile = new File(AppConfigurator.getInstance().getFileName("category_file"));
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	private final HashMap<String, Category> categoryMap;
 
