@@ -1,1 +1,17 @@
-{"configurator":{"username":"Configurator","password":"123","@type":"Configurator"},"maicol":{"username":"Maicol","password":"12345","@type":"Configurator"}}
+{
+  "configurator": {
+    "username": "Configurator",
+    "password": "123",
+    "@type": "Configurator"
+  },
+  "shushila": {
+    "username": "Shushila",
+    "password": "123",
+    "@type": "Configurator"
+  },
+  "maicol": {
+    "username": "Maicol",
+    "password": "12345",
+    "@type": "Configurator"
+  }
+}
