@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -74,7 +75,7 @@ public final class CategoryManager {
 	}
 
 	/**
-	 * Method used to add a new filed in a category (and every sub category).
+	 * Recursive method used to add a new filed in a category (and every sub category).
 	 *
 	 * @param pathOfCategory {@link ArrayList} that represent the path of the category
 	 * @param name           Name of the new field
@@ -85,17 +86,29 @@ public final class CategoryManager {
 	public Category addNewField(ArrayList<String> pathOfCategory, String name, boolean isRequired) throws FieldAlreadyExist {
 		Category category = getCategoryFromPath(pathOfCategory);
 
-		if (!category.getCategoryFields().containsKey(name.toLowerCase())) {
-			category.addNewFields(name, isRequired);
-			for (Category cat : category.getSubCategory().values()) {
-				cat.addNewFields(name, isRequired);
+		// Recursive exit condition
+		if (!category.getSubCategory().isEmpty()) {
+			if (!category.getCategoryFields().containsKey(name.toLowerCase())) {
+				// Add the field in the category
+				category.addNewFields(name, isRequired);
+
+				// Recursive block, for each sub-category re-run this method
+				for (Category subCategory : category.getSubCategory().values()) {
+					var newPath = new ArrayList<>(pathOfCategory);
+					newPath.add(subCategory.getName());
+					addNewField(newPath, name, isRequired);
+				}
 			}
-			saveCategoryMapChange();
-			return category;
+			else {
+				throw new FieldAlreadyExist("La categoria che stai creato esiste già.");
+			}
 		}
 		else {
-			throw new FieldAlreadyExist("La categoria che stai creato esiste già.");
+			category.addNewFields(name, isRequired);
 		}
+
+		saveCategoryMapChange();
+		return category;
 	}
 
 	/**

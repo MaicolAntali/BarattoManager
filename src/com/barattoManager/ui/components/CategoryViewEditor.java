@@ -179,11 +179,22 @@ public class CategoryViewEditor extends JPanel {
 		var newFieldNode = new DefaultMutableTreeNode(("%s: %s").formatted(field.getName(), field.isRequired()));
 		var selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 		insertNewNodeAndUpdate(newFieldNode, selectedNode);
+		addFieldNodes(newFieldNode, selectedNode);
+	}
 
-		for (int i = 0; i < selectedNode.getChildCount(); i++) {
-			var node = selectedNode.getChildAt(i);
+	private void addFieldNodes(DefaultMutableTreeNode newFieldNode, DefaultMutableTreeNode node) {
+		if (node.getChildCount() != 0) {
+			for (int i = 0; i < node.getChildCount(); i++) {
+				var subNode = node.getChildAt(i);
+				if (!subNode.isLeaf()) {
+					insertNewNodeAndUpdate(newFieldNode, (DefaultMutableTreeNode) subNode);
+				}
+				addFieldNodes(newFieldNode, (DefaultMutableTreeNode) subNode);
+			}
+		}
+		else {
 			if (!node.isLeaf()) {
-				insertNewNodeAndUpdate(newFieldNode, (DefaultMutableTreeNode) node);
+				insertNewNodeAndUpdate(newFieldNode, node);
 			}
 		}
 	}

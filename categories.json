@@ -15,10 +15,6 @@
             "category_is_root": false,
             "category_sub_categories": {},
             "category_fields": {
-              "editore": {
-                "field_name": "Editore",
-                "field_required": true
-              },
               "stato": {
                 "field_name": "Stato",
                 "field_required": true
@@ -26,27 +22,11 @@
               "descrizione": {
                 "field_name": "Descrizione",
                 "field_required": true
-              },
-              "data di pubblicazione": {
-                "field_name": "Data di Pubblicazione",
-                "field_required": false
-              },
-              "pagine": {
-                "field_name": "Pagine",
-                "field_required": true
-              },
-              "autore": {
-                "field_name": "Autore",
-                "field_required": false
               }
             }
           }
         },
         "category_fields": {
-          "editore": {
-            "field_name": "Editore",
-            "field_required": true
-          },
           "stato": {
             "field_name": "Stato",
             "field_required": true
@@ -54,27 +34,11 @@
           "descrizione": {
             "field_name": "Descrizione",
             "field_required": true
-          },
-          "data di pubblicazione": {
-            "field_name": "Data di Pubblicazione",
-            "field_required": false
-          },
-          "pagine": {
-            "field_name": "Pagine",
-            "field_required": true
-          },
-          "autore": {
-            "field_name": "Autore",
-            "field_required": false
           }
         }
       }
     },
     "category_fields": {
-      "editore": {
-        "field_name": "Editore",
-        "field_required": true
-      },
       "stato": {
         "field_name": "Stato",
         "field_required": true
@@ -82,18 +46,6 @@
       "descrizione": {
         "field_name": "Descrizione",
         "field_required": true
-      },
-      "data di pubblicazione": {
-        "field_name": "Data di Pubblicazione",
-        "field_required": false
-      },
-      "pagine": {
-        "field_name": "Pagine",
-        "field_required": true
-      },
-      "autore": {
-        "field_name": "Autore",
-        "field_required": false
       }
     }
   }
