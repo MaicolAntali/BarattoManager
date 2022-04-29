@@ -8,6 +8,6 @@
     "category_file": "categories.json"
   },
   "password": {
-    "default_psw": "123"
+    "default_pwd": "123"
   }
 }

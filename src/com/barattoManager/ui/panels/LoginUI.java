@@ -14,7 +14,7 @@ import java.util.Objects;
 public class LoginUI extends JPanel {
 
     public static final String SET_NEW_PASSWORD_TITLE = "seleziona una nuova password";
-    public static final String ERROR_PASSWORD_NOT_VALID = "La nuova password non è valida.\n Inserisci una password diversa da: 123 e lunga almeno 5 caratteri.";
+    public static final String ERROR_PASSWORD_NOT_VALID = "La nuova password non è valida.\n Inserisci una password diversa da: %s e lunga almeno 5 caratteri.".formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
     public static final String ERROR_TITLE = "Errore";
     private final UserManager userManager;
 	private JPanel mainPanel;
@@ -41,7 +41,7 @@ public class LoginUI extends JPanel {
 
 
 				// check if the user need to update password
-				if (Objects.equals(user.getPassword(), AppConfigurator.getInstance().getPasswordSetting("default_psw"))) {
+				if (Objects.equals(user.getPassword(), AppConfigurator.getInstance().getPasswordSetting("default_pwd"))) {
 					var setNewPassword = new SetNewPassword();
 					var isValidPassword = false;
 					String password = "";

@@ -40,10 +40,10 @@ public final class UserManager {
 		else {
 			userMap = new HashMap<>();
 			try {
-				addNewUser("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_psw"), true);
+				addNewUser("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_pwd"), true);
 				JOptionPane.showMessageDialog(
 						null,
-						"Sono state impostate delle credenziali di base per il primo configuratore. \n\nUsername: Configurator\nPassword: %s".formatted(AppConfigurator.getInstance().getPasswordSetting("default_psw")),
+						"Sono state impostate delle credenziali di base per il primo configuratore. \n\nUsername: Configurator\nPassword: %s".formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd")),
 						"Credenziali Base",
 						JOptionPane.INFORMATION_MESSAGE
 				);

@@ -39,18 +39,18 @@ public class ConfiguratorHomeUi extends JPanel {
 				try {
 					UserManager.getInstance().addNewUser(
 							newConfiguratorPanel.getUsernameField().getText(),
-							AppConfigurator.getInstance().getPasswordSetting("default_psw"),
+							AppConfigurator.getInstance().getPasswordSetting("default_pwd"),
 							true
 					);
 
 					JOptionPane.showMessageDialog(
 							this,
 							"""
-                                        Nuovo configuratore creato correttamente.
+                            Nuovo configuratore creato correttamente.
                                         
-                                        Username: %s
-                                        Password: %s
-									""".formatted(newConfiguratorPanel.getUsernameField().getText(), AppConfigurator.getInstance().getPasswordSetting("default_psw")),
+                            Username: %s
+                            Password: %s
+							""".formatted(newConfiguratorPanel.getUsernameField().getText(), AppConfigurator.getInstance().getPasswordSetting("default_pwd")),
 							"Registrazione corretta",
 							JOptionPane.INFORMATION_MESSAGE
 							);

@@ -39,12 +39,12 @@ class UserManagerTest {
 
 	@Test
 	void addAlreadyExistUser() {
-		assertThrows(UserAlreadyExist.class, () -> instance.addNewUser("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_psw"), false));
+		assertThrows(UserAlreadyExist.class, () -> instance.addNewUser("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_pwd"), false));
 	}
 
 	@Test
 	void userNotFound() {
-		assertThrows(UserNotFound.class, () -> instance.checkCredential("NotValidUsername", AppConfigurator.getInstance().getPasswordSetting("default_psw")));
+		assertThrows(UserNotFound.class, () -> instance.checkCredential("NotValidUsername", AppConfigurator.getInstance().getPasswordSetting("default_pwd")));
 	}
 
 	@Test
@@ -56,13 +56,13 @@ class UserManagerTest {
 	void userCorrectPassword() {
 		User user;
 		try {
-			user = instance.checkCredential("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_psw"));
+			user = instance.checkCredential("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
 		} catch (UserNotFound | PasswordNotMatch e) {
 			throw new RuntimeException(e);
 		}
 
 		assertInstanceOf(Configurator.class, user);
 		assertEquals(user.getUsername(), "Configurator");
-		assertEquals(user.getPassword(), AppConfigurator.getInstance().getPasswordSetting("default_psw"));
+		assertEquals(user.getPassword(), AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
 	}
 }
