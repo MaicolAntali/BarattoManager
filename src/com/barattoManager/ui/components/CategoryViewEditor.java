@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class CategoryViewEditor extends JPanel {
 
-	private static final Dimension DIMENSION = new Dimension(500, 320);
+	private static final Dimension DIMENSION = new Dimension(500, 290);
 	public static final String ICON_CATEGORY_OPEN = "/icon/category_open.png";
 	public static final String ICON_CATEGORY_CLOSE = "/icon/category_close.png";
 	public static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
