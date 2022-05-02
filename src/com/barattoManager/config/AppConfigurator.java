@@ -1,6 +1,6 @@
 package com.barattoManager.config;
 
-import com.barattoManager.user.UserManager;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -63,5 +63,9 @@ public final class AppConfigurator {
 	 */
 	public String getPasswordSetting(String nodeName) {
 		return node.get("password").get(nodeName).asText();
+	}
+
+	public JsonNode getDefaultField() {
+		return node.get("default_category");
 	}
 }

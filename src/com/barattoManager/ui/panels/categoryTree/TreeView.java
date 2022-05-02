@@ -110,20 +110,43 @@ public class TreeView extends JPanel {
 	}
 
 	/**
+	 * Method used to print each field of one category
+	 * @param category Category of which to print the fields
+	 * @param newCategoryNode Node where add the field
+	 */
+	private void paintCategoryField(Category category, DefaultMutableTreeNode newCategoryNode) {
+		for(Field field: category.getCategoryFields().values()) {
+			var newFieldNode = new DefaultMutableTreeNode("%s: %s".formatted(field.getName(), field.isRequired()));
+			insertNewNodeAndUpdate(newFieldNode, newCategoryNode);
+		}
+	}
+
+	/**
 	 * Method used to paint in the {@link #tree} a new category (Category + Fields).
 	 * @param category {@link Category} to paint in the {@link #tree}
 	 */
-	public void paintNewCategory(Category category) {
+	public void paintNewMainCategory(Category category) {
+		// Print the new category
+		var newCategoryNode = new DefaultMutableTreeNode(("%s ~ %s").formatted(category.getName(), category.getDescription()));
+		insertNewNodeAndUpdate(newCategoryNode, rootNode);
+
+		// Print the Fields
+		paintCategoryField(category, newCategoryNode);
+	}
+
+
+	/**
+	 * Method used to paint in the {@link #tree} a new sub-category (Category + Fields).
+	 * @param category {@link Category} to paint in the {@link #tree}
+	 */
+	public void paintNewSubCategory(Category category) {
 		// Print the new category
 		var newCategoryNode = new DefaultMutableTreeNode(("%s ~ %s").formatted(category.getName(), category.getDescription()));
 		var selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 		insertNewNodeAndUpdate(newCategoryNode, selectedNode);
 
 		// Print the Fields
-		for(Field field: category.getCategoryFields().values()) {
-			var newFieldNode = new DefaultMutableTreeNode("%s: %s".formatted(field.getName(), field.isRequired()));
-			insertNewNodeAndUpdate(newFieldNode, newCategoryNode);
-		}
+		paintCategoryField(category, newCategoryNode);
 	}
 
 	/**

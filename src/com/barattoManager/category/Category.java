@@ -11,8 +11,6 @@ public class Category {
 	private final String name;
 	@JsonProperty("category_description")
 	private final String description;
-	@JsonProperty("category_is_root")
-	private final boolean isRootCategory;
 	@JsonProperty("category_sub_categories")
 	private final HashMap<String, Category> subCategory;
 	@JsonProperty("category_fields")
@@ -21,32 +19,24 @@ public class Category {
 	public Category(
 			@JsonProperty("category_name") String name,
 			@JsonProperty("category_description") String description,
-			@JsonProperty("category_is_root") boolean isRootCategory,
 			@JsonProperty("category_sub_categories") HashMap<String, Category> subCategory,
 			@JsonProperty("category_fields") HashMap<String, Field> categoryFields
 	) {
 		this.name = name;
 		this.description = description;
-		this.isRootCategory = isRootCategory;
 		this.subCategory = subCategory;
 		this.categoryFields = categoryFields;
 	}
 
-	public Category(String name, String description, boolean isRootCategory) {
+	public Category(String name, String description) {
 		this.name = name;
 		this.description = description;
-		this.isRootCategory = isRootCategory;
 		this.subCategory = new HashMap<>();
 		this.categoryFields = new HashMap<>();
 	}
 
-	public void addSubCategory(Category category) {
-		category.addNewFields(categoryFields);
-		subCategory.put(category.getName().toLowerCase(), category);
-	}
-
 	public void addSubCategory(String name, String description) {
-		var newCategory = new Category(name, description, false);
+		var newCategory = new Category(name, description);
 		newCategory.addNewFields(categoryFields);
 		subCategory.put(newCategory.getName().toLowerCase(), newCategory);
 	}
