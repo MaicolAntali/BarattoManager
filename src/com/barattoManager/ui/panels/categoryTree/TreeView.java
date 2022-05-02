@@ -8,7 +8,6 @@ import com.barattoManager.exception.NoNodeSelected;
 import javax.swing.*;
 import javax.swing.tree.*;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class TreeView extends JPanel {

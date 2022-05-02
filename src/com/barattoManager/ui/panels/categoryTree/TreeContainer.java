@@ -9,5 +9,4 @@ public class TreeContainer extends JPanel {
 		add(treeView);
 		add(new TreeActionButtons(treeView), BorderLayout.SOUTH);
 	}
-
 }
