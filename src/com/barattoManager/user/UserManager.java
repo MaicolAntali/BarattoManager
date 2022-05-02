@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 /**
- * This class is a <b>Singleton Class</b><br/> used to access from anywhere to users(Configurator or User).
+ * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the users(Configurator or User).
  */
 public final class UserManager {
 	public static final String ERROR_USER_ALREADY_EXIST = "L'utente %s esiste gia. Impossible crealo nuovamente";
@@ -58,8 +58,8 @@ public final class UserManager {
 	}
 
 	/**
-	 * Method used to crete get the {@link UserManager} instance.
-	 * This method ues the lazy loading mechanism cause the inner class is loaded only if
+	 * Method used to create get the {@link UserManager} instance.
+	 * This method use the lazy loading mechanism cause the inner class is loaded only if
 	 * the {@code getInstance()} method is called.
 	 * Also is thread safe cause every thread read the same {@link UserManager} instance.
 	 *
@@ -108,7 +108,7 @@ public final class UserManager {
 	 * @param password Password of the User
 	 * @return {@link User} instance only if the password match
 	 * @throws UserNotFound     is thrown if the {@code username} is not in the {@link #userMap}
-	 * @throws PasswordNotMatch is thrown if the {@code password} don't match
+	 * @throws PasswordNotMatch is thrown if the {@code password} doesn't match
 	 */
 	public User checkCredential(String username, String password) throws UserNotFound, PasswordNotMatch {
 		User user = userMap.get(Objects.requireNonNull(username).toLowerCase());
@@ -138,7 +138,7 @@ public final class UserManager {
 	}
 
 	/**
-	 * Method used to save the {@link #userMap} changes in the Json ({@link #usersFile})
+	 * Method used to save the {@link #userMap} changes in the Json file({@link #usersFile})
 	 */
 	private void saveUserMapChange() {
 		try {

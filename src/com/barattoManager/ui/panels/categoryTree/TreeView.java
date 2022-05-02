@@ -45,7 +45,7 @@ public class TreeView extends JPanel {
 	}
 
 	/**
-	 * Method used to create a complete (category + field) node.
+	 * Method used to create a complete node (category + field).
 	 *
 	 * @param category   {@link Category} want to create the node.
 	 * @param fatherNode {@link DefaultMutableTreeNode} node to attach the new category node
@@ -66,7 +66,7 @@ public class TreeView extends JPanel {
 	/**
 	 * Recursive method used to append the sub category
 	 * @param cat    Category that want append in the tree
-	 * @param catAdd Node of the tree where teh category will be appended.
+	 * @param catAdd Node of the tree where the category will be appended.
 	 */
 	private void createSubCategoryNode(Category cat, DefaultMutableTreeNode catAdd) {
 		if (!cat.getSubCategory().isEmpty()) {
@@ -132,7 +132,7 @@ public class TreeView extends JPanel {
 
 	/**
 	 * Method used to paint in the {@link #tree} a new field.
-	 * @param category {@link Category} to start adding the new field
+	 * @param category {@link Category} to add the new field
 	 * @param newFieldName Field Name
 	 */
 	public void paintNewField(Category category, String newFieldName) {
