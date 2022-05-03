@@ -40,7 +40,7 @@ public final class CategoryManager {
 	}
 
 	/**
-	 * Method used to crete get the {@link CategoryManager} instance.
+	 * Method used to create get the {@link CategoryManager} instance.
 	 * This method uses the lazy loading mechanism cause the inner class is loaded only if
 	 * the {@code #getInstance()} method is called.
 	 * Also is thread safe cause every thread read the same {@link Category} instance.
@@ -87,7 +87,7 @@ public final class CategoryManager {
 	 * @param name              Name of the new category
 	 * @param description       Description of new category
 	 * @return {@link Category} the new category object
-	 * @throws CategoryAlreadyExist Is thrown is the category that are trying to add already exist.
+	 * @throws CategoryAlreadyExist Is thrown if the category that are trying to add already exist.
 	 */
 	public Category addNewSubCategory(ArrayList<String> pathOfSubcategory, String name, String description) throws CategoryAlreadyExist {
 		Category category = getCategoryFromPath(pathOfSubcategory);
@@ -105,7 +105,7 @@ public final class CategoryManager {
 	}
 
 	/**
-	 * Recursive method used to add a new filed in a category (and every sub category).
+	 * Recursive method used to add a new field in a category (and every sub category).
 	 *
 	 * @param pathOfCategory {@link ArrayList} that represent the path of the category
 	 * @param name           Name of the new field
@@ -142,7 +142,7 @@ public final class CategoryManager {
 	}
 
 	/**
-	 * Method used to get a {@link Category} object for a categoryPath ({@code ArrayList<String>})
+	 * Method used to get a {@link Category} object from a categoryPath ({@code ArrayList<String>})
 	 *
 	 * @param pathOfCategory {@link ArrayList} Category path.
 	 * @return {@link Category} object
