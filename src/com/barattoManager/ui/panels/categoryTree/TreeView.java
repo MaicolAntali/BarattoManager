@@ -65,7 +65,6 @@ public class TreeView extends JPanel {
 
 	/**
 	 * Recursive method used to append the sub category
-	 *
 	 * @param cat    Category that want append in the tree
 	 * @param catAdd Node of the tree where teh category will be appended.
 	 */
@@ -79,6 +78,11 @@ public class TreeView extends JPanel {
 		}
 	}
 
+	/**
+	 * Recursive method used to append new field
+	 * @param newFieldNode Field node to append
+	 * @param node Father node
+	 */
 	private void addFieldNodes(DefaultMutableTreeNode newFieldNode, DefaultMutableTreeNode node) {
 		if (node.getChildCount() != 0) {
 			for (int i = 0; i < node.getChildCount(); i++) {
