@@ -28,7 +28,7 @@ public final class AppConfigurator {
     }
 
     /**
-     * Method used to crete get the {@link AppConfigurator} instance.
+     * Method used to create get the {@link AppConfigurator} instance.
      * This method uses the lazy loading mechanism cause the inner class is loaded only if
      * the {@code getInstance()} method is called.
      * Also is thread safe cause every thread read the same {@link AppConfigurator} instance.
@@ -40,7 +40,7 @@ public final class AppConfigurator {
 
 	/**
 	 * Method used to get application data as a {@link String}
-	 * @param nodeName Name of the data to retrive.
+	 * @param nodeName Name of the data to retrieve.
 	 * @return {@link String} that represent the value
 	 */
 	public String getAppDataAsText(String nodeName) {
@@ -49,7 +49,7 @@ public final class AppConfigurator {
 
 	/**
 	 * Method used to get file name as a {@link String}
-	 * @param nodeName Name of the data to retrive.
+	 * @param nodeName Name of the data to retrieve.
 	 * @return {@link String} that represent the value
 	 */
 	public String getFileName(String nodeName) {
@@ -58,7 +58,7 @@ public final class AppConfigurator {
 
 	/**
 	 * Method used to get password settings as a {@link String}
-	 * @param nodeName Name of the data to retrive.
+	 * @param nodeName Name of the data to retrieve.
 	 * @return {@link String} that represent the value
 	 */
 	public String getPasswordSetting(String nodeName) {
