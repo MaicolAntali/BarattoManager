@@ -9,5 +9,15 @@
   },
   "password": {
     "default_pwd": "123"
-  }
+  },
+  "default_category": [
+    {
+      "name": "Stato di conservazione",
+      "required": true
+    },
+    {
+      "name": "Descrizione",
+      "required": true
+    }
+  ]
 }

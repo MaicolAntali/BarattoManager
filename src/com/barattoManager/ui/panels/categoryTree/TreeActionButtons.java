@@ -22,6 +22,7 @@ public class TreeActionButtons extends JPanel {
 		JButton addNewFieldButton = new JButton("Aggiungi nuovo campo");
 
 		// Add listeners
+		addNewMainCategoryButton.addActionListener(e -> addNewMainCategory());
 		addNewSubCategoryButton.addActionListener(e -> addNewSubCategory());
 		addNewFieldButton.addActionListener(e -> addNewField());
 
@@ -31,11 +32,36 @@ public class TreeActionButtons extends JPanel {
 		add(addNewFieldButton);
 	}
 
+	private void addNewMainCategory() {
+		try {
+			var categoryInputPanel = new CreateNewCategoryPanel();
+			int result = JOptionPane.showOptionDialog(
+					this,
+					categoryInputPanel,
+					"Creazione di una categoria radice",
+					JOptionPane.OK_CANCEL_OPTION,
+					JOptionPane.QUESTION_MESSAGE,
+					null,
+					null,
+					null
+			);
+
+			if (result == JOptionPane.OK_OPTION) {
+				var newCategory = categoryManager.addNewMainCategory(
+						categoryInputPanel.getCategoryName().getText(),
+						categoryInputPanel.getCategoryDescription().getText());
+
+				treeView.paintNewMainCategory(newCategory);
+			}
+		} catch (CategoryAlreadyExist | FieldAlreadyExist ex) {
+			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 	private void addNewSubCategory() {
-		TreeNode[] nodePath;
 		try {
 			// Get the selected node
-			nodePath = treeView.getSelectedPathNode();
+			TreeNode[] nodePath = treeView.getSelectedPathNode();
 
 			var categoryInputPanel = new CreateNewCategoryPanel();
 			int result = JOptionPane.showOptionDialog(
@@ -56,7 +82,7 @@ public class TreeActionButtons extends JPanel {
 						categoryInputPanel.getCategoryName().getText(),
 						categoryInputPanel.getCategoryDescription().getText());
 
-				treeView.paintNewCategory(newSubCategory);
+				treeView.paintNewSubCategory(newSubCategory);
 			}
 		} catch (NoNodeSelected | CategoryAlreadyExist ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
@@ -64,10 +90,9 @@ public class TreeActionButtons extends JPanel {
 	}
 
 	private void addNewField() {
-		TreeNode[] nodePath;
 		try {
 			// Get the selected node
-			nodePath = treeView.getSelectedPathNode();
+			TreeNode[] nodePath = treeView.getSelectedPathNode();
 
 			var fieldInputPanel = new CreateNewFieldPanel();
 			int result = JOptionPane.showOptionDialog(

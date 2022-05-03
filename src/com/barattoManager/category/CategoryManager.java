@@ -4,13 +4,14 @@ import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.CategoryAlreadyExist;
 import com.barattoManager.exception.FieldAlreadyExist;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the categories.
@@ -51,7 +52,36 @@ public final class CategoryManager {
 	}
 
 	/**
-	 * Method used to add a new category in the category tree.
+	 * Method used to add a new Main category
+	 * @param name Name of new category
+	 * @param description Description of the new category
+	 * @return The new category with the default field
+	 * @throws CategoryAlreadyExist Is thrown is the category that are trying to add already exist.
+	 */
+	public Category addNewMainCategory(String name, String description) throws CategoryAlreadyExist, FieldAlreadyExist {
+		if (!categoryMap.containsKey(name.toLowerCase())) {
+			var category = new Category(name, description);
+			categoryMap.put(name.toLowerCase(), new Category(name, description));
+
+			// adding the default field
+			for (final JsonNode objNode : AppConfigurator.getInstance().getDefaultField()) {
+				addNewField(
+						new ArrayList<>(List.of("root", name.toLowerCase())),
+						objNode.get("name").asText(),
+						objNode.get("required").asBoolean()
+				);
+			}
+
+			saveCategoryMapChange();
+			return categoryMap.get(name.toLowerCase());
+		}
+		else {
+			throw new CategoryAlreadyExist("La categoria che stai creando esiste gia.");
+		}
+	}
+
+	/**
+	 * Method used to add a new  subcategory in the category tree.
 	 *
 	 * @param pathOfSubcategory {@link ArrayList} that represent the path of the category
 	 * @param name              Name of the new category

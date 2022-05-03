@@ -2,49 +2,14 @@
   "libri": {
     "category_name": "Libri",
     "category_description": "Serie continua di fogli stampati della stessa misura, cuciti insieme e forniti di copertina o rilegatura",
-    "category_is_root": true,
-    "category_sub_categories": {
-      "romanzo": {
-        "category_name": "Romanzo",
-        "category_description": "Alle origini delle moderne letterature europee, ampio scritto in lingua volgare",
-        "category_is_root": false,
-        "category_sub_categories": {
-          "romanzo giallo": {
-            "category_name": "Romanzo Giallo",
-            "category_description": "Il genere giallo è la descrizione di un crimine e dei personaggi coinvolti, siano essi criminali o vittime",
-            "category_is_root": false,
-            "category_sub_categories": {},
-            "category_fields": {
-              "stato": {
-                "field_name": "Stato",
-                "field_required": true
-              },
-              "descrizione": {
-                "field_name": "Descrizione",
-                "field_required": true
-              }
-            }
-          }
-        },
-        "category_fields": {
-          "stato": {
-            "field_name": "Stato",
-            "field_required": true
-          },
-          "descrizione": {
-            "field_name": "Descrizione",
-            "field_required": true
-          }
-        }
-      }
-    },
+    "category_sub_categories": {},
     "category_fields": {
-      "stato": {
-        "field_name": "Stato",
-        "field_required": true
-      },
       "descrizione": {
         "field_name": "Descrizione",
+        "field_required": true
+      },
+      "stato di conservazione": {
+        "field_name": "Stato di conservazione",
         "field_required": true
       }
     }
