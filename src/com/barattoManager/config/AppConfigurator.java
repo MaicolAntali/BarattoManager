@@ -65,6 +65,10 @@ public final class AppConfigurator {
 		return node.get("password").get(nodeName).asText();
 	}
 
+	/**
+	 * Method used to get default category as a {@link JsonNode}
+	 * @return {@link JsonNode} that represent the array of default category
+	 */
 	public JsonNode getDefaultField() {
 		return node.get("default_category");
 	}

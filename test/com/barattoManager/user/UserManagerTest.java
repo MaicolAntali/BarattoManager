@@ -1,9 +1,8 @@
 package com.barattoManager.user;
 
 import com.barattoManager.config.AppConfigurator;
-import com.barattoManager.exception.PasswordNotMatch;
-import com.barattoManager.exception.UserAlreadyExist;
-import com.barattoManager.exception.UserNotFound;
+import com.barattoManager.exception.AlreadyExistException;
+import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.user.configurator.Configurator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,7 @@ class UserManagerTest {
 	}
 
 	@Test
-	void addNewUserInvalid() {
+	void addNewUserInvalidParams() {
 		assertThrows(NullPointerException.class, () -> instance.addNewUser("test", "test", null));
 	}
 
@@ -39,17 +38,17 @@ class UserManagerTest {
 
 	@Test
 	void addAlreadyExistUser() {
-		assertThrows(UserAlreadyExist.class, () -> instance.addNewUser("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_pwd"), false));
+		assertThrows(AlreadyExistException.class, () -> instance.addNewUser("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_pwd"), false));
 	}
 
 	@Test
 	void userNotFound() {
-		assertThrows(UserNotFound.class, () -> instance.checkCredential("NotValidUsername", AppConfigurator.getInstance().getPasswordSetting("default_pwd")));
+		assertThrows(InvalidCredentialsException.class, () -> instance.checkCredential("NotValidUsername", AppConfigurator.getInstance().getPasswordSetting("default_pwd")));
 	}
 
 	@Test
 	void userWrongPassword() {
-		assertThrows(PasswordNotMatch.class, () -> instance.checkCredential("Configurator", "WrongPsw"));
+		assertThrows(InvalidCredentialsException.class, () -> instance.checkCredential("Configurator", "WrongPsw"));
 	}
 
 	@Test
@@ -57,7 +56,7 @@ class UserManagerTest {
 		User user;
 		try {
 			user = instance.checkCredential("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
-		} catch (UserNotFound | PasswordNotMatch e) {
+		} catch (InvalidCredentialsException e) {
 			throw new RuntimeException(e);
 		}
 

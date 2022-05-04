@@ -1,9 +1,8 @@
 package com.barattoManager.user;
 
 import com.barattoManager.config.AppConfigurator;
-import com.barattoManager.exception.PasswordNotMatch;
-import com.barattoManager.exception.UserAlreadyExist;
-import com.barattoManager.exception.UserNotFound;
+import com.barattoManager.exception.AlreadyExistException;
+import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.user.configurator.Configurator;
 import com.barattoManager.user.viewer.Viewer;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -47,7 +46,7 @@ public final class UserManager {
 						"Credenziali Base",
 						JOptionPane.INFORMATION_MESSAGE
 				);
-			} catch (UserAlreadyExist e) {
+			} catch (AlreadyExistException e) {
 				e.printStackTrace();
 			}
 		}
@@ -66,7 +65,6 @@ public final class UserManager {
 	 * @return The Instance of {@link UserManager} class
 	 */
 	public static UserManager getInstance() {
-
 		return UserManagerHolder.instance;
 	}
 
@@ -83,11 +81,12 @@ public final class UserManager {
 	 * @param username Username of the User
 	 * @param password Password of the User
 	 * @param isAdmin  Indicates whether a User is an admins or not.
+	 * @throws AlreadyExistException Is thrown if the new user that are trying to add already exist.
 	 */
-	public void addNewUser(String username, String password, Boolean isAdmin) throws UserAlreadyExist {
+	public void addNewUser(String username, String password, Boolean isAdmin) throws AlreadyExistException {
 		User user;
 		if (userMap.containsKey(username.toLowerCase()))
-			throw new UserAlreadyExist(ERROR_USER_ALREADY_EXIST.formatted(username));
+			throw new AlreadyExistException(ERROR_USER_ALREADY_EXIST.formatted(username));
 		else {
 			if (Objects.requireNonNull(isAdmin, ERROR_NEW_USER_NULL_PARAM)) {
 				user = new Configurator(username, password);
@@ -107,19 +106,18 @@ public final class UserManager {
 	 * @param username Username of the User
 	 * @param password Password of the User
 	 * @return {@link User} instance only if the password match
-	 * @throws UserNotFound     is thrown if the {@code username} is not in the {@link #userMap}
-	 * @throws PasswordNotMatch is thrown if the {@code password} doesn't match
+	 * @throws InvalidCredentialsException Is thrown if the {@code username} is not in the {@link #userMap} and/or the {@code password} doesn't match
 	 */
-	public User checkCredential(String username, String password) throws UserNotFound, PasswordNotMatch {
+	public User checkCredential(String username, String password) throws InvalidCredentialsException {
 		User user = userMap.get(Objects.requireNonNull(username).toLowerCase());
 
 		if (user == null)
-			throw new UserNotFound(ERROR_USER_NOT_FOUND);
+			throw new InvalidCredentialsException(ERROR_USER_NOT_FOUND);
 		else {
 			if (user.getPassword().equals(password))
 				return user;
 			else
-				throw new PasswordNotMatch(ERROR_PASSWORD_NOT_MATCH);
+				throw new InvalidCredentialsException(ERROR_PASSWORD_NOT_MATCH);
 		}
 	}
 

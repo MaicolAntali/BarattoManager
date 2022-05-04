@@ -1,8 +1,7 @@
 package com.barattoManager.ui.components;
 
 import com.barattoManager.config.AppConfigurator;
-import com.barattoManager.exception.PasswordNotMatch;
-import com.barattoManager.exception.UserNotFound;
+import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.ui.panels.optionPane.ChangePasswordPanel;
 import com.barattoManager.user.UserManager;
 import com.barattoManager.user.configurator.Configurator;
@@ -42,13 +41,12 @@ public class LoginUI extends JPanel {
 
 				// check if the user need to update password
 				if (Objects.equals(user.getPassword(), AppConfigurator.getInstance().getPasswordSetting("default_pwd"))) {
-					var setNewPassword = new ChangePasswordPanel();
+					var setNewPasswordUi = new ChangePasswordPanel();
 					var isValidPassword = false;
-					String password = "";
 					do {
 						int result = JOptionPane.showOptionDialog(
 								this,
-								setNewPassword,
+								setNewPasswordUi,
                                 SET_NEW_PASSWORD_TITLE,
 								JOptionPane.OK_CANCEL_OPTION,
 								JOptionPane.QUESTION_MESSAGE,
@@ -58,7 +56,7 @@ public class LoginUI extends JPanel {
 						);
 
 						if (result == JOptionPane.OK_OPTION) {
-							password = String.valueOf(setNewPassword.getPasswordField().getPassword());
+							var password = String.valueOf(setNewPasswordUi.getPasswordField().getPassword());
 							isValidPassword = user.isPasswordValid(password);
 
 							if (!isValidPassword) {
@@ -69,20 +67,28 @@ public class LoginUI extends JPanel {
 										JOptionPane.ERROR_MESSAGE
 								);
 							}
+							else {
+								userManager.setUserPassword(user, password);
+							}
+						}
+
+						if (result == JOptionPane.CANCEL_OPTION) {
+							break;
 						}
 
 					} while (!isValidPassword);
-
-					userManager.setUserPassword(user, password);
 				}
 
-				if (user instanceof Configurator) {
-					cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString());
+				if (user.isPasswordValid(user.getPassword())) {
+					if (user instanceof Configurator) {
+						cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString());
+					}
+					else {
+						System.out.print("VIEWER");
+					}
 				}
-				else {
-					System.out.print("VIEWER");
-				}
-			} catch (UserNotFound | PasswordNotMatch ex) {
+
+			} catch (InvalidCredentialsException ex) {
 				JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 			}
 		});

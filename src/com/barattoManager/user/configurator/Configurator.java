@@ -21,7 +21,6 @@ public class Configurator extends User {
         this.password = password;
     }
 
-    @Override
     public String getChildType() {
         return "Configurator";
     }

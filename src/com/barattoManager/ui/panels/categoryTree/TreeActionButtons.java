@@ -1,8 +1,8 @@
 package com.barattoManager.ui.panels.categoryTree;
 
 import com.barattoManager.category.CategoryManager;
-import com.barattoManager.exception.CategoryAlreadyExist;
-import com.barattoManager.exception.FieldAlreadyExist;
+import com.barattoManager.exception.AlreadyExistException;
+import com.barattoManager.exception.EmptyStringException;
 import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.ui.panels.optionPane.CreateNewCategoryPanel;
 import com.barattoManager.ui.panels.optionPane.CreateNewFieldPanel;
@@ -53,7 +53,7 @@ public class TreeActionButtons extends JPanel {
 
 				treeView.paintNewMainCategory(newCategory);
 			}
-		} catch (CategoryAlreadyExist | FieldAlreadyExist ex) {
+		} catch (AlreadyExistException | EmptyStringException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -84,7 +84,7 @@ public class TreeActionButtons extends JPanel {
 
 				treeView.paintNewSubCategory(newSubCategory);
 			}
-		} catch (NoNodeSelected | CategoryAlreadyExist ex) {
+		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -118,7 +118,7 @@ public class TreeActionButtons extends JPanel {
 				treeView.paintNewField(categoryOfNewField, fieldName);
 
 			}
-		} catch (NoNodeSelected | FieldAlreadyExist ex) {
+		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 		}
 	}

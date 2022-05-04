@@ -1,7 +1,7 @@
 package com.barattoManager.category;
 
-import com.barattoManager.exception.CategoryAlreadyExist;
-import com.barattoManager.exception.FieldAlreadyExist;
+import com.barattoManager.exception.AlreadyExistException;
+import com.barattoManager.exception.EmptyStringException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +31,41 @@ class CategoryManagerTest {
 		// Write a default category conf so the test can run
 		try {
 			FileWriter myWriter = new FileWriter("categories.json");
-			myWriter.write("{  \"libri\": {    \"category_name\": \"Libri\",    \"category_description\": \"Serie continua di fogli stampati della stessa misura, cuciti insieme e forniti di copertina o rilegatura\",    \"category_is_root\": true,    \"category_sub_categories\": {      \"romanzo\": {        \"category_name\": \"Romanzo\",        \"category_description\": \"Alle origini delle moderne letterature europee, ampio scritto in lingua volgare\",        \"category_is_root\": false,        \"category_sub_categories\": {          \"romanzo giallo\": {            \"category_name\": \"Romanzo Giallo\",            \"category_description\": \"Il genere giallo è la descrizione di un crimine e dei personaggi coinvolti, siano essi criminali o vittime\",            \"category_is_root\": false,            \"category_sub_categories\": {},            \"category_fields\": {              \"editore\": {                \"field_name\": \"Editore\",                \"field_required\": true              },              \"stato\": {                \"field_name\": \"Stato\",                \"field_required\": true              },              \"descrizione\": {                \"field_name\": \"Descrizione\",                \"field_required\": true              },              \"data di pubblicazione\": {                \"field_name\": \"Data di Pubblicazione\",                \"field_required\": false              },              \"pagine\": {                \"field_name\": \"Pagine\",                \"field_required\": true              },              \"autore\": {                \"field_name\": \"Autore\",                \"field_required\": false              }            }          }        },        \"category_fields\": {          \"editore\": {            \"field_name\": \"Editore\",            \"field_required\": true          },          \"stato\": {            \"field_name\": \"Stato\",            \"field_required\": true          },          \"descrizione\": {            \"field_name\": \"Descrizione\",            \"field_required\": true          },          \"data di pubblicazione\": {            \"field_name\": \"Data di Pubblicazione\",            \"field_required\": false          },          \"pagine\": {            \"field_name\": \"Pagine\",            \"field_required\": true          },          \"autore\": {            \"field_name\": \"Autore\",            \"field_required\": false          }        }      }    },    \"category_fields\": {      \"editore\": {        \"field_name\": \"Editore\",        \"field_required\": true      },      \"stato\": {        \"field_name\": \"Stato\",        \"field_required\": true      },      \"descrizione\": {        \"field_name\": \"Descrizione\",        \"field_required\": true      },      \"data di pubblicazione\": {        \"field_name\": \"Data di Pubblicazione\",        \"field_required\": false      },      \"pagine\": {        \"field_name\": \"Pagine\",        \"field_required\": true      },      \"autore\": {        \"field_name\": \"Autore\",        \"field_required\": false      }    }  }}");
+			myWriter.write("""
+					{
+					  "libri": {
+					    "category_name": "Libri",
+					    "category_description": "Serie continua di fogli stampati della stessa misura, cuciti insieme e forniti di copertina o rilegatura",
+					    "category_sub_categories": {
+						    "romanzo giallo": {
+							    "category_name": "Romanzo Giallo",
+							    "category_description": "...",
+							    "category_sub_categories": {},
+							    "category_fields": {
+							      "descrizione": {
+							        "field_name": "Descrizione",
+							        "field_required": true
+							      },
+							      "stato di conservazione": {
+							        "field_name": "Stato di conservazione",
+							        "field_required": true
+							      }
+						        }
+					       }
+					    },
+					    "category_fields": {
+					      "descrizione": {
+					        "field_name": "Descrizione",
+					        "field_required": true
+					      },
+					      "stato di conservazione": {
+					        "field_name": "Stato di conservazione",
+					        "field_required": true
+					      }
+					    }
+					  }
+					}
+					""");
 			myWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -62,13 +96,28 @@ class CategoryManagerTest {
 
 	@Test
 	void addCategoryAlreadyExist() {
-		var path = new ArrayList<>(Arrays.asList("Categorie", "Libri", "Romanzo"));
-		assertThrows(CategoryAlreadyExist.class, () -> instance.addNewSubCategory(path, "Romanzo Giallo", "..."));
+		var path = new ArrayList<>(Arrays.asList("Categorie", "Libri"));
+		assertThrows(AlreadyExistException.class, () -> instance.addNewSubCategory(path, "Romanzo Giallo", "..."));
 	}
 
 	@Test
 	void addFieldAlreadyExist() {
-		var path = new ArrayList<>(Arrays.asList("Categorie", "Libri", "Romanzo"));
-		assertThrows(FieldAlreadyExist.class, () -> instance.addNewField(path, "Editore", true));
+		var path = new ArrayList<>(Arrays.asList("Categorie", "Libri"));
+		assertThrows(AlreadyExistException.class, () -> instance.addNewField(path, "descrizione", true));
+	}
+
+	@Test
+	void emptyMainCategoryName() {
+		assertThrows(EmptyStringException.class, () -> instance.addNewMainCategory("          ", "..."));
+	}
+
+	@Test
+	void emptySubcategoryName() {
+		assertThrows(EmptyStringException.class, () -> instance.addNewSubCategory(null, "",  ""));
+	}
+
+	@Test
+	void emptyFieldName() {
+		assertThrows(EmptyStringException.class, () -> instance.addNewField(null, "", true));
 	}
 }

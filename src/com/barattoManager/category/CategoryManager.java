@@ -1,8 +1,8 @@
 package com.barattoManager.category;
 
 import com.barattoManager.config.AppConfigurator;
-import com.barattoManager.exception.CategoryAlreadyExist;
-import com.barattoManager.exception.FieldAlreadyExist;
+import com.barattoManager.exception.AlreadyExistException;
+import com.barattoManager.exception.EmptyStringException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,52 +56,61 @@ public final class CategoryManager {
 	 * @param name Name of new category
 	 * @param description Description of the new category
 	 * @return The new category with the default field
-	 * @throws CategoryAlreadyExist Is thrown is the category that are trying to add already exist.
+	 * @throws AlreadyExistException Is thrown is the category or field that are trying to add already exist.
 	 */
-	public Category addNewMainCategory(String name, String description) throws CategoryAlreadyExist, FieldAlreadyExist {
-		if (!categoryMap.containsKey(name.toLowerCase())) {
-			var category = new Category(name, description);
-			categoryMap.put(name.toLowerCase(), new Category(name, description));
+	public Category addNewMainCategory(String name, String description) throws AlreadyExistException, EmptyStringException {
+		if (!name.isEmpty() && !(name.trim().length() == 0)) {
+			if (!categoryMap.containsKey(name.toLowerCase())) {
+				categoryMap.put(name.toLowerCase(), new Category(name, description));
 
-			// adding the default field
-			for (final JsonNode objNode : AppConfigurator.getInstance().getDefaultField()) {
-				addNewField(
-						new ArrayList<>(List.of("root", name.toLowerCase())),
-						objNode.get("name").asText(),
-						objNode.get("required").asBoolean()
-				);
+				// adding the default field
+				for (final JsonNode objNode : AppConfigurator.getInstance().getDefaultField()) {
+					addNewField(
+							new ArrayList<>(List.of("root", name.toLowerCase())),
+							objNode.get("name").asText(),
+							objNode.get("required").asBoolean()
+					);
+				}
+
+				saveCategoryMapChange();
+				return categoryMap.get(name.toLowerCase());
 			}
-
-			saveCategoryMapChange();
-			return categoryMap.get(name.toLowerCase());
+			else {
+				throw new AlreadyExistException("La categoria che stai creando esiste gia.");
+			}
 		}
 		else {
-			throw new CategoryAlreadyExist("La categoria che stai creando esiste gia.");
+			throw new EmptyStringException("Il nome della categoria non è valido");
 		}
+
 	}
 
 	/**
-	 * Method used to add a new  subcategory in the category tree.
+	 * Method used to add a new subcategory in the category tree.
 	 *
 	 * @param pathOfSubcategory {@link ArrayList} that represent the path of the category
 	 * @param name              Name of the new category
 	 * @param description       Description of new category
-	 * @return {@link Category} the new category object
-	 * @throws CategoryAlreadyExist Is thrown if the category that are trying to add already exist.
+	 * @return {@link Category} The new category object
+	 * @throws AlreadyExistException Is thrown if the category that are trying to add already exist.
 	 */
-	public Category addNewSubCategory(ArrayList<String> pathOfSubcategory, String name, String description) throws CategoryAlreadyExist {
-		Category category = getCategoryFromPath(pathOfSubcategory);
+	public Category addNewSubCategory(ArrayList<String> pathOfSubcategory, String name, String description) throws AlreadyExistException, EmptyStringException {
+		if (!name.isEmpty() && !(name.trim().length() == 0)) {
+			Category category = getCategoryFromPath(pathOfSubcategory);
 
-		assert category != null;
-		if (!category.getSubCategory().containsKey(name.toLowerCase())) {
-			category.addSubCategory(name, description);
-			saveCategoryMapChange();
-			return category.getSubCategory().get(name.toLowerCase());
+			assert category != null;
+			if (!category.getSubCategory().containsKey(name.toLowerCase())) {
+				category.addSubCategory(name, description);
+				saveCategoryMapChange();
+				return category.getSubCategory().get(name.toLowerCase());
+			}
+			else {
+				throw new AlreadyExistException("La categoria che stai creando esiste gia.");
+			}
 		}
 		else {
-			throw new CategoryAlreadyExist("La categoria che stai creando esiste gia.");
+			throw new EmptyStringException("Il nome della sotto-categoria non è valido");
 		}
-
 	}
 
 	/**
@@ -110,35 +119,41 @@ public final class CategoryManager {
 	 * @param pathOfCategory {@link ArrayList} that represent the path of the category
 	 * @param name           Name of the new field
 	 * @param isRequired     If the field is required ({@code true}) otherwise {@code false}
-	 * @return {@link Category} object with the new field
-	 * @throws FieldAlreadyExist Is thrown if the new field that are trying to add already exist.
+	 * @return {@link Category} OHeybject with the new field
+	 * @throws AlreadyExistException Is thrown if the new field that are trying to add already exist.
 	 */
-	public Category addNewField(ArrayList<String> pathOfCategory, String name, boolean isRequired) throws FieldAlreadyExist {
-		Category category = getCategoryFromPath(pathOfCategory);
+	public Category addNewField(ArrayList<String> pathOfCategory, String name, boolean isRequired) throws AlreadyExistException, EmptyStringException {
+		if (!name.isEmpty() && !(name.trim().length() == 0)) {
+			Category category = getCategoryFromPath(pathOfCategory);
 
-		// Recursive exit condition
-		if (!category.getSubCategory().isEmpty()) {
-			if (!category.getCategoryFields().containsKey(name.toLowerCase())) {
-				// Add the field in the category
-				category.addNewFields(name, isRequired);
+			// Recursive exit condition
+			if (!category.getSubCategory().isEmpty()) {
+				if (!category.getCategoryFields().containsKey(name.toLowerCase())) {
+					// Add the field in the category
+					category.addNewFields(name, isRequired);
 
-				// Recursive block, for each sub-category re-run this method
-				for (Category subCategory : category.getSubCategory().values()) {
-					var newPath = new ArrayList<>(pathOfCategory);
-					newPath.add(subCategory.getName());
-					addNewField(newPath, name, isRequired);
+					// Recursive block, for each sub-category re-run this method
+					for (Category subCategory : category.getSubCategory().values()) {
+						var newPath = new ArrayList<>(pathOfCategory);
+						newPath.add(subCategory.getName());
+						addNewField(newPath, name, isRequired);
+					}
+				}
+				else {
+					throw new AlreadyExistException("La categoria che stai creato esiste già.");
 				}
 			}
 			else {
-				throw new FieldAlreadyExist("La categoria che stai creato esiste già.");
+				category.addNewFields(name, isRequired);
 			}
+
+			saveCategoryMapChange();
+			return category;
 		}
 		else {
-			category.addNewFields(name, isRequired);
+			throw new EmptyStringException("Il nome del campo non è valido");
 		}
 
-		saveCategoryMapChange();
-		return category;
 	}
 
 	/**

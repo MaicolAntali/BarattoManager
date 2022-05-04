@@ -1,7 +1,7 @@
 package com.barattoManager.ui.components;
 
 import com.barattoManager.config.AppConfigurator;
-import com.barattoManager.exception.UserAlreadyExist;
+import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.ui.panels.optionPane.RegisterNewConfiguratorPanel;
 import com.barattoManager.user.UserManager;
 
@@ -54,7 +54,7 @@ public class ConfiguratorHomeUi extends JPanel {
 							"Registrazione corretta",
 							JOptionPane.INFORMATION_MESSAGE
 							);
-				} catch (UserAlreadyExist ex) {
+				} catch (AlreadyExistException ex) {
 					JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 				}
 			}
