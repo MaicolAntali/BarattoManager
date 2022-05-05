@@ -125,6 +125,8 @@ public final class CategoryManager {
 		if (!name.isEmpty() && !(name.trim().length() == 0)) {
 			Category category = getCategoryFromPath(pathOfCategory);
 
+			System.out.println(category.getName());
+
 			// Recursive exit condition
 			if (!category.getSubCategory().isEmpty()) {
 				if (!category.getCategoryFields().containsKey(name.toLowerCase())) {
@@ -143,7 +145,12 @@ public final class CategoryManager {
 				}
 			}
 			else {
-				category.addNewFields(name, isRequired);
+				if (!category.getCategoryFields().containsKey(name.toLowerCase())) {
+					category.addNewFields(name, isRequired);
+				}
+				else {
+					throw new AlreadyExistException("Il campo che stai creato esiste già.");
+				}
 			}
 
 			saveCategoryMapChange();
