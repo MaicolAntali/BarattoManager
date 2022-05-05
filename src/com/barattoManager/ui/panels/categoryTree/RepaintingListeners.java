@@ -31,10 +31,17 @@ public class RepaintingListeners {
 		return RepaintingListenersHolder.instance;
 	}
 
+	/**
+	 * Method used to add a new {@link RepaintingListeners} in the {@link #listeners} List.
+	 * @param toAdd {@link RepaintingListeners} to add in the List
+	 */
 	public void addListener(RepaintingEventHandler toAdd) {
 		listeners.add(toAdd);
 	}
 
+	/**
+	 * Method used to fire for each {@link #listeners} the method {@link RepaintingEventHandler#repaintTreeContainerComponents()}
+	 */
 	public void fireListeners() {
 		for (RepaintingEventHandler event : listeners) {
 			event.repaintTreeContainerComponents();

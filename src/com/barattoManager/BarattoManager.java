@@ -1,6 +1,5 @@
 package com.barattoManager;
 
-import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.ui.BarattoManagerGui;
 
 import java.awt.*;

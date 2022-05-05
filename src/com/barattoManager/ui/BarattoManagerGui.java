@@ -32,6 +32,5 @@ public class BarattoManagerGui extends JFrame {
         panelContainer.add(new LoginUI(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.LOGIN.toString());
         panelContainer.add(new ConfiguratorHomeUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_HOME.toString());
         panelContainer.add(new ConfiguratorCategoryEditorUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_CATEGORY_EDITOR.toString());
-
     }
 }
