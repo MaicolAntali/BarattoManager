@@ -82,7 +82,7 @@ public class TreeView extends JPanel {
 	public TreeNode[] getSelectedPathNode() throws NoNodeSelected {
 		var selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 		if (selectedNode == null) {
-			throw new NoNodeSelected("Non è stato selezionata nessuna categoria. Seleziona una categoria e riprova.");
+			throw new NoNodeSelected("Non è stata selezionata nessuna categoria. Seleziona una categoria e riprova.");
 		}
 		else {
 			return selectedNode.getPath();
