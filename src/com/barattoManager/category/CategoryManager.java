@@ -139,7 +139,7 @@ public final class CategoryManager {
 					}
 				}
 				else {
-					throw new AlreadyExistException("La categoria che stai creato esiste già.");
+					throw new AlreadyExistException("Il campo che stai creato esiste già.");
 				}
 			}
 			else {
