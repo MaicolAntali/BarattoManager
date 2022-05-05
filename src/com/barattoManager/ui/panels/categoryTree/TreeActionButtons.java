@@ -49,7 +49,9 @@ public class TreeActionButtons extends JPanel {
 			if (result == JOptionPane.OK_OPTION) {
 				categoryManager.addNewMainCategory(
 						categoryInputPanel.getCategoryName().getText(),
-						categoryInputPanel.getCategoryDescription().getText());
+						categoryInputPanel.getCategoryDescription().getText()
+				);
+				RepaintingListeners.getInstance().fireListeners();
 			}
 		} catch (AlreadyExistException | EmptyStringException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
@@ -78,7 +80,9 @@ public class TreeActionButtons extends JPanel {
 				categoryManager.addNewSubCategory(
 						TreeUtils.treeNodeArrayToArrayList(nodePath),
 						categoryInputPanel.getCategoryName().getText(),
-						categoryInputPanel.getCategoryDescription().getText());
+						categoryInputPanel.getCategoryDescription().getText()
+				);
+				RepaintingListeners.getInstance().fireListeners();
 			}
 		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
@@ -110,6 +114,7 @@ public class TreeActionButtons extends JPanel {
 						fieldName,
 						fieldInputPanel.getFieldIsRequired().isSelected()
 				);
+				RepaintingListeners.getInstance().fireListeners();
 			}
 		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);

@@ -192,7 +192,6 @@ public final class CategoryManager {
 	private void saveCategoryMapChange() {
 		try {
 			objectMapper.writeValue(categoriesFile, categoryMap);
-			RepaintingListeners.getInstance().fireListeners();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
