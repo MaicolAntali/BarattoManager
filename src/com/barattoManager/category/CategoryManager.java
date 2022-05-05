@@ -3,6 +3,7 @@ package com.barattoManager.category;
 import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.EmptyStringException;
+import com.barattoManager.ui.panels.categoryTree.RepaintingListeners;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the categories.
@@ -53,12 +55,12 @@ public final class CategoryManager {
 
 	/**
 	 * Method used to add a new Main category
-	 * @param name Name of new category
+	 *
+	 * @param name        Name of new category
 	 * @param description Description of the new category
-	 * @return The new category with the default field
 	 * @throws AlreadyExistException Is thrown is the category or field that are trying to add already exist.
 	 */
-	public Category addNewMainCategory(String name, String description) throws AlreadyExistException, EmptyStringException {
+	public void addNewMainCategory(String name, String description) throws AlreadyExistException, EmptyStringException {
 		if (!name.isEmpty() && !(name.trim().length() == 0)) {
 			if (!categoryMap.containsKey(name.toLowerCase())) {
 				categoryMap.put(name.toLowerCase(), new Category(name, description));
@@ -73,7 +75,7 @@ public final class CategoryManager {
 				}
 
 				saveCategoryMapChange();
-				return categoryMap.get(name.toLowerCase());
+				categoryMap.get(name.toLowerCase());
 			}
 			else {
 				throw new AlreadyExistException("La categoria che stai creando esiste gia.");
@@ -91,18 +93,16 @@ public final class CategoryManager {
 	 * @param pathOfSubcategory {@link ArrayList} that represent the path of the category
 	 * @param name              Name of the new category
 	 * @param description       Description of new category
-	 * @return {@link Category} The new category object
 	 * @throws AlreadyExistException Is thrown if the category that are trying to add already exist.
 	 */
-	public Category addNewSubCategory(ArrayList<String> pathOfSubcategory, String name, String description) throws AlreadyExistException, EmptyStringException {
+	public void addNewSubCategory(ArrayList<String> pathOfSubcategory, String name, String description) throws AlreadyExistException, EmptyStringException {
 		if (!name.isEmpty() && !(name.trim().length() == 0)) {
 			Category category = getCategoryFromPath(pathOfSubcategory);
 
 			assert category != null;
-			if (!category.getSubCategory().containsKey(name.toLowerCase())) {
+			if (!category.getSubCategory().containsKey(name.toLowerCase()) && !Objects.equals(category.getName().toLowerCase(), name.toLowerCase())) {
 				category.addSubCategory(name, description);
 				saveCategoryMapChange();
-				return category.getSubCategory().get(name.toLowerCase());
 			}
 			else {
 				throw new AlreadyExistException("La categoria che stai creando esiste gia.");
@@ -119,10 +119,9 @@ public final class CategoryManager {
 	 * @param pathOfCategory {@link ArrayList} that represent the path of the category
 	 * @param name           Name of the new field
 	 * @param isRequired     If the field is required ({@code true}) otherwise {@code false}
-	 * @return {@link Category} OHeybject with the new field
 	 * @throws AlreadyExistException Is thrown if the new field that are trying to add already exist.
 	 */
-	public Category addNewField(ArrayList<String> pathOfCategory, String name, boolean isRequired) throws AlreadyExistException, EmptyStringException {
+	public void addNewField(ArrayList<String> pathOfCategory, String name, boolean isRequired) throws AlreadyExistException, EmptyStringException {
 		if (!name.isEmpty() && !(name.trim().length() == 0)) {
 			Category category = getCategoryFromPath(pathOfCategory);
 
@@ -148,7 +147,6 @@ public final class CategoryManager {
 			}
 
 			saveCategoryMapChange();
-			return category;
 		}
 		else {
 			throw new EmptyStringException("Il nome del campo non è valido");
@@ -187,6 +185,7 @@ public final class CategoryManager {
 	private void saveCategoryMapChange() {
 		try {
 			objectMapper.writeValue(categoriesFile, categoryMap);
+			RepaintingListeners.getInstance().fireListeners();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

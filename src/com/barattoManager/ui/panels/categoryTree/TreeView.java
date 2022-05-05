@@ -16,12 +16,11 @@ public class TreeView extends JPanel {
 	private static final String ICON_CATEGORY_CLOSE = "/icon/category_close.png";
 	private static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
 
-	private final DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Categorie");
 	private final JTree tree;
-	private final DefaultTreeModel treeModel;
 
 	public TreeView() {
 		// Populate the tree with category
+		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Categorie");
 		for (Category cat : CategoryManager.getInstance().getCategoryMap().values()) {
 			var node = createNode(cat, rootNode);
 			createSubCategoryNode(cat, node);
@@ -29,9 +28,6 @@ public class TreeView extends JPanel {
 
 		// Create the tree based on rootNodeNode
 		tree = new JTree(rootNode);
-
-		// Set the tree model
-		treeModel = (DefaultTreeModel) tree.getModel();
 
 		// Change the default JTree icons
 		DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
@@ -76,96 +72,6 @@ public class TreeView extends JPanel {
 				createSubCategoryNode(subCat, node);
 			}
 		}
-	}
-
-	/**
-	 * Recursive method used to append new field
-	 * @param newFieldNode Field node to append
-	 * @param node Father node
-	 */
-	private void addFieldNodes(DefaultMutableTreeNode newFieldNode, DefaultMutableTreeNode node) {
-		if (node.getChildCount() != 0) {
-			for (int i = 0; i < node.getChildCount(); i++) {
-				var subNode = node.getChildAt(i);
-				if (!subNode.isLeaf()) {
-					insertNewNodeAndUpdate(newFieldNode, (DefaultMutableTreeNode) subNode);
-				}
-				addFieldNodes(newFieldNode, (DefaultMutableTreeNode) subNode);
-			}
-		}
-		else {
-			if (!node.isLeaf()) {
-				insertNewNodeAndUpdate(newFieldNode, node);
-			}
-		}
-	}
-
-	/**
-	 * Method used to insert a new node on the fly and update the view of tree.
-	 * @param nodeToAdd Node to add in the {@link #tree}
-	 * @param fatherNode Node that's the father of new node.
-	 */
-	private void insertNewNodeAndUpdate(DefaultMutableTreeNode nodeToAdd, DefaultMutableTreeNode fatherNode) {
-		treeModel.insertNodeInto(nodeToAdd, fatherNode, fatherNode.getChildCount());
-		treeModel.reload(nodeToAdd);
-		TreeNode[] CategoryNodes = treeModel.getPathToRoot(nodeToAdd);
-		var CategoryPath = new TreePath(CategoryNodes);
-		tree.scrollPathToVisible(CategoryPath);
-	}
-
-	/**
-	 * Method used to print each field of one category
-	 * @param category Category of which to print the fields
-	 * @param newCategoryNode Node where add the field
-	 */
-	private void paintCategoryField(Category category, DefaultMutableTreeNode newCategoryNode) {
-		for(Field field: category.getCategoryFields().values()) {
-			var newFieldNode = new DefaultMutableTreeNode("%s: %s".formatted(field.getName(), field.isRequired()));
-			insertNewNodeAndUpdate(newFieldNode, newCategoryNode);
-		}
-	}
-
-	/**
-	 * Method used to paint in the {@link #tree} a new category (Category + Fields).
-	 * @param category {@link Category} to paint in the {@link #tree}
-	 */
-	public void paintNewMainCategory(Category category) {
-		// Print the new category
-		var newCategoryNode = new DefaultMutableTreeNode(("%s ~ %s").formatted(category.getName(), category.getDescription()));
-		insertNewNodeAndUpdate(newCategoryNode, rootNode);
-
-		// Print the Fields
-		paintCategoryField(category, newCategoryNode);
-	}
-
-
-	/**
-	 * Method used to paint in the {@link #tree} a new sub-category (Category + Fields).
-	 * @param category {@link Category} to paint in the {@link #tree}
-	 */
-	public void paintNewSubCategory(Category category) {
-		// Print the new category
-		var newCategoryNode = new DefaultMutableTreeNode(("%s ~ %s").formatted(category.getName(), category.getDescription()));
-		var selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-		insertNewNodeAndUpdate(newCategoryNode, selectedNode);
-
-		// Print the Fields
-		paintCategoryField(category, newCategoryNode);
-	}
-
-	/**
-	 * Method used to paint in the {@link #tree} a new field.
-	 * @param category {@link Category} to add the new field
-	 * @param newFieldName Field Name
-	 */
-	public void paintNewField(Category category, String newFieldName) {
-
-		var field = category.getCategoryFields().get(newFieldName.toLowerCase());
-
-		var newFieldNode = new DefaultMutableTreeNode(("%s: %s").formatted(field.getName(), field.isRequired()));
-		var selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-		insertNewNodeAndUpdate(newFieldNode, selectedNode);
-		addFieldNodes(newFieldNode, selectedNode);
 	}
 
 	/**

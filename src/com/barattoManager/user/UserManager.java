@@ -2,6 +2,7 @@ package com.barattoManager.user;
 
 import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
+import com.barattoManager.exception.EmptyStringException;
 import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.user.configurator.Configurator;
 import com.barattoManager.user.viewer.Viewer;
@@ -46,7 +47,7 @@ public final class UserManager {
 						"Credenziali Base",
 						JOptionPane.INFORMATION_MESSAGE
 				);
-			} catch (AlreadyExistException e) {
+			} catch (AlreadyExistException | EmptyStringException e) {
 				e.printStackTrace();
 			}
 		}
@@ -83,21 +84,27 @@ public final class UserManager {
 	 * @param isAdmin  Indicates whether a User is an admins or not.
 	 * @throws AlreadyExistException Is thrown if the new user that are trying to add already exist.
 	 */
-	public void addNewUser(String username, String password, Boolean isAdmin) throws AlreadyExistException {
-		User user;
-		if (userMap.containsKey(username.toLowerCase()))
-			throw new AlreadyExistException(ERROR_USER_ALREADY_EXIST.formatted(username));
-		else {
-			if (Objects.requireNonNull(isAdmin, ERROR_NEW_USER_NULL_PARAM)) {
-				user = new Configurator(username, password);
-			}
+	public void addNewUser(String username, String password, Boolean isAdmin) throws AlreadyExistException, EmptyStringException {
+		if (!username.isEmpty() && !(username.trim().length() == 0)) {
+			if (userMap.containsKey(username.toLowerCase()))
+				throw new AlreadyExistException(ERROR_USER_ALREADY_EXIST.formatted(username));
 			else {
-				user = new Viewer(username, password);
-			}
+				User user;
+				if (Objects.requireNonNull(isAdmin, ERROR_NEW_USER_NULL_PARAM)) {
+					user = new Configurator(username, password);
+				}
+				else {
+					user = new Viewer(username, password);
+				}
 
-			userMap.put(username.toLowerCase(), user);
-			saveUserMapChange();
+				userMap.put(username.toLowerCase(), user);
+				saveUserMapChange();
+			}
 		}
+		else {
+			throw new EmptyStringException("lo username non è valido");
+		}
+
 	}
 
 	/**

@@ -47,11 +47,9 @@ public class TreeActionButtons extends JPanel {
 			);
 
 			if (result == JOptionPane.OK_OPTION) {
-				var newCategory = categoryManager.addNewMainCategory(
+				categoryManager.addNewMainCategory(
 						categoryInputPanel.getCategoryName().getText(),
 						categoryInputPanel.getCategoryDescription().getText());
-
-				treeView.paintNewMainCategory(newCategory);
 			}
 		} catch (AlreadyExistException | EmptyStringException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
@@ -77,12 +75,10 @@ public class TreeActionButtons extends JPanel {
 
 			if (result == JOptionPane.OK_OPTION) {
 				assert nodePath != null;
-				var newSubCategory = categoryManager.addNewSubCategory(
+				categoryManager.addNewSubCategory(
 						TreeUtils.treeNodeArrayToArrayList(nodePath),
 						categoryInputPanel.getCategoryName().getText(),
 						categoryInputPanel.getCategoryDescription().getText());
-
-				treeView.paintNewSubCategory(newSubCategory);
 			}
 		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
@@ -109,14 +105,11 @@ public class TreeActionButtons extends JPanel {
 			if (result == JOptionPane.OK_OPTION) {
 				assert nodePath != null;
 				String fieldName = fieldInputPanel.getFieldName().getText();
-				var categoryOfNewField =categoryManager.addNewField(
+				categoryManager.addNewField(
 						TreeUtils.treeNodeArrayToArrayList(nodePath),
 						fieldName,
 						fieldInputPanel.getFieldIsRequired().isSelected()
 				);
-
-				treeView.paintNewField(categoryOfNewField, fieldName);
-
 			}
 		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);

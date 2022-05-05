@@ -1,5 +1,6 @@
 package com.barattoManager.ui.components;
 
+import com.barattoManager.ui.panels.categoryTree.RepaintingListeners;
 import com.barattoManager.ui.panels.categoryTree.TreeContainer;
 
 import javax.swing.*;
@@ -16,8 +17,11 @@ public class ConfiguratorCategoryEditorUi extends JPanel {
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
-		centerPanel.add(new TreeContainer());
+		var treeContainer = new TreeContainer();
+		centerPanel.add(treeContainer);
+		RepaintingListeners.getInstance().addListener(treeContainer);
 
 		backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
 	}
+
 }

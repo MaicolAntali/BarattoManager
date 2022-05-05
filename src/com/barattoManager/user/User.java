@@ -28,6 +28,6 @@ public abstract class User {
 	public abstract String getPassword();
 
 	public boolean isPasswordValid(String password) {
-		return !Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_pwd")) && password.length() >= 5;
+		return !Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_pwd")) && password.trim().length() >= 5;
 	}
 }
