@@ -57,6 +57,7 @@ public final class UserManager {
 		private static final UserManager instance = new UserManager();
 	}
 
+
 	/**
 	 * Method used to create get the {@link UserManager} instance.
 	 * This method use the lazy loading mechanism cause the inner class is loaded only if
@@ -102,7 +103,7 @@ public final class UserManager {
 			}
 		}
 		else {
-			throw new EmptyStringException("lo username non è valido");
+			throw new EmptyStringException("Lo username non è valido");
 		}
 
 	}

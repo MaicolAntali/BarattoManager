@@ -3,7 +3,6 @@ package com.barattoManager.category;
 import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.EmptyStringException;
-import com.barattoManager.ui.panels.categoryTree.RepaintingListeners;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -125,8 +124,6 @@ public final class CategoryManager {
 		if (!name.isEmpty() && !(name.trim().length() == 0)) {
 			Category category = getCategoryFromPath(pathOfCategory);
 
-			System.out.println(category.getName());
-
 			// Recursive exit condition
 			if (!category.getSubCategory().isEmpty()) {
 				if (!category.getCategoryFields().containsKey(name.toLowerCase())) {
@@ -141,7 +138,7 @@ public final class CategoryManager {
 					}
 				}
 				else {
-					throw new AlreadyExistException("Il campo che stai creato esiste già.");
+					throw new AlreadyExistException("Il campo che stai creando esiste già.");
 				}
 			}
 			else {
@@ -149,7 +146,7 @@ public final class CategoryManager {
 					category.addNewFields(name, isRequired);
 				}
 				else {
-					throw new AlreadyExistException("Il campo che stai creato esiste già.");
+					throw new AlreadyExistException("Il campo che stai creando esiste già.");
 				}
 			}
 

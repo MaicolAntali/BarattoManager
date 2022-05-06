@@ -9,7 +9,6 @@ public class Configurator extends User {
 
     @JsonProperty("username")
     private String username;
-
     @JsonProperty("password")
     private String password;
 
