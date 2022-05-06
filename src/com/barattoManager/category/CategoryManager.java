@@ -61,6 +61,7 @@ public final class CategoryManager {
 	 * @param description Description of the new category
 	 * @throws AlreadyExistException Is thrown is the category or field that are trying to add already exist.
 	 * @throws EmptyStringException Is thrown if the name is an empty string
+	 * @throws NullCategoryException  Is thrown if is nt found a category in the map
 	 */
 	public void addNewMainCategory(String name, String description) throws AlreadyExistException, EmptyStringException, NullCategoryException {
 		if (!name.isEmpty() && !(name.trim().length() == 0)) {
@@ -195,6 +196,10 @@ public final class CategoryManager {
 		return mainCategory;
 	}
 
+	/**
+	 * Method used to get the {@link HashMap} of root category
+	 * @return {@link HashMap} of root category
+	 */
 	public HashMap<String, Category> getCategoryMap() {
 		return categoryMap;
 	}

@@ -10,18 +10,45 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
+/**
+ * Class used to create a Jpanel that represent the login view
+ */
 public class LoginUI extends JPanel {
 
-    public static final String SET_NEW_PASSWORD_TITLE = "seleziona una nuova password";
-    public static final String ERROR_PASSWORD_NOT_VALID = "La nuova password non è valida.\n Inserisci una password diversa da: %s e lunga almeno 5 caratteri.".formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
-    public static final String ERROR_TITLE = "Errore";
+    private static final String SET_NEW_PASSWORD_TITLE = "seleziona una nuova password";
+    private static final String ERROR_PASSWORD_NOT_VALID = "La nuova password non è valida.\n Inserisci una password diversa da: %s e lunga almeno 5 caratteri.".formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
+    private static final String ERROR_TITLE = "Errore";
+	/**
+	 * {@link UserManager} Object
+	 */
     private final UserManager userManager;
+	/**
+	 * Main Jpanel
+	 */
 	private JPanel mainPanel;
+	/**
+	 * Username field
+	 */
 	private JTextField usernameField;
+	/**
+	 * JButton used to go in the {@link InitialMenuUI} view
+	 */
 	private JButton backToInitButton;
+	/**
+	 * JButton used to log in
+	 */
 	private JButton loginButton;
+	/**
+	 * Password field
+	 */
 	private JPasswordField passwordField;
 
+	/**
+	 * {@link LoginUI} constructor
+	 * @param dimension Dimension of Jpanel
+	 * @param cardLayout {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
+	 * @param panelContainer {@link JPanel} object that contains every cards
+	 */
 	public LoginUI(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
 		// Get the userManager
 		this.userManager = UserManager.getInstance();

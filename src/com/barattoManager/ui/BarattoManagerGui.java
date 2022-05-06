@@ -6,14 +6,29 @@ import com.barattoManager.ui.components.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class (that {@code extends JFrame}) used to instance every other view in a cardLayout and set the Jframe.
+ */
 public class BarattoManagerGui extends JFrame {
 
     private static final Dimension CONTENT_PANEL_DEFAULT_DIMENSION = new Dimension(600, 430); // height - 70
 
+    /**
+     * Main Jpanel
+     */
     private JPanel mainPanel;
+    /**
+     * Panel with a cardLayout that contains each view
+     */
     private JPanel panelContainer;
+    /**
+     * Label that show the app version
+     */
     private JLabel versionLabel;
 
+    /**
+     * {@link BarattoManagerGui} constructor
+     */
     public BarattoManagerGui() {
         // Frame config
         this.setTitle("Baratto Manager");

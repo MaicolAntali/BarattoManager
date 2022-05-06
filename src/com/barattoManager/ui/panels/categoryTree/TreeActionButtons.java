@@ -11,10 +11,23 @@ import com.barattoManager.ui.panels.optionPane.CreateNewFieldPanel;
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
 
+/**
+ * Class used to create a Jpanel that contains buttons used in {@link TreeContainer}
+ */
 public class TreeActionButtons extends JPanel {
+	/**
+	 * {@link CategoryManager} object
+	 */
 	private final CategoryManager categoryManager = CategoryManager.getInstance();
+	/**
+	 * {@link TreeView} object
+	 */
 	private final TreeView treeView;
 
+	/**
+	 * {@link TreeActionButtons} constructor
+	 * @param treeView {@link TreeView} object
+	 */
 	public TreeActionButtons(TreeView treeView) {
 		this.treeView = treeView;
 

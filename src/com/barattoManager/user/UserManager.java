@@ -19,10 +19,10 @@ import java.util.Objects;
  * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the users(Configurator or User).
  */
 public final class UserManager {
-	public static final String ERROR_USER_ALREADY_EXIST = "L'utente %s esiste gia. Impossible crealo nuovamente";
-	public static final String ERROR_NEW_USER_NULL_PARAM = "Impossibile stabilire quale istanza di User creare.";
-	public static final String ERROR_USER_NOT_FOUND = "L'utente inserito non esiste. Riprovare";
-	public static final String ERROR_PASSWORD_NOT_MATCH = "La password inserita non è coretta. Riprovare";
+	private static final String ERROR_USER_ALREADY_EXIST = "L'utente %s esiste gia. Impossible crealo nuovamente";
+	private static final String ERROR_NEW_USER_NULL_PARAM = "Impossibile stabilire quale istanza di User creare.";
+	private static final String ERROR_USER_NOT_FOUND = "L'utente inserito non esiste. Riprovare";
+	private static final String ERROR_PASSWORD_NOT_MATCH = "La password inserita non è coretta. Riprovare";
 
 	private final File usersFile = new File(AppConfigurator.getInstance().getFileName("user_file"));
 	private final ObjectMapper objectMapper = new ObjectMapper();
@@ -84,6 +84,7 @@ public final class UserManager {
 	 * @param password Password of the User
 	 * @param isAdmin  Indicates whether a User is an admins or not.
 	 * @throws AlreadyExistException Is thrown if the new user that are trying to add already exist.
+	 * @throws EmptyStringException Is thrown if the username is empty
 	 */
 	public void addNewUser(String username, String password, Boolean isAdmin) throws AlreadyExistException, EmptyStringException {
 		if (!username.isEmpty() && !(username.trim().length() == 0)) {
@@ -129,6 +130,11 @@ public final class UserManager {
 		}
 	}
 
+	/**
+	 * Method used to set password of a User
+	 * @param user User object to set the new password
+	 * @param password New Password
+	 */
 	public void setUserPassword(User user, String password) {
 		user.setPassword(password);
 		saveUserMapChange();

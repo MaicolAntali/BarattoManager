@@ -10,14 +10,23 @@ import javax.swing.tree.*;
 import java.awt.*;
 import java.util.Objects;
 
+/**
+ * Class used to create a Jpanel that contain a Jtree
+ */
 public class TreeView extends JPanel {
 
 	private static final String ICON_CATEGORY_OPEN = "/icon/category_open.png";
 	private static final String ICON_CATEGORY_CLOSE = "/icon/category_close.png";
 	private static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
 
+	/**
+	 * {@link JTree} object
+	 */
 	private final JTree tree;
 
+	/**
+	 * {@link TreeView} constructor
+	 */
 	public TreeView() {
 		// Populate the tree with category
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Categorie");
@@ -54,7 +63,7 @@ public class TreeView extends JPanel {
 
 		// Add fields
 		for (Field categoryField : category.getCategoryFields().values()) {
-			node.add(new DefaultMutableTreeNode(("%s: %s").formatted(categoryField.getName(), categoryField.isRequired())));
+			node.add(new DefaultMutableTreeNode(("%s: %s").formatted(categoryField.name(), categoryField.required())));
 		}
 		return node;
 	}

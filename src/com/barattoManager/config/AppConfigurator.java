@@ -12,8 +12,15 @@ import java.io.InputStream;
  * This class reads a file called config.json placed in /resources/json.
  */
 public final class AppConfigurator {
+
+	/**
+	 * {@link ObjectNode} that contains the JSON node
+	 */
 	private final ObjectNode node;
 
+	/**
+	 * {@link AppConfigurator} constructor
+	 */
 	private AppConfigurator() {
 		try {
 			InputStream configFile = getClass().getResourceAsStream("/json/config.json");
@@ -23,8 +30,14 @@ public final class AppConfigurator {
 		}
 	}
 
-    private static final class AppConfiguratorHolder {
-        private static final AppConfigurator instance = new AppConfigurator();
+	/**
+	 * Holder class of instance
+	 */
+	private static final class AppConfiguratorHolder {
+		/**
+		 * Instance of {@link AppConfigurator}
+		 */
+		private static final AppConfigurator instance = new AppConfigurator();
     }
 
     /**

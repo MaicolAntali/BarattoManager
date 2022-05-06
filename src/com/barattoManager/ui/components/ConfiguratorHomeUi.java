@@ -9,11 +9,29 @@ import com.barattoManager.user.UserManager;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class used to create a Jpanel that represent the configurator home view
+ */
 public class ConfiguratorHomeUi extends JPanel {
+	/**
+	 * Main Jpanel
+	 */
 	private JPanel mainPanel;
-	private JButton modicaCategorieButton;
+	/**
+	 * Jbutton used to go in the {@link ConfiguratorCategoryEditorUi} view
+	 */
+	private JButton editCategoryButton;
+	/**
+	 * JButton used to add a new configurator
+	 */
 	private JButton addNewConfigurator;
 
+	/**
+	 * {@link ConfiguratorHomeUi} constructor
+	 * @param dimension Dimension of Jpanel
+	 * @param cardLayout {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
+	 * @param panelContainer {@link JPanel} object that contains every cards
+	 */
 	public ConfiguratorHomeUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
 		// JPanel conf
 		setVisible(true);
@@ -21,7 +39,7 @@ public class ConfiguratorHomeUi extends JPanel {
 
 		mainPanel.setPreferredSize(dimension);
 
-		modicaCategorieButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_CATEGORY_EDITOR.toString()));
+		editCategoryButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_CATEGORY_EDITOR.toString()));
 
 		addNewConfigurator.addActionListener(e -> {
 			var newConfiguratorPanel = new RegisterNewConfiguratorPanel();
