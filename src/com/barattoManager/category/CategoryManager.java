@@ -82,7 +82,7 @@ public final class CategoryManager {
 	 */
 	public void addNewMainCategory(String name, String description) throws AlreadyExistException, EmptyStringException, NullCategoryException {
 		if (!name.isEmpty() && !(name.trim().length() == 0)) {
-			if (!categoryMap.containsKey(name.toLowerCase())) {
+			if (!categoryMap.containsKey(name.trim().toLowerCase())) {
 				categoryMap.put(name.toLowerCase(), new Category(name, description));
 
 				// adding the default field
@@ -122,7 +122,7 @@ public final class CategoryManager {
 			Category category = getCategoryFromPath(pathOfSubcategory);
 
 			if (category != null) {
-				if (!category.getSubCategory().containsKey(name.toLowerCase()) && !Objects.equals(category.getName().toLowerCase(), name.toLowerCase())) {
+				if (!category.getSubCategory().containsKey(name.trim().toLowerCase()) && !Objects.equals(category.getName().trim().toLowerCase(), name.trim().toLowerCase())) {
 					category.addSubCategory(name, description);
 					saveCategoryMapChange();
 				}
@@ -156,7 +156,7 @@ public final class CategoryManager {
 			if (category != null) {
 				// Recursive exit condition
 				if (!category.getSubCategory().isEmpty()) {
-					if (!category.getCategoryFields().containsKey(name.toLowerCase())) {
+					if (!category.getCategoryFields().containsKey(name.trim().toLowerCase())) {
 						// Add the field in the category
 						category.addNewFields(name, isRequired);
 
