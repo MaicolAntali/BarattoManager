@@ -5,7 +5,7 @@ import com.barattoManager.category.CategoryManager;
 import java.util.ArrayList;
 
 /**
- * This class is a <b>Singleton Class</b><br/> used to add and fire {@link RepaintingEventHandler} event.
+ * This class is a <b>Singleton Class</b><br/> used to add and fire {@link RepaintingEventHandler} events.
  */
 public class RepaintingListeners {
 
