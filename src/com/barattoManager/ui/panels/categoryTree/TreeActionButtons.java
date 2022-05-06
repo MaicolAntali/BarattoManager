@@ -4,6 +4,7 @@ import com.barattoManager.category.CategoryManager;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.EmptyStringException;
 import com.barattoManager.exception.NoNodeSelected;
+import com.barattoManager.exception.NullCategoryException;
 import com.barattoManager.ui.panels.optionPane.CreateNewCategoryPanel;
 import com.barattoManager.ui.panels.optionPane.CreateNewFieldPanel;
 
@@ -53,7 +54,7 @@ public class TreeActionButtons extends JPanel {
 				);
 				RepaintingListeners.getInstance().fireListeners();
 			}
-		} catch (AlreadyExistException | EmptyStringException ex) {
+		} catch (AlreadyExistException | EmptyStringException | NullCategoryException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -84,7 +85,7 @@ public class TreeActionButtons extends JPanel {
 				);
 				RepaintingListeners.getInstance().fireListeners();
 			}
-		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException ex) {
+		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException | NullCategoryException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -116,7 +117,7 @@ public class TreeActionButtons extends JPanel {
 				);
 				RepaintingListeners.getInstance().fireListeners();
 			}
-		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException ex) {
+		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException | NullCategoryException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 		}
 	}
