@@ -46,6 +46,9 @@ public class TreeActionButtons extends JPanel {
 		add(addNewFieldButton);
 	}
 
+	/**
+	 * Method used to add a new root category
+	 */
 	private void addNewMainCategory() {
 		try {
 			var categoryInputPanel = new CreateNewCategoryPanel();
@@ -72,6 +75,9 @@ public class TreeActionButtons extends JPanel {
 		}
 	}
 
+	/**
+	 * Method used to add a new sub category
+	 */
 	private void addNewSubCategory() {
 		try {
 			// Get the selected node
@@ -103,6 +109,9 @@ public class TreeActionButtons extends JPanel {
 		}
 	}
 
+	/**
+	 * Method used to add a new field
+	 */
 	private void addNewField() {
 		try {
 			// Get the selected node

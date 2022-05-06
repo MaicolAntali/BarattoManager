@@ -9,14 +9,26 @@ import java.util.ArrayList;
  */
 public class RepaintingListeners {
 
+	/**
+	 * {@link ArrayList} of listeners
+	 */
 	private final ArrayList<RepaintingEventHandler> listeners;
 
+	/**
+	 * {@link RepaintingListeners} constructor
+	 */
 	private RepaintingListeners() {
 		listeners = new ArrayList<>();
 	}
 
 
+	/**
+	 * Holder class of instance
+	 */
 	private static final class RepaintingListenersHolder {
+		/**
+		 * Instance of {@link RepaintingListeners}
+		 */
 		private static final RepaintingListeners instance = new RepaintingListeners();
 	}
 

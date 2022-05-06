@@ -10,9 +10,15 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("Viewer")
 public class Viewer extends User {
 
+	/**
+	 * Username of viewer
+	 */
 	@JsonProperty("username")
 	private String username;
 
+	/**
+	 * Password of viewer
+	 */
 	@JsonProperty("password")
 	private String password;
 

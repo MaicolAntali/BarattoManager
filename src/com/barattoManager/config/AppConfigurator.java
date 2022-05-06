@@ -38,7 +38,8 @@ public final class AppConfigurator {
 		 * Instance of {@link AppConfigurator}
 		 */
 		private static final AppConfigurator instance = new AppConfigurator();
-    }
+
+	}
 
     /**
      * Method used to create get the {@link AppConfigurator} instance.

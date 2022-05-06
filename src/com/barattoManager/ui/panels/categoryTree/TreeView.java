@@ -15,8 +15,17 @@ import java.util.Objects;
  */
 public class TreeView extends JPanel {
 
+	/**
+	 * Icon for open category
+	 */
 	private static final String ICON_CATEGORY_OPEN = "/icon/category_open.png";
+	/**
+	 * Icon for close category
+	 */
 	private static final String ICON_CATEGORY_CLOSE = "/icon/category_close.png";
+	/**
+	 * Icon for field
+	 */
 	private static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
 
 	/**

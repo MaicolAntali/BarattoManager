@@ -3,7 +3,6 @@ package com.barattoManager.category;
 import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.EmptyStringException;
-import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.exception.NullCategoryException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -20,10 +19,22 @@ import java.util.Objects;
  * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the categories.
  */
 public final class CategoryManager {
+	/**
+	 * Category JSOn file
+	 */
 	private final File categoriesFile = new File(AppConfigurator.getInstance().getFileName("category_file"));
+	/**
+	 * {@link ObjectMapper} object, used to parse JSON
+	 */
 	private final ObjectMapper objectMapper = new ObjectMapper();
+	/**
+	 * {@link HashMap} that contain the root category
+	 */
 	private final HashMap<String, Category> categoryMap;
 
+	/**
+	 * {@link CategoryManager} constructor
+	 */
 	private CategoryManager() {
 		if (categoriesFile.exists()) {
 			try {
@@ -38,7 +49,13 @@ public final class CategoryManager {
 		}
 	}
 
+	/**
+	 * Holder class of instance
+	 */
 	private static final class CategoryManagerHolder {
+		/**
+		 * Instance of {@link CategoryManager}
+		 */
 		private static final CategoryManager instance = new CategoryManager();
 	}
 

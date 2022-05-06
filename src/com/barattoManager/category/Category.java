@@ -10,12 +10,24 @@ import java.util.HashMap;
  */
 public class Category {
 
+	/**
+	 * Category name
+	 */
 	@JsonProperty("category_name")
 	private final String name;
+	/**
+	 * Category description
+	 */
 	@JsonProperty("category_description")
 	private final String description;
+	/**
+	 * {@link HashMap} of sub-category
+	 */
 	@JsonProperty("category_sub_categories")
 	private final HashMap<String, Category> subCategory;
+	/**
+	 * {@link HashMap} of fields
+	 */
 	@JsonProperty("category_fields")
 	private final HashMap<String, Field> categoryFields;
 

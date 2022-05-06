@@ -15,8 +15,17 @@ import java.util.Objects;
  */
 public class LoginUI extends JPanel {
 
+	/**
+	 * Title of JOptionPanel
+	 */
     private static final String SET_NEW_PASSWORD_TITLE = "seleziona una nuova password";
+	/**
+	 * Password in weak error
+	 */
     private static final String ERROR_PASSWORD_NOT_VALID = "La nuova password non è valida.\n Inserisci una password diversa da: %s e lunga almeno 5 caratteri.".formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
+	/**
+	 * Title of Error
+	 */
     private static final String ERROR_TITLE = "Errore";
 	/**
 	 * {@link UserManager} Object

@@ -19,19 +19,39 @@ import java.util.Objects;
  * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the users(Configurator or User).
  */
 public final class UserManager {
+	/**
+	 * User already exist error
+	 */
 	private static final String ERROR_USER_ALREADY_EXIST = "L'utente %s esiste gia. Impossible crealo nuovamente";
-	private static final String ERROR_NEW_USER_NULL_PARAM = "Impossibile stabilire quale istanza di User creare.";
+	/**
+	 * User not found error
+	 */
 	private static final String ERROR_USER_NOT_FOUND = "L'utente inserito non esiste. Riprovare";
+	/**
+	 * Password not match error
+	 */
 	private static final String ERROR_PASSWORD_NOT_MATCH = "La password inserita non è coretta. Riprovare";
 
+	/**
+	 * User JSON file
+	 */
 	private final File usersFile = new File(AppConfigurator.getInstance().getFileName("user_file"));
+	/**
+	 * {@link ObjectMapper} object, used to parse JSON
+	 */
 	private final ObjectMapper objectMapper = new ObjectMapper();
+	/**
+	 * {@link HashMap} user map
+	 */
 	private final HashMap<String, User> userMap;
 
+	/**
+	 * {@link UserManager} constructor
+	 */
 	private UserManager() {
 		if (usersFile.exists()) {
 			try {
-				userMap = objectMapper.readValue(usersFile, new TypeReference<HashMap<String, User>>() {
+				userMap = objectMapper.readValue(usersFile, new TypeReference<>() {
 				});
 			} catch (IOException e) {
 				throw new RuntimeException(e);
@@ -53,7 +73,13 @@ public final class UserManager {
 		}
 	}
 
+	/**
+	 * Holder class of instance
+	 */
 	private static final class UserManagerHolder {
+		/**
+		 * Instance of {@link UserManager}
+		 */
 		private static final UserManager instance = new UserManager();
 	}
 
@@ -92,7 +118,7 @@ public final class UserManager {
 				throw new AlreadyExistException(ERROR_USER_ALREADY_EXIST.formatted(username));
 			else {
 				User user;
-				if (Objects.requireNonNull(isAdmin, ERROR_NEW_USER_NULL_PARAM)) {
+				if (Objects.requireNonNull(isAdmin, "Impossibile stabilire quale istanza di User creare.")) {
 					user = new Configurator(username, password);
 				}
 				else {

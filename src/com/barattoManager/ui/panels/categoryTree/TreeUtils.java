@@ -7,10 +7,6 @@ import java.util.ArrayList;
  * Utility class of tree
  */
 public final class TreeUtils {
-	
-	private TreeUtils() {
-	}
-
 	/**
 	 * Method to convert an array of {@link TreeNode} in to an array of {@link String}
 	 * @param nodePath Array of {@link TreeNode} to convert

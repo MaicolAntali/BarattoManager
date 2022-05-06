@@ -11,6 +11,9 @@ import java.awt.*;
  */
 public class BarattoManagerGui extends JFrame {
 
+    /**
+     * Default dimensions of views
+     */
     private static final Dimension CONTENT_PANEL_DEFAULT_DIMENSION = new Dimension(600, 430); // height - 70
 
     /**
