@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 
 /**
- * Class that rappresenta a category
+ * Class that represent a category
  */
 public class Category {
 
@@ -84,7 +84,7 @@ public class Category {
 	/**
 	 * Method used to add a new {@link Field} to this category
 	 * @param name Name of field
-	 * @param required If true the field is required otherwise no
+	 * @param required Is true if the field is required otherwise no
 	 */
 	public void addNewFields(String name, boolean required) {
 		categoryFields.put(name.toLowerCase(), new Field(name, required));
@@ -107,8 +107,8 @@ public class Category {
 	}
 
 	/**
-	 * Method used to get the HashMap of sub-category
-	 * @return {@link HashMap} of sub-category
+	 * Method used to get the HashMap of sub-categories
+	 * @return {@link HashMap} of sub-categories
 	 */
 	public HashMap<String, Category> getSubCategory() {
 		return subCategory;

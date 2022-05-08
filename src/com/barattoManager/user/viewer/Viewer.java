@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Classe that represent the Viewer {@code extends User}
+ * Class that represent the Viewer {@code extends User}
  */
 @JsonTypeName("Viewer")
 public class Viewer extends User {

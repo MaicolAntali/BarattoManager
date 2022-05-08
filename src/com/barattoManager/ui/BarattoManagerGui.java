@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class (that {@code extends JFrame}) used to instance every other view in a cardLayout and set the Jframe.
+ * Class (that {@code extends JFrame}) used to instance every other view in a cardLayout and set the JFrame.
  */
 public class BarattoManagerGui extends JFrame {
 
@@ -17,7 +17,7 @@ public class BarattoManagerGui extends JFrame {
     private static final Dimension CONTENT_PANEL_DEFAULT_DIMENSION = new Dimension(600, 430); // height - 70
 
     /**
-     * Main Jpanel
+     * Main JPanel
      */
     private JPanel mainPanel;
     /**

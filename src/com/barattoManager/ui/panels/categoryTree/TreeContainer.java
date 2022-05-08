@@ -13,7 +13,7 @@ public class TreeContainer extends JPanel implements RepaintingEventHandler{
 	 */
 	private TreeView treeView = new TreeView();
 	/**
-	 * {@link TreeActionButtons} obejct
+	 * {@link TreeActionButtons} object
 	 */
 	private TreeActionButtons treeActionButtons = new TreeActionButtons(treeView);
 

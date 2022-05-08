@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class used to create a Jpanel used to cerate a new category
+ * Class used to create a JPanel used to create a new category
  */
 public class CreateNewCategoryPanel extends JPanel {
 
 	/**
-	 * Category nam,e field
+	 * Category name field
 	 */
 	private final JTextField categoryName = new JTextField(13);
 	/**

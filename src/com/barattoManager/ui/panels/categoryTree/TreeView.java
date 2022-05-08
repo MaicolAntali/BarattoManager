@@ -11,7 +11,7 @@ import java.awt.*;
 import java.util.Objects;
 
 /**
- * Class used to create a Jpanel that contain a Jtree
+ * Class used to create a JPanel that contain a JTree
  */
 public class TreeView extends JPanel {
 
@@ -63,7 +63,7 @@ public class TreeView extends JPanel {
 	 *
 	 * @param category   {@link Category} want to create the node.
 	 * @param fatherNode {@link DefaultMutableTreeNode} node to attach the new category node
-	 * @return {@link DefaultMutableTreeNode} New category node
+	 * @return {@link DefaultMutableTreeNode} new category node
 	 */
 	private DefaultMutableTreeNode createNode(Category category, DefaultMutableTreeNode fatherNode) {
 		// Add the category

@@ -12,7 +12,7 @@ import javax.swing.*;
 import javax.swing.tree.TreeNode;
 
 /**
- * Class used to create a Jpanel that contains buttons used in {@link TreeContainer}
+ * Class used to create a JPanel that contains buttons used in {@link TreeContainer}
  */
 public class TreeActionButtons extends JPanel {
 	/**

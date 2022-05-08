@@ -7,15 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class used to create a Jpanel that represent the category editor view (only configurator)
+ * Class used to create a JPanel that represent the category editor view (only configurator)
  */
 public class ConfiguratorCategoryEditorUi extends JPanel {
 	/**
-	 * Main Jpanel
+	 * Main JPanel
 	 */
 	private JPanel mainPanel;
 	/**
-	 * Center Jpanel {@code BorderLayout.CENTER}
+	 * Center JPanel {@code BorderLayout.CENTER}
 	 */
 	private JPanel centerPanel;
 	/**
@@ -25,7 +25,7 @@ public class ConfiguratorCategoryEditorUi extends JPanel {
 
 	/**
 	 * {@link ConfiguratorCategoryEditorUi} constructor
-	 * @param dimension Dimension of Jpanel
+	 * @param dimension Dimension of JPanel
 	 * @param cardLayout {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
 	 * @param panelContainer {@link JPanel} object that contains every cards
 	 */

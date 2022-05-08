@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class used to create a Jpanel used to register a new configurator
+ * Class used to create a JPanel used to register a new configurator
  */
 public class RegisterNewConfiguratorPanel extends JPanel {
 
@@ -32,8 +32,8 @@ public class RegisterNewConfiguratorPanel extends JPanel {
 	}
 
 	/**
-	 * Method used rto get the {@link #usernameField}
-	 * @return {@link JTextField} obejct
+	 * Method used to get the {@link #usernameField}
+	 * @return {@link JTextField} object
 	 */
 	public JTextField getUsernameField() {
 		return usernameField;

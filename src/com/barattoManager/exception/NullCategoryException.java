@@ -1,7 +1,7 @@
 package com.barattoManager.exception;
 
 /**
- * Exception used when there is no a category
+ * Exception used when there is no category
  */
 public class NullCategoryException extends Exception {
 	/**

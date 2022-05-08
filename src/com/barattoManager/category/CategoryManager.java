@@ -20,7 +20,7 @@ import java.util.Objects;
  */
 public final class CategoryManager {
 	/**
-	 * Category JSOn file
+	 * Category JSON file
 	 */
 	private final File categoriesFile = new File(AppConfigurator.getInstance().getFileName("category_file"));
 	/**
@@ -78,7 +78,7 @@ public final class CategoryManager {
 	 * @param description Description of the new category
 	 * @throws AlreadyExistException Is thrown is the category or field that are trying to add already exist.
 	 * @throws EmptyStringException Is thrown if the name is an empty string
-	 * @throws NullCategoryException  Is thrown if is nt found a category in the map
+	 * @throws NullCategoryException  Is thrown if is not found a category in the map
 	 */
 	public void addNewMainCategory(String name, String description) throws AlreadyExistException, EmptyStringException, NullCategoryException {
 		if (!name.isEmpty() && !(name.trim().length() == 0)) {
@@ -147,7 +147,7 @@ public final class CategoryManager {
 	 * @param isRequired     If the field is required ({@code true}) otherwise {@code false}
 	 * @throws AlreadyExistException Is thrown if the new field that are trying to add already exist.
 	 * @throws EmptyStringException Is thrown if the name is an empty string
-	 * @throws NullCategoryException Is thrown if is nt found a category in the map
+	 * @throws NullCategoryException Is thrown if is not found a category in the map
 	 */
 	public void addNewField(ArrayList<String> pathOfCategory, String name, boolean isRequired) throws AlreadyExistException, EmptyStringException, NullCategoryException {
 		if (!name.isEmpty() && !(name.trim().length() == 0)) {
@@ -214,8 +214,8 @@ public final class CategoryManager {
 	}
 
 	/**
-	 * Method used to get the {@link HashMap} of root category
-	 * @return {@link HashMap} of root category
+	 * Method used to get the {@link HashMap} of root categories
+	 * @return {@link HashMap} of root categories
 	 */
 	public HashMap<String, Category> getCategoryMap() {
 		return categoryMap;

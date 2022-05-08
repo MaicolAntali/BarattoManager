@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class used to create a Jpanel used to change a user password
+ * Class used to create a JPanel used to change a user password
  */
 public class ChangePasswordPanel extends JPanel {
 	/**

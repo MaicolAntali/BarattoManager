@@ -55,7 +55,7 @@ public abstract class User {
 	 *     <li>Different from {@code default_pwd}</li>
 	 * </ul>
 	 * @param password Password to check
-	 * @return True id the password is good otherwise false
+	 * @return True if the password is valid otherwise false
 	 */
 	public boolean isPasswordValid(String password) {
 		return !Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_pwd")) && password.trim().length() >= 5;

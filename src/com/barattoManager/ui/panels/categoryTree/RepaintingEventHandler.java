@@ -5,7 +5,7 @@ package com.barattoManager.ui.panels.categoryTree;
  */
 public interface RepaintingEventHandler {
 	/**
-	 * Event use to repaint the components the {@link TreeContainer}
+	 * Event use to repaint the components of the {@link TreeContainer}
 	 */
 	void repaintTreeContainerComponents();
 }

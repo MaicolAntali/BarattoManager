@@ -11,7 +11,7 @@ import java.awt.*;
 import java.util.Objects;
 
 /**
- * Class used to create a Jpanel that represent the login view
+ * Class used to create a JPanel that represent the login view
  */
 public class LoginUI extends JPanel {
 
@@ -20,7 +20,7 @@ public class LoginUI extends JPanel {
 	 */
     private static final String SET_NEW_PASSWORD_TITLE = "seleziona una nuova password";
 	/**
-	 * Password in weak error
+	 * Password not valid error
 	 */
     private static final String ERROR_PASSWORD_NOT_VALID = "La nuova password non è valida.\n Inserisci una password diversa da: %s e lunga almeno 5 caratteri.".formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
 	/**
@@ -32,7 +32,7 @@ public class LoginUI extends JPanel {
 	 */
     private final UserManager userManager;
 	/**
-	 * Main Jpanel
+	 * Main JPanel
 	 */
 	private JPanel mainPanel;
 	/**
@@ -54,7 +54,7 @@ public class LoginUI extends JPanel {
 
 	/**
 	 * {@link LoginUI} constructor
-	 * @param dimension Dimension of Jpanel
+	 * @param dimension Dimension of JPanel
 	 * @param cardLayout {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
 	 * @param panelContainer {@link JPanel} object that contains every cards
 	 */

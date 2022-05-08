@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class used to create a Jpanel used to create a new field
+ * Class used to create a JPanel used to create a new field
  */
 public class CreateNewFieldPanel extends JPanel {
 

@@ -1,7 +1,7 @@
 package com.barattoManager.ui.components;
 
 /**
- * Enum that represent the view name
+ * Enum that represent the views name
  */
 public enum ComponentsName {
     /**
