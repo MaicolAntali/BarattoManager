@@ -42,7 +42,7 @@ public class Viewer extends User {
 	 */
 	@Override
 	public String getChildType() {
-		return "Configurator";
+		return "Viewer";
 	}
 
 	/**
