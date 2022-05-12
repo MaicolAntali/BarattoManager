@@ -19,7 +19,16 @@ public enum ComponentsName {
     /**
      * {@link ConfiguratorCategoryEditorUi}
      */
-    CONF_CATEGORY_EDITOR("conf_category_editor");
+    CONF_CATEGORY_EDITOR("conf_category_editor"),
+    /**
+     * {@link RegistrationUI}
+     */
+    REGISTRATION("registration"),
+    /**
+     * {@link ConfiguratorHomeUi}
+     */
+    VIEWER_HOME("viewer_home");
+
 
     /**
      * view label

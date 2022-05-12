@@ -1,9 +1,11 @@
-package com.barattoManager.ui.components;
+package com.barattoManager.ui.components.ViewerHomeUi;
 
 import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.EmptyStringException;
-import com.barattoManager.ui.panels.optionPane.RegisterNewUserPanel;
+import com.barattoManager.ui.components.ComponentsName;
+import com.barattoManager.ui.components.ConfiguratorCategoryEditorUi;
+import com.barattoManager.ui.panels.optionPane.RegisterNewConfiguratorPanel;
 import com.barattoManager.user.UserManager;
 
 import javax.swing.*;
@@ -12,7 +14,7 @@ import java.awt.*;
 /**
  * Class used to create a JPanel that represent the configurator home view
  */
-public class ConfiguratorHomeUi extends JPanel {
+public class ViewerHomeUi extends JPanel {
 	/**
 	 * Main JPanel
 	 */
@@ -27,12 +29,12 @@ public class ConfiguratorHomeUi extends JPanel {
 	private JButton addNewConfigurator;
 
 	/**
-	 * {@link ConfiguratorHomeUi} constructor
+	 * {@link ViewerHomeUi} constructor
 	 * @param dimension Dimension of JPanel
 	 * @param cardLayout {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
 	 * @param panelContainer {@link JPanel} object that contains every cards
 	 */
-	public ConfiguratorHomeUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
+	public ViewerHomeUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
 		// JPanel conf
 		setVisible(true);
 		add(mainPanel);
@@ -42,7 +44,7 @@ public class ConfiguratorHomeUi extends JPanel {
 		editCategoryButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_CATEGORY_EDITOR.toString()));
 
 		addNewConfigurator.addActionListener(e -> {
-			var newConfiguratorPanel = new RegisterNewUserPanel();
+			var newConfiguratorPanel = new RegisterNewConfiguratorPanel();
 			int result = JOptionPane.showOptionDialog(
 					this,
 					newConfiguratorPanel,

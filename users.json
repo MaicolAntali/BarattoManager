@@ -1,0 +1,17 @@
+{
+  "configurator": {
+    "username": "Configurator",
+    "password": "123",
+    "@type": "Configurator"
+  },
+  "mai": {
+    "username": "mai",
+    "password": "12345",
+    "@type": "Configurator"
+  },
+  "shu": {
+    "username": "shu",
+    "password": "12345",
+    "@type": "Viewer"
+  }
+}

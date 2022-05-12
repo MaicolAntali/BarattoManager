@@ -5,6 +5,7 @@ import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.ui.panels.optionPane.ChangePasswordPanel;
 import com.barattoManager.user.UserManager;
 import com.barattoManager.user.configurator.Configurator;
+import com.barattoManager.user.viewer.Viewer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -119,8 +120,8 @@ public class LoginUI extends JPanel {
 					if (user instanceof Configurator) {
 						cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString());
 					}
-					else {
-						System.out.print("VIEWER");
+					else if (user instanceof Viewer) {
+						cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString());
 					}
 				}
 

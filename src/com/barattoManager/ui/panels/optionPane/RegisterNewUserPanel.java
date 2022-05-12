@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class used to create a JPanel used to register a new configurator
+ * Class used to create a JPanel used to register a new user
  */
-public class RegisterNewConfiguratorPanel extends JPanel {
+public class RegisterNewUserPanel extends JPanel {
 
 	/**
 	 * Username field
@@ -14,16 +14,16 @@ public class RegisterNewConfiguratorPanel extends JPanel {
 	private final JTextField usernameField = new JTextField(13);
 
 	/**
-	 * {@link RegisterNewConfiguratorPanel} constructor
+	 * {@link RegisterNewUserPanel} constructor
 	 */
-	public RegisterNewConfiguratorPanel() {
+	public RegisterNewUserPanel() {
 		var mainPanel = new JPanel();
 		mainPanel.setLayout(new GridLayout(0, 1));
 
-		mainPanel.add(new JLabel("Registra un nuovo configuratore"));
+		mainPanel.add(new JLabel("Registra un nuovo utente"));
 
 		var namePanel = new JPanel();
-		namePanel.add(new JLabel("Username:"));
+		namePanel.add(new JLabel("Scegli un username:"));
 		namePanel.add(usernameField);
 		mainPanel.add(namePanel);
 
