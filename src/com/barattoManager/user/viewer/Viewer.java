@@ -11,6 +11,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class Viewer extends User {
 
 	/**
+	 * Viewer
+	 */
+	private static final String VIEWER = "Viewer";
+	/**
 	 * Username of viewer
 	 */
 	@JsonProperty("username")
@@ -42,7 +46,7 @@ public class Viewer extends User {
 	 */
 	@Override
 	public String getChildType() {
-		return "Viewer";
+		return VIEWER;
 	}
 
 	/**

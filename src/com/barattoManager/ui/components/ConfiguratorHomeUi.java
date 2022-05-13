@@ -1,10 +1,6 @@
 package com.barattoManager.ui.components;
 
-import com.barattoManager.config.AppConfigurator;
-import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.exception.EmptyStringException;
 import com.barattoManager.ui.panels.optionPane.RegisterNewUserPanel;
-import com.barattoManager.user.UserManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,11 +16,12 @@ public class ConfiguratorHomeUi extends JPanel {
 	/**
 	 * JButton used to go in the {@link ConfiguratorCategoryEditorUi} view
 	 */
-	private JButton editCategoryButton;
+	private JButton configCategoryButton;
 	/**
 	 * JButton used to add a new configurator
 	 */
 	private JButton addNewConfigurator;
+	private JButton ConfiguraIncontri;
 
 	/**
 	 * {@link ConfiguratorHomeUi} constructor
@@ -39,44 +36,7 @@ public class ConfiguratorHomeUi extends JPanel {
 
 		mainPanel.setPreferredSize(dimension);
 
-		editCategoryButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_CATEGORY_EDITOR.toString()));
-
-		addNewConfigurator.addActionListener(e -> {
-			var newConfiguratorPanel = new RegisterNewUserPanel();
-			int result = JOptionPane.showOptionDialog(
-					this,
-					newConfiguratorPanel,
-					"Registrazione di un nuovo configuratore",
-					JOptionPane.OK_CANCEL_OPTION,
-					JOptionPane.QUESTION_MESSAGE,
-					null,
-					null,
-					null
-			);
-
-			if (result == JOptionPane.OK_OPTION) {
-				try {
-					UserManager.getInstance().addNewUser(
-							newConfiguratorPanel.getUsernameField().getText(),
-							AppConfigurator.getInstance().getPasswordSetting("default_pwd"),
-							true
-					);
-
-					JOptionPane.showMessageDialog(
-							this,
-							"""
-                            Nuovo configuratore creato correttamente.
-                                        
-                            Username: %s
-                            Password: %s
-							""".formatted(newConfiguratorPanel.getUsernameField().getText(), AppConfigurator.getInstance().getPasswordSetting("default_pwd")),
-							"Registrazione corretta",
-							JOptionPane.INFORMATION_MESSAGE
-							);
-				} catch (AlreadyExistException | EmptyStringException ex) {
-					JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
+		configCategoryButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_CATEGORY_EDITOR.toString()));
+		addNewConfigurator.addActionListener(e ->  new RegisterNewUserPanel(mainPanel, true).createNewUser());
 	}
 }

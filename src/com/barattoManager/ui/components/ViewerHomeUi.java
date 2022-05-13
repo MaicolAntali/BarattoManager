@@ -1,11 +1,5 @@
 package com.barattoManager.ui.components;
 
-import com.barattoManager.config.AppConfigurator;
-import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.exception.EmptyStringException;
-import com.barattoManager.ui.panels.optionPane.RegisterNewUserPanel;
-import com.barattoManager.user.UserManager;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,14 +11,6 @@ public class ViewerHomeUi extends JPanel {
 	 * Main JPanel
 	 */
 	private JPanel mainPanel;
-	/**
-	 * JButton used to
-	 */
-	private JButton btn1;
-	/**
-	 * JButton used to
-	 */
-	private JButton bt2;
 
 	/**
 	 * {@link ViewerHomeUi} constructor

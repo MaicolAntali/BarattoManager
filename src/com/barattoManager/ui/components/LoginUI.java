@@ -126,7 +126,7 @@ public class LoginUI extends JPanel {
 				}
 
 			} catch (InvalidCredentialsException ex) {
-				JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, ex.getMessage(), ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
 			}
 		});
 	}

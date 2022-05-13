@@ -16,6 +16,34 @@ import javax.swing.tree.TreeNode;
  */
 public class TreeActionButtons extends JPanel {
 	/**
+	 * Name of "New main category" button
+	 */
+	private static final String NEW_MAIN_CATEGORY_BUTTON_NAME = "Nuova Categoria Radice";
+	/**
+	 * Name of "New sub-category" button
+	 */
+	private static final String NEW_SUBCATEGORY_BUTTON_NAME = "Nuova Sotto-Categoria";
+	/**
+	 * Name of "add new field" button
+	 */
+	private static final String ADD_NEW_FIELD_BUTTON_NAME = "Aggiungi nuovo campo";
+	/**
+	 * Creation of main category title
+	 */
+	private static final String TITLE_CREATION_OF_MAIN_CATEGORY = "Creazione di una categoria radice";
+	/**
+	 * Creation of sub-category title
+	 */
+	private static final String TITLE_CREATION_OF_SUBCATEGORY = "Creazione di una sotto-categoria";
+	/**
+	 * Creation of a new field title
+	 */
+	private static final String TITLE_CREATION_OF_NEW_FIELD = "Creazione di un nuovo campo";
+	/**
+	 * Title of error
+	 */
+	private static final String TITLE_OF_ERROR = "Errore";
+	/**
 	 * {@link CategoryManager} object
 	 */
 	private final CategoryManager categoryManager = CategoryManager.getInstance();
@@ -31,9 +59,9 @@ public class TreeActionButtons extends JPanel {
 	public TreeActionButtons(TreeView treeView) {
 		this.treeView = treeView;
 
-		JButton addNewMainCategoryButton = new JButton("Nuova Categoria Radice");
-		JButton addNewSubCategoryButton = new JButton("Nuova Sotto-Categoria");
-		JButton addNewFieldButton = new JButton("Aggiungi nuovo campo");
+		JButton addNewMainCategoryButton = new JButton(NEW_MAIN_CATEGORY_BUTTON_NAME);
+		JButton addNewSubCategoryButton = new JButton(NEW_SUBCATEGORY_BUTTON_NAME);
+		JButton addNewFieldButton = new JButton(ADD_NEW_FIELD_BUTTON_NAME);
 
 		// Add listeners
 		addNewMainCategoryButton.addActionListener(e -> addNewMainCategory());
@@ -55,7 +83,7 @@ public class TreeActionButtons extends JPanel {
 			int result = JOptionPane.showOptionDialog(
 					this,
 					categoryInputPanel,
-					"Creazione di una categoria radice",
+					TITLE_CREATION_OF_MAIN_CATEGORY,
 					JOptionPane.OK_CANCEL_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
 					null,
@@ -71,7 +99,7 @@ public class TreeActionButtons extends JPanel {
 				RepaintingListeners.getInstance().fireListeners();
 			}
 		} catch (AlreadyExistException | EmptyStringException | NullCategoryException ex) {
-			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, ex.getMessage(), TITLE_OF_ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -87,7 +115,7 @@ public class TreeActionButtons extends JPanel {
 			int result = JOptionPane.showOptionDialog(
 					this,
 					categoryInputPanel,
-					"Creazione di una sotto-categoria",
+					TITLE_CREATION_OF_SUBCATEGORY,
 					JOptionPane.OK_CANCEL_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
 					null,
@@ -105,7 +133,7 @@ public class TreeActionButtons extends JPanel {
 				RepaintingListeners.getInstance().fireListeners();
 			}
 		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException | NullCategoryException ex) {
-			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, ex.getMessage(), TITLE_OF_ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -121,7 +149,7 @@ public class TreeActionButtons extends JPanel {
 			int result = JOptionPane.showOptionDialog(
 					this,
 					fieldInputPanel,
-					"Creazione di un nuovo campo",
+					TITLE_CREATION_OF_NEW_FIELD,
 					JOptionPane.OK_CANCEL_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
 					null,
@@ -140,7 +168,7 @@ public class TreeActionButtons extends JPanel {
 				RepaintingListeners.getInstance().fireListeners();
 			}
 		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException | NullCategoryException ex) {
-			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, ex.getMessage(), TITLE_OF_ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

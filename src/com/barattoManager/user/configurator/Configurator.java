@@ -11,6 +11,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class Configurator extends User {
 
     /**
+     * Configurator
+     */
+    private static final String CONFIGURATOR = "Configurator";
+    /**
      * Name of configurator
      */
     @JsonProperty("username")
@@ -40,7 +44,7 @@ public class Configurator extends User {
      */
     @Override
     public String getChildType() {
-        return "Configurator";
+        return CONFIGURATOR;
     }
 
     /**

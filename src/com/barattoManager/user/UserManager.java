@@ -22,7 +22,7 @@ public final class UserManager {
 	/**
 	 * User already exist error
 	 */
-	private static final String ERROR_USER_ALREADY_EXIST = "L'utente %s esiste gia. Impossible crealo nuovamente";
+	private static final String ERROR_USER_ALREADY_EXIST = "L'utente %s esiste gia. Impossible crearlo nuovamente";
 	/**
 	 * User not found error
 	 */
@@ -31,6 +31,22 @@ public final class UserManager {
 	 * Password not match error
 	 */
 	private static final String ERROR_PASSWORD_NOT_MATCH = "La password inserita non è coretta. Riprovare";
+	/**
+	 * Invalid Username error
+	 */
+	private static final String ERROR_INVALID_USERNAME = "Lo username non è valido";
+	/**
+	 * Message to show the first configurator credentials
+	 */
+	private static final String FIRST_CONFIGURATOR_CREDENTIALS = "Sono state impostate delle credenziali di base per il primo configuratore. \n\nUsername: Configurator\nPassword: %s";
+	/**
+	 * Basic credentials
+	 */
+	private static final String BASIC_CREDENTIALS = "Credenziali Base";
+	/**
+	 * Impossible establish user instance message
+	 */
+	private static final String MESSAGE_IMPOSSIBLE_ESTABLISH_USER_INSTANCE = "Impossibile stabilire quale istanza di User creare.";
 
 	/**
 	 * User JSON file
@@ -63,8 +79,8 @@ public final class UserManager {
 				addNewUser("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_pwd"), true);
 				JOptionPane.showMessageDialog(
 						null,
-						"Sono state impostate delle credenziali di base per il primo configuratore. \n\nUsername: Configurator\nPassword: %s".formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd")),
-						"Credenziali Base",
+						FIRST_CONFIGURATOR_CREDENTIALS.formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd")),
+						BASIC_CREDENTIALS,
 						JOptionPane.INFORMATION_MESSAGE
 				);
 			} catch (AlreadyExistException | EmptyStringException e) {
@@ -118,7 +134,7 @@ public final class UserManager {
 				throw new AlreadyExistException(ERROR_USER_ALREADY_EXIST.formatted(username));
 			else {
 				User user;
-				if (Objects.requireNonNull(isAdmin, "Impossibile stabilire quale istanza di User creare.")) {
+				if (Objects.requireNonNull(isAdmin, MESSAGE_IMPOSSIBLE_ESTABLISH_USER_INSTANCE)) {
 					user = new Configurator(username, password);
 				}
 				else {
@@ -130,7 +146,7 @@ public final class UserManager {
 			}
 		}
 		else {
-			throw new EmptyStringException("Lo username non è valido");
+			throw new EmptyStringException(ERROR_INVALID_USERNAME);
 		}
 
 	}

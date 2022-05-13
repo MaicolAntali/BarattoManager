@@ -9,6 +9,18 @@ import java.awt.*;
 public class CreateNewCategoryPanel extends JPanel {
 
 	/**
+	 * Creation of new category label
+	 */
+	private static final String LABEL_CREATION_OF_NEW_CATEGORY = "Creazione di una nuova categoria.";
+	/**
+	 * Category name label
+	 */
+	private static final String LABEL_CATEGORY_NAME = "Nome categoria:";
+	/**
+	 *  Category description label
+	 */
+	private static final String LABEL_CATEGORY_DESCRIPTION = "Descrizione Categoria:";
+	/**
 	 * Category name field
 	 */
 	private final JTextField categoryName = new JTextField(13);
@@ -24,15 +36,15 @@ public class CreateNewCategoryPanel extends JPanel {
 		var mainPanel = new JPanel();
 		mainPanel.setLayout(new GridLayout(0, 1));
 
-		mainPanel.add(new JLabel("Creazione di una nuova categoria."));
+		mainPanel.add(new JLabel(LABEL_CREATION_OF_NEW_CATEGORY));
 
 		var namePanel = new JPanel();
-		namePanel.add(new JLabel("Nome categoria:"));
+		namePanel.add(new JLabel(LABEL_CATEGORY_NAME));
 		namePanel.add(categoryName);
 		mainPanel.add(namePanel);
 
 		var descriptionPanel = new JPanel();
-		descriptionPanel.add(new JLabel("Descrizione Categoria:"));
+		descriptionPanel.add(new JLabel(LABEL_CATEGORY_DESCRIPTION));
 		descriptionPanel.add(categoryDescription);
 		mainPanel.add(descriptionPanel);
 

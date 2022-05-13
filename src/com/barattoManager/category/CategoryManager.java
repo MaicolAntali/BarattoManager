@@ -20,6 +20,22 @@ import java.util.Objects;
  */
 public final class CategoryManager {
 	/**
+	 * Category params not valid error
+	 */
+	private static final String ERROR_CATEGORY_PARAMS_NOT_VALID = "Il nome o la descrizione della categoria non è valido";
+	/**
+	 * Category already exists error
+	 */
+	private static final String ERROR_CATEGORY_ALREADY_EXISTS = "La categoria che stai creando esiste già.";
+	/**
+	 * No category has been selected error
+	 */
+	private static final String ERROR_NO_CATEGORY_HAS_BEEN_SELECTED = "Non è stata selezionata una categoria.";
+	/**
+	 * Invalid name of sub-category error
+	 */
+	private static final String ERROR_INVALID_NAME_OF_SUBCATEGORY = "Il nome della sotto-categoria non è valido";
+	/**
 	 * Category JSON file
 	 */
 	private final File categoriesFile = new File(AppConfigurator.getInstance().getFileName("category_file"));
@@ -98,11 +114,11 @@ public final class CategoryManager {
 				categoryMap.get(name.toLowerCase());
 			}
 			else {
-				throw new AlreadyExistException("La categoria che stai creando esiste gia.");
+				throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
 			}
 		}
 		else {
-			throw new EmptyStringException("Il nome della categoria non è valido");
+			throw new EmptyStringException(ERROR_CATEGORY_PARAMS_NOT_VALID);
 		}
 
 	}
@@ -127,15 +143,15 @@ public final class CategoryManager {
 					saveCategoryMapChange();
 				}
 				else {
-					throw new AlreadyExistException("La categoria che stai creando esiste gia.");
+					throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
 				}
 			}
 			else {
-				throw new NullCategoryException("Non è stata selezionata una categoria.");
+				throw new NullCategoryException(ERROR_NO_CATEGORY_HAS_BEEN_SELECTED);
 			}
 		}
 		else {
-			throw new EmptyStringException("Il nome della sotto-categoria non è valido");
+			throw new EmptyStringException(ERROR_INVALID_NAME_OF_SUBCATEGORY);
 		}
 	}
 
@@ -168,7 +184,7 @@ public final class CategoryManager {
 						}
 					}
 					else {
-						throw new AlreadyExistException("Il campo che stai creando esiste già.");
+						throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
 					}
 				}
 				else {
@@ -176,18 +192,18 @@ public final class CategoryManager {
 						category.addNewFields(name, isRequired);
 					}
 					else {
-						throw new AlreadyExistException("Il campo che stai creando esiste già.");
+						throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
 					}
 				}
 
 				saveCategoryMapChange();
 			}
 			else {
-				throw new NullCategoryException("Non è stata selezionata una categoria.");
+				throw new NullCategoryException(ERROR_NO_CATEGORY_HAS_BEEN_SELECTED);
 			}
 		}
 		else {
-			throw new EmptyStringException("Il nome del campo non è valido");
+			throw new EmptyStringException(ERROR_INVALID_NAME_OF_SUBCATEGORY);
 		}
 
 	}

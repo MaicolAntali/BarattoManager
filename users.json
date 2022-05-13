@@ -1,17 +1,1 @@
-{
-  "configurator": {
-    "username": "Configurator",
-    "password": "123",
-    "@type": "Configurator"
-  },
-  "mai": {
-    "username": "mai",
-    "password": "12345",
-    "@type": "Configurator"
-  },
-  "shu": {
-    "username": "shu",
-    "password": "12345",
-    "@type": "Viewer"
-  }
-}
+{"ass":{"username":"ass","password":"123","@type":"Viewer"},"shu":{"username":"shu","password":"12345","@type":"Viewer"},"configurator":{"username":"Configurator","password":"123","@type":"Configurator"},"as":{"username":"as","password":"123","@type":"Viewer"},"mai":{"username":"mai","password":"12345","@type":"Configurator"},"aaaa":{"username":"AAAA","password":"123","@type":"Viewer"}}
