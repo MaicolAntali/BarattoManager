@@ -31,6 +31,10 @@ public final class UserManager {
 	 * Password not match error
 	 */
 	private static final String ERROR_PASSWORD_NOT_MATCH = "La password inserita non è coretta. Riprovare";
+	/**
+	 * Post-condition: The user is not present in the map.
+	 */
+	public static final String POST_CONDITION_USER_NOT_IN_MAP = "Post-condition: The user is not present in the map.";
 
 	/**
 	 * User JSON file
@@ -113,7 +117,7 @@ public final class UserManager {
 	 * @throws EmptyStringException Is thrown if the username is empty
 	 */
 	public void addNewUser(String username, String password, Boolean isAdmin) throws AlreadyExistException, EmptyStringException {
-		if (!username.isEmpty() && !(username.trim().length() == 0)) {
+		if (!username.isBlank()) {
 			if (userMap.containsKey(username.toLowerCase()))
 				throw new AlreadyExistException(ERROR_USER_ALREADY_EXIST.formatted(username));
 			else {
@@ -127,6 +131,8 @@ public final class UserManager {
 
 				userMap.put(username.toLowerCase(), user);
 				saveUserMapChange();
+
+				assert userMap.containsKey(username) : POST_CONDITION_USER_NOT_IN_MAP;
 			}
 		}
 		else {

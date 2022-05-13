@@ -20,6 +20,19 @@ import java.util.Objects;
  */
 public final class CategoryManager {
 	/**
+	 * Post-condition: The category is not present in the map.
+	 */
+	public static final String POST_CONDITION_CATEGORY_NOT_IN_MAP = "Post-condition: The category is not present in the map.";
+	/**
+	 * Post-condition: The sub-category is not present in the map.
+	 */
+	public static final String POST_CONDITION_SUBCATEGORY_NOT_IN_MAP = "Post-condition: The sub-category is not present in the map.";
+	/**
+	 * Post-condition: The field is not present in the map.
+	 */
+	public static final String POST_CONDITION_FIELD_NOT_IN_MAP = "Post-condition: The field is not present in the map.";
+
+	/**
 	 * Category JSON file
 	 */
 	private final File categoriesFile = new File(AppConfigurator.getInstance().getFileName("category_file"));
@@ -77,34 +90,35 @@ public final class CategoryManager {
 	 * @param name        Name of new category
 	 * @param description Description of the new category
 	 * @throws AlreadyExistException Is thrown is the category or field that are trying to add already exist.
-	 * @throws EmptyStringException Is thrown if the name is an empty string
-	 * @throws NullCategoryException  Is thrown if is not found a category in the map
-	 */
+	 * @throws EmptyStringException  Is thrown if the name is an empty string
+	 * @throws NullCategoryException Is thrown if is not found a category in the map
+	 * */
 	public void addNewMainCategory(String name, String description) throws AlreadyExistException, EmptyStringException, NullCategoryException {
-		if (!name.isEmpty() && !(name.trim().length() == 0)) {
-			if (!categoryMap.containsKey(name.trim().toLowerCase())) {
-				categoryMap.put(name.toLowerCase(), new Category(name, description));
+		var categoryName = name.trim().toLowerCase();
+		if (!categoryName.isBlank() && !description.isBlank()) {
+			if (!categoryMap.containsKey(categoryName)) {
+				categoryMap.put(categoryName, new Category(name, description));
 
 				// adding the default field
 				for (final JsonNode objNode : AppConfigurator.getInstance().getDefaultField()) {
 					addNewField(
-							new ArrayList<>(List.of("root", name.toLowerCase())),
+							new ArrayList<>(List.of("root", categoryName)),
 							objNode.get("name").asText(),
 							objNode.get("required").asBoolean()
 					);
 				}
-
+				// Save map changes
 				saveCategoryMapChange();
-				categoryMap.get(name.toLowerCase());
+
+				assert categoryMap.containsKey(categoryName) : POST_CONDITION_CATEGORY_NOT_IN_MAP;
 			}
 			else {
 				throw new AlreadyExistException("La categoria che stai creando esiste gia.");
 			}
 		}
 		else {
-			throw new EmptyStringException("Il nome della categoria non è valido");
+			throw new EmptyStringException("Il nome o la descrizione della categoria non è valido");
 		}
-
 	}
 
 	/**
@@ -114,17 +128,20 @@ public final class CategoryManager {
 	 * @param name              Name of the new category
 	 * @param description       Description of new category
 	 * @throws AlreadyExistException Is thrown if the category that are trying to add already exist.
-	 * @throws EmptyStringException Is thrown if the name is an empty string
+	 * @throws EmptyStringException  Is thrown if the name is an empty string
 	 * @throws NullCategoryException Is thrown if is nt found a category in the map
 	 */
 	public void addNewSubCategory(ArrayList<String> pathOfSubcategory, String name, String description) throws AlreadyExistException, EmptyStringException, NullCategoryException {
-		if (!name.isEmpty() && !(name.trim().length() == 0)) {
+		var categoryName = name.trim().toLowerCase();
+		if (!categoryName.isBlank() && !description.isBlank()) {
 			Category category = getCategoryFromPath(pathOfSubcategory);
 
 			if (category != null) {
-				if (!category.getSubCategory().containsKey(name.trim().toLowerCase()) && !Objects.equals(category.getName().trim().toLowerCase(), name.trim().toLowerCase())) {
+				if (!category.getSubCategory().containsKey(categoryName) && !Objects.equals(category.getName().trim().toLowerCase(), categoryName)) {
 					category.addSubCategory(name, description);
 					saveCategoryMapChange();
+
+					assert category.getSubCategory().containsKey(categoryName): POST_CONDITION_SUBCATEGORY_NOT_IN_MAP;
 				}
 				else {
 					throw new AlreadyExistException("La categoria che stai creando esiste gia.");
@@ -135,7 +152,7 @@ public final class CategoryManager {
 			}
 		}
 		else {
-			throw new EmptyStringException("Il nome della sotto-categoria non è valido");
+			throw new EmptyStringException("Il nome o la descrizione della sotto-categoria non è valido");
 		}
 	}
 
@@ -146,17 +163,18 @@ public final class CategoryManager {
 	 * @param name           Name of the new field
 	 * @param isRequired     If the field is required ({@code true}) otherwise {@code false}
 	 * @throws AlreadyExistException Is thrown if the new field that are trying to add already exist.
-	 * @throws EmptyStringException Is thrown if the name is an empty string
+	 * @throws EmptyStringException  Is thrown if the name is an empty string
 	 * @throws NullCategoryException Is thrown if is not found a category in the map
 	 */
 	public void addNewField(ArrayList<String> pathOfCategory, String name, boolean isRequired) throws AlreadyExistException, EmptyStringException, NullCategoryException {
-		if (!name.isEmpty() && !(name.trim().length() == 0)) {
+		var fieldName = name.trim().toLowerCase();
+		if (!fieldName.isBlank()) {
 			Category category = getCategoryFromPath(pathOfCategory);
 
 			if (category != null) {
 				// Recursive exit condition
 				if (!category.getSubCategory().isEmpty()) {
-					if (!category.getCategoryFields().containsKey(name.trim().toLowerCase())) {
+					if (!category.getCategoryFields().containsKey(fieldName)) {
 						// Add the field in the category
 						category.addNewFields(name, isRequired);
 
@@ -166,6 +184,8 @@ public final class CategoryManager {
 							newPath.add(subCategory.getName());
 							addNewField(newPath, name, isRequired);
 						}
+
+						assert category.getCategoryFields().containsKey(fieldName) : POST_CONDITION_FIELD_NOT_IN_MAP;
 					}
 					else {
 						throw new AlreadyExistException("Il campo che stai creando esiste già.");
@@ -215,6 +235,7 @@ public final class CategoryManager {
 
 	/**
 	 * Method used to get the {@link HashMap} of root categories
+	 *
 	 * @return {@link HashMap} of root categories
 	 */
 	public HashMap<String, Category> getCategoryMap() {

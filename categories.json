@@ -1,0 +1,48 @@
+{
+  "a": {
+    "category_name": "a",
+    "category_description": "a",
+    "category_sub_categories": {
+      "b": {
+        "category_name": "b",
+        "category_description": "b",
+        "category_sub_categories": {},
+        "category_fields": {
+          "descrizione": {
+            "field_name": "Descrizione",
+            "field_required": true
+          },
+          "stato di conservazione": {
+            "field_name": "Stato di conservazione",
+            "field_required": true
+          }
+        }
+      }
+    },
+    "category_fields": {
+      "descrizione": {
+        "field_name": "Descrizione",
+        "field_required": true
+      },
+      "stato di conservazione": {
+        "field_name": "Stato di conservazione",
+        "field_required": true
+      }
+    }
+  },
+  "1": {
+    "category_name": "1",
+    "category_description": "1",
+    "category_sub_categories": {},
+    "category_fields": {
+      "descrizione": {
+        "field_name": "Descrizione",
+        "field_required": false
+      },
+      "stato di conservazione": {
+        "field_name": "Stato di conservazione",
+        "field_required": true
+      }
+    }
+  }
+}

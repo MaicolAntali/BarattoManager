@@ -11,6 +11,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public class Configurator extends User {
 
     /**
+     * Pre-condition: Configurator username is blank
+     */
+    public static final String PRE_CONDITION_CONFIGURATOR_USERNAME_IS_BLANK = "Pre-condition: Configurator username is blank";
+    /**
+     * Pre-condition: Configurator password is blank
+     */
+    public static final String PRE_CONDITION_CONFIGURATOR_PASSWORD_IS_BLANK = "Pre-condition: Configurator password is blank";
+    /**
      * Name of configurator
      */
     @JsonProperty("username")
@@ -30,6 +38,9 @@ public class Configurator extends User {
             @JsonProperty("username") String username,
             @JsonProperty("password") String password
     ) {
+        assert !username.isBlank() : PRE_CONDITION_CONFIGURATOR_USERNAME_IS_BLANK;
+        assert !password.isBlank() : PRE_CONDITION_CONFIGURATOR_PASSWORD_IS_BLANK;
+
         this.username = username;
         this.password = password;
     }

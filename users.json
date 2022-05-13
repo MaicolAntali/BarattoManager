@@ -1,0 +1,7 @@
+{
+  "configurator": {
+    "username": "Configurator",
+    "password": "12345",
+    "@type": "Configurator"
+  }
+}
