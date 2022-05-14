@@ -4,9 +4,6 @@
 BarattoManager is a university project developed to be a standalone java application.
 The application must be able to manage the barter of objects between users and allow some configurators to supervise the exchanges and configure the application.
 
-![GitHub top language](https://img.shields.io/github/languages/top/MaicolAntali/BarattoManager?style=for-the-badge)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/MaicolAntali/BarattoManager?style=for-the-badge)
-
 ## Library ~ Dependency
 
 All the libraries listed here are located in: ```resources/library```
