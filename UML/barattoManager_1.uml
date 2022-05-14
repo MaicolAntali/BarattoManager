@@ -3,474 +3,465 @@
   <ID>JAVA</ID>
   <OriginalElement>/Users/maicol/Desktop/BarattoManager/src/com/barattoManager</OriginalElement>
   <nodes>
-    <node x="1958.5" y="205.5">com.barattoManager.exception.AlreadyExistException</node>
-    <node x="526.0" y="138.5">com.barattoManager.config.AppConfigurator</node>
-    <node x="13.5" y="138.5">com.barattoManager.user.viewer.Viewer</node>
-    <node x="2553.0" y="1000.5">com.barattoManager.ui.panels.optionPane.CreateNewFieldPanel</node>
-    <node x="309.5" y="2141.0">com.barattoManager.ui.BarattoManagerGui</node>
-    <node x="2445.5" y="554.5">com.barattoManager.category.CategoryManager</node>
-    <node x="540.5" y="-126.0">com.barattoManager.config.AppConfigurator.AppConfiguratorHolder</node>
-    <node x="2147.0" y="1711.5">com.barattoManager.ui.panels.categoryTree.TreeContainer</node>
-    <node x="-229.0" y="610.0">com.barattoManager.user.User</node>
-    <node x="-254.0" y="138.5">com.barattoManager.user.configurator.Configurator</node>
-    <node x="838.5" y="205.5">com.barattoManager.exception.EmptyStringException</node>
-    <node x="1377.0" y="1932.0">com.barattoManager.ui.components.ConfiguratorCategoryEditorUi</node>
-    <node x="2195.0" y="665.5">com.barattoManager.exception.NoNodeSelected</node>
-    <node x="81.0" y="665.5">com.barattoManager.exception.InvalidCredentialsException</node>
-    <node x="2240.0" y="1000.5">com.barattoManager.ui.panels.optionPane.CreateNewCategoryPanel</node>
-    <node x="1607.0" y="1332.0293740894883">com.barattoManager.ui.panels.categoryTree.RepaintingEventHandler</node>
-    <node x="-134.0" y="1346.0">com.barattoManager.ui.components.LoginUI</node>
-    <node x="2241.0" y="1389.5">com.barattoManager.ui.panels.categoryTree.TreeActionButtons</node>
-    <node x="2819.5" y="72.5">com.barattoManager.category.Category</node>
-    <node x="1205.5740932264289" y="1261.6958078279342">com.barattoManager.ui.panels.categoryTree.RepaintingListeners.RepaintingListenersHolder</node>
-    <node x="2535.5" y="194.0">com.barattoManager.category.CategoryManager.CategoryManagerHolder</node>
-    <node x="409.0" y="2374.0">com.barattoManager.BarattoManager</node>
-    <node x="826.0" y="1412.0">com.barattoManager.ui.components.ConfiguratorHomeUi</node>
-    <node x="1675.0" y="1034.0">com.barattoManager.ui.panels.categoryTree.TreeUtils</node>
-    <node x="632.8178768588966" y="1748.9531144917455">com.barattoManager.ui.components.ComponentsName</node>
-    <node x="1313.0" y="1000.5">com.barattoManager.ui.panels.categoryTree.RepaintingListeners</node>
-    <node x="2236.0" y="205.5">com.barattoManager.exception.NullCategoryException</node>
-    <node x="-117.5" y="1022.5">com.barattoManager.ui.panels.optionPane.ChangePasswordPanel</node>
-    <node x="644.2813132193291" y="1155.5">com.barattoManager.user.UserManager.UserManagerHolder</node>
-    <node x="940.2179218843007" y="912.5">com.barattoManager.ui.panels.optionPane.RegisterNewConfiguratorPanel</node>
-    <node x="201.5" y="912.5">com.barattoManager.user.UserManager</node>
-    <node x="220.40674506843527" y="1943.0">com.barattoManager.ui.components.InitialMenuUI</node>
-    <node x="2844.0" y="967.5">com.barattoManager.ui.panels.categoryTree.TreeView</node>
-    <node x="3105.9444925730513" y="521.940520767471">com.barattoManager.category.field.Field</node>
+    <node x="-87.5" y="290.5">com.barattoManager.user.configurator.Configurator</node>
+    <node x="1897.0" y="1454.5">com.barattoManager.ui.panels.optionPane.CreateNewFieldPanel</node>
+    <node x="2771.0" y="2225.5">com.barattoManager.ui.panels.categoryTree.TreeContainer</node>
+    <node x="573.5" y="2655.0">com.barattoManager.ui.BarattoManagerGui</node>
+    <node x="2581.0" y="2446.0">com.barattoManager.ui.components.ConfiguratorCategoryEditorUi</node>
+    <node x="75.0" y="1004.0">com.barattoManager.user.User</node>
+    <node x="884.5" y="-92.0">com.barattoManager.config.AppConfigurator.AppConfiguratorHolder</node>
+    <node x="2845.0" y="1903.5">com.barattoManager.ui.panels.categoryTree.TreeActionButtons</node>
+    <node x="3269.5" y="915.5">com.barattoManager.category.CategoryManager</node>
+    <node x="2382.5" y="379.5">com.barattoManager.exception.EmptyStringException</node>
+    <node x="3108.0" y="1421.5">com.barattoManager.ui.panels.categoryTree.TreeView</node>
+    <node x="2232.0" y="1048.0">com.barattoManager.ui.panels.categoryTree.RepaintingListeners.RepaintingListenersHolder</node>
+    <node x="825.0" y="1410.5">com.barattoManager.ui.components.ComponentsName</node>
+    <node x="419.5" y="290.5">com.barattoManager.user.viewer.Viewer</node>
+    <node x="2102.5" y="379.5">com.barattoManager.exception.AlreadyExistException</node>
+    <node x="3019.0" y="1059.5">com.barattoManager.exception.NoNodeSelected</node>
+    <node x="1584.0" y="1454.5">com.barattoManager.ui.panels.optionPane.CreateNewCategoryPanel</node>
+    <node x="1030.0" y="1926.0">com.barattoManager.ui.components.ConfiguratorHomeUi</node>
+    <node x="425.0" y="1059.5">com.barattoManager.exception.InvalidCredentialsException</node>
+    <node x="452.0" y="1355.5">com.barattoManager.user.UserManager</node>
+    <node x="2660.0" y="379.5">com.barattoManager.exception.NullCategoryException</node>
+    <node x="1235.5" y="1476.5">com.barattoManager.ui.panels.optionPane.RegisterNewConfiguratorPanel</node>
+    <node x="3499.0" y="-125.5">com.barattoManager.category.field.Field</node>
+    <node x="2579.0" y="1488.0">com.barattoManager.ui.panels.categoryTree.TreeUtils</node>
+    <node x="2177.0" y="1454.5">com.barattoManager.ui.panels.categoryTree.RepaintingListeners</node>
+    <node x="150.0" y="1860.0">com.barattoManager.ui.components.LoginUI</node>
+    <node x="693.5" y="2457.0">com.barattoManager.ui.components.InitialMenuUI</node>
+    <node x="897.0" y="1048.0">com.barattoManager.user.UserManager.UserManagerHolder</node>
+    <node x="673.0" y="2888.0">com.barattoManager.BarattoManager</node>
+    <node x="3227.5" y="125.5">com.barattoManager.category.Category</node>
+    <node x="1891.0" y="1059.5">com.barattoManager.ui.panels.categoryTree.RepaintingEventHandler</node>
+    <node x="870.0" y="312.5">com.barattoManager.config.AppConfigurator</node>
+    <node x="-253.5" y="1476.5">com.barattoManager.ui.panels.optionPane.ChangePasswordPanel</node>
+    <node x="2939.5" y="368.0">com.barattoManager.category.CategoryManager.CategoryManagerHolder</node>
   </nodes>
   <notes />
   <edges>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeContainer" target="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" relationship="CREATE">
-      <point x="65.0" y="-60.5" />
-      <point x="-15.0" y="82.5" />
+      <point x="60.0" y="-60.5" />
+      <point x="0.0" y="82.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" target="com.barattoManager.exception.NoNodeSelected" relationship="DEPENDENCY">
-      <point x="-137.0" y="-45.0" />
-      <point x="2222.5" y="1427.0" />
-      <point x="-75.5" y="26.5" />
-    </edge>
-    <edge source="com.barattoManager.user.UserManager" target="com.barattoManager.config.AppConfigurator" relationship="DEPENDENCY">
-      <point x="-156.5" y="0.0" />
-      <point x="186.0" y="1072.0" />
-      <point x="186.0" y="741.5" />
-      <point x="658.0" y="741.5" />
-      <point x="0.0" y="93.5" />
+      <point x="108.5" y="-82.5" />
+      <point x="-31.5" y="26.5" />
     </edge>
     <edge source="com.barattoManager.ui.components.ConfiguratorCategoryEditorUi" target="com.barattoManager.ui.panels.categoryTree.RepaintingListeners" relationship="DEPENDENCY">
-      <point x="221.0" y="0.0" />
-      <point x="2004.0" y="1992.0" />
-      <point x="2004.0" y="1132.5" />
-      <point x="165.0" y="60.5" />
+      <point x="-221.0" y="0.0" />
+      <point x="2552.0" y="2506.0" />
+      <point x="2552.0" y="1526.0" />
+      <point x="165.0" y="0.0" />
+    </edge>
+    <edge source="com.barattoManager.user.UserManager" target="com.barattoManager.config.AppConfigurator" relationship="DEPENDENCY">
+      <point x="0.0" y="170.5" />
+      <point x="622.0" y="1779.0" />
+      <point x="1124.5" y="1779.0" />
+      <point x="122.5" y="93.5" />
     </edge>
     <edge source="com.barattoManager.config.AppConfigurator.AppConfiguratorHolder" target="com.barattoManager.config.AppConfigurator" relationship="TO_ONE">
       <point x="-15.0" y="38.0" />
       <point x="-15.0" y="-93.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" target="com.barattoManager.exception.NullCategoryException" relationship="DEPENDENCY">
-      <point x="-137.0" y="-30.0" />
-      <point x="2177.5" y="1442.0" />
-      <point x="2177.5" y="469.0" />
-      <point x="2358.0" y="469.0" />
-      <point x="0.0" y="26.5" />
+      <point x="137.0" y="0.0" />
+      <point x="3754.0" y="1986.0" />
+      <point x="3754.0" y="108.0" />
+      <point x="2782.0" y="108.0" />
+      <point x="0.0" y="-26.5" />
     </edge>
     <edge source="com.barattoManager.ui.components.LoginUI" target="com.barattoManager.ui.panels.optionPane.ChangePasswordPanel" relationship="CREATE">
-      <point x="-15.0" y="-126.0" />
-      <point x="-15.0" y="49.5" />
+      <point x="-152.0" y="15.0" />
+      <point x="-118.0" y="2001.0" />
+      <point x="0.0" y="49.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeView" target="com.barattoManager.category.CategoryManager" relationship="DEPENDENCY">
-      <point x="-246.5" y="-104.5" />
-      <point x="193.5" y="137.5" />
+      <point x="135.0" y="-104.5" />
+      <point x="15.0" y="170.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeView" target="com.barattoManager.category.field.Field" relationship="DEPENDENCY">
-      <point x="110.94449257305132" y="-104.5" />
-      <point x="0.0" y="71.5" />
+      <point x="254.0" y="15.0" />
+      <point x="3769.0" y="1541.0" />
+      <point x="3769.0" y="-54.0" />
+      <point x="103.0" y="0.0" />
     </edge>
     <edge source="com.barattoManager.ui.components.InitialMenuUI" target="com.barattoManager.ui.components.ComponentsName" relationship="DEPENDENCY">
-      <point x="2.549315647115691E-4" y="49.0" />
-      <point x="388.907" y="2097.0" />
-      <point x="3.0" y="2097.0" />
-      <point x="3.0" y="1730.0" />
-      <point x="769.818" y="1730.0" />
-      <point x="1.2314110335864825E-4" y="-115.50011449174553" />
+      <point x="0.0" y="-49.0" />
+      <point x="862.0" y="2397.0" />
+      <point x="962.0" y="2397.0" />
+      <point x="0.0" y="115.5" />
     </edge>
     <edge source="com.barattoManager.user.User" target="com.barattoManager.config.AppConfigurator" relationship="DEPENDENCY">
-      <point x="127.0" y="49.5" />
-      <point x="658.0" y="741.5" />
-      <point x="0.0" y="93.5" />
-    </edge>
-    <edge source="com.barattoManager.user.UserManager" target="com.barattoManager.user.viewer.Viewer" relationship="CREATE">
-      <point x="-156.5" y="-112.0" />
-      <point x="63.5" y="960.0" />
-      <point x="-54.5" y="93.5" />
+      <point x="0.0" y="82.0" />
+      <point x="202.0" y="1779.0" />
+      <point x="1124.5" y="1779.0" />
+      <point x="122.5" y="93.5" />
     </edge>
     <edge source="com.barattoManager.user.UserManager.UserManagerHolder" target="com.barattoManager.user.UserManager" relationship="CREATE">
-      <point x="-105.0" y="30.0" />
-      <point x="156.5" y="151.5" />
+      <point x="-15.0" y="38.0" />
+      <point x="987.0" y="1378.0" />
+      <point x="170.0" y="-148.0" />
+    </edge>
+    <edge source="com.barattoManager.user.UserManager" target="com.barattoManager.user.viewer.Viewer" relationship="CREATE">
+      <point x="109.5" y="-170.5" />
+      <point x="109.5" y="115.5" />
+    </edge>
+    <edge source="com.barattoManager.ui.components.ConfiguratorCategoryEditorUi" target="com.barattoManager.ui.panels.categoryTree.TreeContainer" relationship="CREATE">
+      <point x="120.0" y="-60.0" />
+      <point x="0.0" y="60.5" />
     </edge>
     <edge source="com.barattoManager.user.User" target="com.barattoManager.user.configurator.Configurator" relationship="DEPENDENCY">
       <point x="-127.0" y="0.0" />
-      <point x="-256.0" y="692.0" />
-      <point x="-256.0" y="537.0" />
-      <point x="-142.0" y="537.0" />
-      <point x="0.0" y="93.5" />
-    </edge>
-    <edge source="com.barattoManager.ui.components.ConfiguratorCategoryEditorUi" target="com.barattoManager.ui.panels.categoryTree.TreeContainer" relationship="CREATE">
-      <point x="221.0" y="15.0" />
-      <point x="2298.0" y="2007.0" />
-      <point x="0.0" y="60.5" />
+      <point x="47.0" y="1086.0" />
+      <point x="47.0" y="898.0" />
+      <point x="142.0" y="898.0" />
+      <point x="0.0" y="115.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.RepaintingListeners" target="com.barattoManager.ui.panels.categoryTree.RepaintingListeners.RepaintingListenersHolder" relationship="DEPENDENCY">
-      <point x="-142.4259067735711" y="71.5" />
-      <point x="0.0" y="-38.0" />
+      <point x="50.0" y="-71.5" />
+      <point x="30.0" y="38.0" />
     </edge>
     <edge source="com.barattoManager.user.User" target="com.barattoManager.user.viewer.Viewer" relationship="DEPENDENCY">
-      <point x="119.5" y="-82.0" />
-      <point x="-100.5" y="93.5" />
-    </edge>
-    <edge source="com.barattoManager.category.CategoryManager" target="com.barattoManager.exception.NullCategoryException" relationship="CREATE">
-      <point x="-205.0" y="-137.5" />
-      <point x="95.0" y="26.5" />
+      <point x="127.0" y="-55.5" />
+      <point x="622.0" y="1030.5" />
+      <point x="0.0" y="115.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" target="com.barattoManager.category.CategoryManager" relationship="TO_ONE">
-      <point x="137.0" y="0.0" />
-      <point x="2533.5" y="1472.0" />
-      <point x="2533.5" y="975.0" />
-      <point x="2424.0" y="975.0" />
-      <point x="2424.0" y="692.0" />
-      <point x="-212.5" y="0.0" />
+      <point x="-4.5" y="-82.5" />
+      <point x="2977.5" y="1794.0" />
+      <point x="3002.0" y="1794.0" />
+      <point x="3002.0" y="1173.5" />
+      <point x="-212.5" y="87.5" />
+    </edge>
+    <edge source="com.barattoManager.category.CategoryManager" target="com.barattoManager.exception.NullCategoryException" relationship="CREATE">
+      <point x="-212.5" y="-55.5" />
+      <point x="2782.0" y="1030.5" />
+      <point x="0.0" y="26.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" target="com.barattoManager.ui.panels.categoryTree.TreeUtils" relationship="DEPENDENCY">
-      <point x="-137.0" y="15.0" />
-      <point x="2128.5" y="1487.0" />
-      <point x="2128.5" y="1072.0" />
+      <point x="44.5" y="-82.5" />
+      <point x="3026.5" y="1526.0" />
       <point x="203.0" y="0.0" />
+    </edge>
+    <edge source="com.barattoManager.ui.panels.categoryTree.TreeView" target="com.barattoManager.category.Category" relationship="DEPENDENCY">
+      <point x="254.0" y="0.0" />
+      <point x="3712.0" y="1526.0" />
+      <point x="230.0" y="280.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" target="com.barattoManager.ui.panels.categoryTree.RepaintingListeners" relationship="DEPENDENCY">
       <point x="-137.0" y="-15.0" />
-      <point x="2004.0" y="1457.0" />
-      <point x="2004.0" y="1132.5" />
-      <point x="165.0" y="60.5" />
-    </edge>
-    <edge source="com.barattoManager.ui.panels.categoryTree.TreeView" target="com.barattoManager.category.Category" relationship="DEPENDENCY">
-      <point x="-60.0" y="-104.5" />
-      <point x="0.0" y="159.5" />
+      <point x="2552.0" y="1971.0" />
+      <point x="2552.0" y="1526.0" />
+      <point x="165.0" y="0.0" />
     </edge>
     <edge source="com.barattoManager.ui.components.ConfiguratorHomeUi" target="com.barattoManager.exception.EmptyStringException" relationship="DEPENDENCY">
       <point x="-15.0" y="60.0" />
-      <point x="1003.0" y="1559.0" />
-      <point x="1510.5" y="1559.0" />
-      <point x="1510.5" y="1619.007" />
-      <point x="3369.5" y="1619.007" />
-      <point x="3369.5" y="55.0" />
-      <point x="958.0" y="55.0" />
-      <point x="0.0" y="-26.5" />
+      <point x="1207.0" y="2073.0" />
+      <point x="2524.5" y="2073.0" />
+      <point x="22.5" y="26.5" />
     </edge>
     <edge source="com.barattoManager.user.UserManager" target="com.barattoManager.exception.EmptyStringException" relationship="CREATE">
-      <point x="0.0" y="-159.5" />
-      <point x="358.0" y="871.0" />
-      <point x="958.0" y="871.0" />
-      <point x="0.0" y="26.5" />
+      <point x="-15.0" y="-170.5" />
+      <point x="607.0" y="1282.0" />
+      <point x="2509.5" y="1282.0" />
+      <point x="7.5" y="26.5" />
     </edge>
     <edge source="com.barattoManager.user.UserManager" target="com.barattoManager.user.UserManager.UserManagerHolder" relationship="DEPENDENCY">
-      <point x="156.5" y="136.5" />
-      <point x="-105.0" y="15.0" />
+      <point x="124.5" y="-170.5" />
+      <point x="746.5" y="1071.0" />
+      <point x="-105.0" y="-15.0" />
+    </edge>
+    <edge source="com.barattoManager.ui.panels.categoryTree.RepaintingListeners.RepaintingListenersHolder" target="com.barattoManager.ui.panels.categoryTree.RepaintingListeners" relationship="CREATE">
+      <point x="-20.0" y="38.0" />
+      <point x="0.0" y="-71.5" />
     </edge>
     <edge source="com.barattoManager.ui.BarattoManagerGui" target="com.barattoManager.ui.components.ConfiguratorHomeUi" relationship="CREATE">
       <point x="188.5" y="0.0" />
-      <point x="973.0" y="2212.0" />
-      <point x="-45.0" y="60.0" />
-    </edge>
-    <edge source="com.barattoManager.ui.panels.categoryTree.RepaintingListeners.RepaintingListenersHolder" target="com.barattoManager.ui.panels.categoryTree.RepaintingListeners" relationship="CREATE">
-      <point x="-15.0" y="-38.0" />
-      <point x="-157.4259067735711" y="71.5" />
+      <point x="1192.0" y="2726.0" />
+      <point x="-30.0" y="60.0" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" target="com.barattoManager.ui.panels.categoryTree.TreeView" relationship="TO_ONE">
-      <point x="0.0" y="-82.5" />
-      <point x="2378.0" y="1283.0" />
-      <point x="3098.0" y="1283.0" />
-      <point x="0.0" y="104.5" />
+      <point x="-137.0" y="-75.0" />
+      <point x="2793.0" y="1911.0" />
+      <point x="2793.0" y="1586.5" />
+      <point x="-254.0" y="60.5" />
     </edge>
     <edge source="com.barattoManager.user.viewer.Viewer" target="com.barattoManager.user.User" relationship="GENERALIZATION">
-      <point x="-104.5" y="0.0" />
-      <point x="-8.0" y="232.0" />
-      <point x="-8.0" y="351.5" />
-      <point x="-102.0" y="351.5" />
-      <point x="0.0" y="-82.0" />
+      <point x="-202.5" y="0.0" />
+      <point x="396.0" y="406.0" />
+      <point x="396.0" y="1086.0" />
+      <point x="127.0" y="0.0" />
     </edge>
     <edge source="com.barattoManager.ui.components.ConfiguratorHomeUi" target="com.barattoManager.config.AppConfigurator" relationship="DEPENDENCY">
-      <point x="-192.0" y="52.0" />
-      <point x="186.0" y="1524.0" />
-      <point x="186.0" y="741.5" />
-      <point x="658.0" y="741.5" />
-      <point x="0.0" y="93.5" />
+      <point x="0.0" y="-60.0" />
+      <point x="1222.0" y="1779.0" />
+      <point x="1124.5" y="1779.0" />
+      <point x="122.5" y="93.5" />
     </edge>
     <edge source="com.barattoManager.ui.BarattoManagerGui" target="com.barattoManager.ui.components.InitialMenuUI" relationship="CREATE">
-      <point x="-15.0" y="-71.0" />
-      <point x="94.09325493156473" y="49.0" />
+      <point x="100.0" y="-71.0" />
+      <point x="0.0" y="49.0" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" target="com.barattoManager.ui.panels.optionPane.CreateNewFieldPanel" relationship="CREATE">
-      <point x="137.0" y="15.0" />
-      <point x="2678.0" y="1487.0" />
+      <point x="-137.0" y="-30.0" />
+      <point x="2022.0" y="1956.0" />
       <point x="0.0" y="71.5" />
     </edge>
     <edge source="com.barattoManager.ui.components.LoginUI" target="com.barattoManager.config.AppConfigurator" relationship="DEPENDENCY">
-      <point x="152.0" y="0.0" />
-      <point x="186.0" y="1472.0" />
-      <point x="186.0" y="741.5" />
-      <point x="658.0" y="741.5" />
-      <point x="0.0" y="93.5" />
+      <point x="0.0" y="-126.0" />
+      <point x="302.0" y="1779.0" />
+      <point x="1124.5" y="1779.0" />
+      <point x="122.5" y="93.5" />
     </edge>
     <edge source="com.barattoManager.category.CategoryManager" target="com.barattoManager.config.AppConfigurator" relationship="DEPENDENCY">
-      <point x="-212.5" y="49.5" />
-      <point x="658.0" y="741.5" />
-      <point x="0.0" y="93.5" />
+      <point x="151.5" y="170.5" />
+      <point x="3633.5" y="1779.0" />
+      <point x="1124.5" y="1779.0" />
+      <point x="122.5" y="93.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" target="com.barattoManager.ui.panels.optionPane.CreateNewCategoryPanel" relationship="CREATE">
-      <point x="-15.0" y="-82.5" />
-      <point x="-15.0" y="71.5" />
+      <point x="-90.0" y="82.5" />
+      <point x="2892.0" y="2129.5" />
+      <point x="1722.0" y="2129.5" />
+      <point x="0.0" y="71.5" />
     </edge>
     <edge source="com.barattoManager.category.CategoryManager" target="com.barattoManager.exception.AlreadyExistException" relationship="CREATE">
-      <point x="-15.0" y="137.5" />
-      <point x="2643.0" y="851.0" />
-      <point x="2078.0" y="851.0" />
-      <point x="0.0" y="26.5" />
+      <point x="0.0" y="170.5" />
+      <point x="3482.0" y="1306.0" />
+      <point x="2214.5" y="1306.0" />
+      <point x="-7.5" y="26.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeContainer" target="com.barattoManager.ui.panels.categoryTree.RepaintingEventHandler" relationship="REALIZATION">
-      <point x="-151.0" y="0.0" />
-      <point x="1758.0" y="1772.0" />
-      <point x="0.0" y="26.5" />
+      <point x="151.0" y="0.0" />
+      <point x="3784.0" y="2286.0" />
+      <point x="3784.0" y="-158.0" />
+      <point x="2042.0" y="-158.0" />
+      <point x="0.0" y="-26.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeContainer" target="com.barattoManager.ui.panels.categoryTree.TreeView" relationship="CREATE">
-      <point x="151.0" y="15.0" />
-      <point x="3399.5" y="1787.0" />
-      <point x="3399.5" y="1087.0" />
-      <point x="254.0" y="15.0" />
+      <point x="151.0" y="-15.0" />
+      <point x="3362.0" y="2271.0" />
+      <point x="0.0" y="104.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.RepaintingListeners.RepaintingListenersHolder" target="com.barattoManager.ui.panels.categoryTree.RepaintingListeners" relationship="TO_ONE">
-      <point x="15.0" y="-38.0" />
-      <point x="-127.42590677357111" y="71.5" />
+      <point x="15.0" y="38.0" />
+      <point x="35.0" y="-71.5" />
     </edge>
     <edge source="com.barattoManager.category.CategoryManager" target="com.barattoManager.category.CategoryManager.CategoryManagerHolder" relationship="DEPENDENCY">
-      <point x="-15.0" y="-137.5" />
-      <point x="-15.0" y="38.0" />
+      <point x="-212.5" y="-129.5" />
+      <point x="3107.0" y="956.5" />
+      <point x="45.0" y="38.0" />
     </edge>
     <edge source="com.barattoManager.ui.components.LoginUI" target="com.barattoManager.ui.components.ComponentsName" relationship="DEPENDENCY">
       <point x="0.0" y="126.0" />
-      <point x="18.0" y="1730.0" />
-      <point x="769.818" y="1730.0" />
-      <point x="1.2314110335864825E-4" y="-115.50011449174553" />
+      <point x="302.0" y="2397.0" />
+      <point x="962.0" y="2397.0" />
+      <point x="0.0" y="115.5" />
     </edge>
     <edge source="com.barattoManager.ui.components.LoginUI" target="com.barattoManager.exception.InvalidCredentialsException" relationship="DEPENDENCY">
-      <point x="-152.0" y="15.0" />
-      <point x="-286.5" y="1487.0" />
-      <point x="-286.5" y="-57.5" />
-      <point x="240.0" y="-57.5" />
-      <point x="22.0" y="-26.5" />
+      <point x="132.5" y="-126.0" />
+      <point x="-127.5" y="26.5" />
     </edge>
     <edge source="com.barattoManager.config.AppConfigurator" target="com.barattoManager.config.AppConfigurator.AppConfiguratorHolder" relationship="DEPENDENCY">
-      <point x="30.0" y="-93.5" />
-      <point x="30.0" y="38.0" />
+      <point x="0.0" y="-93.5" />
+      <point x="0.0" y="38.0" />
     </edge>
     <edge source="com.barattoManager.ui.BarattoManagerGui" target="com.barattoManager.ui.components.ComponentsName" relationship="DEPENDENCY">
-      <point x="0.0" y="-71.0" />
-      <point x="498.0" y="2097.0" />
-      <point x="3.0" y="2097.0" />
-      <point x="3.0" y="1730.0" />
-      <point x="769.818" y="1730.0" />
-      <point x="1.2314110335864825E-4" y="-115.50011449174553" />
+      <point x="-101.0" y="-71.0" />
+      <point x="661.0" y="2397.0" />
+      <point x="962.0" y="2397.0" />
+      <point x="0.0" y="115.5" />
     </edge>
     <edge source="com.barattoManager.ui.BarattoManagerGui" target="com.barattoManager.ui.components.LoginUI" relationship="CREATE">
-      <point x="-188.5" y="15.0" />
-      <point x="-12.0" y="2227.0" />
-      <point x="-30.0" y="126.0" />
-    </edge>
-    <edge source="com.barattoManager.ui.panels.categoryTree.RepaintingListeners" target="com.barattoManager.ui.panels.categoryTree.RepaintingEventHandler" relationship="TO_MANY">
-      <point x="157.5" y="71.5" />
-      <point x="-122.5" y="-26.5" />
+      <point x="-188.5" y="0.0" />
+      <point x="287.0" y="2726.0" />
+      <point x="-15.0" y="126.0" />
     </edge>
     <edge source="com.barattoManager.category.CategoryManager" target="com.barattoManager.category.Category" relationship="TO_MANY">
-      <point x="169.0" y="-137.5" />
-      <point x="-211.0" y="159.5" />
+      <point x="15.0" y="-170.5" />
+      <point x="15.0" y="280.5" />
+    </edge>
+    <edge source="com.barattoManager.ui.panels.categoryTree.RepaintingListeners" target="com.barattoManager.ui.panels.categoryTree.RepaintingEventHandler" relationship="TO_MANY">
+      <point x="-157.5" y="-71.5" />
+      <point x="142.5" y="26.5" />
     </edge>
     <edge source="com.barattoManager.ui.BarattoManagerGui" target="com.barattoManager.config.AppConfigurator" relationship="DEPENDENCY">
-      <point x="-188.5" y="0.0" />
-      <point x="186.0" y="2212.0" />
-      <point x="186.0" y="741.5" />
-      <point x="658.0" y="741.5" />
-      <point x="0.0" y="93.5" />
+      <point x="-86.0" y="-71.0" />
+      <point x="676.0" y="1779.0" />
+      <point x="1124.5" y="1779.0" />
+      <point x="122.5" y="93.5" />
     </edge>
     <edge source="com.barattoManager.category.Category" target="com.barattoManager.category.field.Field" relationship="TO_MANY">
-      <point x="185.94449257305132" y="159.5" />
-      <point x="15.0" y="-71.5" />
+      <point x="135.0" y="-280.5" />
+      <point x="15.0" y="71.5" />
     </edge>
     <edge source="com.barattoManager.category.CategoryManager" target="com.barattoManager.exception.EmptyStringException" relationship="CREATE">
-      <point x="0.0" y="137.5" />
-      <point x="2658.0" y="871.0" />
-      <point x="958.0" y="871.0" />
-      <point x="0.0" y="26.5" />
+      <point x="-15.0" y="170.5" />
+      <point x="3467.0" y="1282.0" />
+      <point x="2509.5" y="1282.0" />
+      <point x="7.5" y="26.5" />
     </edge>
     <edge source="com.barattoManager.category.CategoryManager.CategoryManagerHolder" target="com.barattoManager.category.CategoryManager" relationship="CREATE">
-      <point x="15.0" y="38.0" />
-      <point x="15.0" y="-137.5" />
-    </edge>
-    <edge source="com.barattoManager.ui.components.ConfiguratorHomeUi" target="com.barattoManager.exception.AlreadyExistException" relationship="DEPENDENCY">
-      <point x="-30.0" y="60.0" />
-      <point x="988.0" y="1580.0" />
-      <point x="2098.5" y="1580.0" />
-      <point x="20.5" y="26.5" />
+      <point x="30.0" y="38.0" />
+      <point x="3092.0" y="971.5" />
+      <point x="-212.5" y="-114.5" />
     </edge>
     <edge source="com.barattoManager.ui.components.LoginUI" target="com.barattoManager.user.UserManager" relationship="TO_ONE">
-      <point x="0.0" y="-126.0" />
-      <point x="18.0" y="1289.0" />
-      <point x="358.0" y="1289.0" />
-      <point x="0.0" y="159.5" />
+      <point x="152.0" y="0.0" />
+      <point x="809.0" y="1986.0" />
+      <point x="809.0" y="1526.0" />
+      <point x="170.0" y="0.0" />
+    </edge>
+    <edge source="com.barattoManager.ui.components.ConfiguratorHomeUi" target="com.barattoManager.exception.AlreadyExistException" relationship="DEPENDENCY">
+      <point x="-15.0" y="-60.0" />
+      <point x="1207.0" y="1900.0" />
+      <point x="1566.5" y="1900.0" />
+      <point x="1566.5" y="406.0" />
+      <point x="-119.5" y="0.0" />
     </edge>
     <edge source="com.barattoManager.ui.components.ConfiguratorHomeUi" target="com.barattoManager.user.UserManager" relationship="DEPENDENCY">
-      <point x="0.0" y="-60.0" />
-      <point x="1018.0" y="1057.0" />
-      <point x="156.5" y="-15.0" />
+      <point x="-130.5" y="-60.0" />
+      <point x="1091.5" y="1659.0" />
+      <point x="170.0" y="133.0" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeContainer" target="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" relationship="TO_ONE">
-      <point x="0.0" y="-60.5" />
-      <point x="-80.0" y="82.5" />
+      <point x="-15.0" y="-60.5" />
+      <point x="-75.0" y="82.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" target="com.barattoManager.exception.EmptyStringException" relationship="DEPENDENCY">
-      <point x="-137.0" y="0.0" />
-      <point x="1510.5" y="1472.0" />
-      <point x="1510.5" y="1619.007" />
-      <point x="3369.5" y="1619.007" />
-      <point x="3369.5" y="55.0" />
-      <point x="958.0" y="55.0" />
-      <point x="0.0" y="-26.5" />
+      <point x="-137.0" y="15.0" />
+      <point x="2586.5" y="2001.0" />
+      <point x="2586.5" y="2073.0" />
+      <point x="2524.5" y="2073.0" />
+      <point x="22.5" y="26.5" />
     </edge>
     <edge source="com.barattoManager.user.UserManager" target="com.barattoManager.exception.InvalidCredentialsException" relationship="CREATE">
-      <point x="-140.0" y="-159.5" />
+      <point x="-60.0" y="-170.5" />
       <point x="0.0" y="26.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeActionButtons" target="com.barattoManager.exception.AlreadyExistException" relationship="DEPENDENCY">
-      <point x="0.0" y="82.5" />
-      <point x="2378.0" y="1580.0" />
-      <point x="2098.5" y="1580.0" />
-      <point x="20.5" y="26.5" />
+      <point x="-137.0" y="0.0" />
+      <point x="1914.5" y="1986.0" />
+      <point x="1914.5" y="1900.0" />
+      <point x="1566.5" y="1900.0" />
+      <point x="1566.5" y="406.0" />
+      <point x="-119.5" y="0.0" />
     </edge>
     <edge source="com.barattoManager.category.Category" target="com.barattoManager.category.field.Field" relationship="CREATE">
-      <point x="170.94449257305132" y="159.5" />
-      <point x="0.0" y="-71.5" />
+      <point x="120.0" y="-280.5" />
+      <point x="0.0" y="71.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.RepaintingListeners.RepaintingListenersHolder" target="com.barattoManager.ui.panels.categoryTree.RepaintingListeners" relationship="INNER_CLASS">
-      <point x="122.5" y="-38.0" />
-      <point x="-19.925906773571114" y="71.5" />
+      <point x="0.0" y="38.0" />
+      <point x="20.0" y="-71.5" />
     </edge>
     <edge source="com.barattoManager.ui.components.ConfiguratorCategoryEditorUi" target="com.barattoManager.ui.components.ComponentsName" relationship="DEPENDENCY">
-      <point x="0.0" y="60.0" />
-      <point x="1598.0" y="2097.0" />
-      <point x="3.0" y="2097.0" />
-      <point x="3.0" y="1730.0" />
-      <point x="769.818" y="1730.0" />
-      <point x="1.2314110335864825E-4" y="-115.50011449174553" />
+      <point x="0.0" y="-60.0" />
+      <point x="2802.0" y="2397.0" />
+      <point x="962.0" y="2397.0" />
+      <point x="0.0" y="115.5" />
     </edge>
     <edge source="com.barattoManager.user.UserManager" target="com.barattoManager.user.configurator.Configurator" relationship="CREATE">
-      <point x="-156.5" y="-67.0" />
-      <point x="-271.5" y="1005.0" />
-      <point x="-271.5" y="232.0" />
-      <point x="-112.0" y="0.0" />
+      <point x="-170.0" y="0.0" />
+      <point x="346.5" y="1526.0" />
+      <point x="204.5" y="115.5" />
     </edge>
     <edge source="com.barattoManager.user.UserManager" target="com.barattoManager.exception.AlreadyExistException" relationship="CREATE">
-      <point x="-15.0" y="-159.5" />
-      <point x="343.0" y="851.0" />
-      <point x="2078.0" y="851.0" />
-      <point x="0.0" y="26.5" />
+      <point x="0.0" y="-170.5" />
+      <point x="622.0" y="1306.0" />
+      <point x="2214.5" y="1306.0" />
+      <point x="-7.5" y="26.5" />
     </edge>
     <edge source="com.barattoManager.ui.panels.categoryTree.TreeContainer" target="com.barattoManager.ui.panels.categoryTree.TreeView" relationship="TO_ONE">
-      <point x="151.0" y="0.0" />
-      <point x="2749.5" y="1772.0" />
-      <point x="2749.5" y="1283.0" />
-      <point x="3098.0" y="1283.0" />
-      <point x="0.0" y="104.5" />
+      <point x="0.0" y="-60.5" />
+      <point x="2922.0" y="2086.0" />
+      <point x="2793.0" y="2086.0" />
+      <point x="2793.0" y="1586.5" />
+      <point x="-254.0" y="60.5" />
     </edge>
     <edge source="com.barattoManager.ui.components.ConfiguratorHomeUi" target="com.barattoManager.ui.components.ComponentsName" relationship="DEPENDENCY">
       <point x="0.0" y="60.0" />
-      <point x="1018.0" y="1730.0" />
-      <point x="769.818" y="1730.0" />
-      <point x="1.2314110335864825E-4" y="-115.50011449174553" />
+      <point x="1222.0" y="2397.0" />
+      <point x="962.0" y="2397.0" />
+      <point x="0.0" y="115.5" />
     </edge>
     <edge source="com.barattoManager.category.CategoryManager.CategoryManagerHolder" target="com.barattoManager.category.CategoryManager" relationship="TO_ONE">
       <point x="0.0" y="38.0" />
-      <point x="2658.0" y="537.0" />
-      <point x="2424.0" y="537.0" />
-      <point x="2424.0" y="692.0" />
-      <point x="-212.5" y="0.0" />
+      <point x="3062.0" y="679.0" />
+      <point x="3002.0" y="679.0" />
+      <point x="3002.0" y="1173.5" />
+      <point x="-212.5" y="87.5" />
     </edge>
     <edge source="com.barattoManager.ui.BarattoManagerGui" target="com.barattoManager.ui.components.ConfiguratorCategoryEditorUi" relationship="CREATE">
       <point x="188.5" y="15.0" />
-      <point x="1613.0" y="2227.0" />
-      <point x="15.0" y="60.0" />
+      <point x="2802.0" y="2741.0" />
+      <point x="0.0" y="60.0" />
     </edge>
     <edge source="com.barattoManager.config.AppConfigurator.AppConfiguratorHolder" target="com.barattoManager.config.AppConfigurator" relationship="INNER_CLASS">
-      <point x="0.0" y="38.0" />
-      <point x="0.0" y="-93.5" />
+      <point x="30.0" y="38.0" />
+      <point x="30.0" y="-93.5" />
+    </edge>
+    <edge source="com.barattoManager.ui.panels.categoryTree.TreeView" target="com.barattoManager.exception.NoNodeSelected" relationship="CREATE">
+      <point x="-240.0" y="-104.5" />
+      <point x="0.0" y="26.5" />
     </edge>
     <edge source="com.barattoManager.config.AppConfigurator.AppConfiguratorHolder" target="com.barattoManager.config.AppConfigurator" relationship="CREATE">
       <point x="15.0" y="38.0" />
       <point x="15.0" y="-93.5" />
     </edge>
-    <edge source="com.barattoManager.ui.panels.categoryTree.TreeView" target="com.barattoManager.exception.NoNodeSelected" relationship="CREATE">
-      <point x="254.0" y="0.0" />
-      <point x="3384.5" y="1072.0" />
-      <point x="3384.5" y="-177.0" />
-      <point x="2218.5" y="-177.0" />
-      <point x="-79.5" y="-26.5" />
-    </edge>
     <edge source="com.barattoManager.category.CategoryManager" target="com.barattoManager.category.Category" relationship="CREATE">
-      <point x="205.0" y="-137.5" />
-      <point x="-175.0" y="159.5" />
+      <point x="0.0" y="-170.5" />
+      <point x="0.0" y="280.5" />
     </edge>
     <edge source="com.barattoManager.ui.components.LoginUI" target="com.barattoManager.user.configurator.Configurator" relationship="DEPENDENCY">
       <point x="-152.0" y="0.0" />
-      <point x="-256.0" y="1472.0" />
-      <point x="-256.0" y="537.0" />
-      <point x="-142.0" y="537.0" />
-      <point x="0.0" y="93.5" />
-    </edge>
-    <edge source="com.barattoManager.category.CategoryManager.CategoryManagerHolder" target="com.barattoManager.category.CategoryManager" relationship="INNER_CLASS">
-      <point x="-30.0" y="38.0" />
-      <point x="-30.0" y="-137.5" />
+      <point x="47.0" y="1986.0" />
+      <point x="47.0" y="898.0" />
+      <point x="142.0" y="898.0" />
+      <point x="0.0" y="115.5" />
     </edge>
     <edge source="com.barattoManager.ui.components.ConfiguratorHomeUi" target="com.barattoManager.ui.panels.optionPane.RegisterNewConfiguratorPanel" relationship="CREATE">
-      <point x="68.71792188430072" y="-60.0" />
+      <point x="160.0" y="-60.0" />
       <point x="0.0" y="49.5" />
     </edge>
+    <edge source="com.barattoManager.category.CategoryManager.CategoryManagerHolder" target="com.barattoManager.category.CategoryManager" relationship="INNER_CLASS">
+      <point x="15.0" y="38.0" />
+      <point x="3077.0" y="986.5" />
+      <point x="-212.5" y="-99.5" />
+    </edge>
     <edge source="com.barattoManager.user.UserManager" target="com.barattoManager.user.User" relationship="TO_MANY">
-      <point x="-156.5" y="-97.0" />
-      <point x="-102.0" y="975.0" />
-      <point x="0.0" y="82.0" />
+      <point x="-170.0" y="15.0" />
+      <point x="217.0" y="1541.0" />
+      <point x="15.0" y="82.0" />
     </edge>
     <edge source="com.barattoManager.ui.components.LoginUI" target="com.barattoManager.user.User" relationship="DEPENDENCY">
-      <point x="-152.0" y="-15.0" />
-      <point x="-151.5" y="1457.0" />
-      <point x="-49.5" y="82.0" />
+      <point x="-115.0" y="-126.0" />
+      <point x="-15.0" y="82.0" />
     </edge>
     <edge source="com.barattoManager.BarattoManager" target="com.barattoManager.ui.BarattoManagerGui" relationship="CREATE">
       <point x="0.0" y="-38.0" />
       <point x="0.0" y="71.0" />
     </edge>
     <edge source="com.barattoManager.user.configurator.Configurator" target="com.barattoManager.user.User" relationship="GENERALIZATION">
-      <point x="112.0" y="0.0" />
-      <point x="-8.0" y="232.0" />
-      <point x="-8.0" y="351.5" />
-      <point x="-102.0" y="351.5" />
-      <point x="0.0" y="-82.0" />
+      <point x="229.5" y="0.0" />
+      <point x="396.0" y="406.0" />
+      <point x="396.0" y="1086.0" />
+      <point x="127.0" y="0.0" />
     </edge>
     <edge source="com.barattoManager.user.UserManager.UserManagerHolder" target="com.barattoManager.user.UserManager" relationship="TO_ONE">
-      <point x="-105.0" y="-15.0" />
-      <point x="156.5" y="106.5" />
+      <point x="-105.0" y="0.0" />
+      <point x="809.0" y="1086.0" />
+      <point x="809.0" y="1526.0" />
+      <point x="170.0" y="0.0" />
     </edge>
     <edge source="com.barattoManager.user.UserManager.UserManagerHolder" target="com.barattoManager.user.UserManager" relationship="INNER_CLASS">
-      <point x="-105.0" y="0.0" />
-      <point x="156.5" y="121.5" />
+      <point x="0.0" y="38.0" />
+      <point x="1002.0" y="1393.0" />
+      <point x="170.0" y="-133.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Compact" zoom="0.5356300203412023" showDependencies="true" x="3222.568710084691" y="631.4537356566112" />
+  <settings layout="Hierarchic Compact" zoom="0.4034577484422243" showDependencies="true" x="1415.1089035938473" y="876.3576550630155" />
   <SelectedNodes />
   <Categories>
     <Category>Constructors</Category>
