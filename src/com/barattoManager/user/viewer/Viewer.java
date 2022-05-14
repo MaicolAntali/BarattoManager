@@ -17,8 +17,6 @@ public class Viewer extends User {
 	 * Pre-condition: Viewer password is blank
 	 */
 	public static final String PRE_CONDITION_VIEWER_PASSWORD_IS_BLANK = "Pre-condition: Viewer password is blank";
-
-
 	/**
 	 * Username of viewer
 	 */

@@ -27,6 +27,10 @@ public class TreeView extends JPanel {
 	 * Icon for field
 	 */
 	private static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
+	/**
+	 * No category has been selected, try again error
+	 */
+	private static final String ERROR_NO_CATEGORY_HAS_BEEN_SELECTED_TRY_AGAIN = "Non è stata selezionata nessuna categoria. Seleziona una categoria e riprova.";
 
 	/**
 	 * {@link JTree} object
@@ -100,7 +104,7 @@ public class TreeView extends JPanel {
 	public TreeNode[] getSelectedPathNode() throws NoNodeSelected {
 		var selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 		if (selectedNode == null) {
-			throw new NoNodeSelected("Non è stata selezionata nessuna categoria. Seleziona una categoria e riprova.");
+			throw new NoNodeSelected(ERROR_NO_CATEGORY_HAS_BEEN_SELECTED_TRY_AGAIN);
 		}
 		else {
 			return selectedNode.getPath();

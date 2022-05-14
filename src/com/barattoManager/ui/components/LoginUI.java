@@ -5,6 +5,7 @@ import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.ui.panels.optionPane.ChangePasswordPanel;
 import com.barattoManager.user.UserManager;
 import com.barattoManager.user.configurator.Configurator;
+import com.barattoManager.user.viewer.Viewer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -120,12 +121,12 @@ public class LoginUI extends JPanel {
 						cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString());
 					}
 					else {
-						System.out.print("VIEWER");
+						cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString());
 					}
 				}
 
 			} catch (InvalidCredentialsException ex) {
-				JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, ex.getMessage(), ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
 			}
 		});
 	}

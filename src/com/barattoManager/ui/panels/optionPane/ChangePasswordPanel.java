@@ -7,6 +7,15 @@ import java.awt.*;
  * Class used to create a JPanel used to change a user password
  */
 public class ChangePasswordPanel extends JPanel {
+
+	/**
+	 * Change your password label
+	 */
+	private static final String LABEL_CHANGE_YOUR_PASSWORD = "Cambia la tua password di accesso.";
+	/**
+	 * New password label
+	 */
+	private static final String LABEL_NEW_PASSWORD = "Nuova Password:";
 	/**
 	 * Password field
 	 */
@@ -19,10 +28,10 @@ public class ChangePasswordPanel extends JPanel {
 		var mainPanel = new JPanel();
 		mainPanel.setLayout(new GridLayout(0, 1));
 
-		mainPanel.add(new JLabel("Cambia la tua password di accesso."));
+		mainPanel.add(new JLabel(LABEL_CHANGE_YOUR_PASSWORD));
 
 		var namePanel = new JPanel();
-		namePanel.add(new JLabel("Nuova Password:"));
+		namePanel.add(new JLabel(LABEL_NEW_PASSWORD));
 		namePanel.add(passwordField);
 		mainPanel.add(namePanel);
 

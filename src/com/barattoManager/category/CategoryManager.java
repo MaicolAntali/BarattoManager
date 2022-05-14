@@ -33,6 +33,22 @@ public final class CategoryManager {
 	public static final String POST_CONDITION_FIELD_NOT_IN_MAP = "Post-condition: The field is not present in the map.";
 
 	/**
+	 * Category params not valid error
+	 */
+	private static final String ERROR_CATEGORY_PARAMS_NOT_VALID = "Il nome o la descrizione della categoria non è valido";
+	/**
+	 * Category already exists error
+	 */
+	private static final String ERROR_CATEGORY_ALREADY_EXISTS = "La categoria che stai creando esiste già.";
+	/**
+	 * No category has been selected error
+	 */
+	private static final String ERROR_NO_CATEGORY_HAS_BEEN_SELECTED = "Non è stata selezionata una categoria.";
+	/**
+	 * Invalid name of sub-category error
+	 */
+	private static final String ERROR_INVALID_NAME_OF_SUBCATEGORY = "Il nome della sotto-categoria non è valido";
+	/**
 	 * Category JSON file
 	 */
 	private final File categoriesFile = new File(AppConfigurator.getInstance().getFileName("category_file"));
@@ -90,9 +106,9 @@ public final class CategoryManager {
 	 * @param name        Name of new category
 	 * @param description Description of the new category
 	 * @throws AlreadyExistException Is thrown is the category or field that are trying to add already exist.
-	 * @throws EmptyStringException  Is thrown if the name is an empty string
-	 * @throws NullCategoryException Is thrown if is not found a category in the map
-	 * */
+	 * @throws EmptyStringException Is thrown if the name is an empty string
+	 * @throws NullCategoryException  Is thrown if is not found a category in the map
+	 */
 	public void addNewMainCategory(String name, String description) throws AlreadyExistException, EmptyStringException, NullCategoryException {
 		var categoryName = name.trim().toLowerCase();
 		if (!categoryName.isBlank() && !description.isBlank()) {
@@ -113,11 +129,11 @@ public final class CategoryManager {
 				assert categoryMap.containsKey(categoryName) : POST_CONDITION_CATEGORY_NOT_IN_MAP;
 			}
 			else {
-				throw new AlreadyExistException("La categoria che stai creando esiste gia.");
+				throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
 			}
 		}
 		else {
-			throw new EmptyStringException("Il nome o la descrizione della categoria non è valido");
+			throw new EmptyStringException(ERROR_CATEGORY_PARAMS_NOT_VALID);
 		}
 	}
 
@@ -144,15 +160,15 @@ public final class CategoryManager {
 					assert category.getSubCategory().containsKey(categoryName): POST_CONDITION_SUBCATEGORY_NOT_IN_MAP;
 				}
 				else {
-					throw new AlreadyExistException("La categoria che stai creando esiste gia.");
+					throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
 				}
 			}
 			else {
-				throw new NullCategoryException("Non è stata selezionata una categoria.");
+				throw new NullCategoryException(ERROR_NO_CATEGORY_HAS_BEEN_SELECTED);
 			}
 		}
 		else {
-			throw new EmptyStringException("Il nome o la descrizione della sotto-categoria non è valido");
+			throw new EmptyStringException(ERROR_INVALID_NAME_OF_SUBCATEGORY);
 		}
 	}
 
@@ -188,7 +204,7 @@ public final class CategoryManager {
 						assert category.getCategoryFields().containsKey(fieldName) : POST_CONDITION_FIELD_NOT_IN_MAP;
 					}
 					else {
-						throw new AlreadyExistException("Il campo che stai creando esiste già.");
+						throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
 					}
 				}
 				else {
@@ -196,18 +212,18 @@ public final class CategoryManager {
 						category.addNewFields(name, isRequired);
 					}
 					else {
-						throw new AlreadyExistException("Il campo che stai creando esiste già.");
+						throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
 					}
 				}
 
 				saveCategoryMapChange();
 			}
 			else {
-				throw new NullCategoryException("Non è stata selezionata una categoria.");
+				throw new NullCategoryException(ERROR_NO_CATEGORY_HAS_BEEN_SELECTED);
 			}
 		}
 		else {
-			throw new EmptyStringException("Il nome del campo non è valido");
+			throw new EmptyStringException(ERROR_INVALID_NAME_OF_SUBCATEGORY);
 		}
 
 	}
@@ -235,7 +251,6 @@ public final class CategoryManager {
 
 	/**
 	 * Method used to get the {@link HashMap} of root categories
-	 *
 	 * @return {@link HashMap} of root categories
 	 */
 	public HashMap<String, Category> getCategoryMap() {

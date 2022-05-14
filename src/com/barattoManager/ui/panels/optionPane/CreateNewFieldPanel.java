@@ -9,6 +9,18 @@ import java.awt.*;
 public class CreateNewFieldPanel extends JPanel {
 
 	/**
+	 * Creation of new field label
+	 */
+	private static final String LABEL_CREATION_OF_NEW_FIELD = "Creazione di un nuovo campo.";
+	/**
+	 * Field name label
+	 */
+	private static final String LABEL_FIELD_NAME = "Nome campo:";
+	/**
+	 * Obligatory field label
+	 */
+	private static final String LABEL_OBLIGATORY_FIELD = "Campo obbligatorio:";
+	/**
 	 * Field name field
 	 */
 	private final JTextField fieldName = new JTextField(13);
@@ -24,15 +36,15 @@ public class CreateNewFieldPanel extends JPanel {
 		var mainPanel = new JPanel();
 		mainPanel.setLayout(new GridLayout(0, 1));
 
-		mainPanel.add(new JLabel("Creazione di un nuovo campo."));
+		mainPanel.add(new JLabel(LABEL_CREATION_OF_NEW_FIELD));
 
 		var namePanel = new JPanel();
-		namePanel.add(new JLabel("Nome campo:"));
+		namePanel.add(new JLabel(LABEL_FIELD_NAME));
 		namePanel.add(fieldName);
 		mainPanel.add(namePanel);
 
 		var descriptionPanel = new JPanel();
-		descriptionPanel.add(new JLabel("Campo obbligatorio:"));
+		descriptionPanel.add(new JLabel(LABEL_OBLIGATORY_FIELD));
 		descriptionPanel.add(fieldIsRequired);
 		mainPanel.add(descriptionPanel);
 

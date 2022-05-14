@@ -1,5 +1,7 @@
 package com.barattoManager.ui.components;
 
+import com.barattoManager.ui.panels.optionPane.RegisterNewUserPanel;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -16,6 +18,10 @@ public class InitialMenuUI extends JPanel {
      * JButton used to log in
      */
     private JButton loginButton;
+    /**
+     * JButton used to register new users
+     */
+    private JButton RegisterButton;
 
     /**
      * {@link InitialMenuUI} constructor
@@ -30,6 +36,7 @@ public class InitialMenuUI extends JPanel {
 
         mainPanel.setPreferredSize(dimension);
 
-        loginButton.addActionListener(e -> {cardLayout.show(contentPanel, ComponentsName.LOGIN.toString());});
+        loginButton.addActionListener(e -> cardLayout.show(contentPanel, ComponentsName.LOGIN.toString()));
+        RegisterButton.addActionListener(e ->  new RegisterNewUserPanel(mainPanel, false).createNewUser());
     }
 }

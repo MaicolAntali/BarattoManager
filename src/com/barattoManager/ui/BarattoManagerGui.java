@@ -12,6 +12,10 @@ import java.awt.*;
 public class BarattoManagerGui extends JFrame {
 
     /**
+     * Baratto manager title
+     */
+    private static final String TITLE_BARATTO_MANAGER = "Baratto Manager";
+    /**
      * Default dimensions of views
      */
     private static final Dimension CONTENT_PANEL_DEFAULT_DIMENSION = new Dimension(600, 430); // height - 70
@@ -34,7 +38,7 @@ public class BarattoManagerGui extends JFrame {
      */
     public BarattoManagerGui() {
         // Frame config
-        this.setTitle("Baratto Manager");
+        this.setTitle(TITLE_BARATTO_MANAGER);
         this.setSize(600, 500);
         this.setResizable(false);
         this.setContentPane(mainPanel);
@@ -49,6 +53,7 @@ public class BarattoManagerGui extends JFrame {
         panelContainer.add(new InitialMenuUI(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.INITIAL_PANEL.toString());
         panelContainer.add(new LoginUI(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.LOGIN.toString());
         panelContainer.add(new ConfiguratorHomeUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_HOME.toString());
+        panelContainer.add(new ViewerHomeUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_HOME.toString());
         panelContainer.add(new ConfiguratorCategoryEditorUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_CATEGORY_EDITOR.toString());
     }
 }

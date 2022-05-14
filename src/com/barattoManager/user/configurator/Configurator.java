@@ -18,6 +18,7 @@ public class Configurator extends User {
      * Pre-condition: Configurator password is blank
      */
     public static final String PRE_CONDITION_CONFIGURATOR_PASSWORD_IS_BLANK = "Pre-condition: Configurator password is blank";
+
     /**
      * Name of configurator
      */
