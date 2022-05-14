@@ -5,7 +5,6 @@ import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.ui.panels.optionPane.ChangePasswordPanel;
 import com.barattoManager.user.UserManager;
 import com.barattoManager.user.configurator.Configurator;
-import com.barattoManager.user.viewer.Viewer;
 
 import javax.swing.*;
 import java.awt.*;

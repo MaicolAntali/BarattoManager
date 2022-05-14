@@ -6,7 +6,9 @@ import com.barattoManager.category.field.Field;
 import com.barattoManager.exception.NoNodeSelected;
 
 import javax.swing.*;
-import javax.swing.tree.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.util.Objects;
 
