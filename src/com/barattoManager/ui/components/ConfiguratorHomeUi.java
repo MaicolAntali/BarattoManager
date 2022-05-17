@@ -1,6 +1,6 @@
 package com.barattoManager.ui.components;
 
-import com.barattoManager.ui.panels.optionPane.RegisterNewUserPanel;
+import com.barattoManager.ui.customComponents.optionPane.RegisterNewUserPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +21,10 @@ public class ConfiguratorHomeUi extends JPanel {
 	 * JButton used to add a new configurator
 	 */
 	private JButton addNewConfigurator;
-	private JButton ConfiguraIncontri;
+	/**
+	 * JButton used to fo in the {@link ConfiguratorMeetEditorUi} view
+	 */
+	private JButton configMeetButton;
 
 	/**
 	 * {@link ConfiguratorHomeUi} constructor
@@ -37,6 +40,7 @@ public class ConfiguratorHomeUi extends JPanel {
 		mainPanel.setPreferredSize(dimension);
 
 		configCategoryButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_CATEGORY_EDITOR.toString()));
+		configMeetButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_MEET_EDITOR.toString()));
 		addNewConfigurator.addActionListener(e ->  new RegisterNewUserPanel(mainPanel, true).createNewUser());
 	}
 }

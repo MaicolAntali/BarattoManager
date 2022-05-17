@@ -74,7 +74,7 @@
               <text value="Registra Configuratore"/>
             </properties>
           </component>
-          <component id="c51d4" class="javax.swing.JButton" binding="ConfiguraIncontri">
+          <component id="c51d4" class="javax.swing.JButton" binding="configMeetButton">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="3" use-parent-layout="false"/>
             </constraints>

@@ -1,5 +1,7 @@
 package com.barattoManager.meet;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -9,18 +11,22 @@ public class Meet {
 	/**
 	 * City of meet
 	 */
+	@JsonProperty("city")
 	private final String city;
 	/**
 	 * Square of meet
 	 */
+	@JsonProperty("square")
 	private final String square;
 	/**
 	 * Days of meet
 	 */
+	@JsonProperty("days")
 	private final ArrayList<String> days;
 	/**
 	 * intervals of meet
 	 */
+	@JsonProperty("intervals")
 	private final ArrayList<LocalTime> intervals;
 
 
@@ -38,6 +44,26 @@ public class Meet {
 		this.square = square;
 		this.days = days;
 		this.intervals = intervals(startTime, endTime);
+	}
+
+	/**
+	 * {@link Meet} constructor
+	 *
+	 * @param city      City of meeting
+	 * @param square    Square of meeting
+	 * @param days      Days of meeting, must be an {@link ArrayList}
+	 * @param intervals Intervals of time, must be an {@link ArrayList}
+	 */
+	public Meet(
+			@JsonProperty("city") String city,
+			@JsonProperty("square") String square,
+			@JsonProperty("days") ArrayList<String> days,
+			@JsonProperty("intervals") ArrayList<LocalTime> intervals
+	) {
+		this.city = city;
+		this.square = square;
+		this.days = days;
+		this.intervals = intervals;
 	}
 
 	/**

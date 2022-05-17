@@ -3,5 +3,10 @@
     "username": "Configurator",
     "password": "12345",
     "@type": "Configurator"
+  },
+  "maicol": {
+    "username": "Maicol",
+    "password": "12345",
+    "@type": "Configurator"
   }
 }

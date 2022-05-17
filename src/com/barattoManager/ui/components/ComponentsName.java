@@ -21,6 +21,10 @@ public enum ComponentsName {
      */
     CONF_CATEGORY_EDITOR("conf_category_editor"),
     /**
+     * {@link ConfiguratorMeetEditorUi}
+     */
+    CONF_MEET_EDITOR("conf_meet_editor"),
+    /**
      * {@link ConfiguratorHomeUi}
      */
     VIEWER_HOME("viewer_home");
