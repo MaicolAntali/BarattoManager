@@ -1,5 +1,7 @@
 package com.barattoManager.ui.components;
 
+import com.barattoManager.ui.customComponents.tree.meet.MeetTree;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,6 +21,8 @@ public class ConfiguratorMeetEditorUi extends JPanel{
 		setVisible(true);
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
+
+		centerPanel.add(new MeetTree());
 
 		backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
 	}

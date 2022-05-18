@@ -67,6 +67,33 @@ public class Meet {
 	}
 
 	/**
+	 * Method used to get the city of meet
+	 *
+	 * @return {@link #city}
+	 */
+	public String getCity() {
+		return city;
+	}
+
+	/**
+	 * Method used to get the square of meet
+	 *
+	 * @return {@link #square}
+	 */
+	public String getSquare() {
+		return square;
+	}
+
+	/**
+	 * Method used to get the days of meet
+	 *
+	 * @return {@link #days}
+	 */
+	public ArrayList<String> getDays() {
+		return days;
+	}
+
+	/**
 	 * Method used to get the ArrayList of intervals
 	 *
 	 * @return {@link #intervals}

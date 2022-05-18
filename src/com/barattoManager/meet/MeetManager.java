@@ -66,6 +66,14 @@ public class MeetManager {
 	}
 
 	/**
+	 * Method used to get the {@link #meetMap}
+	 * @return Map that contains each meet
+	 */
+	public HashMap<Integer, Meet> getMeetMap() {
+		return meetMap;
+	}
+
+	/**
 	 * Holder class of instance
 	 */
 	private static final class MeetManagerHolder {
