@@ -31,7 +31,7 @@ public class MeetTree extends JPanel{
 		var nodeMap = new HashMap<String, DefaultMutableTreeNode>();
 
 		// Create all meet
-		for (Meet meet : MeetManager.getInstance().getMeetMap().values()) {
+		for (Meet meet : MeetManager.getInstance().getMeetArrayList()) {
 			if (nodeMap.containsKey(meet.getCity().trim().toLowerCase())) {
 				createMeetNode(meet, nodeMap.get(meet.getCity().trim().toLowerCase()));
 			}
@@ -40,6 +40,7 @@ public class MeetTree extends JPanel{
 				createMeetNode(meet, nodeMap.get(meet.getCity().trim().toLowerCase()));
 			}
 		}
+
 
 		// add city to root node
 		for (DefaultMutableTreeNode node : nodeMap.values()) {

@@ -117,17 +117,6 @@ public class Meet {
 	}
 
 	/**
-	 * Method used to generate the hash code the object
-	 *
-	 * @return hashcode of a Meet object
-	 */
-	@Override
-	public int hashCode() {
-		// don’t hash the intervals because two objects might look different if they have overlapping intervals
-		return Objects.hash(city, square, days);
-	}
-
-	/**
 	 * Method used to create 30-minute intervals given a start and end time
 	 *
 	 * @param start Start hour of meetings, must be experienced in minutes <i>(10:00 -> 10*60)</i>

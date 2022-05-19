@@ -1,5 +1,6 @@
 package com.barattoManager.ui.customComponents.tree.meet;
 
+import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.meet.MeetManager;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewMeetPanel;
@@ -50,7 +51,7 @@ public class MeetEditorButtons extends JPanel {
 				);
 				repaintEventHandler.fireListeners();
 			}
-		} catch (IllegalValuesException ex) {
+		} catch (IllegalValuesException | AlreadyExistException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 		}
 	}

@@ -1,6 +1,7 @@
 package com.barattoManager.meet;
 
 import com.barattoManager.config.AppConfigurator;
+import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,19 +33,19 @@ public final class MeetManager {
 	/**
 	 * {@link HashMap} meet map
 	 */
-	private final HashMap<Integer, Meet> meetMap;
+	private final ArrayList<Meet> meetArrayList;
 
 	private MeetManager() {
 		if (meetFile.exists()) {
 			try {
-				meetMap = objectMapper.readValue(meetFile, new TypeReference<>() {
+				meetArrayList = objectMapper.readValue(meetFile, new TypeReference<>() {
 				});
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
 		}
 		else {
-			meetMap = new HashMap<>();
+			meetArrayList = new ArrayList<>();
 		}
 	}
 
@@ -60,11 +61,22 @@ public final class MeetManager {
 		return MeetManagerHolder.instance;
 	}
 
-	public void addNewMeet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException {
+	public void addNewMeet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException, AlreadyExistException {
 		if (!city.isBlank() || !square.isBlank() || !days.isEmpty()) {
-			var meet = new Meet(city, square, days, startTime, endTime);
-			meetMap.put(meet.hashCode(), meet);
-			saveMeetMapChange();
+			// create the new meet object
+			var newMeet = new Meet(city, square, days, startTime, endTime);
+
+			var equalityCheck = meetArrayList.stream()
+					.filter(meet -> meet.equals(newMeet))
+					.findFirst();
+
+			if (equalityCheck.isEmpty()) {
+				meetArrayList.add(newMeet);
+				saveMeetMapChange();
+			}
+			else  {
+				throw new AlreadyExistException("Il luogo di incontro che stai probando ad inserire esiste già");
+			}
 		}
 		else {
 			throw new IllegalValuesException("Uno o piu campi non sono erano vuoti.\nRiprovare");
@@ -73,11 +85,12 @@ public final class MeetManager {
 	}
 
 	/**
-	 * Method used to get the {@link #meetMap}
+	 * Method used to get the {@link #meetArrayList}
+	 *
 	 * @return Map that contains each meet
 	 */
-	public HashMap<Integer, Meet> getMeetMap() {
-		return meetMap;
+	public ArrayList<Meet> getMeetArrayList() {
+		return meetArrayList;
 	}
 
 	/**
@@ -91,11 +104,11 @@ public final class MeetManager {
 	}
 
 	/**
-	 * Method used to save the {@link #meetMap} changes in the Json file({@link #meetFile})
+	 * Method used to save the {@link #meetArrayList} changes in the Json file({@link #meetFile})
 	 */
 	private void saveMeetMapChange() {
 		try {
-			objectMapper.writeValue(meetFile, meetMap);
+			objectMapper.writeValue(meetFile, meetArrayList);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
