@@ -1,12 +1,16 @@
 package com.barattoManager.ui.components;
 
+import com.barattoManager.ui.customComponents.tree.event.RepaintEventHandler;
+import com.barattoManager.ui.customComponents.tree.event.RepaintListener;
 import com.barattoManager.ui.customComponents.tree.meet.MeetEditorButtons;
 import com.barattoManager.ui.customComponents.tree.meet.MeetTree;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ConfiguratorMeetEditorUi extends JPanel{
+public class ConfiguratorMeetEditorUi extends JPanel implements RepaintListener {
+	private final RepaintEventHandler repaintEventHandler = new RepaintEventHandler();
+	private MeetTree meetTree = new MeetTree();
 	private JPanel mainPanel;
 	private JPanel centerPanel;
 	private JButton backToInitButton;
@@ -23,11 +27,24 @@ public class ConfiguratorMeetEditorUi extends JPanel{
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
-		var meetTree = new MeetTree();
+		repaintEventHandler.addListener(this);
+
 		centerPanel.add(meetTree);
-		centerPanel.add(new MeetEditorButtons(), BorderLayout.SOUTH);
+		centerPanel.add(new MeetEditorButtons(repaintEventHandler), BorderLayout.SOUTH);
 
 
 		backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
+	}
+
+	@Override
+	public void repaintCategoryTree() {
+		centerPanel.remove(meetTree);
+
+		meetTree = new MeetTree();
+
+		centerPanel.add(meetTree);
+
+		centerPanel.revalidate();
+		centerPanel.revalidate();
 	}
 }
