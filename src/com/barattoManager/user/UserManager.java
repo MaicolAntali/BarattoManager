@@ -2,7 +2,7 @@ package com.barattoManager.user;
 
 import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.exception.EmptyStringException;
+import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.user.configurator.Configurator;
 import com.barattoManager.user.viewer.Viewer;
@@ -87,7 +87,7 @@ public final class UserManager {
 						DEFAULT_CREDENTIALS,
 						JOptionPane.INFORMATION_MESSAGE
 				);
-			} catch (AlreadyExistException | EmptyStringException e) {
+			} catch (AlreadyExistException | IllegalValuesException e) {
 				e.printStackTrace();
 			}
 		}
@@ -130,9 +130,9 @@ public final class UserManager {
 	 * @param password Password of the User
 	 * @param isAdmin  Indicates whether a User is an admins or not.
 	 * @throws AlreadyExistException Is thrown if the new user that are trying to add already exist.
-	 * @throws EmptyStringException Is thrown if the username is empty
+	 * @throws IllegalValuesException Is thrown if the username is empty
 	 */
-	public void addNewUser(String username, String password, Boolean isAdmin) throws AlreadyExistException, EmptyStringException {
+	public void addNewUser(String username, String password, Boolean isAdmin) throws AlreadyExistException, IllegalValuesException {
 		if (!username.isBlank()) {
 			if (userMap.containsKey(username.toLowerCase()))
 				throw new AlreadyExistException(ERROR_USER_ALREADY_EXIST.formatted(username));
@@ -152,7 +152,7 @@ public final class UserManager {
 			}
 		}
 		else {
-			throw new EmptyStringException(ERROR_INVALID_USERNAME);
+			throw new IllegalValuesException(ERROR_INVALID_USERNAME);
 		}
 
 	}

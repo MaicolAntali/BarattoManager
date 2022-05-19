@@ -2,7 +2,7 @@ package com.barattoManager.ui.customComponents.tree.category;
 
 import com.barattoManager.category.CategoryManager;
 import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.exception.EmptyStringException;
+import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.exception.NullCategoryException;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewCategoryPanel;
@@ -107,7 +107,7 @@ public class CategoryConfButtons extends JPanel {
 				);
 				repaintEventHandler.fireListeners();
 			}
-		} catch (AlreadyExistException | EmptyStringException | NullCategoryException ex) {
+		} catch (AlreadyExistException | IllegalValuesException | NullCategoryException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), TITLE_OF_ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -141,7 +141,7 @@ public class CategoryConfButtons extends JPanel {
 				);
 				repaintEventHandler.fireListeners();
 			}
-		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException | NullCategoryException ex) {
+		} catch (NoNodeSelected | AlreadyExistException | IllegalValuesException | NullCategoryException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), TITLE_OF_ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}
@@ -176,7 +176,7 @@ public class CategoryConfButtons extends JPanel {
 				);
 				repaintEventHandler.fireListeners();
 			}
-		} catch (NoNodeSelected | AlreadyExistException | EmptyStringException | NullCategoryException ex) {
+		} catch (NoNodeSelected | AlreadyExistException | IllegalValuesException | NullCategoryException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), TITLE_OF_ERROR, JOptionPane.ERROR_MESSAGE);
 		}
 	}

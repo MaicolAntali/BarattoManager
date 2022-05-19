@@ -1,7 +1,7 @@
 package com.barattoManager.category;
 
 import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.exception.EmptyStringException;
+import com.barattoManager.exception.IllegalValuesException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -108,16 +108,16 @@ class CategoryManagerTest {
 
 	@Test
 	void emptyMainCategoryName() {
-		assertThrows(EmptyStringException.class, () -> instance.addNewMainCategory("          ", "..."));
+		assertThrows(IllegalValuesException.class, () -> instance.addNewMainCategory("          ", "..."));
 	}
 
 	@Test
 	void emptySubcategoryName() {
-		assertThrows(EmptyStringException.class, () -> instance.addNewSubCategory(null, "",  ""));
+		assertThrows(IllegalValuesException.class, () -> instance.addNewSubCategory(null, "",  ""));
 	}
 
 	@Test
 	void emptyFieldName() {
-		assertThrows(EmptyStringException.class, () -> instance.addNewField(null, "", true));
+		assertThrows(IllegalValuesException.class, () -> instance.addNewField(null, "", true));
 	}
 }

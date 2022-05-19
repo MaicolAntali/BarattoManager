@@ -1,6 +1,7 @@
 package com.barattoManager.meet;
 
 import com.barattoManager.config.AppConfigurator;
+import com.barattoManager.exception.IllegalValuesException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MeetManager {
+public final class MeetManager {
 
 	/**
 	 * User JSON file
@@ -59,10 +60,16 @@ public class MeetManager {
 		return MeetManagerHolder.instance;
 	}
 
-	public void addNewMeet(String city, String square, ArrayList<String> days, int startTime, int endTime) {
-		var meet = new Meet(city, square, days, startTime, endTime);
-		meetMap.put(meet.hashCode(), meet);
-		saveMeetMapChange();
+	public void addNewMeet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException {
+		if (!city.isBlank() || !square.isBlank() || !days.isEmpty()) {
+			var meet = new Meet(city, square, days, startTime, endTime);
+			meetMap.put(meet.hashCode(), meet);
+			saveMeetMapChange();
+		}
+		else {
+			throw new IllegalValuesException("Uno o piu campi non sono erano vuoti.\nRiprovare");
+		}
+
 	}
 
 	/**

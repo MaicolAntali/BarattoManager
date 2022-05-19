@@ -8,6 +8,7 @@ import com.barattoManager.user.configurator.Configurator;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
 import java.util.Objects;
 
 /**

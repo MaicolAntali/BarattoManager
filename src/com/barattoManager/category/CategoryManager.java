@@ -2,7 +2,7 @@ package com.barattoManager.category;
 
 import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.exception.EmptyStringException;
+import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NullCategoryException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -106,10 +106,10 @@ public final class CategoryManager {
 	 * @param name        Name of new category
 	 * @param description Description of the new category
 	 * @throws AlreadyExistException Is thrown is the category or field that are trying to add already exist.
-	 * @throws EmptyStringException Is thrown if the name is an empty string
+	 * @throws IllegalValuesException Is thrown if the name is an empty string
 	 * @throws NullCategoryException  Is thrown if is not found a category in the map
 	 */
-	public void addNewMainCategory(String name, String description) throws AlreadyExistException, EmptyStringException, NullCategoryException {
+	public void addNewMainCategory(String name, String description) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
 		var categoryName = name.trim().toLowerCase();
 		if (!categoryName.isBlank() && !description.isBlank()) {
 			if (!categoryMap.containsKey(categoryName)) {
@@ -133,7 +133,7 @@ public final class CategoryManager {
 			}
 		}
 		else {
-			throw new EmptyStringException(ERROR_CATEGORY_PARAMS_NOT_VALID);
+			throw new IllegalValuesException(ERROR_CATEGORY_PARAMS_NOT_VALID);
 		}
 	}
 
@@ -144,10 +144,10 @@ public final class CategoryManager {
 	 * @param name              Name of the new category
 	 * @param description       Description of new category
 	 * @throws AlreadyExistException Is thrown if the category that are trying to add already exist.
-	 * @throws EmptyStringException  Is thrown if the name is an empty string
+	 * @throws IllegalValuesException  Is thrown if the name is an empty string
 	 * @throws NullCategoryException Is thrown if is nt found a category in the map
 	 */
-	public void addNewSubCategory(ArrayList<String> pathOfSubcategory, String name, String description) throws AlreadyExistException, EmptyStringException, NullCategoryException {
+	public void addNewSubCategory(ArrayList<String> pathOfSubcategory, String name, String description) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
 		var categoryName = name.trim().toLowerCase();
 		if (!categoryName.isBlank() && !description.isBlank()) {
 			Category category = getCategoryFromPath(pathOfSubcategory);
@@ -168,7 +168,7 @@ public final class CategoryManager {
 			}
 		}
 		else {
-			throw new EmptyStringException(ERROR_INVALID_NAME_OF_SUBCATEGORY);
+			throw new IllegalValuesException(ERROR_INVALID_NAME_OF_SUBCATEGORY);
 		}
 	}
 
@@ -179,10 +179,10 @@ public final class CategoryManager {
 	 * @param name           Name of the new field
 	 * @param isRequired     If the field is required ({@code true}) otherwise {@code false}
 	 * @throws AlreadyExistException Is thrown if the new field that are trying to add already exist.
-	 * @throws EmptyStringException  Is thrown if the name is an empty string
+	 * @throws IllegalValuesException  Is thrown if the name is an empty string
 	 * @throws NullCategoryException Is thrown if is not found a category in the map
 	 */
-	public void addNewField(ArrayList<String> pathOfCategory, String name, boolean isRequired) throws AlreadyExistException, EmptyStringException, NullCategoryException {
+	public void addNewField(ArrayList<String> pathOfCategory, String name, boolean isRequired) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
 		var fieldName = name.trim().toLowerCase();
 		if (!fieldName.isBlank()) {
 			Category category = getCategoryFromPath(pathOfCategory);
@@ -223,7 +223,7 @@ public final class CategoryManager {
 			}
 		}
 		else {
-			throw new EmptyStringException(ERROR_INVALID_NAME_OF_SUBCATEGORY);
+			throw new IllegalValuesException(ERROR_INVALID_NAME_OF_SUBCATEGORY);
 		}
 
 	}

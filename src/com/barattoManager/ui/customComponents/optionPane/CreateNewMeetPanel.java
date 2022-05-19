@@ -79,13 +79,11 @@ public class CreateNewMeetPanel extends JPanel {
 		return days;
 	}
 
-	public int getStartTimeMiutues() {
-		var startTimeSplit = startTimeField.getText().split(":");
-		return Integer.parseInt(startTimeSplit[0]) * 60 + Integer.parseInt(startTimeSplit[1]);
+	public JTextField getStartTimeField() {
+		return startTimeField;
 	}
 
-	public int getEndTimeMitutes() {
-		var endTimeSplit = endTimeField.getText().split(":");
-		return Integer.parseInt(endTimeSplit[0]) * 60 + Integer.parseInt(endTimeSplit[1]);
+	public JTextField getEndTimeField() {
+		return endTimeField;
 	}
 }

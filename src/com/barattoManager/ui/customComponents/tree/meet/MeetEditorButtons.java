@@ -1,10 +1,13 @@
 package com.barattoManager.ui.customComponents.tree.meet;
 
+import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.meet.MeetManager;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewMeetPanel;
+import com.barattoManager.utils.TimeParse;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Time;
 
 public class MeetEditorButtons extends JPanel {
 
@@ -39,10 +42,11 @@ public class MeetEditorButtons extends JPanel {
 						createNewMeetPanel.getCity(),
 						createNewMeetPanel.getSquare(),
 						createNewMeetPanel.getSelectedDays(),
-						createNewMeetPanel.getStartTimeMiutues(),
-						createNewMeetPanel.getEndTimeMitutes());
+						TimeParse.hourToMinuteTime(createNewMeetPanel.getStartTimeField().getText()),
+						TimeParse.hourToMinuteTime(createNewMeetPanel.getStartTimeField().getText())
+				);
 			}
-		} catch (Exception ex) {
+		} catch (IllegalValuesException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 		}
 	}

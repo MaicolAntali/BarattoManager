@@ -2,7 +2,7 @@ package com.barattoManager.ui.customComponents.optionPane;
 
 import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.exception.EmptyStringException;
+import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.user.UserManager;
 
 import javax.swing.*;
@@ -108,7 +108,7 @@ public class RegisterNewUserPanel {
 						TITLE_REGISTERED,
 						JOptionPane.INFORMATION_MESSAGE
 				);
-			} catch (AlreadyExistException | EmptyStringException ex) {
+			} catch (AlreadyExistException | IllegalValuesException ex) {
 				JOptionPane.showMessageDialog(parentPanel, ex.getMessage(), ERROR, JOptionPane.ERROR_MESSAGE);
 			}
 		}
