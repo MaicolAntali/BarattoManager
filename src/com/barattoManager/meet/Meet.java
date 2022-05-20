@@ -1,5 +1,6 @@
 package com.barattoManager.meet;
 
+import com.barattoManager.exception.IllegalValuesException;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalTime;
@@ -39,7 +40,7 @@ public class Meet {
 	 * @param startTime Start hour of meetings, must be experienced in minutes <i>(10:00 -> 10*60)</i>
 	 * @param endTime   End hour of meetings, must be experienced in minutes <i>(14:30 -> 10*60+30)</i>
 	 */
-	public Meet(String city, String square, ArrayList<String> days, int startTime, int endTime) {
+	public Meet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException {
 		this.city = city;
 		this.square = square;
 		this.days = days;
@@ -112,7 +113,6 @@ public class Meet {
 	public boolean equals(Meet meet) {
 		if (this == meet) return true;
 		if (meet == null || getClass() != meet.getClass()) return false;
-		if (this.hashCode() != meet.hashCode()) return false;
 		return Objects.equals(city, meet.city) && Objects.equals(square, meet.square) && Objects.equals(days, meet.days) && intervalsOverlapping(meet);
 	}
 
@@ -123,16 +123,21 @@ public class Meet {
 	 * @param end   End hour of meetings, must be experienced in minutes <i>(14:30 -> 10*60+30)</i>
 	 * @return An {@link ArrayList} that contains 30-minute intervals
 	 */
-	private ArrayList<LocalTime> intervals(int start, int end) {
-		ArrayList<LocalTime> tmpList = new ArrayList<>();
+	private ArrayList<LocalTime> intervals(int start, int end) throws IllegalValuesException {
+		if (start <= end) {
+			ArrayList<LocalTime> tmpList = new ArrayList<>();
 
-		int time = start;
-		while (time <= end) {
-			tmpList.add(LocalTime.of(time / 60, time % 60));
-			time += 30;
+			int time = start;
+			while (time <= end) {
+				tmpList.add(LocalTime.of(time / 60, time % 60));
+				time += 30;
+			}
+
+			return tmpList;
 		}
-
-		return tmpList;
+		else {
+			throw new IllegalValuesException("Il valore temporale inserito è sbagliato.\n(Orario di inzio >= Orario di fine)");
+		}
 	}
 
 	/**
