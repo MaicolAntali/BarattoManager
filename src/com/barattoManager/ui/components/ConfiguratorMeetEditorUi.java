@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ConfiguratorMeetEditorUi extends JPanel implements RepaintListener {
-	private final RepaintEventHandler repaintEventHandler = new RepaintEventHandler();
 	private MeetTree meetTree = new MeetTree();
 	private JPanel mainPanel;
 	private JPanel centerPanel;
@@ -27,6 +26,7 @@ public class ConfiguratorMeetEditorUi extends JPanel implements RepaintListener 
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
+		RepaintEventHandler repaintEventHandler = new RepaintEventHandler();
 		repaintEventHandler.addListener(this);
 
 		centerPanel.add(meetTree);
@@ -44,7 +44,7 @@ public class ConfiguratorMeetEditorUi extends JPanel implements RepaintListener 
 
 		centerPanel.add(meetTree);
 
-		centerPanel.revalidate();
+		centerPanel.repaint();
 		centerPanel.revalidate();
 	}
 }
