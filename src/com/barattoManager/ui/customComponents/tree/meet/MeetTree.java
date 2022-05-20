@@ -25,7 +25,11 @@ public class MeetTree extends JPanel{
 	 */
 	private static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
 
-	public MeetTree() {
+	/**
+	 * {@link MeetTree} Constructor
+	 * @param dimension Dimension of the JPanel
+	 */
+	public MeetTree(Dimension dimension) {
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Incontri");
 
 		var nodeMap = new HashMap<String, DefaultMutableTreeNode>();
@@ -56,9 +60,15 @@ public class MeetTree extends JPanel{
 		renderer.setLeafIcon(new ImageIcon(Objects.requireNonNull(this.getClass().getResource(ICON_CATEGORY_FIELD))));
 
 
-		add(new JScrollPane(tree)).setPreferredSize(new Dimension(500, 290));
+		add(new JScrollPane(tree)).setPreferredSize(dimension);
 		setVisible(true);
+	}
 
+	/**
+	 * {@link MeetTree} Constructor
+	 */
+	public MeetTree() {
+		this(new Dimension(500, 290));
 	}
 
 	private void createMeetNode(Meet meet, DefaultMutableTreeNode fatherNode) {

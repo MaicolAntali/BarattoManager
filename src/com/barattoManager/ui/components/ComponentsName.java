@@ -27,7 +27,15 @@ public enum ComponentsName {
     /**
      * {@link ConfiguratorHomeUi}
      */
-    VIEWER_HOME("viewer_home");
+    VIEWER_HOME("viewer_home"),
+    /**
+     * {@link ViewerCategoryViewUi}
+     */
+    VIEWER_CATEGORY("viewer_category"),
+    /**
+     * {@link ViewerMeetViewUi}
+     */
+    VIEWER_MEET("viewer_meet");
 
 
     /**

@@ -19,7 +19,7 @@
             <properties>
               <font size="24" style="3"/>
               <horizontalAlignment value="0"/>
-              <text value="Configurator Home"/>
+              <text value="Configuratore Home"/>
             </properties>
           </component>
         </children>

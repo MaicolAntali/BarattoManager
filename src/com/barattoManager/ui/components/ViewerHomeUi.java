@@ -11,6 +11,8 @@ public class ViewerHomeUi extends JPanel {
 	 * Main JPanel
 	 */
 	private JPanel mainPanel;
+	private JButton viewCategoryButton;
+	private JButton viewMeetButton;
 
 	/**
 	 * {@link ViewerHomeUi} constructor
@@ -25,5 +27,7 @@ public class ViewerHomeUi extends JPanel {
 
 		mainPanel.setPreferredSize(dimension);
 
+		viewCategoryButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_CATEGORY.toString()));
+		viewMeetButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_MEET.toString()));
 	}
 }

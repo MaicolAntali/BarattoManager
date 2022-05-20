@@ -8,5 +8,10 @@
     "username": "Maicol",
     "password": "12345",
     "@type": "Configurator"
+  },
+  "luca": {
+    "username": "luca",
+    "password": "12345",
+    "@type": "Viewer"
   }
 }
