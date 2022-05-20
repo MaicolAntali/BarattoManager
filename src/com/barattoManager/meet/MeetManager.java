@@ -63,14 +63,14 @@ public final class MeetManager {
 
 	public void addNewMeet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException, AlreadyExistException {
 		if (!city.isBlank() || !square.isBlank() || !days.isEmpty()) {
-			// create the new meet object
 			var newMeet = new Meet(city, square, days, startTime, endTime);
 
 			var equalityCheck = meetArrayList.stream()
 					.filter(meet -> meet.equals(newMeet))
-					.findFirst();
+					.findFirst()
+					.isEmpty();
 
-			if (equalityCheck.isEmpty()) {
+			if (equalityCheck) {
 				meetArrayList.add(newMeet);
 				saveMeetMapChange();
 			}

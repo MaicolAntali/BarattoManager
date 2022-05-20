@@ -58,8 +58,8 @@ public class RegisterNewUserPanel {
 
 	/**
 	 * The {@link RegisterNewUserPanel} constructor
-	 * @param parentPanel
-	 * @param isConfigurator
+	 * @param parentPanel {@link JPanel} Parent panel of JOptionPane
+	 * @param isConfigurator Boolean value that represent if a user is a configurator
 	 */
 	public RegisterNewUserPanel(JPanel parentPanel, boolean isConfigurator) {
 		this.parentPanel = parentPanel;
@@ -99,12 +99,12 @@ public class RegisterNewUserPanel {
 				UserManager.getInstance().addNewUser(
 						usernameField.getText(),
 						AppConfigurator.getInstance().getPasswordSetting("default_pwd"),
-						false
+						isConfigurator
 				);
 
 				JOptionPane.showMessageDialog(
 						parentPanel,
-						NEW_USER_CORRECTLY_CREATED.formatted(isConfigurator? "configuratore" :  "fruitore" ,usernameField.getText(), AppConfigurator.getInstance().getPasswordSetting("default_pwd")),
+						NEW_USER_CORRECTLY_CREATED.formatted(isConfigurator ? "configuratore" :  "fruitore" ,usernameField.getText(), AppConfigurator.getInstance().getPasswordSetting("default_pwd")),
 						TITLE_REGISTERED,
 						JOptionPane.INFORMATION_MESSAGE
 				);
