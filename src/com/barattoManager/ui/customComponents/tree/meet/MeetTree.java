@@ -11,6 +11,9 @@ import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * Class used to create a JPanel that contain a JTree
+ */
 public class MeetTree extends JPanel{
 	/**
 	 * Icon for open category

@@ -4,23 +4,58 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Class used to create a JPanel used to create a new meet
+ */
 public class CreateNewMeetPanel extends JPanel {
-
+	/**
+	 * Array of days
+	 */
 	private static final String[] DAYS = {"Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"};
+	/**
+	 * Fill all the field label
+	 */
+	private static final String LABEL_FILL_ALL_FIELDS = "Compila tutti i campi richiesti per inserire un nuovo luogo di incontro.";
+	/**
+	 * Start time label
+	 */
+	private static final String LABEL_START_TIME = "Orario di inizio (HH:MM): ";
+	/**
+	 * End time label
+	 */
+	private static final String LABEL_END_TIME = "Orario di Fine (HH:MM): ";
 
+	/**
+	 * City field
+	 */
 	private final JTextField cityField = new JTextField(26);
+	/**
+	 * Square field
+	 */
 	private final JTextField squareField = new JTextField(20);
+	/**
+	 * Days checkboxes
+	 */
 	private final JCheckBox[] daysCheckbox = new JCheckBox[7];
+	/**
+	 * Start time field
+	 */
 	private final JTextField startTimeField = new JTextField(24);
+	/**
+	 * End time field
+	 */
 	private final JTextField endTimeField = new JTextField(24);
 
 
+	/**
+	 * {@link CreateNewMeetPanel} constructor
+ 	 */
 	public CreateNewMeetPanel() {
 		var mainPanel = new JPanel();
 
 		mainPanel.setLayout(new GridLayout(0, 1));
 
-		mainPanel.add(new JLabel("Inserisci tutti i campi richiesti per inseirere un nuovo luogo di incontro."));
+		mainPanel.add(new JLabel(LABEL_FILL_ALL_FIELDS));
 
 		var cityPanel = new JPanel();
 		cityPanel.add(new JLabel("Città:"));
@@ -46,12 +81,12 @@ public class CreateNewMeetPanel extends JPanel {
 
 
 		var startTimePanel = new JPanel();
-		startTimePanel.add(new JLabel("Orari di inizio (HH:MM): "));
+		startTimePanel.add(new JLabel(LABEL_START_TIME));
 		startTimePanel.add(startTimeField);
 		mainPanel.add(startTimePanel);
 
 		var endTimePanel = new JPanel();
-		endTimePanel.add(new JLabel("Orari di Fine (HH:MM): "));
+		endTimePanel.add(new JLabel(LABEL_END_TIME));
 		endTimePanel.add(endTimeField);
 		mainPanel.add(endTimePanel);
 
@@ -59,14 +94,25 @@ public class CreateNewMeetPanel extends JPanel {
 		setVisible(true);
 	}
 
+	/**
+	 * Method used to get the {@link #cityField}
+	 * @return {@link JTextField} object
+	 */
 	public String getCity() {
 		return cityField.getText();
 	}
-
+	/**
+	 * Method used to get the {@link #squareField}
+	 * @return {@link JTextField} object
+	 */
 	public String getSquare() {
 		return squareField.getText();
 	}
 
+	/**
+	 * Method used to get the selected days
+	 * @return {@link ArrayList<String>} object
+	 */
 	public ArrayList<String> getSelectedDays() {
 		var days = new ArrayList<String>();
 
@@ -79,10 +125,18 @@ public class CreateNewMeetPanel extends JPanel {
 		return days;
 	}
 
+	/**
+	 * Method used to get the {@link #startTimeField}
+	 * @return {@link JTextField} object
+	 */
 	public JTextField getStartTimeField() {
 		return startTimeField;
 	}
 
+	/**
+	 * Method used to get the {@link #endTimeField}
+	 * @return {@link JTextField} object
+	 */
 	public JTextField getEndTimeField() {
 		return endTimeField;
 	}

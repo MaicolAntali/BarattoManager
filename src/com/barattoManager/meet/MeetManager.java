@@ -15,6 +15,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the meets.
+ */
 public final class MeetManager {
 	/**
 	 * The meet place already exists error

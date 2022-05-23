@@ -5,11 +5,20 @@ import com.barattoManager.ui.customComponents.tree.category.CategoryTree;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class used to create a JPanel that represent the categories view (only viewer)
+ */
 public class ViewerCategoryViewUi extends JPanel {
 	private JPanel mainPanel;
 	private JPanel centerPanel;
 	private JButton backToHomeButton;
 
+	/**
+	 * {@link ViewerCategoryViewUi} constructor
+	 * @param dimension Dimension of JPanel
+	 * @param cardLayout {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
+	 * @param panelContainer {@link JPanel} object that contains every cards
+	 */
 	public ViewerCategoryViewUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
 		// JPanel conf
 		setVisible(true);

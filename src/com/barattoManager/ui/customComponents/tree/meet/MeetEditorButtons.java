@@ -10,15 +10,33 @@ import com.barattoManager.utils.TimeParse;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class used to create a JPanel that contains buttons for the meet editor view
+ */
 public class MeetEditorButtons extends JPanel {
 
+	/**
+	 * Add new meet button
+	 */
+	private static final String ADD_NEW_MEET_BUTTON = "Aggiungi un nuovo luogo di incontro";
+	/**
+	 * Creation of new meet title
+	 */
+	private static final String CREATION_OF_NEW_MEET_TITLE = "Creazione di un nuovo luogo di incontro";
+	/**
+	 * {@link RepaintEventHandler} object
+	 */
 	private final RepaintEventHandler repaintEventHandler;
 
 
+	/**
+	 * {@link MeetEditorButtons} constructor
+	 * @param repaintEventHandler object
+	 */
 	public MeetEditorButtons(RepaintEventHandler repaintEventHandler) {
 		this.repaintEventHandler = repaintEventHandler;
 
-		var addNewMeetButton = new JButton("Aggiungi un nuovo luogo di incontro");
+		var addNewMeetButton = new JButton(ADD_NEW_MEET_BUTTON);
 
 
 		addNewMeetButton.addActionListener(e -> addNewMeet());
@@ -27,13 +45,16 @@ public class MeetEditorButtons extends JPanel {
 		setVisible(true);
 	}
 
+	/**
+	 * Method used to add new meet
+	 */
 	private void addNewMeet() {
 		try {
 			var createNewMeetPanel = new CreateNewMeetPanel();
 			int result = JOptionPane.showOptionDialog(
 					this,
 					createNewMeetPanel,
-					"Creazione di un nuovo luogo di incontro",
+					CREATION_OF_NEW_MEET_TITLE,
 					JOptionPane.OK_CANCEL_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
 					null,

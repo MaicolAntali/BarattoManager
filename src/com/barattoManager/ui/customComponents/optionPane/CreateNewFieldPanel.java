@@ -53,7 +53,7 @@ public class CreateNewFieldPanel extends JPanel {
 	}
 
 	/**
-	 * Method used to get the {@link #fieldIsRequired}
+	 * Method used to get the {@link #fieldName}
 	 * @return {@link JTextField} object
 	 */
 	public JTextField getFieldName() {

@@ -8,10 +8,25 @@ import com.barattoManager.ui.customComponents.tree.meet.MeetTree;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class used to create a JPanel that represent the meet editor view (only configurator)
+ */
 public class ConfiguratorMeetEditorUi extends JPanel implements RepaintListener {
+	/**
+	 * {@link MeetTree} object
+	 */
 	private MeetTree meetTree = new MeetTree();
+	/**
+	 * Main Panel
+	 */
 	private JPanel mainPanel;
+	/**
+	 * Center Panel {@code BorderLayout.CENTER}
+	 */
 	private JPanel centerPanel;
+	/**
+	 * Back button to {@link InitialMenuUI}
+	 */
 	private JButton backToInitButton;
 
 	/**
@@ -36,6 +51,10 @@ public class ConfiguratorMeetEditorUi extends JPanel implements RepaintListener 
 		backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
 	}
 
+	/**
+	 * Implementation of the method {@link RepaintListener#repaintCategoryTree()}
+	 * Is used to repaint the Meet Tree
+	 */
 	@Override
 	public void repaintCategoryTree() {
 		centerPanel.remove(meetTree);

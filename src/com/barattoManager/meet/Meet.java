@@ -7,6 +7,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Class that represent a meet
+ */
 public class Meet {
 
 	/**
