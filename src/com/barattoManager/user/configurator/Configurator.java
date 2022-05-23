@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Classe that represent the Configurator {@code extends User}
+ * Class that represent the Configurator {@code extends User}
  */
 @JsonTypeName("Configurator")
 public class Configurator extends User {

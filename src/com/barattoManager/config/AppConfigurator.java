@@ -80,8 +80,8 @@ public final class AppConfigurator {
 	}
 
 	/**
-	 * Method used to get default category as a {@link JsonNode}
-	 * @return {@link JsonNode} that represent the array of default category
+	 * Method used to get default categories as a {@link JsonNode}
+	 * @return {@link JsonNode} that represent the array of default categories
 	 */
 	public JsonNode getDefaultField() {
 		return node.get("default_category");

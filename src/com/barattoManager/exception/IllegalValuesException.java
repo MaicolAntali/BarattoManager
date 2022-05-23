@@ -1,7 +1,7 @@
 package com.barattoManager.exception;
 
 /**
- * Exception used when a string is empty
+ * Exception used when an input contains non-acceptable values
  */
 public class IllegalValuesException extends Exception{
 	/**

@@ -145,7 +145,7 @@ public final class CategoryManager {
 	 * @param description       Description of new category
 	 * @throws AlreadyExistException Is thrown if the category that are trying to add already exist.
 	 * @throws IllegalValuesException  Is thrown if the name is an empty string
-	 * @throws NullCategoryException Is thrown if is nt found a category in the map
+	 * @throws NullCategoryException Is thrown if is not found a category in the map
 	 */
 	public void addNewSubCategory(ArrayList<String> pathOfSubcategory, String name, String description) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
 		var categoryName = name.trim().toLowerCase();

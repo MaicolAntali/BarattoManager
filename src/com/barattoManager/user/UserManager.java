@@ -44,7 +44,7 @@ public final class UserManager {
 	 */
 	private static final String FIRST_CONFIGURATOR_CREDENTIALS = "Sono state impostate delle credenziali di base per il primo configuratore. \n\nUsername: Configurator\nPassword: %s";
 	/**
-	 * Basic credentials
+	 * Default credentials
 	 */
 	private static final String DEFAULT_CREDENTIALS = "Credenziali Base";
 	/**

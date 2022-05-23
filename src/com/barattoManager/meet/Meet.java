@@ -10,6 +10,10 @@ import java.util.Objects;
 public class Meet {
 
 	/**
+	 * Invalid time input error, the start hour be less than or equal to the end hour
+	 */
+	private static final String INVALID_TIME_INPUT = "Il valore temporale inserito è sbagliato.\n(Orario di inzio deve essere minore dell' orario di fine)";
+	/**
 	 * City of meet
 	 */
 	@JsonProperty("city")
@@ -25,7 +29,7 @@ public class Meet {
 	@JsonProperty("days")
 	private final ArrayList<String> days;
 	/**
-	 * intervals of meet
+	 * Intervals of meet
 	 */
 	@JsonProperty("intervals")
 	private final ArrayList<LocalTime> intervals;
@@ -37,8 +41,8 @@ public class Meet {
 	 * @param city      City of meeting
 	 * @param square    Square of meeting
 	 * @param days      Days of meeting, must be an {@link ArrayList}
-	 * @param startTime Start hour of meetings, must be experienced in minutes <i>(10:00 -> 10*60)</i>
-	 * @param endTime   End hour of meetings, must be experienced in minutes <i>(14:30 -> 10*60+30)</i>
+	 * @param startTime Start hour of meetings, must be expressed in minutes <i>(10:00 -> 10*60)</i>
+	 * @param endTime   End hour of meetings, must be expressed in minutes <i>(14:30 -> 10*60+30)</i>
 	 */
 	public Meet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException {
 		this.city = city;
@@ -119,8 +123,8 @@ public class Meet {
 	/**
 	 * Method used to create 30-minute intervals given a start and end time
 	 *
-	 * @param start Start hour of meetings, must be experienced in minutes <i>(10:00 -> 10*60)</i>
-	 * @param end   End hour of meetings, must be experienced in minutes <i>(14:30 -> 10*60+30)</i>
+	 * @param start Start hour of meetings, must be expressed in minutes <i>(10:00 -> 10*60)</i>
+	 * @param end   End hour of meetings, must be expressed in minutes <i>(14:30 -> 10*60+30)</i>
 	 * @return An {@link ArrayList} that contains 30-minute intervals
 	 */
 	private ArrayList<LocalTime> intervals(int start, int end) throws IllegalValuesException {
@@ -136,7 +140,7 @@ public class Meet {
 			return tmpList;
 		}
 		else {
-			throw new IllegalValuesException("Il valore temporale inserito è sbagliato.\n(Orario di inzio >= Orario di fine)");
+			throw new IllegalValuesException(INVALID_TIME_INPUT);
 		}
 	}
 

@@ -16,9 +16,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public final class MeetManager {
-
 	/**
-	 * User JSON file
+	 * The meet place already exists error
+	 */
+	private static final String MEET_PLACE_ALREADY_EXISTS = "Il luogo di incontro che stai provando ad inserire esiste già";
+	/**
+	 * Not all the fields are filled in error
+	 */
+	private static final String NOT_ALL_THE_FIELDS_ARE_FILLED_IN = "Non tutti i campi sono stati compilati.\nCompilare i campi mancanti";
+	/**
+	 * Meet JSON file
 	 */
 	private final File meetFile = new File(AppConfigurator.getInstance().getFileName("meet_file"));
 	/**
@@ -62,7 +69,7 @@ public final class MeetManager {
 	}
 
 	public void addNewMeet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException, AlreadyExistException {
-		if (!city.isBlank() || !square.isBlank() || !days.isEmpty()) {
+		if (!city.isBlank() && !square.isBlank() && !days.isEmpty()) {
 			var newMeet = new Meet(city, square, days, startTime, endTime);
 
 			var equalityCheck = meetArrayList.stream()
@@ -75,11 +82,11 @@ public final class MeetManager {
 				saveMeetMapChange();
 			}
 			else  {
-				throw new AlreadyExistException("Il luogo di incontro che stai probando ad inserire esiste già");
+				throw new AlreadyExistException(MEET_PLACE_ALREADY_EXISTS);
 			}
 		}
 		else {
-			throw new IllegalValuesException("Uno o piu campi non sono erano vuoti.\nRiprovare");
+			throw new IllegalValuesException(NOT_ALL_THE_FIELDS_ARE_FILLED_IN);
 		}
 
 	}
