@@ -11,7 +11,13 @@ public class ViewerHomeUi extends JPanel {
 	 * Main JPanel
 	 */
 	private JPanel mainPanel;
+	/**
+	 * CategoryView button to {@link ViewerCategoryViewUi}
+	 */
 	private JButton viewCategoryButton;
+	/**
+	 * MeetView button to {@link ViewerMeetViewUi}
+	 */
 	private JButton viewMeetButton;
 
 	/**

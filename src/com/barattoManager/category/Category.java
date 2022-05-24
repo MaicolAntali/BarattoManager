@@ -87,8 +87,8 @@ public class Category {
 			@JsonProperty("category_sub_categories") HashMap<String, Category> subCategory,
 			@JsonProperty("category_fields") HashMap<String, Field> categoryFields
 	) {
-			assert !name.isBlank() : PRE_CONDITION_CATEGORY_NAME_IS_BLANK;
-			assert !description.isBlank(): PRE_CONDITION_CATEGORY_DESCRIPTION_IS_BLANK;
+		assert !name.isBlank() : PRE_CONDITION_CATEGORY_NAME_IS_BLANK;
+		assert !description.isBlank(): PRE_CONDITION_CATEGORY_DESCRIPTION_IS_BLANK;
 
 		this.name = name;
 		this.description = description;

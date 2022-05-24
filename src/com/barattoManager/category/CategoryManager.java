@@ -105,8 +105,8 @@ public final class CategoryManager {
 	 *
 	 * @param name        Name of new category
 	 * @param description Description of the new category
-	 * @throws AlreadyExistException Is thrown is the category or field that are trying to add already exist.
-	 * @throws IllegalValuesException Is thrown if the name is an empty string
+	 * @throws AlreadyExistException Is thrown if the category or field that are trying to add already exist.
+	 * @throws IllegalValuesException Is thrown if the name or the description is an empty string
 	 * @throws NullCategoryException  Is thrown if is not found a category in the map
 	 */
 	public void addNewMainCategory(String name, String description) throws AlreadyExistException, IllegalValuesException, NullCategoryException {

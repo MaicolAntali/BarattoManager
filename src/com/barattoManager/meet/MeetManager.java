@@ -28,6 +28,10 @@ public final class MeetManager {
 	 */
 	private static final String NOT_ALL_THE_FIELDS_ARE_FILLED_IN = "Non tutti i campi sono stati compilati.\nSi consiglia di compilare tutti i campi.";
 	/**
+	 * Post-Condition: The meet is not present in the map
+	 */
+	private static final String POST_CONDITION_THE_MEET_NOT_PRESENT_IN_THE_MAP = "Post-condition: The meet is not present in the map.";
+	/**
 	 * Meet JSON file
 	 */
 	private final File meetFile = new File(AppConfigurator.getInstance().getFileName("meet_file"));
@@ -45,6 +49,9 @@ public final class MeetManager {
 	 */
 	private final ArrayList<Meet> meetArrayList;
 
+	/**
+	 * {@link MeetManager} constructor
+	 */
 	private MeetManager() {
 		if (meetFile.exists()) {
 			try {
@@ -71,6 +78,17 @@ public final class MeetManager {
 		return MeetManagerHolder.instance;
 	}
 
+	/**
+	 * Method used to add a new meet
+	 *
+	 * @param city City of new meet
+	 * @param square Square of new meet
+	 * @param days Days of new meet
+	 * @param startTime Start time of new meet
+	 * @param endTime End time of new meet
+	 * @throws IllegalValuesException Is thrown if there are an empty string
+	 * @throws AlreadyExistException Is thrown if the meet that are trying to add already exist.
+	 */
 	public void addNewMeet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException, AlreadyExistException {
 		if (!city.isBlank() && !square.isBlank() && !days.isEmpty()) {
 			var newMeet = new Meet(city, square, days, startTime, endTime);
@@ -84,7 +102,7 @@ public final class MeetManager {
 				meetArrayList.add(newMeet);
 				saveMeetMapChange();
 
-				assert meetArrayList.contains(newMeet) : "Post-condition: The category is not present in the map.";
+				assert meetArrayList.contains(newMeet) : POST_CONDITION_THE_MEET_NOT_PRESENT_IN_THE_MAP;
 			}
 			else  {
 				throw new AlreadyExistException(MEET_PLACE_ALREADY_EXISTS);
@@ -99,7 +117,7 @@ public final class MeetManager {
 	/**
 	 * Method used to get the {@link #meetArrayList}
 	 *
-	 * @return Map that contains each meet
+	 * @return meetArrayList that contains each meet
 	 */
 	public ArrayList<Meet> getMeetArrayList() {
 		return meetArrayList;

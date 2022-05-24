@@ -9,9 +9,18 @@ import java.awt.*;
  * Class used to create a JPanel that represent the meets view (only viewer)
  */
 public class ViewerMeetViewUi extends JPanel {
+	/**
+	 * Main Panel
+	 */
 	private JPanel mainPanel;
-	private JButton backToHomeButton;
+	/**
+	 * Center Panel {@code BorderLayout.CENTER}
+	 */
 	private JPanel centerPanel;
+	/**
+	 * Back button to {@link ViewerHomeUi}
+	 */
+	private JButton backToHomeButton;
 
 	/**
 	 *

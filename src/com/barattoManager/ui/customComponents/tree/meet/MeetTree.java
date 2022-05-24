@@ -1,5 +1,6 @@
 package com.barattoManager.ui.customComponents.tree.meet;
 
+import com.barattoManager.category.Category;
 import com.barattoManager.meet.Meet;
 import com.barattoManager.meet.MeetManager;
 
@@ -74,6 +75,12 @@ public class MeetTree extends JPanel{
 		this(new Dimension(500, 290));
 	}
 
+	/**
+	 * Method used to create a new meet node
+	 *
+	 * @param meet {@link Meet} want to create the node.
+	 * @param fatherNode {@link DefaultMutableTreeNode} node to attach the new meet node
+	 */
 	private void createMeetNode(Meet meet, DefaultMutableTreeNode fatherNode) {
 		// create the square node
 		var meetNode = new DefaultMutableTreeNode(meet.getSquare());

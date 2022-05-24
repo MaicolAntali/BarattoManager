@@ -62,7 +62,7 @@ public class ConfiguratorCategoryEditorUi extends JPanel implements RepaintListe
 	}
 
 	/**
-	 * Implementation of the method {@link RepaintListener#repaintCategoryTree()}
+	 * Implementation of the method {@link RepaintListener#repaintComponents()}
 	 * Is used to repaint the Category Tree
 	 */
 	@Override

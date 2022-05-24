@@ -12,7 +12,9 @@ import java.awt.*;
  * Class used to create a JPanel used to register a new user
  */
 public class RegisterNewUserPanel {
-
+	/**
+	 * New user are correctly created message
+	 */
 	private static final String NEW_USER_CORRECTLY_CREATED = "Nuovo %s creato correttamente.\n\nUsername: %s\nPassword: %s";
 	/**
 	 * User registration panel title

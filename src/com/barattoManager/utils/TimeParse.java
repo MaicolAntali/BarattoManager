@@ -2,6 +2,9 @@ package com.barattoManager.utils;
 
 import com.barattoManager.exception.IllegalValuesException;
 
+/**
+ * Utility class of time
+ */
 public final class TimeParse {
 
 	/**
@@ -18,6 +21,7 @@ public final class TimeParse {
 	 * @param hour String that represent the hour
 	 * @param minute String that represent the minutes
 	 * @return int that represent the time in minutes
+	 * @throws IllegalValuesException Is thrown if the time format or range are incorrect
 	 */
 	public static int hourToMinuteTime(String hour, String minute) throws IllegalValuesException {
 		var hourInt = 0;
@@ -43,6 +47,7 @@ public final class TimeParse {
 	 * Parse a time string into an int that represent that time in minutes
 	 * @param time String that represent the time. Must be in the format => HH:MM
 	 * @return  int that represent that time in minutes
+	 * @throws IllegalValuesException Is thrown if the time format is incorrect
 	 */
 	public static int hourToMinuteTime(String time) throws IllegalValuesException {
 		var split = time.split(":");

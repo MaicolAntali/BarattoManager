@@ -9,8 +9,17 @@ import java.awt.*;
  * Class used to create a JPanel that represent the categories view (only viewer)
  */
 public class ViewerCategoryViewUi extends JPanel {
+	/**
+	 * Main panel
+	 */
 	private JPanel mainPanel;
+	/**
+	 * Center Panel {@code BorderLayout.CENTER}
+	 */
 	private JPanel centerPanel;
+	/**
+	 * Back button to {@link ViewerHomeUi}
+	 */
 	private JButton backToHomeButton;
 
 	/**

@@ -11,6 +11,22 @@ import java.util.Objects;
  * Class that represent a meet
  */
 public class Meet {
+	/**
+	 * Pre-condition: City name is blank
+	 */
+	private static final String PRE_CONDITION_CITY_NAME_IS_BLANK = "Pre-condition: City name is blank";
+	/**
+	 * Pre-condition: Square name is blank
+	 */
+	private static final String PRE_CONDITION_SQUARE_IS_BLANK = "Pre-condition: Square name is blank";
+	/**
+	 * Post-condition: The Arraylist of days is not initialize
+	 */
+	private static final String POST_CONDITION_DAYS_ARRAYLIST_IS_NOT_INITIALIZE = "Post-condition: The Arraylist of days is not initialize";
+	/**
+	 * Post-condition: The Arraylist of intervals is not initialize
+	 */
+	private static final String POST_CONDITION_INTERVALS_ARRAYLIST_IS_NOT_INITIALIZE = "Post-condition: The Arraylist of intervals is not initialize";
 
 	/**
 	 * Invalid time input error, the start hour be less than or equal to the end hour
@@ -46,8 +62,12 @@ public class Meet {
 	 * @param days      Days of meeting, must be an {@link ArrayList}
 	 * @param startTime Start hour of meetings, must be expressed in minutes <i>(10:00 -> 10*60)</i>
 	 * @param endTime   End hour of meetings, must be expressed in minutes <i>(14:30 -> 10*60+30)</i>
+	 * @throws IllegalValuesException Is thrown if there are an illegal value
 	 */
 	public Meet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException {
+		assert !city.isBlank() : PRE_CONDITION_CITY_NAME_IS_BLANK;
+		assert !square.isBlank(): PRE_CONDITION_SQUARE_IS_BLANK;
+
 		this.city = city;
 		this.square = square;
 		this.days = days;
@@ -68,10 +88,17 @@ public class Meet {
 			@JsonProperty("days") ArrayList<String> days,
 			@JsonProperty("intervals") ArrayList<LocalTime> intervals
 	) {
+		assert !city.isBlank() : PRE_CONDITION_CITY_NAME_IS_BLANK;
+		assert !square.isBlank(): PRE_CONDITION_SQUARE_IS_BLANK;
+
 		this.city = city;
 		this.square = square;
 		this.days = days;
 		this.intervals = intervals;
+
+		assert days != null : POST_CONDITION_DAYS_ARRAYLIST_IS_NOT_INITIALIZE;
+		assert intervals != null : POST_CONDITION_INTERVALS_ARRAYLIST_IS_NOT_INITIALIZE;
+
 	}
 
 	/**
@@ -132,6 +159,7 @@ public class Meet {
 	 * @param start Start hour of meetings, must be expressed in minutes <i>(10:00 -> 10*60)</i>
 	 * @param end   End hour of meetings, must be expressed in minutes <i>(14:30 -> 10*60+30)</i>
 	 * @return An {@link ArrayList} that contains 30-minute intervals
+	 * @throws IllegalValuesException Is thrown if the time is invalid
 	 */
 	private ArrayList<LocalTime> intervals(int start, int end) throws IllegalValuesException {
 		if (start <= end) {
