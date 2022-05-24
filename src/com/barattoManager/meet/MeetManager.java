@@ -83,6 +83,8 @@ public final class MeetManager {
 			if (equalityCheck) {
 				meetArrayList.add(newMeet);
 				saveMeetMapChange();
+
+				assert meetArrayList.contains(newMeet) : "Post-condition: The category is not present in the map.";
 			}
 			else  {
 				throw new AlreadyExistException(MEET_PLACE_ALREADY_EXISTS);
