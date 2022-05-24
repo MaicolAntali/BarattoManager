@@ -120,7 +120,10 @@ public class Meet {
 	public boolean equals(Meet meet) {
 		if (this == meet) return true;
 		if (meet == null || getClass() != meet.getClass()) return false;
-		return Objects.equals(city, meet.city) && Objects.equals(square, meet.square) && Objects.equals(days, meet.days) && intervalsOverlapping(meet);
+		return Objects.equals(city, meet.city) &&
+						Objects.equals(square, meet.square) &&
+						(days.containsAll(meet.days) || meet.days.containsAll(days)) &&
+						intervalsOverlapping(meet);
 	}
 
 	/**
