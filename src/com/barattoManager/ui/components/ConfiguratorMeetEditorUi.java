@@ -52,7 +52,7 @@ public class ConfiguratorMeetEditorUi extends JPanel implements RepaintListener 
 	}
 
 	/**
-	 * Implementation of the method {@link RepaintListener#repaintCategoryTree()}
+	 * Implementation of the method {@link RepaintListener#repaintComponents()}
 	 * Is used to repaint the Meet Tree
 	 */
 	@Override
