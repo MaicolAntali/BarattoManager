@@ -162,11 +162,6 @@ public class Meet {
 		var meetStart  = meet.getIntervals().get(0);
 		var meetEnd    = meet.getIntervals().get(meet.getIntervals().size() - 1);
 
-		var innerStartMinutes = innerStart.getHour() * 60 + innerStart.getMinute();
-		var innerEndMinutes   = innerEnd.getHour() * 60 + innerEnd.getMinute();
-		var meetStartMinutes  = meetStart.getHour() * 60 + meetStart.getMinute();
-		var meetEndMinutes    = meetEnd.getHour() * 60 + meetEnd.getMinute();
-
-		return innerStartMinutes <= meetStartMinutes && innerEndMinutes >= meetEndMinutes || meetStartMinutes <= innerStartMinutes && meetEndMinutes >= innerEndMinutes;
+		return !innerStart.isAfter(meetEnd) && !meetStart.isAfter(innerEnd);
 	}
 }
