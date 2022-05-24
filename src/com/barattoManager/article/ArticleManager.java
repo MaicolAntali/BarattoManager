@@ -71,16 +71,13 @@ public class ArticleManager {
 	}
 
 	public void addNewArticle(String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
-		Article article;
-
-		try {
-			article = new Article(userNameOwner, categoryUuid, fields, values);
-		} catch (IllegalValuesException e) {
-			throw new RuntimeException(e);
-		}
-
+		var article = new Article(userNameOwner, categoryUuid, fields, values);
 		articleMap.put(article.getUuid(), article);
 		saveArticleMapChange();
+	}
+
+	public HashMap<String, Article> getArticleMap() {
+		return articleMap;
 	}
 
 	/**

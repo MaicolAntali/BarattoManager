@@ -25,9 +25,9 @@ class ArticleManagerTest {
 
 				}},
 				new ArrayList<>() {{
-					add("Il Trono di Spade");
-					add("690");
-					add("George R. R. Martin");
+					add("Dante Alighieri");
+					add("");
+					add("Divina Commedia");
 					add("");
 				}}
 		);

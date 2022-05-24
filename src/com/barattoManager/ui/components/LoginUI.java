@@ -2,6 +2,7 @@ package com.barattoManager.ui.components;
 
 import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.InvalidCredentialsException;
+import com.barattoManager.ui.BarattoManagerGui;
 import com.barattoManager.ui.customComponents.optionPane.ChangePasswordPanel;
 import com.barattoManager.user.UserManager;
 import com.barattoManager.user.configurator.Configurator;
@@ -116,6 +117,10 @@ public class LoginUI extends JPanel {
 				}
 
 				if (user.isPasswordValid(user.getPassword())) {
+
+					// init class that need the user obj
+					panelContainer.add(new ViewerYoursArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user), ComponentsName.VIEWER_YOUR_ARTICLES.toString());
+
 					if (user instanceof Configurator) {
 						cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString());
 					}

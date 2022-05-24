@@ -31,12 +31,24 @@ public class Article {
 	private State articleState;
 
 	private enum State {
-		NOT_CHECKED,
-		OPEN_OFFERT,
-		CANCELLED_OFFERT,
+		NOT_CHECKED("Non validato"),
+		OPEN_OFFERT("Offerta Aperta"),
+		CANCELLED_OFFERT("Offerta Cancellata");
+
+
+		private final String italianLabel;
+
+		State(String italianLabel) {
+			this.italianLabel = italianLabel;
+		}
+
+		@Override
+		public String toString() {
+			return this.italianLabel;
+		}
 	}
 
-	public Article(String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) throws IllegalValuesException {
+	public Article(String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
 		this.history = new ArrayList<>();
 		history.add(new History("Article Created", "Article has just been created by the viewer %s".formatted(userNameOwner)));
 
@@ -69,14 +81,33 @@ public class Article {
 		return uuid;
 	}
 
+	public String getUserNameOwner() {
+		return userNameOwner;
+	}
+
+	public String getCategoryUuid() {
+		return categoryUuid;
+	}
+
+	public State getArticleState() {
+		return articleState;
+	}
+
+	public HashMap<Field, String> getFieldValueMap() {
+		return fieldValueMap;
+	}
+
+	public ArrayList<History> getHistory() {
+		return history;
+	}
+
 	/**
 	 * Method used to create a hashmap and validate it (All required fields must be init).
 	 * @param fields {@link ArrayList} of fields
 	 * @param values {@link ArrayList} of values
 	 * @return {@link HashMap} KEY: fields VALUE: values
-	 * @throws IllegalValuesException is thrown if a required field is not init
 	 */
-	private HashMap<Field, String> createValidateFieldValueMap(ArrayList<Field> fields, ArrayList<String> values) throws IllegalValuesException {
+	private HashMap<Field, String> createValidateFieldValueMap(ArrayList<Field> fields, ArrayList<String> values) {
 		var map = new HashMap<Field, String>();
 		for (int i = 0; i < fields.size(); i++) {
 			map.put(fields.get(i), values.get(i));
@@ -90,11 +121,11 @@ public class Article {
 		if (isNotValideMap) {
 			history.add(new History("Not Valid fields", "One or more required fields have not been properly initialized", true));
 			changeState(State.CANCELLED_OFFERT);
-			throw new IllegalValuesException("Uno o più campi obbligatori non sono stati correttamente inizializzati.");
 		}
-
-		history.add(new History("Article Validated", "Article is valid and properly initialized"));
-		changeState(State.OPEN_OFFERT);
+		else {
+			history.add(new History("Article Validated", "Article is valid and properly initialized"));
+			changeState(State.OPEN_OFFERT);
+		}
 
 		return map;
 	}

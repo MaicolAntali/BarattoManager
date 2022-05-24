@@ -35,7 +35,11 @@ public enum ComponentsName {
     /**
      * {@link ViewerMeetViewUi}
      */
-    VIEWER_MEET("viewer_meet");
+    VIEWER_MEET("viewer_meet"),
+    /**
+     * {@link ViewerYoursArticle}
+     */
+    VIEWER_YOUR_ARTICLES("viewer_your_article");
 
 
     /**
