@@ -20,13 +20,13 @@ public class Meet {
 	 */
 	private static final String PRE_CONDITION_SQUARE_IS_BLANK = "Pre-condition: Square name is blank";
 	/**
-	 * Post-condition: The Arraylist of days is not initialize
+	 * Post-condition: The Arraylist of days is not empty
 	 */
-	private static final String POST_CONDITION_DAYS_ARRAYLIST_IS_NOT_INITIALIZE = "Post-condition: The Arraylist of days is not initialize";
+	private static final String POST_CONDITION_DAYS_ARRAYLIST_IS_EMPTY = "Post-condition: The Arraylist of days is empty";
 	/**
-	 * Post-condition: The Arraylist of intervals is not initialize
+	 * Post-condition: The Arraylist of intervals is empty
 	 */
-	private static final String POST_CONDITION_INTERVALS_ARRAYLIST_IS_NOT_INITIALIZE = "Post-condition: The Arraylist of intervals is not initialize";
+	private static final String POST_CONDITION_INTERVALS_ARRAYLIST_IS_EMPTY = "Post-condition: The Arraylist of intervals is empty";
 
 	/**
 	 * Invalid time input error, the start hour be less than or equal to the end hour
@@ -96,8 +96,8 @@ public class Meet {
 		this.days = days;
 		this.intervals = intervals;
 
-		assert days != null : POST_CONDITION_DAYS_ARRAYLIST_IS_NOT_INITIALIZE;
-		assert intervals != null : POST_CONDITION_INTERVALS_ARRAYLIST_IS_NOT_INITIALIZE;
+		assert days.isEmpty() : POST_CONDITION_DAYS_ARRAYLIST_IS_EMPTY;
+		assert intervals.isEmpty() : POST_CONDITION_INTERVALS_ARRAYLIST_IS_EMPTY;
 
 	}
 
