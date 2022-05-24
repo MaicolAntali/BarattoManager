@@ -13,6 +13,7 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ArticleManager {
@@ -69,11 +70,11 @@ public class ArticleManager {
 		return ArticleManagerHolder.instance;
 	}
 
-	public void addNewArticle(String userNameOwner, String categoryUuis, HashMap<Field, String> fieldValueMap) {
+	public void addNewArticle(String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
 		Article article;
 
 		try {
-			article = new Article(userNameOwner, categoryUuis, fieldValueMap);
+			article = new Article(userNameOwner, categoryUuid, fields, values);
 		} catch (IllegalValuesException e) {
 			throw new RuntimeException(e);
 		}

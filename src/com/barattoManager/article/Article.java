@@ -36,7 +36,7 @@ public class Article {
 		CANCELLED_OFFERT,
 	}
 
-	public Article(String userNameOwner, String categoryUuid, HashMap<Field, String> fieldValueMap) throws IllegalValuesException {
+	public Article(String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) throws IllegalValuesException {
 		this.history = new ArrayList<>();
 		history.add(new History("Article Created", "Article has just been created by the viewer %s".formatted(userNameOwner)));
 
@@ -44,7 +44,7 @@ public class Article {
 		this.userNameOwner = userNameOwner;
 		this.categoryUuid = categoryUuid;
 		this.articleState = State.NOT_CHECKED;
-		this.fieldValueMap = validateFieldValueMap(fieldValueMap);
+		this.fieldValueMap = createValidateFieldValueMap(fields, values);
 	}
 
 
@@ -69,19 +69,43 @@ public class Article {
 		return uuid;
 	}
 
-	private HashMap<Field, String> validateFieldValueMap(HashMap<Field, String> fieldValueMap) throws IllegalValuesException {
-		var isNotValideMap = fieldValueMap.entrySet().stream()
+	/**
+	 * Method used to create a hashmap and validate it (All required fields must be init).
+	 * @param fields {@link ArrayList} of fields
+	 * @param values {@link ArrayList} of values
+	 * @return {@link HashMap} KEY: fields VALUE: values
+	 * @throws IllegalValuesException is thrown if a required field is not init
+	 */
+	private HashMap<Field, String> createValidateFieldValueMap(ArrayList<Field> fields, ArrayList<String> values) throws IllegalValuesException {
+		var map = new HashMap<Field, String>();
+		for (int i = 0; i < fields.size(); i++) {
+			map.put(fields.get(i), values.get(i));
+		}
+
+
+		var isNotValideMap = map.entrySet().stream()
 				.anyMatch(entry -> entry.getKey().required() && entry.getValue().isBlank());
 
 
 		if (isNotValideMap) {
-			history.add(new History("Not Valid fields", "One or more required fields have not been properly initialized. State update to CANCELLED_OFFERT", true));
-			articleState = State.CANCELLED_OFFERT;
+			history.add(new History("Not Valid fields", "One or more required fields have not been properly initialized", true));
+			changeState(State.CANCELLED_OFFERT);
 			throw new IllegalValuesException("Uno o più campi obbligatori non sono stati correttamente inizializzati.");
 		}
 
-		history.add(new History("Article Validated", "Article is valid and properly initialized. State update to OPEN_OFFERT"));
-		articleState = State.OPEN_OFFERT;
-		return fieldValueMap;
+		history.add(new History("Article Validated", "Article is valid and properly initialized"));
+		changeState(State.OPEN_OFFERT);
+
+		return map;
+	}
+
+	/**
+	 * Method used to update the state of {@link #articleState} & log the chhanges
+	 * @param state new {@link State}
+	 */
+	private void changeState(State state) {
+		history.add(new History("State Update", "The article state is updated from %s to %s".formatted(this.articleState, state)));
+
+		this.articleState = state;
 	}
 }

@@ -6,6 +6,7 @@ import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.user.viewer.Viewer;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,10 +18,16 @@ class ArticleTest {
 		assertThrows(IllegalValuesException.class, ()-> new Article(
 				"Luca",
 				new Category("Libro", "...").getUuid(),
-				new HashMap<>() {{
-					put(new Field("1-required", true), "OK");
-					put(new Field("2-required", true), "OK");
-					put(new Field("3-required-ERROR", true), "");
+				new ArrayList<>() {{
+					add(new Field("Titolo", true));
+					add(new Field("Pagine", true));
+					add(new Field("Autore", true));
+
+				}},
+				new ArrayList<>() {{
+					add("Il Trono di Spade");
+					add("690");
+					add("");
 
 				}}
 		));
