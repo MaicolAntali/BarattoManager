@@ -1,0 +1,25 @@
+{
+  "055e43d6-d4cc-485b-8899-decfb9e0b4cb": {
+    "uuid": "055e43d6-d4cc-485b-8899-decfb9e0b4cb",
+    "owner": "Luca",
+    "category_uuid": "c413e196-acf7-43e7-aa49-089fe6e0b999",
+    "state": "OPEN_OFFERT",
+    "fields": {
+      "Field[name=Autore, required=false]": "Alessandro Manzoni",
+      "Field[name=Titolo, required=false]": "Promessi Sposi",
+      "Field[name=Pagine, required=false]": "720"
+    },
+    "log": [
+      {
+        "date_time": "2022-05-21T18:08:44.350417",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Luca"
+      },
+      {
+        "date_time": "2022-05-21T18:08:44.351221",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized. State update to OPEN_OFFERT"
+      }
+    ]
+  }
+}

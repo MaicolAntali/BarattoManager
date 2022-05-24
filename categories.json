@@ -1,63 +1,63 @@
 {
-  "libri": {
-    "category_name": "Libri",
-    "category_description": "...",
-    "category_sub_categories": {
+  "56307a83-064f-4c96-9035-7f2be5140431": {
+    "uuid": "56307a83-064f-4c96-9035-7f2be5140431",
+    "name": "Libri",
+    "description": "...",
+    "sub_categories": {
       "romanzi": {
-        "category_name": "Romanzi",
-        "category_description": "...",
-        "category_sub_categories": {
-          "gialli": {
-            "category_name": "Gialli",
-            "category_description": "...",
-            "category_sub_categories": {},
-            "category_fields": {
-              "stato di conservazione": {
-                "field_name": "Stato di conservazione",
-                "field_required": true
-              },
-              "descrizione": {
-                "field_name": "Descrizione",
-                "field_required": true
-              }
-            }
-          },
+        "uuid": "61d70d14-e063-4285-b77e-f39c7b1cac32",
+        "name": "Romanzi",
+        "description": "...",
+        "sub_categories": {
           "rosa": {
-            "category_name": "Rosa",
-            "category_description": "...",
-            "category_sub_categories": {},
-            "category_fields": {
-              "stato di conservazione": {
-                "field_name": "Stato di conservazione",
-                "field_required": true
-              },
+            "uuid": "584e6aff-d405-4c27-a3c4-e09bf3faac56",
+            "name": "Rosa",
+            "description": "...",
+            "sub_categories": {},
+            "fields": {
               "descrizione": {
-                "field_name": "Descrizione",
-                "field_required": true
+                "name": "Descrizione",
+                "required": true
+              },
+              "stato di conservazione": {
+                "name": "Stato di conservazione",
+                "required": true
+              },
+              "autore": {
+                "name": "Autore",
+                "required": false
               }
             }
           }
         },
-        "category_fields": {
-          "stato di conservazione": {
-            "field_name": "Stato di conservazione",
-            "field_required": true
-          },
+        "fields": {
           "descrizione": {
-            "field_name": "Descrizione",
-            "field_required": true
+            "name": "Descrizione",
+            "required": true
+          },
+          "stato di conservazione": {
+            "name": "Stato di conservazione",
+            "required": true
+          },
+          "autore": {
+            "name": "Autore",
+            "required": false
           }
         }
       }
     },
-    "category_fields": {
+    "fields": {
       "descrizione": {
-        "field_name": "Descrizione",
-        "field_required": true
+        "name": "Descrizione",
+        "required": true
       },
       "stato di conservazione": {
-        "field_name": "Stato di conservazione",
-        "field_required": true
+        "name": "Stato di conservazione",
+        "required": true
+      },
+      "autore": {
+        "name": "Autore",
+        "required": false
       }
     }
   }

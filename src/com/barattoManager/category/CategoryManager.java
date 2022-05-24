@@ -10,10 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the categories.
@@ -57,9 +54,9 @@ public final class CategoryManager {
 	 */
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	/**
-	 * {@link HashMap} that contain the root category
+	 * {@link HashMap} that contain the root category (KEY: UUID, VALUE: Category obj)
 	 */
-	private final HashMap<String, Category> categoryMap;
+	private final HashMap<String, Category> rootCategoryMap;
 
 	/**
 	 * {@link CategoryManager} constructor
@@ -67,14 +64,13 @@ public final class CategoryManager {
 	private CategoryManager() {
 		if (categoriesFile.exists()) {
 			try {
-				categoryMap = objectMapper.readValue(categoriesFile, new TypeReference<>() {
-				});
+				rootCategoryMap = objectMapper.readValue(categoriesFile, new TypeReference<>() {});
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
 		}
 		else {
-			categoryMap = new HashMap<>();
+			rootCategoryMap = new HashMap<>();
 		}
 	}
 
@@ -110,15 +106,20 @@ public final class CategoryManager {
 	 * @throws NullCategoryException  Is thrown if is not found a category in the map
 	 */
 	public void addNewMainCategory(String name, String description) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
-		var categoryName = name.trim().toLowerCase();
-		if (!categoryName.isBlank() && !description.isBlank()) {
-			if (!categoryMap.containsKey(categoryName)) {
-				categoryMap.put(categoryName, new Category(name, description));
+		if (!name.trim().toLowerCase().isBlank() && !description.isBlank()) {
+			// create the new category
+			var category = new Category(name, description);
+
+			// Check if the category already exist
+			if (isUniqueCategory(rootCategoryMap,category.hashCode())) {
+
+				// add in the map the new root category
+				rootCategoryMap.put(category.getUuid(), category);
 
 				// adding the default field
 				for (final JsonNode objNode : AppConfigurator.getInstance().getDefaultField()) {
 					addNewField(
-							new ArrayList<>(List.of("root", categoryName)),
+							new ArrayList<>(List.of("root", name)),
 							objNode.get("name").asText(),
 							objNode.get("required").asBoolean()
 					);
@@ -126,7 +127,7 @@ public final class CategoryManager {
 				// Save map changes
 				saveCategoryMapChange();
 
-				assert categoryMap.containsKey(categoryName) : POST_CONDITION_CATEGORY_NOT_IN_MAP;
+				assert rootCategoryMap.containsKey(name.trim().toLowerCase()) : POST_CONDITION_CATEGORY_NOT_IN_MAP;
 			}
 			else {
 				throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
@@ -150,14 +151,15 @@ public final class CategoryManager {
 	public void addNewSubCategory(ArrayList<String> pathOfSubcategory, String name, String description) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
 		var categoryName = name.trim().toLowerCase();
 		if (!categoryName.isBlank() && !description.isBlank()) {
-			Category category = getCategoryFromPath(pathOfSubcategory);
+			Optional<Category> fatherCategory = getCategoryFromPath(pathOfSubcategory);
+			var newCategory = new Category(name, description);
 
-			if (category != null) {
-				if (!category.getSubCategory().containsKey(categoryName) && !Objects.equals(category.getName().trim().toLowerCase(), categoryName)) {
-					category.addSubCategory(name, description);
+			if (fatherCategory.isPresent()) {
+				if (isUniqueCategory(rootCategoryMap, newCategory.hashCode())) {
+					fatherCategory.get().addSubCategory(name, description);
 					saveCategoryMapChange();
 
-					assert category.getSubCategory().containsKey(categoryName): POST_CONDITION_SUBCATEGORY_NOT_IN_MAP;
+					assert fatherCategory.get().getSubCategory().containsKey(categoryName): POST_CONDITION_SUBCATEGORY_NOT_IN_MAP;
 				}
 				else {
 					throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
@@ -185,31 +187,31 @@ public final class CategoryManager {
 	public void addNewField(ArrayList<String> pathOfCategory, String name, boolean isRequired) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
 		var fieldName = name.trim().toLowerCase();
 		if (!fieldName.isBlank()) {
-			Category category = getCategoryFromPath(pathOfCategory);
+			Optional<Category> category = getCategoryFromPath(pathOfCategory);
 
-			if (category != null) {
+			if (category.isPresent()) {
 				// Recursive exit condition
-				if (!category.getSubCategory().isEmpty()) {
-					if (!category.getCategoryFields().containsKey(fieldName)) {
+				if (!category.get().getSubCategory().isEmpty()) {
+					if (!category.get().getCategoryFields().containsKey(fieldName)) {
 						// Add the field in the category
-						category.addNewFields(name, isRequired);
+						category.get().addNewFields(name, isRequired);
 
 						// Recursive block, for each sub-category re-run this method
-						for (Category subCategory : category.getSubCategory().values()) {
+						for (Category subCategory : category.get().getSubCategory().values()) {
 							var newPath = new ArrayList<>(pathOfCategory);
 							newPath.add(subCategory.getName());
 							addNewField(newPath, name, isRequired);
 						}
 
-						assert category.getCategoryFields().containsKey(fieldName) : POST_CONDITION_FIELD_NOT_IN_MAP;
+						assert category.get().getCategoryFields().containsKey(fieldName) : POST_CONDITION_FIELD_NOT_IN_MAP;
 					}
 					else {
 						throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
 					}
 				}
 				else {
-					if (!category.getCategoryFields().containsKey(name.toLowerCase())) {
-						category.addNewFields(name, isRequired);
+					if (!category.get().getCategoryFields().containsKey(name.toLowerCase())) {
+						category.get().addNewFields(name, isRequired);
 					}
 					else {
 						throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
@@ -234,35 +236,62 @@ public final class CategoryManager {
 	 * @param pathOfCategory {@link ArrayList} Category path.
 	 * @return {@link Category} object
 	 */
-	private Category getCategoryFromPath(ArrayList<String> pathOfCategory) {
-		Category mainCategory = null;
+	private Optional<Category> getCategoryFromPath(ArrayList<String> pathOfCategory) {
+		Optional<Category> category = Optional.empty();
 
 		for (int i = 1; i < pathOfCategory.size(); i++) {
+			int finalI = i;
 			if (i == 1) {
-				mainCategory = categoryMap.get(pathOfCategory.get(i).toLowerCase());
+
+				category = rootCategoryMap.values().stream()
+						.filter(cat -> Objects.equals(cat.getName(), pathOfCategory.get(finalI)))
+						.findFirst();
 			}
 			else {
-				mainCategory = mainCategory.getSubCategory().get(pathOfCategory.get(i).toLowerCase());
+				category = category.get().getSubCategory().values().stream()
+					.filter(cat -> Objects.equals(cat.getName(), pathOfCategory.get(finalI)))
+					.findFirst();
 			}
 		}
 
-		return mainCategory;
+		return category;
 	}
 
 	/**
 	 * Method used to get the {@link HashMap} of root categories
 	 * @return {@link HashMap} of root categories
 	 */
-	public HashMap<String, Category> getCategoryMap() {
-		return categoryMap;
+	public HashMap<String, Category> getRootCategoryMap() {
+		return rootCategoryMap;
 	}
 
 	/**
-	 * Method used to save in the json file the {@link #categoryMap} object
+	 * Method used to check if a category is unique in the entire category tree.<br/>
+	 * This method takes advantage of hashcode (if the hashcode of two objects is equal then the two objects are equal)
+	 * @param categoryHashMap Hashmap where to start searching
+	 * @param hashToCheck Hashcode used to check the uniqueness
+	 * @return True if the hashcode is unique in the entire hashmap and also unique in every sub hashmaps otherwise False
+	 * @see Category#hashCode()
+	 */
+	private boolean isUniqueCategory(HashMap<String, Category> categoryHashMap, int hashToCheck) {
+		if (!categoryHashMap.isEmpty()) {
+			for (Category category : categoryHashMap.values()) {
+				for (Category subcategory: category.getSubCategory().values()) {
+					isUniqueCategory(subcategory.getSubCategory(), hashToCheck);
+					return subcategory.hashCode() != hashToCheck;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	/**
+	 * Method used to save in the json file the {@link #rootCategoryMap} object
 	 */
 	private void saveCategoryMapChange() {
 		try {
-			objectMapper.writeValue(categoriesFile, categoryMap);
+			objectMapper.writeValue(categoriesFile, rootCategoryMap);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

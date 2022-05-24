@@ -4,6 +4,8 @@ import com.barattoManager.category.field.Field;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashMap;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Class that represent a category
@@ -54,24 +56,29 @@ public class Category {
 	 */
 	private static final String POST_CONDITION_FIELDS_NOT_ADDED_HASHMAP = "Post-condition: Fields has not been added to the hashmap";
 	/**
+	 * Category uuid
+	 */
+	@JsonProperty("uuid")
+	private final String uuid;
+	/**
 	 * Category name
 	 */
-	@JsonProperty("category_name")
+	@JsonProperty("name")
 	private final String name;
 	/**
 	 * Category description
 	 */
-	@JsonProperty("category_description")
+	@JsonProperty("description")
 	private final String description;
 	/**
 	 * {@link HashMap} of sub-category
 	 */
-	@JsonProperty("category_sub_categories")
+	@JsonProperty("sub_categories")
 	private final HashMap<String, Category> subCategory;
 	/**
 	 * {@link HashMap} of fields
 	 */
-	@JsonProperty("category_fields")
+	@JsonProperty("fields")
 	private final HashMap<String, Field> categoryFields;
 
 	/**
@@ -82,14 +89,16 @@ public class Category {
 	 * @param categoryFields {@link HashMap} that contains each fields
 	 */
 	public Category(
-			@JsonProperty("category_name") String name,
-			@JsonProperty("category_description") String description,
-			@JsonProperty("category_sub_categories") HashMap<String, Category> subCategory,
-			@JsonProperty("category_fields") HashMap<String, Field> categoryFields
+			@JsonProperty("uuid") String uuid,
+			@JsonProperty("name") String name,
+			@JsonProperty("description") String description,
+			@JsonProperty("sub_categories") HashMap<String, Category> subCategory,
+			@JsonProperty("fields") HashMap<String, Field> categoryFields
 	) {
 			assert !name.isBlank() : PRE_CONDITION_CATEGORY_NAME_IS_BLANK;
 			assert !description.isBlank(): PRE_CONDITION_CATEGORY_DESCRIPTION_IS_BLANK;
 
+		this.uuid = uuid;
 		this.name = name;
 		this.description = description;
 		this.subCategory = subCategory;
@@ -108,6 +117,7 @@ public class Category {
 		assert !name.isBlank() : PRE_CONDITION_CATEGORY_NAME_IS_BLANK;
 		assert !description.isBlank(): PRE_CONDITION_CATEGORY_DESCRIPTION_IS_BLANK;
 
+		this.uuid = UUID.randomUUID().toString();
 		this.name = name;
 		this.description = description;
 		this.subCategory = new HashMap<>();
@@ -154,6 +164,14 @@ public class Category {
 	}
 
 	/**
+	 * Method used to get the uuid of the category
+	 * @return UUID of the category
+	 */
+	public String getUuid() {
+		return uuid;
+	}
+
+	/**
 	 * Method used to get the name of category
 	 * @return Name of category
 	 */
@@ -183,5 +201,14 @@ public class Category {
 	 */
 	public HashMap<String, Field> getCategoryFields() {
 		return categoryFields;
+	}
+
+	/**
+	 * Method used to hash the name of category ({@link #name})
+	 * @return The hashcode of {@link #name}
+	 */
+	@Override
+	public int hashCode() {
+		return Objects.hash(getName().toLowerCase());
 	}
 }

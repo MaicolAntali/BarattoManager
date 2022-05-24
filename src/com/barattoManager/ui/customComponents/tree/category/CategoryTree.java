@@ -53,7 +53,7 @@ public class CategoryTree extends JPanel {
 	public CategoryTree(Dimension dimension) {
 		// Populate the tree with category
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Categorie");
-		for (Category cat : CategoryManager.getInstance().getCategoryMap().values()) {
+		for (Category cat : CategoryManager.getInstance().getRootCategoryMap().values()) {
 			var node = createNode(cat, rootNode);
 			createSubCategoryNode(cat, node);
 		}

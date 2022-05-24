@@ -34,33 +34,33 @@ class CategoryManagerTest {
 			myWriter.write("""
 					{
 					  "libri": {
-					    "category_name": "Libri",
-					    "category_description": "Serie continua di fogli stampati della stessa misura, cuciti insieme e forniti di copertina o rilegatura",
-					    "category_sub_categories": {
+					    "name": "Libri",
+					    "description": "Serie continua di fogli stampati della stessa misura, cuciti insieme e forniti di copertina o rilegatura",
+					    "sub_categories": {
 						    "romanzo giallo": {
-							    "category_name": "Romanzo Giallo",
-							    "category_description": "...",
-							    "category_sub_categories": {},
-							    "category_fields": {
+							    "name": "Romanzo Giallo",
+							    "description": "...",
+							    "sub_categories": {},
+							    "fields": {
 							      "descrizione": {
-							        "field_name": "Descrizione",
-							        "field_required": true
+							        "name": "Descrizione",
+							        "required": true
 							      },
 							      "stato di conservazione": {
-							        "field_name": "Stato di conservazione",
-							        "field_required": true
+							        "name": "Stato di conservazione",
+							        "required": true
 							      }
 						        }
 					       }
 					    },
-					    "category_fields": {
+					    "fields": {
 					      "descrizione": {
-					        "field_name": "Descrizione",
-					        "field_required": true
+					        "name": "Descrizione",
+					        "required": true
 					      },
 					      "stato di conservazione": {
-					        "field_name": "Stato di conservazione",
-					        "field_required": true
+					        "name": "Stato di conservazione",
+					        "required": true
 					      }
 					    }
 					  }
@@ -91,7 +91,7 @@ class CategoryManagerTest {
 
 	@Test
 	void mapIsNotEmpty() {
-		assertFalse(instance.getCategoryMap().isEmpty());
+		assertFalse(instance.getRootCategoryMap().isEmpty());
 	}
 
 	@Test
