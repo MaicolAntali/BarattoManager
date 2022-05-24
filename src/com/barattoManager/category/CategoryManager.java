@@ -230,6 +230,56 @@ public final class CategoryManager {
 
 	}
 
+
+	/**
+	 * Method used to get the {@link HashMap} of root categories
+	 * @return {@link HashMap} of root categories
+	 */
+	public HashMap<String, Category> getRootCategoryMap() {
+		return rootCategoryMap;
+	}
+
+	/**
+	 * Method used to get a Category by UUID
+	 * @param uuid Category UUID to get
+	 * @return {@link Optional} that contains the category if it's find otherwise empty
+	 */
+	public Optional<Category> getCategoryByUuid(String uuid) {
+		if (!rootCategoryMap.isEmpty()) {
+			for (Category category : rootCategoryMap.values()) {
+				if (Objects.equals(category.getUuid(), uuid)) {
+					return Optional.of(category);
+				}
+				else {
+					return Optional.ofNullable(getCategoryByUuid(category.getSubCategory(), uuid));
+				}
+			}
+		}
+
+		return Optional.empty();
+	}
+
+	/**
+	 * Method used to get a Category by UUID in a specific hashmap
+	 * @param categoryHashMap Hashmap where search
+	 * @param uuid Category UUID to get
+	 * @return {@link Category}  if it's find otherwise null
+	 */
+	private Category getCategoryByUuid(HashMap<String, Category> categoryHashMap, String uuid)  {
+		if (!categoryHashMap.isEmpty()) {
+			for (Category category : categoryHashMap.values()) {
+				if (Objects.equals(category.getUuid(), uuid)) {
+					return category;
+				}
+				else {
+					return getCategoryByUuid(category.getSubCategory(), uuid);
+				}
+			}
+		}
+
+		return null;
+	}
+
 	/**
 	 * Method used to get a {@link Category} object from a categoryPath ({@code ArrayList<String>})
 	 *
@@ -254,14 +304,6 @@ public final class CategoryManager {
 		}
 
 		return category;
-	}
-
-	/**
-	 * Method used to get the {@link HashMap} of root categories
-	 * @return {@link HashMap} of root categories
-	 */
-	public HashMap<String, Category> getRootCategoryMap() {
-		return rootCategoryMap;
 	}
 
 	/**

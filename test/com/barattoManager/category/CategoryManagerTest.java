@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class CategoryManagerTest {
 	private CategoryManager instance;
@@ -33,33 +32,100 @@ class CategoryManagerTest {
 			FileWriter myWriter = new FileWriter("categories.json");
 			myWriter.write("""
 					{
-					  "libri": {
+					  "db442916-6ccd-453d-a4a9-32141a132983": {
+					    "uuid": "db442916-6ccd-453d-a4a9-32141a132983",
 					    "name": "Libri",
-					    "description": "Serie continua di fogli stampati della stessa misura, cuciti insieme e forniti di copertina o rilegatura",
+					    "description": ".",
 					    "sub_categories": {
-						    "romanzo giallo": {
-							    "name": "Romanzo Giallo",
-							    "description": "...",
-							    "sub_categories": {},
-							    "fields": {
-							      "descrizione": {
-							        "name": "Descrizione",
-							        "required": true
-							      },
-							      "stato di conservazione": {
-							        "name": "Stato di conservazione",
-							        "required": true
-							      }
-						        }
-					       }
+					      "cb066d20-1acd-4434-9cad-31cdbacae926": {
+					        "uuid": "cb066d20-1acd-4434-9cad-31cdbacae926",
+					        "name": "Romanzi",
+					        "description": ".",
+					        "sub_categories": {
+					          "719e26a0-9fe5-44b5-af28-0b29c9aa5880": {
+					            "uuid": "719e26a0-9fe5-44b5-af28-0b29c9aa5880",
+					            "name": "Gialli",
+					            "description": ".",
+					            "sub_categories": {},
+					            "fields": {
+					              "descrizione": {
+					                "name": "Descrizione",
+					                "required": true
+					              },
+					              "titolo": {
+					                "name": "Titolo",
+					                "required": true
+					              },
+					              "stato di conservazione": {
+					                "name": "Stato di conservazione",
+					                "required": true
+					              },
+					              "anno pubblicazione": {
+					                "name": "Anno Pubblicazione",
+					                "required": false
+					              },
+					              "pagine": {
+					                "name": "Pagine",
+					                "required": true
+					              },
+					              "autore": {
+					                "name": "Autore",
+					                "required": true
+					              }
+					            }
+					          }
+					        },
+					        "fields": {
+					          "descrizione": {
+					            "name": "Descrizione",
+					            "required": true
+					          },
+					          "titolo": {
+					            "name": "Titolo",
+					            "required": true
+					          },
+					          "stato di conservazione": {
+					            "name": "Stato di conservazione",
+					            "required": true
+					          },
+					          "anno pubblicazione": {
+					            "name": "Anno Pubblicazione",
+					            "required": false
+					          },
+					          "pagine": {
+					            "name": "Pagine",
+					            "required": true
+					          },
+					          "autore": {
+					            "name": "Autore",
+					            "required": true
+					          }
+					        }
+					      }
 					    },
 					    "fields": {
 					      "descrizione": {
 					        "name": "Descrizione",
 					        "required": true
 					      },
+					      "titolo": {
+					        "name": "Titolo",
+					        "required": true
+					      },
 					      "stato di conservazione": {
 					        "name": "Stato di conservazione",
+					        "required": true
+					      },
+					      "anno pubblicazione": {
+					        "name": "Anno Pubblicazione",
+					        "required": false
+					      },
+					      "pagine": {
+					        "name": "Pagine",
+					        "required": true
+					      },
+					      "autore": {
+					        "name": "Autore",
 					        "required": true
 					      }
 					    }
@@ -97,7 +163,7 @@ class CategoryManagerTest {
 	@Test
 	void addCategoryAlreadyExist() {
 		var path = new ArrayList<>(Arrays.asList("Categorie", "Libri"));
-		assertThrows(AlreadyExistException.class, () -> instance.addNewSubCategory(path, "Romanzo Giallo", "..."));
+		assertThrows(AlreadyExistException.class, () -> instance.addNewSubCategory(path, "Romanzi", "..."));
 	}
 
 	@Test
@@ -119,5 +185,11 @@ class CategoryManagerTest {
 	@Test
 	void emptyFieldName() {
 		assertThrows(IllegalValuesException.class, () -> instance.addNewField(null, "", true));
+	}
+
+
+	@Test
+	void getCategoryByUuidNull() {
+		assertTrue(instance.getCategoryByUuid("null").isEmpty());
 	}
 }
