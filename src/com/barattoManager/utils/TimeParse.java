@@ -4,7 +4,14 @@ import com.barattoManager.exception.IllegalValuesException;
 
 public final class TimeParse {
 
-	public static final String ERROR_TIME_FORMAT = "L'orario inserito non è valido.\nPer favore rispettare il formato: HH:MM";
+	/**
+	 * Error: the time format is not correct, please use the correct format (HH:MM)
+	 */
+	private static final String ERROR_TIME_FORMAT = "L'orario inserito non è valido.\nPer favore rispettare il formato: HH:MM";
+	/**
+	 * Error: the time is out of time-range (the hour musn't be >= 24 and the minutes >=60)
+	 */
+	private static final String ERROR_TIME_OUT_OF_TIME_RANGE = "L'orario inserito non è valido.\nL'ora non deve essere >= di 24 e i minuti non possono essere >= 60";
 
 	/**
 	 * Parse a time string into an int that represent the time in minutes
@@ -25,7 +32,7 @@ public final class TimeParse {
 		}
 
 		if (hourInt >= 24 || minuteInt >= 60) {
-			throw new IllegalValuesException("L'orario inserito non è valido.\nL'ora non deve essere >= di 24 e i minuti non possono essere >= 60");
+			throw new IllegalValuesException(ERROR_TIME_OUT_OF_TIME_RANGE);
 		}
 
 

@@ -22,11 +22,11 @@ public final class MeetManager {
 	/**
 	 * The meet place already exists error
 	 */
-	private static final String MEET_PLACE_ALREADY_EXISTS = "Il luogo di incontro che stai provando ad inserire esiste già";
+	private static final String MEET_PLACE_ALREADY_EXISTS = "I dati d'incontro che stai provando ad inserire sono già presenti.";
 	/**
 	 * Not all the fields are filled in error
 	 */
-	private static final String NOT_ALL_THE_FIELDS_ARE_FILLED_IN = "Non tutti i campi sono stati compilati.\nCompilare i campi mancanti";
+	private static final String NOT_ALL_THE_FIELDS_ARE_FILLED_IN = "Non tutti i campi sono stati compilati.\nSi consiglia di compilare tutti i campi.";
 	/**
 	 * Meet JSON file
 	 */

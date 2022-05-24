@@ -15,7 +15,7 @@ public class Meet {
 	/**
 	 * Invalid time input error, the start hour be less than or equal to the end hour
 	 */
-	private static final String INVALID_TIME_INPUT = "Il valore temporale inserito è sbagliato.\n(Orario di inzio deve essere minore dell' orario di fine)";
+	private static final String INVALID_TIME_INPUT = "Il valore temporale inserito è sbagliato.\n(Orario di inzio deve essere minore dell'orario di fine)";
 	/**
 	 * City of meet
 	 */
