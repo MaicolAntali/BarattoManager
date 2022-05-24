@@ -66,7 +66,7 @@ public class ConfiguratorCategoryEditorUi extends JPanel implements RepaintListe
 	 * Is used to repaint the Category Tree
 	 */
 	@Override
-	public void repaintCategoryTree() {
+	public void repaintComponents() {
 		// remove components
 		centerPanel.remove(categoryTree);
 		centerPanel.remove(categoryConfButtons);

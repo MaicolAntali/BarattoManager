@@ -28,11 +28,11 @@ public class RepaintEventHandler {
 	}
 
 	/**
-	 * Method used to fire for each {@link #listeners} the method {@link RepaintListener#repaintCategoryTree()}
+	 * Method used to fire for each {@link #listeners} the method {@link RepaintListener#repaintComponents()}
 	 */
 	public void fireListeners() {
 		for (RepaintListener event : listeners) {
-			event.repaintCategoryTree();
+			event.repaintComponents();
 		}
 	}
 }

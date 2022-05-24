@@ -56,7 +56,7 @@ public class ConfiguratorMeetEditorUi extends JPanel implements RepaintListener 
 	 * Is used to repaint the Meet Tree
 	 */
 	@Override
-	public void repaintCategoryTree() {
+	public void repaintComponents() {
 		centerPanel.remove(meetTree);
 
 		meetTree = new MeetTree();

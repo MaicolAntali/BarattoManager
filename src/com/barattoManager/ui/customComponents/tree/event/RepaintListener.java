@@ -7,5 +7,5 @@ public interface RepaintListener {
 	/**
 	 * Event use to repaint the category tree
 	 */
-	void repaintCategoryTree();
+	void repaintComponents();
 }
