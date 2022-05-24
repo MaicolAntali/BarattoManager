@@ -111,7 +111,7 @@ public final class CategoryManager {
 			var category = new Category(name, description);
 
 			// Check if the category already exist
-			if (isUniqueCategory(rootCategoryMap,category.hashCode())) {
+			if (isUniqueCategory(rootCategoryMap, category.hashCode())) {
 
 				// add in the map the new root category
 				rootCategoryMap.put(category.getUuid(), category);
@@ -156,7 +156,7 @@ public final class CategoryManager {
 
 			if (fatherCategory.isPresent()) {
 				if (isUniqueCategory(rootCategoryMap, newCategory.hashCode())) {
-					fatherCategory.get().addSubCategory(name, description);
+					fatherCategory.get().addSubCategory(newCategory);
 					saveCategoryMapChange();
 
 					assert fatherCategory.get().getSubCategory().containsKey(categoryName): POST_CONDITION_SUBCATEGORY_NOT_IN_MAP;
@@ -240,9 +240,8 @@ public final class CategoryManager {
 		Optional<Category> category = Optional.empty();
 
 		for (int i = 1; i < pathOfCategory.size(); i++) {
-			int finalI = i;
+			final int finalI = i;
 			if (i == 1) {
-
 				category = rootCategoryMap.values().stream()
 						.filter(cat -> Objects.equals(cat.getName(), pathOfCategory.get(finalI)))
 						.findFirst();
@@ -269,16 +268,18 @@ public final class CategoryManager {
 	 * Method used to check if a category is unique in the entire category tree.<br/>
 	 * This method takes advantage of hashcode (if the hashcode of two objects is equal then the two objects are equal)
 	 * @param categoryHashMap Hashmap where to start searching
-	 * @param hashToCheck Hashcode used to check the uniqueness
+	 * @param hashToCheck Hashcode used to check the uniqueness,
 	 * @return True if the hashcode is unique in the entire hashmap and also unique in every sub hashmaps otherwise False
 	 * @see Category#hashCode()
 	 */
 	private boolean isUniqueCategory(HashMap<String, Category> categoryHashMap, int hashToCheck) {
 		if (!categoryHashMap.isEmpty()) {
 			for (Category category : categoryHashMap.values()) {
-				for (Category subcategory: category.getSubCategory().values()) {
-					isUniqueCategory(subcategory.getSubCategory(), hashToCheck);
-					return subcategory.hashCode() != hashToCheck;
+				if (category.hashCode() != hashToCheck) {
+					return isUniqueCategory(category.getSubCategory(), hashToCheck);
+				}
+				else {
+					return false;
 				}
 			}
 		}

@@ -126,17 +126,13 @@ public class Category {
 
 	/**
 	 * Method used to add a new sub-category to this category
-	 * @param name Name of sub-category
-	 * @param description Description of sab-category
+	 * @param category {@link Category} object to add
 	 */
-	public void addSubCategory(String name, String description) {
-		assert !name.isBlank() : PRE_CONDITION_SUBCATEGORY_NAME_IS_BLANK;
-		assert !description.isBlank() : PRE_CONDITION_SUBCATEGORY_DESCRIPTION_IS_BLANK;
-		assert !subCategory.containsKey(name.toLowerCase()): PRE_CONDITION_SUBCATEGORY_ALREADY_EXIST;
+	public void addSubCategory(Category category) {
+		assert !subCategory.containsKey(category.getName().toLowerCase()): PRE_CONDITION_SUBCATEGORY_ALREADY_EXIST;
 
-		var newCategory = new Category(name, description);
-		newCategory.addNewFields(categoryFields);
-		subCategory.put(newCategory.getName().toLowerCase(), newCategory);
+		category.addNewFields(categoryFields);
+		subCategory.put(category.getUuid(), category);
 
 		assert subCategory.containsKey(name.toLowerCase()): POST_CONDITION_SUBCATEGORY_NOT_ADDED_TO_HASHMAP;
 	}

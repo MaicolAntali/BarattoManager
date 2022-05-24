@@ -1,22 +1,22 @@
 {
-  "055e43d6-d4cc-485b-8899-decfb9e0b4cb": {
-    "uuid": "055e43d6-d4cc-485b-8899-decfb9e0b4cb",
+  "0deb9230-d663-4efa-ad69-ca476bc493d6": {
+    "uuid": "0deb9230-d663-4efa-ad69-ca476bc493d6",
     "owner": "Luca",
-    "category_uuid": "c413e196-acf7-43e7-aa49-089fe6e0b999",
+    "category_uuid": "bcf54389-cbd3-4056-8f00-754cb3966408",
     "state": "OPEN_OFFERT",
     "fields": {
-      "Field[name=Autore, required=false]": "Alessandro Manzoni",
-      "Field[name=Titolo, required=false]": "Promessi Sposi",
-      "Field[name=Pagine, required=false]": "720"
+      "Field[name=Pagine, required=true]": "720",
+      "Field[name=Titolo, required=true]": "Promessi Sposi",
+      "Field[name=Autore, required=true]": "Alessandro Manzoni"
     },
     "log": [
       {
-        "date_time": "2022-05-21T18:08:44.350417",
+        "date_time": "2022-05-24T14:07:25.184942",
         "name": "Article Created",
         "description": "Article has just been created by the viewer Luca"
       },
       {
-        "date_time": "2022-05-21T18:08:44.351221",
+        "date_time": "2022-05-24T14:07:25.185695",
         "name": "Article Validated",
         "description": "Article is valid and properly initialized. State update to OPEN_OFFERT"
       }
