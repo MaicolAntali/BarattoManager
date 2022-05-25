@@ -1,6 +1,7 @@
 package com.barattoManager.ui.components;
 
 import com.barattoManager.ui.customComponents.tree.article.ArticleTree;
+import com.barattoManager.ui.customComponents.menu.yourArticle.ArticleTreeMenu;
 import com.barattoManager.user.User;
 
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class ViewerYoursArticle extends JPanel {
 		mainPanel.setPreferredSize(dimension);
 
 
+		centerPanel.add(new ArticleTreeMenu(), BorderLayout.NORTH);
 		centerPanel.add(new ArticleTree(user.getUsername()));
 
 
