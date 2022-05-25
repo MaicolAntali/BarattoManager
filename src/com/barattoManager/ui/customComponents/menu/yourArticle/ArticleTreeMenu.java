@@ -37,7 +37,10 @@ public class ArticleTreeMenu extends JPanel {
 	public ArticleTreeMenu() {
 
 		var articleMenu = new JMenu("Articoli");
-		articleMenu.add(new MenuAction("Nuovo", this));
+
+		var articleMenuItem = articleMenu.add(new MenuAction("Nuovo", this));
+		articleMenuItem.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
+
 
 		var menuBar = new JMenuBar();
 		menuBar.add(articleMenu);
