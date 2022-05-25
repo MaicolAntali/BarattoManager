@@ -30,7 +30,7 @@ public class Article {
 	@JsonProperty("state")
 	private State articleState;
 
-	private enum State {
+	public enum State {
 		NOT_CHECKED("Non validato"),
 		OPEN_OFFERT("Offerta Aperta"),
 		CANCELLED_OFFERT("Offerta Cancellata");

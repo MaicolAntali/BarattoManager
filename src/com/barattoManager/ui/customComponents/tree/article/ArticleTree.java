@@ -9,12 +9,12 @@ import com.barattoManager.utils.History;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeCellRenderer;
 import java.awt.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static javax.swing.text.StyleConstants.setIcon;
 
 public class ArticleTree extends JPanel {
 
@@ -34,11 +34,14 @@ public class ArticleTree extends JPanel {
 	public ArticleTree(Dimension dimension, String filter) {
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Articoli");
 
-		var nodeMap = new HashMap<String, DefaultMutableTreeNode>();
+		var nodeMap = new HashMap<String, HashMap<String, DefaultMutableTreeNode>>() {{
+			put("Offerte Cancellate", new HashMap<>());
+			put("Offerte Aperte", new HashMap<>());
+		}};
 
 		CategoryManager categoryManager = CategoryManager.getInstance();
 
-		Collection<Article> articleCollection = null;
+		Collection<Article> articleCollection;
 		if (filter.equals("*")) {
 			articleCollection = ArticleManager.getInstance().getArticleMap().values();
 		}
@@ -52,20 +55,37 @@ public class ArticleTree extends JPanel {
 		for (Article article : articleCollection) {
 			var category = categoryManager.getCategoryByUuid(article.getCategoryUuid());
 			if (category.isPresent()) {
-				if (nodeMap.containsKey(category.get().getName())) {
-					createMeetNode(article, nodeMap.get(category.get().getName()));
+				if (article.getArticleState() == Article.State.CANCELLED_OFFERT) {
+					if (nodeMap.get("Offerte Cancellate").containsKey(category.get().getName())) {
+						createMeetNode(article, nodeMap.get("Offerte Cancellate").get(category.get().getName()));
+					}
+					else {
+						nodeMap.get("Offerte Cancellate").put(category.get().getName(), new DefaultMutableTreeNode(category.get().getName()));
+						createMeetNode(article, nodeMap.get("Offerte Cancellate").get(category.get().getName()));
+
+					}
 				}
 				else {
-					nodeMap.put(category.get().getName(), new DefaultMutableTreeNode(category.get().getName()));
-					createMeetNode(article, nodeMap.get(category.get().getName()));
+					if (nodeMap.get("Offerte Aperte").containsKey(category.get().getName())) {
+						createMeetNode(article, nodeMap.get("Offerte Aperte").get(category.get().getName()));
+					}
+					else {
+						nodeMap.get("Offerte Aperte").put(category.get().getName(), new DefaultMutableTreeNode(category.get().getName()));
+						createMeetNode(article, nodeMap.get("Offerte Aperte").get(category.get().getName()));
+
+					}
 				}
 			}
 		}
 
 
 		// add city to root node
-		for (DefaultMutableTreeNode node : nodeMap.values()) {
-			rootNode.add(node);
+		for (Map.Entry<String, HashMap<String, DefaultMutableTreeNode>> entry : nodeMap.entrySet()) {
+			var stateNode = new DefaultMutableTreeNode(entry.getKey());
+			for (DefaultMutableTreeNode node : entry.getValue().values()) {
+				stateNode.add(node);
+			}
+			rootNode.add(stateNode);
 		}
 
 		var tree = new JTree(rootNode);
@@ -89,17 +109,13 @@ public class ArticleTree extends JPanel {
 		// create the article node
 		var articleNode = new DefaultMutableTreeNode(article.getUuid());
 
-		// create state node
-		articleNode.add(new DefaultMutableTreeNode("Stato: %s".formatted(article.getArticleState())));
-
 		// create owner node
 		articleNode.add(new DefaultMutableTreeNode("Proprietario: %s".formatted(article.getUserNameOwner())));
-
 
 		// create fields nodes
 		var fieldsNode = new DefaultMutableTreeNode("Campi");
 		for (Map.Entry<Field, String> entry : article.getFieldValueMap().entrySet()) {
-			if (!entry.getValue().isBlank()) {
+			if (!entry.getValue().isBlank() || !entry.getKey().required()) {
 				fieldsNode.add(new DefaultMutableTreeNode(("%s: %s").formatted(entry.getKey().name(), entry.getValue())));
 			}
 		}
