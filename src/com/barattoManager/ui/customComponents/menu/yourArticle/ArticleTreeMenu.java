@@ -6,7 +6,6 @@ import com.barattoManager.ui.customComponents.menu.yourArticle.actions.NewArticl
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 public class ArticleTreeMenu extends JPanel {
@@ -21,20 +20,24 @@ public class ArticleTreeMenu extends JPanel {
 			 ACTION_HASH_MAP.put("Nuovo", new NewArticle());
 		}
 
-		public MenuAction(String name) {
+		private final JPanel fatherPanel;
+
+		public MenuAction(String name, JPanel fatherPanel) {
 			super(name);
+
+			this.fatherPanel = fatherPanel;
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			ACTION_HASH_MAP.get(getValue(Action.NAME).toString()).run();
+			ACTION_HASH_MAP.get(getValue(Action.NAME).toString()).run(fatherPanel);
 		}
 	}
 
 	public ArticleTreeMenu() {
 
 		var articleMenu = new JMenu("Articoli");
-		articleMenu.add(new MenuAction("Nuovo"));
+		articleMenu.add(new MenuAction("Nuovo", this));
 
 		var menuBar = new JMenuBar();
 		menuBar.add(articleMenu);
