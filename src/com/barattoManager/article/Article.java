@@ -2,7 +2,6 @@ package com.barattoManager.article;
 
 import com.barattoManager.category.field.Field;
 import com.barattoManager.category.field.FieldDeserializer;
-import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.utils.History;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -102,6 +101,16 @@ public class Article {
 	}
 
 	/**
+	 * Method used to update the state of {@link #articleState} & log the changes
+	 * @param state new {@link State}
+	 */
+	public void changeState(State state) {
+		history.add(new History("State Update", "The article state is updated from %s to %s".formatted(this.articleState, state)));
+		this.articleState = state;
+		ArticleManager.getInstance().forceSaveData();
+	}
+
+	/**
 	 * Method used to create a hashmap and validate it (All required fields must be init).
 	 * @param fields {@link ArrayList} of fields
 	 * @param values {@link ArrayList} of values
@@ -128,15 +137,5 @@ public class Article {
 		}
 
 		return map;
-	}
-
-	/**
-	 * Method used to update the state of {@link #articleState} & log the chhanges
-	 * @param state new {@link State}
-	 */
-	private void changeState(State state) {
-		history.add(new History("State Update", "The article state is updated from %s to %s".formatted(this.articleState, state)));
-
-		this.articleState = state;
 	}
 }

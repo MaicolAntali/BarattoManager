@@ -4,17 +4,17 @@ import com.barattoManager.article.Article;
 import com.barattoManager.article.ArticleManager;
 import com.barattoManager.category.CategoryManager;
 import com.barattoManager.category.field.Field;
+import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.utils.History;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreeNode;
 import java.awt.*;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class ArticleTree extends JPanel {
 
@@ -31,6 +31,8 @@ public class ArticleTree extends JPanel {
 	 */
 	private static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
 
+	private final JTree tree;
+
 	public ArticleTree(Dimension dimension, String filter) {
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Articoli");
 
@@ -41,18 +43,12 @@ public class ArticleTree extends JPanel {
 
 		CategoryManager categoryManager = CategoryManager.getInstance();
 
-		Collection<Article> articleCollection;
-		if (filter.equals("*")) {
-			articleCollection = ArticleManager.getInstance().getArticleMap().values();
-		}
-		else {
-			articleCollection = ArticleManager.getInstance().getArticleMap().values().stream()
-					.filter(article -> Objects.equals(article.getUserNameOwner().toLowerCase(), filter.toLowerCase()))
-					.collect(Collectors.toList());
-		}
+		var articleList = Objects.equals(filter, "*") ?
+				ArticleManager.getInstance().getArticleMap().values() :
+				ArticleManager.getInstance().getArticles(filter);
 
 		// Create all meet
-		for (Article article : articleCollection) {
+		for (Article article : articleList) {
 			var category = categoryManager.getCategoryByUuid(article.getCategoryUuid());
 			if (category.isPresent()) {
 				if (article.getArticleState() == Article.State.CANCELLED_OFFERT) {
@@ -88,7 +84,7 @@ public class ArticleTree extends JPanel {
 			rootNode.add(stateNode);
 		}
 
-		var tree = new JTree(rootNode);
+		tree = new JTree(rootNode);
 
 		// Change the default JTree icons
 		DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
@@ -103,6 +99,16 @@ public class ArticleTree extends JPanel {
 
 	public ArticleTree(String filter) {
 		this(new Dimension(500, 290), filter);
+	}
+
+	public TreeNode[] getSelectedPathNode() throws NoNodeSelected {
+		var selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+		if (selectedNode == null) {
+			throw new NoNodeSelected("Non è stato selezionato nessun nodo.");
+		}
+		else {
+			return selectedNode.getPath();
+		}
 	}
 
 	private void createMeetNode(Article article, DefaultMutableTreeNode fatherNode) {
@@ -128,8 +134,8 @@ public class ArticleTree extends JPanel {
 					new DefaultMutableTreeNode("%s ~ %s - %s - %s".formatted(
 					history.name().isPresent() ? "\u2705" : "\u274C",
 					history.dateTime(),
-					history.name().isPresent() ? history.name().get() : history.error().get(),
-					history.description().get()
+					history.name().isPresent() ? history.name().get() : history.error().orElseThrow(NullPointerException::new),
+					history.description().orElseThrow(NullPointerException::new)
 			)));
 		}
 		articleNode.add(historyNode);

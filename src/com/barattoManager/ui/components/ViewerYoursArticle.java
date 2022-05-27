@@ -12,6 +12,7 @@ import java.awt.*;
 public class ViewerYoursArticle extends JPanel implements RepaintListener {
 
 	private final User user;
+	private final ArticleTreeMenu articleTreeMenu;
 
 	private ArticleTree articleTree;
 	private JPanel mainPanel;
@@ -30,7 +31,8 @@ public class ViewerYoursArticle extends JPanel implements RepaintListener {
 		repaintEventHandler.addListener(this);
 
 
-		centerPanel.add(new ArticleTreeMenu(user, repaintEventHandler), BorderLayout.NORTH);
+		this.articleTreeMenu = new ArticleTreeMenu(user, repaintEventHandler, articleTree);
+		centerPanel.add(articleTreeMenu , BorderLayout.NORTH);
 		centerPanel.add(articleTree);
 
 
@@ -42,6 +44,7 @@ public class ViewerYoursArticle extends JPanel implements RepaintListener {
 		centerPanel.remove(articleTree);
 
 		articleTree = new ArticleTree(user.getUsername());
+		articleTreeMenu.setArticleTree(articleTree);
 
 		centerPanel.add(articleTree);
 

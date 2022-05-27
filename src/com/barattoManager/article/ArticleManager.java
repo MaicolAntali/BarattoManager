@@ -2,7 +2,6 @@ package com.barattoManager.article;
 
 import com.barattoManager.category.field.Field;
 import com.barattoManager.config.AppConfigurator;
-import com.barattoManager.exception.IllegalValuesException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -13,8 +12,8 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ArticleManager {
 	/**
@@ -49,6 +48,7 @@ public class ArticleManager {
 		}
 	}
 
+
 	/**
 	 * Holder class of instance
 	 */
@@ -78,6 +78,26 @@ public class ArticleManager {
 
 	public HashMap<String, Article> getArticleMap() {
 		return articleMap;
+	}
+
+	public Optional<Article> getArticleById(String uuid) {
+		return Optional.ofNullable(articleMap.get(uuid));
+	}
+
+	public List<Article> getArticles(String articleOwnerFilter) {
+		return getArticleMap().values().stream()
+				.filter(article -> Objects.equals(article.getUserNameOwner().toLowerCase(), articleOwnerFilter.toLowerCase()))
+				.collect(Collectors.toList());
+	}
+
+	public List<Article> getArticles(String articleOwnerFilter, Article.State articleStateFilter) {
+		return getArticles(articleOwnerFilter).stream()
+				.filter(article -> article.getArticleState() == articleStateFilter)
+				.collect(Collectors.toList());
+	}
+
+	public void forceSaveData() {
+		saveArticleMapChange();
 	}
 
 	/**

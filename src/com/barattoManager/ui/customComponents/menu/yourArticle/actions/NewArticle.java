@@ -5,6 +5,7 @@ import com.barattoManager.category.Category;
 import com.barattoManager.category.CategoryManager;
 import com.barattoManager.category.field.Field;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
+import com.barattoManager.ui.customComponents.tree.article.ArticleTree;
 import com.barattoManager.user.User;
 
 import javax.swing.*;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 public class NewArticle implements MenuItemAction {
 	@Override
-	public void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user) {
+	public void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user, ArticleTree articleTree) {
 
 		var comboCategoryPanel = new SelectCategoryArticlePanel();
 		int result = JOptionPane.showOptionDialog(
@@ -114,7 +115,7 @@ public class NewArticle implements MenuItemAction {
 
 			mainPanel.add(new JLabel("Seleziona una categoria per il tuo articolo:"));
 
-			for (String item : getLeafCategory()) {
+			for (String item : generateComboBoxItems()) {
 				categoryCombo.addItem(item);
 			}
 			mainPanel.add(categoryCombo);
@@ -149,17 +150,17 @@ public class NewArticle implements MenuItemAction {
 			return optionalCategory;
 		}
 
-		private ArrayList<String> getLeafCategory() {
+		private ArrayList<String> generateComboBoxItems() {
 			var arrayList = new ArrayList<String>();
 
 			for (Category category : CategoryManager.getInstance().getRootCategoryMap().values()) {
-				arrayList.addAll(getLeafCategory(category.getSubCategory().values(), category.getName()));
+				arrayList.addAll(generateComboBoxItems(category.getSubCategory().values(), category.getName()));
 			}
 
 			return arrayList;
 		}
 
-		private ArrayList<String> getLeafCategory(Collection<Category> categories, String string) {
+		private ArrayList<String> generateComboBoxItems(Collection<Category> categories, String string) {
 			var arrayList = new ArrayList<String>();
 
 
@@ -168,7 +169,7 @@ public class NewArticle implements MenuItemAction {
 					arrayList.add(string + " - %s".formatted(category.getName()));
 				}
 				else {
-					arrayList.addAll(getLeafCategory(category.getSubCategory().values(), string + " - %s".formatted(category.getName())));
+					arrayList.addAll(generateComboBoxItems(category.getSubCategory().values(), string + " - %s".formatted(category.getName())));
 				}
 			}
 
