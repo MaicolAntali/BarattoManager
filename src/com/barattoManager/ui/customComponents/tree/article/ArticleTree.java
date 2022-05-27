@@ -101,7 +101,7 @@ public class ArticleTree extends JPanel {
 		setVisible(true);
 	}
 
-	public ArticleTree(String filter ) {
+	public ArticleTree(String filter) {
 		this(new Dimension(500, 290), filter);
 	}
 

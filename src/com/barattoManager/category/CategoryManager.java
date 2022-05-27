@@ -245,39 +245,28 @@ public final class CategoryManager {
 	 * @return {@link Optional} that contains the category if it's find otherwise empty
 	 */
 	public Optional<Category> getCategoryByUuid(String uuid) {
-		if (!rootCategoryMap.isEmpty()) {
-			for (Category category : rootCategoryMap.values()) {
-				if (Objects.equals(category.getUuid(), uuid)) {
-					return Optional.of(category);
-				}
-				else {
-					return Optional.ofNullable(getCategoryByUuid(category.getSubCategory(), uuid));
-				}
-			}
-		}
-
-		return Optional.empty();
+		return getCategory(rootCategoryMap, uuid);
 	}
 
-	/**
-	 * Method used to get a Category by UUID in a specific hashmap
-	 * @param categoryHashMap Hashmap where search
-	 * @param uuid Category UUID to get
-	 * @return {@link Category}  if it's find otherwise null
-	 */
-	private Category getCategoryByUuid(HashMap<String, Category> categoryHashMap, String uuid)  {
+	private Optional<Category> getCategory(HashMap<String, Category> categoryHashMap, String uuid) {
+		Optional<Category> categoryOptional = Optional.empty();
+
 		if (!categoryHashMap.isEmpty()) {
 			for (Category category : categoryHashMap.values()) {
 				if (Objects.equals(category.getUuid(), uuid)) {
-					return category;
+					categoryOptional = Optional.of(category);
+					break;
 				}
 				else {
-					return getCategoryByUuid(category.getSubCategory(), uuid);
+					if (categoryOptional.isEmpty()) {
+						categoryOptional = getCategory(category.getSubCategory(), uuid);
+					}
+
 				}
 			}
 		}
 
-		return null;
+		return categoryOptional;
 	}
 
 	/**
