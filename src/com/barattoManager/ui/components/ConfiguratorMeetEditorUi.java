@@ -1,7 +1,7 @@
 package com.barattoManager.ui.components;
 
-import com.barattoManager.ui.customComponents.tree.event.RepaintEventHandler;
-import com.barattoManager.ui.customComponents.tree.event.RepaintListener;
+import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
+import com.barattoManager.ui.customComponents.event.RepaintListener;
 import com.barattoManager.ui.customComponents.tree.meet.MeetEditorButtons;
 import com.barattoManager.ui.customComponents.tree.meet.MeetTree;
 

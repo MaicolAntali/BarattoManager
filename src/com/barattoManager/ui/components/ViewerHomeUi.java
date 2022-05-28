@@ -19,6 +19,7 @@ public class ViewerHomeUi extends JPanel {
 	 * MeetView button to {@link ViewerMeetViewUi}
 	 */
 	private JButton viewMeetButton;
+	private JButton yoursArticleButton;
 
 	/**
 	 * {@link ViewerHomeUi} constructor
@@ -35,5 +36,6 @@ public class ViewerHomeUi extends JPanel {
 
 		viewCategoryButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_CATEGORY.toString()));
 		viewMeetButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_MEET.toString()));
+		yoursArticleButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_YOUR_ARTICLES.toString()));
 	}
 }

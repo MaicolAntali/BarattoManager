@@ -1,63 +1,261 @@
 {
-  "libri": {
-    "category_name": "Libri",
-    "category_description": "...",
-    "category_sub_categories": {
-      "romanzi": {
-        "category_name": "Romanzi",
-        "category_description": "...",
-        "category_sub_categories": {
-          "gialli": {
-            "category_name": "Gialli",
-            "category_description": "...",
-            "category_sub_categories": {},
-            "category_fields": {
-              "stato di conservazione": {
-                "field_name": "Stato di conservazione",
-                "field_required": true
-              },
+  "db442916-6ccd-453d-a4a9-32141a132983": {
+    "uuid": "db442916-6ccd-453d-a4a9-32141a132983",
+    "name": "Libri",
+    "description": ".",
+    "sub_categories": {
+      "c3fcc53f-5e6c-47af-b637-e80c7d63ba0c": {
+        "uuid": "c3fcc53f-5e6c-47af-b637-e80c7d63ba0c",
+        "name": "Saggi",
+        "description": ".",
+        "sub_categories": {
+          "54646402-2ed1-440b-ae4f-d8b9333282ec": {
+            "uuid": "54646402-2ed1-440b-ae4f-d8b9333282ec",
+            "name": "Cinema",
+            "description": ".",
+            "sub_categories": {
+              "f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46": {
+                "uuid": "f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46",
+                "name": "Tecniche",
+                "description": ".",
+                "sub_categories": {},
+                "fields": {
+                  "descrizione": {
+                    "name": "Descrizione",
+                    "required": true
+                  },
+                  "titolo": {
+                    "name": "Titolo",
+                    "required": true
+                  },
+                  "stato di conservazione": {
+                    "name": "Stato di conservazione",
+                    "required": true
+                  },
+                  "anno pubblicazione": {
+                    "name": "Anno Pubblicazione",
+                    "required": false
+                  },
+                  "pagine": {
+                    "name": "Pagine",
+                    "required": true
+                  },
+                  "autore": {
+                    "name": "Autore",
+                    "required": true
+                  }
+                }
+              }
+            },
+            "fields": {
               "descrizione": {
-                "field_name": "Descrizione",
-                "field_required": true
+                "name": "Descrizione",
+                "required": true
+              },
+              "titolo": {
+                "name": "Titolo",
+                "required": true
+              },
+              "stato di conservazione": {
+                "name": "Stato di conservazione",
+                "required": true
+              },
+              "anno pubblicazione": {
+                "name": "Anno Pubblicazione",
+                "required": false
+              },
+              "pagine": {
+                "name": "Pagine",
+                "required": true
+              },
+              "autore": {
+                "name": "Autore",
+                "required": true
               }
             }
           },
-          "rosa": {
-            "category_name": "Rosa",
-            "category_description": "...",
-            "category_sub_categories": {},
-            "category_fields": {
-              "stato di conservazione": {
-                "field_name": "Stato di conservazione",
-                "field_required": true
-              },
+          "904218d4-9eb3-40b1-9ac5-736d15c3335a": {
+            "uuid": "904218d4-9eb3-40b1-9ac5-736d15c3335a",
+            "name": "Diritto",
+            "description": ".",
+            "sub_categories": {},
+            "fields": {
               "descrizione": {
-                "field_name": "Descrizione",
-                "field_required": true
+                "name": "Descrizione",
+                "required": true
+              },
+              "titolo": {
+                "name": "Titolo",
+                "required": true
+              },
+              "stato di conservazione": {
+                "name": "Stato di conservazione",
+                "required": true
+              },
+              "anno pubblicazione": {
+                "name": "Anno Pubblicazione",
+                "required": false
+              },
+              "pagine": {
+                "name": "Pagine",
+                "required": true
+              },
+              "autore": {
+                "name": "Autore",
+                "required": true
               }
             }
           }
         },
-        "category_fields": {
-          "stato di conservazione": {
-            "field_name": "Stato di conservazione",
-            "field_required": true
-          },
+        "fields": {
           "descrizione": {
-            "field_name": "Descrizione",
-            "field_required": true
+            "name": "Descrizione",
+            "required": true
+          },
+          "titolo": {
+            "name": "Titolo",
+            "required": true
+          },
+          "stato di conservazione": {
+            "name": "Stato di conservazione",
+            "required": true
+          },
+          "anno pubblicazione": {
+            "name": "Anno Pubblicazione",
+            "required": false
+          },
+          "pagine": {
+            "name": "Pagine",
+            "required": true
+          },
+          "autore": {
+            "name": "Autore",
+            "required": true
+          }
+        }
+      },
+      "cb066d20-1acd-4434-9cad-31cdbacae926": {
+        "uuid": "cb066d20-1acd-4434-9cad-31cdbacae926",
+        "name": "Romanzi",
+        "description": ".",
+        "sub_categories": {
+          "d26e41ce-8af7-4503-8287-79fcbba774c6": {
+            "uuid": "d26e41ce-8af7-4503-8287-79fcbba774c6",
+            "name": "Rosa",
+            "description": ".",
+            "sub_categories": {},
+            "fields": {
+              "descrizione": {
+                "name": "Descrizione",
+                "required": true
+              },
+              "titolo": {
+                "name": "Titolo",
+                "required": true
+              },
+              "stato di conservazione": {
+                "name": "Stato di conservazione",
+                "required": true
+              },
+              "anno pubblicazione": {
+                "name": "Anno Pubblicazione",
+                "required": false
+              },
+              "pagine": {
+                "name": "Pagine",
+                "required": true
+              },
+              "autore": {
+                "name": "Autore",
+                "required": true
+              }
+            }
+          },
+          "719e26a0-9fe5-44b5-af28-0b29c9aa5880": {
+            "uuid": "719e26a0-9fe5-44b5-af28-0b29c9aa5880",
+            "name": "Gialli",
+            "description": ".",
+            "sub_categories": {},
+            "fields": {
+              "descrizione": {
+                "name": "Descrizione",
+                "required": true
+              },
+              "titolo": {
+                "name": "Titolo",
+                "required": true
+              },
+              "stato di conservazione": {
+                "name": "Stato di conservazione",
+                "required": true
+              },
+              "anno pubblicazione": {
+                "name": "Anno Pubblicazione",
+                "required": false
+              },
+              "pagine": {
+                "name": "Pagine",
+                "required": true
+              },
+              "autore": {
+                "name": "Autore",
+                "required": true
+              }
+            }
+          }
+        },
+        "fields": {
+          "descrizione": {
+            "name": "Descrizione",
+            "required": true
+          },
+          "titolo": {
+            "name": "Titolo",
+            "required": true
+          },
+          "stato di conservazione": {
+            "name": "Stato di conservazione",
+            "required": true
+          },
+          "anno pubblicazione": {
+            "name": "Anno Pubblicazione",
+            "required": false
+          },
+          "pagine": {
+            "name": "Pagine",
+            "required": true
+          },
+          "autore": {
+            "name": "Autore",
+            "required": true
           }
         }
       }
     },
-    "category_fields": {
+    "fields": {
       "descrizione": {
-        "field_name": "Descrizione",
-        "field_required": true
+        "name": "Descrizione",
+        "required": true
+      },
+      "titolo": {
+        "name": "Titolo",
+        "required": true
       },
       "stato di conservazione": {
-        "field_name": "Stato di conservazione",
-        "field_required": true
+        "name": "Stato di conservazione",
+        "required": true
+      },
+      "anno pubblicazione": {
+        "name": "Anno Pubblicazione",
+        "required": false
+      },
+      "pagine": {
+        "name": "Pagine",
+        "required": true
+      },
+      "autore": {
+        "name": "Autore",
+        "required": true
       }
     }
   }

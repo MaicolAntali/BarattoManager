@@ -10,15 +10,14 @@ import java.awt.*;
  * Class (that {@code extends JFrame}) used to instance every other view in a cardLayout and set the JFrame.
  */
 public class BarattoManagerGui extends JFrame {
-
-    /**
+	/**
      * Baratto manager title
      */
     private static final String TITLE_BARATTO_MANAGER = "Baratto Manager";
     /**
      * Default dimensions of views
      */
-    private static final Dimension CONTENT_PANEL_DEFAULT_DIMENSION = new Dimension(600, 430); // height - 70
+    public static final Dimension CONTENT_PANEL_DEFAULT_DIMENSION = new Dimension(600, 430); // height - 70
 
     /**
      * Main JPanel
@@ -43,6 +42,9 @@ public class BarattoManagerGui extends JFrame {
         this.setResizable(false);
         this.setContentPane(mainPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation((screenSize.width - getWidth()) / 2, (screenSize.height - getHeight()) / 2);
 
         // Set the app version
         versionLabel.setText(AppConfigurator.getInstance().getAppDataAsText("version"));

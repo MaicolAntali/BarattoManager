@@ -12,6 +12,9 @@ All the libraries listed here are located in: ```resources/library```
     * jackson-core
     * jackson-databind
     * jackson-annotations
+    * jackson-datatype-jdk8
+    * jackson-datatype-jsr360
+    * jackson-module-parameter-names
 
 
 
