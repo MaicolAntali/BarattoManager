@@ -24,11 +24,11 @@ public class Meet {
 	 */
 	private static final String PRE_CONDITION_DAYS_IS_BLANK = "Pre-condition: Days is empty";
 	/**
-	 * Pre-condition: Pre-condition: Start time < 0
+	 * Pre-condition: Pre-condition: Start time less than 0
 	 */
 	private static final String PRE_CONDITION_START_TIME_NAME_IS_BLANK = "Pre-condition: start time < 0";
 	/**
-	 * Pre-condition: Pre-condition: End time < 0
+	 * Pre-condition: Pre-condition: End time less than 0
 	 */
 	private static final String PRE_CONDITION_END_TIME_NAME_IS_BLANK = "Pre-condition: end time < 0";
 	/**
