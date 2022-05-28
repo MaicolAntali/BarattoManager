@@ -20,6 +20,18 @@ public class Meet {
 	 */
 	private static final String PRE_CONDITION_SQUARE_IS_BLANK = "Pre-condition: Square name is blank";
 	/**
+	 * Pre-condition: Days is empty
+	 */
+	private static final String PRE_CONDITION_DAYS_IS_BLANK = "Pre-condition: Days is empty";
+	/**
+	 * Pre-condition: Pre-condition: Start time < 0
+	 */
+	private static final String PRE_CONDITION_START_TIME_NAME_IS_BLANK = "Pre-condition: start time < 0";
+	/**
+	 * Pre-condition: Pre-condition: End time < 0
+	 */
+	private static final String PRE_CONDITION_END_TIME_NAME_IS_BLANK = "Pre-condition: end time < 0";
+	/**
 	 * Post-condition: The Arraylist of days is not empty
 	 */
 	private static final String POST_CONDITION_DAYS_ARRAYLIST_IS_EMPTY = "Post-condition: The Arraylist of days is empty";
@@ -31,7 +43,7 @@ public class Meet {
 	/**
 	 * Invalid time input error, the start hour be less than or equal to the end hour
 	 */
-	private static final String INVALID_TIME_INPUT = "Il valore temporale inserito è sbagliato.\n(Orario di inzio deve essere minore dell'orario di fine)";
+	private static final String INVALID_TIME_INPUT = "Il valore temporale inserito è sbagliato.\n(Orario di inizio deve essere minore dell'orario di fine)";
 	/**
 	 * City of meet
 	 */
@@ -67,6 +79,10 @@ public class Meet {
 	public Meet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException {
 		assert !city.isBlank() : PRE_CONDITION_CITY_NAME_IS_BLANK;
 		assert !square.isBlank(): PRE_CONDITION_SQUARE_IS_BLANK;
+		assert !days.isEmpty(): PRE_CONDITION_DAYS_IS_BLANK;
+		assert startTime >= 0 : PRE_CONDITION_START_TIME_NAME_IS_BLANK;
+		assert endTime >= 0 : PRE_CONDITION_END_TIME_NAME_IS_BLANK;
+
 
 		this.city = city;
 		this.square = square;
@@ -98,7 +114,6 @@ public class Meet {
 
 		assert days.isEmpty() : POST_CONDITION_DAYS_ARRAYLIST_IS_EMPTY;
 		assert intervals.isEmpty() : POST_CONDITION_INTERVALS_ARRAYLIST_IS_EMPTY;
-
 	}
 
 	/**
