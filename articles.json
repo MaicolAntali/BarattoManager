@@ -92,7 +92,7 @@
     "uuid": "10a0c73b-6c42-4eec-be5d-494abf84d5d0",
     "owner": "Luca",
     "category_uuid": "719e26a0-9fe5-44b5-af28-0b29c9aa5880",
-    "state": "OPEN_OFFERT",
+    "state": "CANCELLED_OFFERT",
     "fields": {
       "Field[name=Autore, required=false]": "Il cinque maggio",
       "Field[name=Titolo, required=false]": "Alessandro Manzoni",
@@ -114,6 +114,11 @@
         "date_time": "2022-05-24T21:56:40.70856",
         "name": "State Update",
         "description": "The article state is updated from Non validato to Offerta Aperta"
+      },
+      {
+        "date_time": "2022-05-27T18:14:04.725046",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta Aperta to Offerta Cancellata"
       }
     ]
   },

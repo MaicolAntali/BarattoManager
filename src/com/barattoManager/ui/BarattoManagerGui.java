@@ -5,7 +5,6 @@ import com.barattoManager.ui.components.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 
 /**
  * Class (that {@code extends JFrame}) used to instance every other view in a cardLayout and set the JFrame.
