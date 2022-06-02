@@ -1,6 +1,5 @@
 package com.barattoManager.ui.customComponents.menu.yourArticle;
 
-import com.barattoManager.article.Article;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.menu.yourArticle.actions.CancelOffer;
 import com.barattoManager.ui.customComponents.menu.yourArticle.actions.MenuItemAction;

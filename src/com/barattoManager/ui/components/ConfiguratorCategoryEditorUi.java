@@ -1,9 +1,9 @@
 package com.barattoManager.ui.components;
 
-import com.barattoManager.ui.customComponents.tree.category.CategoryConfButtons;
-import com.barattoManager.ui.customComponents.tree.category.CategoryTree;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.event.RepaintListener;
+import com.barattoManager.ui.customComponents.tree.category.CategoryConfButtons;
+import com.barattoManager.ui.customComponents.tree.category.CategoryTree;
 
 import javax.swing.*;
 import java.awt.*;

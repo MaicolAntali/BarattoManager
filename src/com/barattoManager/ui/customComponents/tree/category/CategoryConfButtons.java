@@ -5,9 +5,9 @@ import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.exception.NullCategoryException;
+import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewCategoryPanel;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewFieldPanel;
-import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.utils.TreeUtils;
 
 import javax.swing.*;

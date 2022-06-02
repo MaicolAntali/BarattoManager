@@ -1,6 +1,5 @@
 package com.barattoManager.ui.customComponents.tree.meet;
 
-import com.barattoManager.category.Category;
 import com.barattoManager.meet.Meet;
 import com.barattoManager.meet.MeetManager;
 

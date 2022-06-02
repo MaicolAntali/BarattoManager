@@ -1,6 +1,5 @@
 package com.barattoManager.ui.components;
 
-import com.barattoManager.ui.customComponents.optionPane.CreateNewCategoryPanel;
 import com.barattoManager.ui.customComponents.tree.meet.MeetTree;
 
 import javax.swing.*;
