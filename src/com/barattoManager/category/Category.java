@@ -32,14 +32,6 @@ public class Category {
 	 */
 	private static final String POST_CONDITION_HASHMAP_FIELDS_IS_NOT_INITIALIZE = "Post-condition: The HashMap of fields is not initialize";
 	/**
-	 * Pre-condition: Subcategory name is blank
-	 */
-	private static final String PRE_CONDITION_SUBCATEGORY_NAME_IS_BLANK = "Pre-condition: Subcategory name is blank";
-	/**
-	 * Pre-condition: Subcategory description is blank
-	 */
-	private static final String PRE_CONDITION_SUBCATEGORY_DESCRIPTION_IS_BLANK = "Pre-condition: Subcategory description is blank";
-	/**
 	 * Post-condition: Subcategory has not been added to the hashmap
 	 */
 	private static final String POST_CONDITION_SUBCATEGORY_NOT_ADDED_TO_HASHMAP = "Post-condition: Subcategory has not been added to the hashmap";

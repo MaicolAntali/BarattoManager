@@ -54,7 +54,6 @@ public class ArticleTreeMenu extends JPanel {
 
 		public MenuAction(String name, JPanel fatherPanel) {
 			super(name);
-
 			this.fatherPanel = fatherPanel;
 		}
 

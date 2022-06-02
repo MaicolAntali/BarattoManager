@@ -40,7 +40,7 @@ public class ViewerYoursArticle extends JPanel implements RepaintListener {
 	}
 
 	@Override
-	public void repaintCategoryTree() {
+	public void repaintComponents() {
 		centerPanel.remove(articleTree);
 
 		articleTree = new ArticleTree(user.getUsername());
