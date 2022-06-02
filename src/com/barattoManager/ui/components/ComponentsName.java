@@ -39,7 +39,11 @@ public enum ComponentsName {
     /**
      * {@link ViewerYoursArticle}
      */
-    VIEWER_YOUR_ARTICLES("viewer_your_article");
+    VIEWER_YOUR_ARTICLES("viewer_your_article"),
+    /**
+     * {@link ViewerStoreArticle}
+     */
+    VIEWER_STORE_ARTICLES("viewer_store_article");
 
 
     /**

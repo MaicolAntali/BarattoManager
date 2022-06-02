@@ -21,7 +21,7 @@ public class ViewerYoursArticle extends JPanel implements RepaintListener {
 
 	public ViewerYoursArticle(Dimension dimension, CardLayout cardLayout, JPanel panelContainer, User user) {
 		this.user = user;
-		this.articleTree = new ArticleTree(user.getUsername());
+		this.articleTree = new ArticleTree(user.getUsername(), null);
 
 		setVisible(true);
 		add(mainPanel);
@@ -43,7 +43,7 @@ public class ViewerYoursArticle extends JPanel implements RepaintListener {
 	public void repaintComponents() {
 		centerPanel.remove(articleTree);
 
-		articleTree = new ArticleTree(user.getUsername());
+		articleTree = new ArticleTree(user.getUsername(), null);
 		articleTreeMenu.setArticleTree(articleTree);
 
 		centerPanel.add(articleTree);

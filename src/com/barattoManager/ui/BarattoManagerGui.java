@@ -62,5 +62,6 @@ public class BarattoManagerGui extends JFrame {
         panelContainer.add(new ViewerHomeUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_HOME.toString());
         panelContainer.add(new ViewerCategoryViewUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_CATEGORY.toString());
         panelContainer.add(new ViewerMeetViewUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_MEET.toString());
+        panelContainer.add(new ViewerStoreArticle(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_STORE_ARTICLES.toString());
     }
 }

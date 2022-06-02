@@ -90,8 +90,8 @@ public class ArticleManager {
 				.collect(Collectors.toList());
 	}
 
-	public List<Article> getArticles(String articleOwnerFilter, Article.State articleStateFilter) {
-		return getArticles(articleOwnerFilter).stream()
+	public List<Article> getArticles(Article.State articleStateFilter) {
+		return getArticleMap().values().stream()
 				.filter(article -> article.getArticleState() == articleStateFilter)
 				.collect(Collectors.toList());
 	}

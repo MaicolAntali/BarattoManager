@@ -12,6 +12,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeNode;
 import java.awt.*;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -33,56 +34,45 @@ public class ArticleTree extends JPanel {
 
 	private final JTree tree;
 
-	public ArticleTree(Dimension dimension, String filter) {
+	public ArticleTree(Dimension dimension, String usernameFilter, Article.State stateFilter) {
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Articoli");
 
-		var nodeMap = new HashMap<String, HashMap<String, DefaultMutableTreeNode>>() {{
-			put("Offerte Cancellate", new HashMap<>());
-			put("Offerte Aperte", new HashMap<>());
-		}};
+		var nodeMap = new HashMap<String, HashMap<String, DefaultMutableTreeNode>>();
 
 		CategoryManager categoryManager = CategoryManager.getInstance();
 
-		var articleList = Objects.equals(filter, "*") ?
-				ArticleManager.getInstance().getArticleMap().values() :
-				ArticleManager.getInstance().getArticles(filter);
+		Collection<Article> articleList;
 
-		// Create all meet
-		for (Article article : articleList) {
-			var category = categoryManager.getCategoryByUuid(article.getCategoryUuid());
-			if (category.isPresent()) {
-				if (article.getArticleState() == Article.State.CANCELLED_OFFERT) {
-					if (nodeMap.get("Offerte Cancellate").containsKey(category.get().getName())) {
-						createMeetNode(article, nodeMap.get("Offerte Cancellate").get(category.get().getName()));
-					}
-					else {
-						nodeMap.get("Offerte Cancellate").put(category.get().getName(), new DefaultMutableTreeNode(category.get().getName()));
-						createMeetNode(article, nodeMap.get("Offerte Cancellate").get(category.get().getName()));
-
-					}
-				}
-				else {
-					if (nodeMap.get("Offerte Aperte").containsKey(category.get().getName())) {
-						createMeetNode(article, nodeMap.get("Offerte Aperte").get(category.get().getName()));
-					}
-					else {
-						nodeMap.get("Offerte Aperte").put(category.get().getName(), new DefaultMutableTreeNode(category.get().getName()));
-						createMeetNode(article, nodeMap.get("Offerte Aperte").get(category.get().getName()));
-
-					}
-				}
-			}
+		if (Objects.equals(usernameFilter, "*") && stateFilter == null)
+			articleList = ArticleManager.getInstance().getArticleMap().values();
+		else {
+			if (!Objects.equals(usernameFilter, "*"))
+				articleList = ArticleManager.getInstance().getArticles(usernameFilter);
+			else
+				articleList = ArticleManager.getInstance().getArticles(stateFilter);
 		}
 
+
+		articleList
+				.forEach(article -> {
+					var category = categoryManager.getCategoryByUuid(article.getCategoryUuid());
+					if (!nodeMap.containsKey(article.getArticleState().toString())) {
+						nodeMap.put(article.getArticleState().toString(), new HashMap<>());
+					}
+					if (nodeMap.get(article.getArticleState().toString()).containsKey(category.orElseThrow(NullPointerException::new).getName()))
+						createMeetNode(article, nodeMap.get(article.getArticleState().toString()).get(category.orElseThrow(NullPointerException::new).getName()));
+					else {
+						nodeMap.get(article.getArticleState().toString()).put(category.get().getName(), new DefaultMutableTreeNode(category.get().getName()));
+						createMeetNode(article, nodeMap.get(article.getArticleState().toString()).get(category.orElseThrow(NullPointerException::new).getName()));
+					}
+				});
 
 		// add city to root node
-		for (Map.Entry<String, HashMap<String, DefaultMutableTreeNode>> entry : nodeMap.entrySet()) {
-			var stateNode = new DefaultMutableTreeNode(entry.getKey());
-			for (DefaultMutableTreeNode node : entry.getValue().values()) {
-				stateNode.add(node);
-			}
+		nodeMap.forEach((key, value) -> {
+			var stateNode = new DefaultMutableTreeNode(key);
+			value.values().forEach(stateNode::add);
 			rootNode.add(stateNode);
-		}
+		});
 
 		tree = new JTree(rootNode);
 
@@ -97,8 +87,8 @@ public class ArticleTree extends JPanel {
 		setVisible(true);
 	}
 
-	public ArticleTree(String filter) {
-		this(new Dimension(500, 290), filter);
+	public ArticleTree(String usernameFilter, Article.State stateFilter) {
+		this(new Dimension(500, 290), usernameFilter, stateFilter);
 	}
 
 	public TreeNode[] getSelectedPathNode() throws NoNodeSelected {
