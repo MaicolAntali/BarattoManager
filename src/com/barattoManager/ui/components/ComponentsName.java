@@ -37,7 +37,7 @@ public enum ComponentsName {
      */
     VIEWER_MEET("viewer_meet"),
     /**
-     * {@link ViewerYoursArticle}
+     * {@link ViewerDashboardArticle}
      */
     VIEWER_YOUR_ARTICLES("viewer_your_article"),
     /**

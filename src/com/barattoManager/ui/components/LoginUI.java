@@ -130,7 +130,7 @@ public class LoginUI extends JPanel {
 						panelContainer.add(new ViewerMeetViewUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_MEET.toString());
 
 						panelContainer.add(new ViewerStoreArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user), ComponentsName.VIEWER_STORE_ARTICLES.toString());
-						panelContainer.add(new ViewerYoursArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user), ComponentsName.VIEWER_YOUR_ARTICLES.toString());
+						panelContainer.add(new ViewerDashboardArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user), ComponentsName.VIEWER_YOUR_ARTICLES.toString());
 
 						cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString());
 					}
