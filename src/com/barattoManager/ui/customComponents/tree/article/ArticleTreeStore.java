@@ -5,7 +5,7 @@ import com.barattoManager.article.Article;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 
-public class ArticleTreeStore extends ArticleTree {
+public final class ArticleTreeStore extends ArticleTree {
 
 	public ArticleTreeStore(Dimension dimension, String usernameFilter, Article.State stateFilter) {
 		super(dimension, usernameFilter, stateFilter);

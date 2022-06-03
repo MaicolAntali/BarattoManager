@@ -5,7 +5,7 @@ import com.barattoManager.utils.History;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-public class ArticleTreeDashboard extends ArticleTree {
+public final class ArticleTreeDashboard extends ArticleTree {
 
 	public ArticleTreeDashboard(String usernameFilter, Article.State stateFilter) {
 		super(usernameFilter, stateFilter);
