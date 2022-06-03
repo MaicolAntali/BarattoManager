@@ -12,8 +12,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreeNode;
 import java.awt.*;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -41,15 +41,12 @@ public class ArticleTree extends JPanel {
 
 		CategoryManager categoryManager = CategoryManager.getInstance();
 
-		Collection<Article> articleList;
+		List<Article> articleList;
 
-		if (Objects.equals(usernameFilter, "*") && stateFilter == null)
-			articleList = ArticleManager.getInstance().getArticleMap().values();
+		if (stateFilter == null)
+			articleList = ArticleManager.getInstance().getArticlesByOwner(usernameFilter);
 		else {
-			if (!Objects.equals(usernameFilter, "*"))
-				articleList = ArticleManager.getInstance().getArticles(usernameFilter);
-			else
-				articleList = ArticleManager.getInstance().getArticles(stateFilter);
+			articleList = ArticleManager.getInstance().getArticlesByStatusExceptOwner(Article.State.OPEN_OFFERT, usernameFilter.substring(1));
 		}
 
 

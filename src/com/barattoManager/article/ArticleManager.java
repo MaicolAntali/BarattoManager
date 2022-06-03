@@ -76,23 +76,24 @@ public class ArticleManager {
 		saveArticleMapChange();
 	}
 
-	public HashMap<String, Article> getArticleMap() {
-		return articleMap;
-	}
-
 	public Optional<Article> getArticleById(String uuid) {
 		return Optional.ofNullable(articleMap.get(uuid));
 	}
 
-	public List<Article> getArticles(String articleOwnerFilter) {
-		return getArticleMap().values().stream()
-				.filter(article -> Objects.equals(article.getUserNameOwner().toLowerCase(), articleOwnerFilter.toLowerCase()))
+	public List<Article> getArticles() {
+		return new ArrayList<>(articleMap.values());
+	}
+
+	public List<Article> getArticlesByOwner(String ownerFilter) {
+		return getArticles().stream()
+				.filter(article -> Objects.equals(article.getUserNameOwner().toLowerCase(), ownerFilter.toLowerCase()))
 				.collect(Collectors.toList());
 	}
 
-	public List<Article> getArticles(Article.State articleStateFilter) {
-		return getArticleMap().values().stream()
-				.filter(article -> article.getArticleState() == articleStateFilter)
+	public List<Article> getArticlesByStatusExceptOwner(Article.State stateFilter, String ownerFilter) {
+		return getArticles().stream()
+				.filter(article -> article.getArticleState() == stateFilter)
+				.filter(article -> !Objects.equals(article.getUserNameOwner().toLowerCase(), ownerFilter.toLowerCase()))
 				.collect(Collectors.toList());
 	}
 

@@ -117,14 +117,21 @@ public class LoginUI extends JPanel {
 				}
 
 				if (user.isPasswordValid(user.getPassword())) {
-
-					// init class that need the user obj
-					panelContainer.add(new ViewerYoursArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user), ComponentsName.VIEWER_YOUR_ARTICLES.toString());
-
 					if (user instanceof Configurator) {
+						panelContainer.add(new ConfiguratorHomeUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_HOME.toString());
+						panelContainer.add(new ConfiguratorCategoryEditorUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_CATEGORY_EDITOR.toString());
+						panelContainer.add(new ConfiguratorMeetEditorUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_MEET_EDITOR.toString());
+
 						cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString());
 					}
 					else {
+						panelContainer.add(new ViewerHomeUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_HOME.toString());
+						panelContainer.add(new ViewerCategoryViewUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_CATEGORY.toString());
+						panelContainer.add(new ViewerMeetViewUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_MEET.toString());
+
+						panelContainer.add(new ViewerStoreArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user), ComponentsName.VIEWER_STORE_ARTICLES.toString());
+						panelContainer.add(new ViewerYoursArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user), ComponentsName.VIEWER_YOUR_ARTICLES.toString());
+
 						cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString());
 					}
 				}
