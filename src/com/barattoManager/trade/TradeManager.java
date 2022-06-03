@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class TradeManager {
 
@@ -38,11 +40,18 @@ public class TradeManager {
 		}
 
 
-		// Start daemon thread
+		// Start daemon thread (task every 60 sec)
 		var daemonThread = new Thread(
-				() -> {
-
-				}
+				() -> new Timer().scheduleAtFixedRate(
+						new TimerTask() {
+							@Override
+							public void run() {
+								System.out.printf("Task every 1 minute. %s%n", LocalDateTime.now());
+							}
+						},
+						0,
+						60*1_000
+				)
 		);
 		daemonThread.setDaemon(true);
 		daemonThread.start();
