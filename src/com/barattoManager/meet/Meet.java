@@ -65,6 +65,7 @@ public class Meet {
 	@JsonProperty("intervals")
 	private final ArrayList<LocalTime> intervals;
 
+	@JsonProperty("days_before_expire")
 	private final int daysBeforeExpire;
 
 
@@ -105,7 +106,7 @@ public class Meet {
 			@JsonProperty("square") String square,
 			@JsonProperty("days") ArrayList<String> days,
 			@JsonProperty("intervals") ArrayList<LocalTime> intervals,
-			int daysBeforeExpire
+			@JsonProperty("days_before_expire") int daysBeforeExpire
 	) {
 		assert !city.isBlank() : PRE_CONDITION_CITY_NAME_IS_BLANK;
 		assert !square.isBlank(): PRE_CONDITION_SQUARE_IS_BLANK;
@@ -154,6 +155,10 @@ public class Meet {
 	 */
 	public ArrayList<LocalTime> getIntervals() {
 		return intervals;
+	}
+
+	public int getDaysBeforeExpire() {
+		return daysBeforeExpire;
 	}
 
 	/**

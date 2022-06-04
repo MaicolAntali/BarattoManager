@@ -3,7 +3,9 @@
     "city": "Bergamo",
     "square": "Stazione",
     "days": [
-      "Lunedì"
+      "Lunedì",
+      "Mercoledì",
+      "Venerdì"
     ],
     "intervals": [
       "14:00:00",
@@ -15,6 +17,7 @@
       "17:00:00",
       "17:30:00",
       "18:00:00"
-    ]
+    ],
+    "days_before_expire": 3
   }
 ]

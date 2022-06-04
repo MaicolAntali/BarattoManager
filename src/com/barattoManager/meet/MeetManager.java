@@ -91,9 +91,9 @@ public final class MeetManager {
 	 * @throws IllegalValuesException Is thrown if there are an empty string
 	 * @throws AlreadyExistException Is thrown if the meet that are trying to add already exist.
 	 */
-	public void addNewMeet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException, AlreadyExistException {
+	public void addNewMeet(String city, String square, ArrayList<String> days, int startTime, int endTime, int daysBeforeExpire) throws IllegalValuesException, AlreadyExistException {
 		if (!city.isBlank() && !square.isBlank() && !days.isEmpty()) {
-			var newMeet = new Meet(city, square, days, startTime, endTime);
+			var newMeet = new Meet(city, square, days, startTime, endTime, daysBeforeExpire);
 
 			var equalityCheck = meetArrayList.stream()
 					.filter(meet -> meet.equals(newMeet))

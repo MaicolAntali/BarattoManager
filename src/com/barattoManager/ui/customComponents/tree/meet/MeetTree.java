@@ -101,6 +101,7 @@ public class MeetTree extends JPanel{
 		// add the days and intervals node to the meet node
 		meetNode.add(daysNode);
 		meetNode.add(intervalsNode);
+		meetNode.add(new DefaultMutableTreeNode("Giorni per accettare l'offerta: %d".formatted(meet.getDaysBeforeExpire())));
 
 		// add meetNode to father
 		fatherNode.add(meetNode);

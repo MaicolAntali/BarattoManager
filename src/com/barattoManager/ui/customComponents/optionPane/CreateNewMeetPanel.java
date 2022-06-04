@@ -45,6 +45,7 @@ public class CreateNewMeetPanel extends JPanel {
 	 * End time field
 	 */
 	private final JTextField endTimeField = new JTextField(24);
+	private final JTextField daysBeforeExpireField = new JTextField(24);
 
 
 	/**
@@ -89,6 +90,11 @@ public class CreateNewMeetPanel extends JPanel {
 		endTimePanel.add(new JLabel(LABEL_END_TIME));
 		endTimePanel.add(endTimeField);
 		mainPanel.add(endTimePanel);
+
+		var daysBeforeExpirePanel = new JPanel();
+		daysBeforeExpirePanel.add(new JLabel("Giorni per confermare:"));
+		daysBeforeExpirePanel.add(daysBeforeExpireField);
+		mainPanel.add(daysBeforeExpirePanel);
 
 		add(mainPanel);
 		setVisible(true);
@@ -139,5 +145,9 @@ public class CreateNewMeetPanel extends JPanel {
 	 */
 	public JTextField getEndTimeField() {
 		return endTimeField;
+	}
+
+	public String getDaysBeforeExpireField() {
+		return daysBeforeExpireField.getText();
 	}
 }

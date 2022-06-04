@@ -5,6 +5,7 @@ import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.meet.MeetManager;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewMeetPanel;
+import com.barattoManager.utils.StringParse;
 import com.barattoManager.utils.TimeParse;
 
 import javax.swing.*;
@@ -68,7 +69,8 @@ public class MeetEditorButtons extends JPanel {
 						createNewMeetPanel.getSquare(),
 						createNewMeetPanel.getSelectedDays(),
 						TimeParse.hourToMinuteTime(createNewMeetPanel.getStartTimeField().getText()),
-						TimeParse.hourToMinuteTime(createNewMeetPanel.getEndTimeField().getText())
+						TimeParse.hourToMinuteTime(createNewMeetPanel.getEndTimeField().getText()),
+						StringParse.strintToInt(createNewMeetPanel.getDaysBeforeExpireField())
 				);
 				repaintEventHandler.fireListeners();
 			}
