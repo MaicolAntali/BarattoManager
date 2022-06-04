@@ -30,6 +30,9 @@ public class TradeManager {
 			.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
 			.build();
 	private final HashMap<String, Trade> tradeHashMap;
+
+	private Thread daeminChecker;
+
 	private TradeManager() {
 		if (tradeFile.exists()) {
 			try {
@@ -42,44 +45,6 @@ public class TradeManager {
 		else {
 			tradeHashMap = new HashMap<>();
 		}
-
-
-		// Start daemon thread (task every 60 sec)
-		var daemonThread = new Thread(
-				() -> new Timer().scheduleAtFixedRate(
-						new TimerTask() {
-							@Override
-							public void run() {
-								System.out.printf("Running checker: %s%n", LocalDateTime.now());
-								if (!tradeHashMap.isEmpty()) {
-									AtomicBoolean hashmapHasChanged = new AtomicBoolean(false);
-									ArrayList<Trade> tradeToRemove = new ArrayList<>();
-									tradeHashMap.values().stream()
-											.filter(trade -> LocalDateTime.now().isAfter(trade.tradeEndDateTime()))
-											.forEach(trade -> {
-												ArticleManager.getInstance().getArticleById(trade.articleOneUuid())
-														.orElseThrow(NullPointerException::new)
-														.changeState(Article.State.OPEN_OFFERT);
-												ArticleManager.getInstance().getArticleById(trade.articleTwoUuid())
-														.orElseThrow(NullPointerException::new)
-														.changeState(Article.State.OPEN_OFFERT);
-
-												tradeToRemove.add(trade);
-												hashmapHasChanged.set(true);
-											});
-									if (hashmapHasChanged.get()) {
-										tradeToRemove.forEach(trade -> tradeHashMap.remove(trade.uuid()));
-										saveTradeMapChange();
-									}
-								}
-							}
-						},
-						0,
-						60*1_000
-				)
-		);
-		daemonThread.setDaemon(true);
-		daemonThread.start();
 	}
 
 	public void addNewTrade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid) {
@@ -88,15 +53,56 @@ public class TradeManager {
 		saveTradeMapChange();
 	}
 
+	public static TradeManager getInstance() {
+		return TradeManagerHolder.instance;
+	}
+
+	public void runDaemonChecker() {
+		// Check if the thread is already running
+		if (daeminChecker == null || !daeminChecker.isAlive()) {
+			daeminChecker = new Thread(
+					() -> new Timer().scheduleAtFixedRate(
+							new TimerTask() {
+								@Override
+								public void run() {
+									System.out.printf("Running checker: %s%n", LocalDateTime.now());
+									if (!tradeHashMap.isEmpty()) {
+										AtomicBoolean hashmapHasChanged = new AtomicBoolean(false);
+										ArrayList<Trade> tradeToRemove = new ArrayList<>();
+										tradeHashMap.values().stream()
+												.filter(trade -> LocalDateTime.now().isAfter(trade.tradeEndDateTime()))
+												.forEach(trade -> {
+													ArticleManager.getInstance().getArticleById(trade.articleOneUuid())
+															.orElseThrow(NullPointerException::new)
+															.changeState(Article.State.OPEN_OFFERT);
+													ArticleManager.getInstance().getArticleById(trade.articleTwoUuid())
+															.orElseThrow(NullPointerException::new)
+															.changeState(Article.State.OPEN_OFFERT);
+
+													tradeToRemove.add(trade);
+													hashmapHasChanged.set(true);
+												});
+										if (hashmapHasChanged.get()) {
+											tradeToRemove.forEach(trade -> tradeHashMap.remove(trade.uuid()));
+											saveTradeMapChange();
+										}
+									}
+								}
+							},
+							0,
+							60*1_000
+					)
+			);
+			daeminChecker.setDaemon(true);
+			daeminChecker.start();
+		}
+	}
+
 	private static final class  TradeManagerHolder {
 		/**
 		 * Instance of {@link TradeManager}
 		 */
 		private static final TradeManager instance = new TradeManager();
-	}
-
-	public static TradeManager getInstance() {
-		return TradeManagerHolder.instance;
 	}
 
 	private void saveTradeMapChange() {

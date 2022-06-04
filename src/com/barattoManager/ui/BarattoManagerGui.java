@@ -49,7 +49,8 @@ public class BarattoManagerGui extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((screenSize.width - getWidth()) / 2, (screenSize.height - getHeight()) / 2);
 
-        TradeManager.getInstance();
+        // Start the daemon thread in the TradeManager
+        TradeManager.getInstance().runDaemonChecker();
 
         // Set the app version
         versionLabel.setText(AppConfigurator.getInstance().getAppDataAsText("version"));
