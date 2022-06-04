@@ -65,6 +65,8 @@ public class Meet {
 	@JsonProperty("intervals")
 	private final ArrayList<LocalTime> intervals;
 
+	private final int daysBeforeExpire;
+
 
 	/**
 	 * {@link Meet} constructor
@@ -76,18 +78,18 @@ public class Meet {
 	 * @param endTime   End hour of meetings, must be expressed in minutes <i>(14:30 -> 10*60+30)</i>
 	 * @throws IllegalValuesException Is thrown if there are an illegal value
 	 */
-	public Meet(String city, String square, ArrayList<String> days, int startTime, int endTime) throws IllegalValuesException {
+	public Meet(String city, String square, ArrayList<String> days, int startTime, int endTime, int daysBeforeExpire) throws IllegalValuesException {
 		assert !city.isBlank() : PRE_CONDITION_CITY_NAME_IS_BLANK;
 		assert !square.isBlank(): PRE_CONDITION_SQUARE_IS_BLANK;
 		assert !days.isEmpty(): PRE_CONDITION_DAYS_IS_BLANK;
 		assert startTime >= 0 : PRE_CONDITION_START_TIME_NAME_IS_BLANK;
 		assert endTime >= 0 : PRE_CONDITION_END_TIME_NAME_IS_BLANK;
 
-
 		this.city = city;
 		this.square = square;
 		this.days = days;
 		this.intervals = intervals(startTime, endTime);
+		this.daysBeforeExpire = daysBeforeExpire;
 	}
 
 	/**
@@ -102,7 +104,8 @@ public class Meet {
 			@JsonProperty("city") String city,
 			@JsonProperty("square") String square,
 			@JsonProperty("days") ArrayList<String> days,
-			@JsonProperty("intervals") ArrayList<LocalTime> intervals
+			@JsonProperty("intervals") ArrayList<LocalTime> intervals,
+			int daysBeforeExpire
 	) {
 		assert !city.isBlank() : PRE_CONDITION_CITY_NAME_IS_BLANK;
 		assert !square.isBlank(): PRE_CONDITION_SQUARE_IS_BLANK;
@@ -111,6 +114,7 @@ public class Meet {
 		this.square = square;
 		this.days = days;
 		this.intervals = intervals;
+		this.daysBeforeExpire = daysBeforeExpire;
 
 		assert days.isEmpty() : POST_CONDITION_DAYS_ARRAYLIST_IS_EMPTY;
 		assert intervals.isEmpty() : POST_CONDITION_INTERVALS_ARRAYLIST_IS_EMPTY;
