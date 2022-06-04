@@ -1,6 +1,7 @@
 package com.barattoManager.ui;
 
 import com.barattoManager.config.AppConfigurator;
+import com.barattoManager.trade.TradeManager;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.components.InitialMenuUI;
 import com.barattoManager.ui.components.LoginUI;
@@ -47,6 +48,8 @@ public class BarattoManagerGui extends JFrame {
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((screenSize.width - getWidth()) / 2, (screenSize.height - getHeight()) / 2);
+
+        TradeManager.getInstance();
 
         // Set the app version
         versionLabel.setText(AppConfigurator.getInstance().getAppDataAsText("version"));

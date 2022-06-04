@@ -1,5 +1,7 @@
 package com.barattoManager.trade;
 
+import com.barattoManager.article.Article;
+import com.barattoManager.article.ArticleManager;
 import com.barattoManager.config.AppConfigurator;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,9 +14,11 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class TradeManager {
 
@@ -46,7 +50,28 @@ public class TradeManager {
 						new TimerTask() {
 							@Override
 							public void run() {
-								System.out.printf("Task every 1 minute. %s%n", LocalDateTime.now());
+								System.out.printf("Running checker: %s%n", LocalDateTime.now());
+								if (!tradeHashMap.isEmpty()) {
+									AtomicBoolean hashmapHasChanged = new AtomicBoolean(false);
+									ArrayList<Trade> tradeToRemove = new ArrayList<>();
+									tradeHashMap.values().stream()
+											.filter(trade -> LocalDateTime.now().isAfter(trade.tradeEndDateTime()))
+											.forEach(trade -> {
+												ArticleManager.getInstance().getArticleById(trade.articleOneUuid())
+														.orElseThrow(NullPointerException::new)
+														.changeState(Article.State.OPEN_OFFERT);
+												ArticleManager.getInstance().getArticleById(trade.articleTwoUuid())
+														.orElseThrow(NullPointerException::new)
+														.changeState(Article.State.OPEN_OFFERT);
+
+												tradeToRemove.add(trade);
+												hashmapHasChanged.set(true);
+											});
+									if (hashmapHasChanged.get()) {
+										tradeToRemove.forEach(trade -> tradeHashMap.remove(trade.uuid()));
+										saveTradeMapChange();
+									}
+								}
 							}
 						},
 						0,
