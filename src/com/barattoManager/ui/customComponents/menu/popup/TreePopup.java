@@ -4,11 +4,15 @@ import com.barattoManager.article.Article;
 import com.barattoManager.article.ArticleManager;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
+import com.barattoManager.meet.Meet;
+import com.barattoManager.meet.MeetManager;
+import com.barattoManager.trade.TradeManager;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTree;
 
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
 import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class TreePopup extends JPopupMenu {
@@ -52,7 +56,26 @@ public class TreePopup extends JPopupMenu {
             );
 
             if (result == JOptionPane.OK_OPTION) {
-               System.out.println(selectArticleToTrade.getSelectedArticle());
+               var selectMeetDate = new SelectMeetDate();
+               int resultMeetDate = JOptionPane.showOptionDialog(
+                       this,
+                       selectMeetDate,
+                       "Scambia Articolo",
+                       JOptionPane.OK_CANCEL_OPTION,
+                       JOptionPane.QUESTION_MESSAGE,
+                       null,
+                       null,
+                       null
+               );
+
+               if (resultMeetDate == JOptionPane.OK_OPTION) {
+                  TradeManager.getInstance().addNewTrade(
+                          LocalDateTime.now().plusDays(Integer.parseInt(selectMeetDate.getSelectedMeetDaysBeforeExpire())),
+                          selectArticleToTrade.getSelectedArticle().getUuid(),
+                          articleToTrade.getUuid()
+                  );
+                  System.out.println();
+               }
             }
 
          }
@@ -91,5 +114,30 @@ class SelectArticleToTrade extends JPanel {
       return ArticleManager.getInstance()
               .getArticleById(String.valueOf(articleComboBox.getSelectedItem()))
               .orElseThrow(NullPointerException::new);
+   }
+}
+
+class SelectMeetDate extends JPanel {
+
+   private final JComboBox<String> meetComboBox = new JComboBox<>();
+   public SelectMeetDate() {
+      var mainPanel = new JPanel();
+      mainPanel.setLayout(new GridLayout(0, 1));
+
+
+      mainPanel.add(new JLabel("Seleziona il giorno dello scambio:"));
+
+      for (Meet meet : MeetManager.getInstance().getMeetArrayList()) {
+         meet.getDays().forEach(days -> meetComboBox.addItem("%s ~ %s ~ %s ~ [%s-%s] ~ %s".formatted(meet.getCity(), meet.getSquare(), days, meet.getIntervals().get(1), meet.getIntervals().get(meet.getIntervals().size()-1), meet.getDaysBeforeExpire())));
+      }
+
+      mainPanel.add(meetComboBox);
+
+      add(mainPanel);
+      setVisible(true);
+   }
+
+   public String getSelectedMeetDaysBeforeExpire() {
+      return String.valueOf(meetComboBox.getSelectedItem()).split("~")[4].trim();
    }
 }
