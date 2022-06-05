@@ -32,8 +32,11 @@ public abstract class ArticleTree extends JPanel {
 	private static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
 
 	private final JTree tree;
+	private final String username;
 
 	public ArticleTree(Dimension dimension, String usernameFilter, Article.State stateFilter) {
+		this.username = usernameFilter.replace("!", "");
+
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Articoli");
 
 		var nodeMap = generateNodeMap(usernameFilter, stateFilter);
@@ -72,6 +75,10 @@ public abstract class ArticleTree extends JPanel {
 
 	public JTree getTree() {
 		return tree;
+	}
+
+	public String getUsername() {
+		return username;
 	}
 
 	protected DefaultMutableTreeNode generateFields(Article article) {

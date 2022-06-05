@@ -12,7 +12,7 @@
         <properties>
           <font size="24" style="3"/>
           <horizontalAlignment value="0"/>
-          <text value="I tuoi Articoli"/>
+          <text value="Store"/>
         </properties>
       </component>
       <grid id="339d7" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

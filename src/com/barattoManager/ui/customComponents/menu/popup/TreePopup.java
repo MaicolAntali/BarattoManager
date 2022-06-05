@@ -1,12 +1,13 @@
 package com.barattoManager.ui.customComponents.menu.popup;
 
+import com.barattoManager.article.Article;
+import com.barattoManager.article.ArticleManager;
+import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
-import com.barattoManager.ui.customComponents.optionPane.CreateNewFieldPanel;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTree;
 
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
-import java.util.Arrays;
 
 public class TreePopup extends JPopupMenu {
 
@@ -22,12 +23,28 @@ public class TreePopup extends JPopupMenu {
 
    private void tradeArticle() {
       try {
-         // Get the selected node
          TreeNode[] nodePath = tree.getSelectedPathNode();
 
-         System.out.println(Arrays.toString(nodePath));
+         var articleOptional = ArticleManager.getInstance().getArticleById(nodePath[nodePath.length -1].toString());
 
-      } catch (NoNodeSelected  ex) {
+         if (articleOptional.isPresent()) {
+            var articleToTrade = articleOptional.get();
+
+            var possibleArticles = ArticleManager.getInstance()
+                    .getArticlesByOwnerStateCategory(tree.getUsername(), Article.State.OPEN_OFFERT, articleToTrade.getCategoryUuid());
+
+            if (possibleArticles.isEmpty()) {
+               throw new IllegalValuesException("Non possiedi nessun articolo di questa categoria.");
+            }
+
+            System.out.println(possibleArticles);
+         }
+         else {
+            throw new IllegalValuesException("Non è stato selezionato un articolo.");
+         }
+
+
+      } catch (NoNodeSelected | IllegalValuesException  ex) {
          JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
       }
    }

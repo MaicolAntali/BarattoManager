@@ -1,5 +1,6 @@
 package com.barattoManager.article;
 
+import com.barattoManager.category.Category;
 import com.barattoManager.category.field.Field;
 import com.barattoManager.config.AppConfigurator;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -87,6 +88,13 @@ public class ArticleManager {
 	public List<Article> getArticlesByOwner(String ownerFilter) {
 		return getArticles().stream()
 				.filter(article -> Objects.equals(article.getUserNameOwner().toLowerCase(), ownerFilter.toLowerCase()))
+				.collect(Collectors.toList());
+	}
+
+	public List<Article> getArticlesByOwnerStateCategory(String ownerFilter, Article.State state, String categoryUuid) {
+		return getArticlesByOwner(ownerFilter).stream()
+				.filter(article -> article.getArticleState() == state)
+				.filter(article -> Objects.equals(article.getCategoryUuid(), categoryUuid))
 				.collect(Collectors.toList());
 	}
 
