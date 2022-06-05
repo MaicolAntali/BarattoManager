@@ -70,6 +70,10 @@ public abstract class ArticleTree extends JPanel {
 		}
 	}
 
+	public JTree getTree() {
+		return tree;
+	}
+
 	protected DefaultMutableTreeNode generateFields(Article article) {
 		var fieldsNode = new DefaultMutableTreeNode("Campi");
 

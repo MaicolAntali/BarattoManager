@@ -32,7 +32,9 @@ public class Article {
 	public enum State {
 		NOT_CHECKED("Non validato"),
 		OPEN_OFFERT("Offerta Aperta"),
-		CANCELLED_OFFERT("Offerta Cancellata");
+		CANCELLED_OFFERT("Offerta Cancellata"),
+		LINKED_OFFERT("Offerta accoppiata"),
+		SELECTED_OFFERT("Offerta selezionata");
 
 
 		private final String italianLabel;

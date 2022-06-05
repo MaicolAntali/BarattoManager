@@ -2,7 +2,8 @@ package com.barattoManager.ui.components;
 
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.event.RepaintListener;
-import com.barattoManager.ui.customComponents.menu.yourArticle.ArticleTreeMenu;
+import com.barattoManager.ui.customComponents.menu.ArticleMenu;
+import com.barattoManager.ui.customComponents.menu.ArticleMenuDashboard;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTreeDashboard;
 import com.barattoManager.user.User;
 
@@ -12,7 +13,7 @@ import java.awt.*;
 public class ViewerDashboardArticle extends JPanel implements RepaintListener {
 
 	private final User user;
-	private final ArticleTreeMenu articleTreeMenu;
+	private final ArticleMenu articleTreeMenu;
 
 	private ArticleTreeDashboard articleTree;
 	private JPanel mainPanel;
@@ -31,7 +32,7 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener {
 		repaintEventHandler.addListener(this);
 
 
-		this.articleTreeMenu = new ArticleTreeMenu(user, repaintEventHandler, articleTree);
+		this.articleTreeMenu = new ArticleMenuDashboard(user, repaintEventHandler, articleTree);
 		centerPanel.add(articleTreeMenu , BorderLayout.NORTH);
 		centerPanel.add(articleTree);
 

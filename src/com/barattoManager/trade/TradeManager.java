@@ -48,6 +48,10 @@ public class TradeManager {
 	}
 
 	public void addNewTrade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid) {
+
+		ArticleManager.getInstance().getArticleById(articleOneUuid).orElseThrow(NullPointerException::new).changeState(Article.State.LINKED_OFFERT);
+		ArticleManager.getInstance().getArticleById(articleTwoUuid).orElseThrow(NullPointerException::new).changeState(Article.State.SELECTED_OFFERT);
+
 		var trade = new Trade(endTradeDateTime, articleOneUuid, articleTwoUuid);
 		tradeHashMap.put(trade.uuid(), trade);
 		saveTradeMapChange();
