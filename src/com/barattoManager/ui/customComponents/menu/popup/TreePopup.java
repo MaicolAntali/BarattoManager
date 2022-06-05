@@ -8,6 +8,8 @@ import com.barattoManager.ui.customComponents.tree.article.ArticleTree;
 
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
+import java.awt.*;
+import java.util.List;
 
 public class TreePopup extends JPopupMenu {
 
@@ -37,7 +39,22 @@ public class TreePopup extends JPopupMenu {
                throw new IllegalValuesException("Non possiedi nessun articolo di questa categoria.");
             }
 
-            System.out.println(possibleArticles);
+            var selectArticleToTrade = new SelectArticleToTrade(possibleArticles);
+            int result = JOptionPane.showOptionDialog(
+                    this,
+                    selectArticleToTrade,
+                    "Scambia Articolo",
+                    JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    null,
+                    null
+            );
+
+            if (result == JOptionPane.OK_OPTION) {
+               System.out.println(selectArticleToTrade.getSelectedArticle());
+            }
+
          }
          else {
             throw new IllegalValuesException("Non è stato selezionato un articolo.");
@@ -47,5 +64,32 @@ public class TreePopup extends JPopupMenu {
       } catch (NoNodeSelected | IllegalValuesException  ex) {
          JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
       }
+   }
+}
+
+class SelectArticleToTrade extends JPanel {
+
+   private final JComboBox<String> articleComboBox = new JComboBox<>();
+   public SelectArticleToTrade(List<Article> articles) {
+      var mainPanel = new JPanel();
+      mainPanel.setLayout(new GridLayout(0, 1));
+
+
+      mainPanel.add(new JLabel("Seleziona l'oggetto che vuoi scambiare:"));
+
+      for (Article item : articles) {
+         articleComboBox.addItem(item.getUuid());
+      }
+
+      mainPanel.add(articleComboBox);
+
+      add(mainPanel);
+      setVisible(true);
+   }
+
+   public Article getSelectedArticle() {
+      return ArticleManager.getInstance()
+              .getArticleById(String.valueOf(articleComboBox.getSelectedItem()))
+              .orElseThrow(NullPointerException::new);
    }
 }
