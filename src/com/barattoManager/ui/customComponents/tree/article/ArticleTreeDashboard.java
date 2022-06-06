@@ -12,8 +12,8 @@ public final class ArticleTreeDashboard extends ArticleTree {
 	}
 
 	@Override
-	protected void createMeetNode(Article article, DefaultMutableTreeNode fatherNode) {
-		var articleNode = new DefaultMutableTreeNode(article.getUuid());
+	protected void createNode(Article article, DefaultMutableTreeNode fatherNode) {
+		var articleNode = new DefaultMutableTreeNode(article.getArticleName());
 
 		articleNode.add(new DefaultMutableTreeNode("Proprietario: %s".formatted(article.getUserNameOwner())));
 

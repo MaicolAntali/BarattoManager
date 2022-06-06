@@ -14,6 +14,8 @@ import java.util.UUID;
 @JsonPropertyOrder({ "uuid", "owner", "category_uuid", "state", "fields", "log" })
 public class Article {
 
+	@JsonProperty("name")
+	private final String articleName;
 	@JsonProperty("uuid")
 	private final String uuid;
 	@JsonProperty("owner")
@@ -49,11 +51,12 @@ public class Article {
 		}
 	}
 
-	public Article(String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
+	public Article(String articleName, String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
 		this.history = new ArrayList<>();
 		history.add(new History("Article Created", "Article has just been created by the viewer %s".formatted(userNameOwner)));
 
 		this.uuid = UUID.randomUUID().toString();
+		this.articleName = articleName;
 		this.userNameOwner = userNameOwner;
 		this.categoryUuid = categoryUuid;
 		this.articleState = State.NOT_CHECKED;
@@ -63,6 +66,7 @@ public class Article {
 
 	public Article(
 			@JsonProperty("uuid") String uuid,
+			@JsonProperty("name") String articleName,
 			@JsonProperty("user") String userNameOwner,
 			@JsonProperty("category_uuid") String categoryUuid,
 			@JsonProperty("fields") HashMap<Field, String> fieldValueMap,
@@ -71,6 +75,7 @@ public class Article {
 	) {
 
 		this.uuid = uuid;
+		this.articleName = articleName;
 		this.userNameOwner = userNameOwner;
 		this.categoryUuid = categoryUuid;
 		this.fieldValueMap = fieldValueMap;
@@ -80,6 +85,10 @@ public class Article {
 
 	public String getUuid() {
 		return uuid;
+	}
+
+	public String getArticleName() {
+		return articleName;
 	}
 
 	public String getUserNameOwner() {

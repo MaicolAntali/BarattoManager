@@ -27,9 +27,10 @@ public final class ArticleTreeStore extends ArticleTree {
 	}
 
 	@Override
-	protected void createMeetNode(Article article, DefaultMutableTreeNode fatherNode) {
-		var articleNode = new DefaultMutableTreeNode(article.getUuid());
+	protected void createNode(Article article, DefaultMutableTreeNode fatherNode) {
+		var articleNode = new DefaultMutableTreeNode(article.getArticleName());
 
+		articleNode.add(new DefaultMutableTreeNode("UUID: %s".formatted(article.getUuid())));
 		articleNode.add(generateFields(article));
 
 		fatherNode.add(articleNode);

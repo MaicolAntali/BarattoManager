@@ -93,7 +93,7 @@ public abstract class ArticleTree extends JPanel {
 		return fieldsNode;
 	}
 
-	protected abstract void createMeetNode(Article article, DefaultMutableTreeNode fatherNode);
+	protected abstract void createNode(Article article, DefaultMutableTreeNode fatherNode);
 
 
 	private HashMap<String, HashMap<String, DefaultMutableTreeNode>> generateNodeMap(String usernameFilter, Article.State stateFilter) {
@@ -117,10 +117,10 @@ public abstract class ArticleTree extends JPanel {
 					}
 
 					if (nodeMap.get(article.getArticleState().toString()).containsKey(category.orElseThrow(NullPointerException::new).getName()))
-						createMeetNode(article, nodeMap.get(article.getArticleState().toString()).get(category.orElseThrow(NullPointerException::new).getName()));
+						createNode(article, nodeMap.get(article.getArticleState().toString()).get(category.orElseThrow(NullPointerException::new).getName()));
 					else {
 						nodeMap.get(article.getArticleState().toString()).put(category.get().getName(), new DefaultMutableTreeNode(category.get().getName()));
-						createMeetNode(article, nodeMap.get(article.getArticleState().toString()).get(category.orElseThrow(NullPointerException::new).getName()));
+						createNode(article, nodeMap.get(article.getArticleState().toString()).get(category.orElseThrow(NullPointerException::new).getName()));
 					}
 				});
 

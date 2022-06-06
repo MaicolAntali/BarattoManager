@@ -47,6 +47,7 @@ public class NewArticle implements MenuItemAction {
 
 			if (resultFormPanel == JOptionPane.OK_OPTION) {
 				ArticleManager.getInstance().addNewArticle(
+						formPanel.getArticleName().getText(),
 						user.getUsername(),
 						categorySelected.getUuid(),
 						formPanel.getFields(),
@@ -63,6 +64,7 @@ public class NewArticle implements MenuItemAction {
 
 		private final ArrayList<Field> fields;
 		private final ArrayList<JTextField> jTextFields;
+		private final JTextField articleName;
 
 		public FormArticlePanel(Category category) {
 			fields = new ArrayList<>();
@@ -75,6 +77,11 @@ public class NewArticle implements MenuItemAction {
 
 			var fieldsPanel = new JPanel();
 			fieldsPanel.setLayout(new GridLayout(0, 2));
+
+			fieldsPanel.add(new JLabel("Nome Articolo:"));
+			this.articleName = new JTextField();
+			fieldsPanel.add(articleName);
+
 			for (Field field : category.getCategoryFields().values()) {
 				fields.add(field);
 				fieldsPanel.add(new JLabel("%s%s".formatted(field.name(), field.required() ? "*" : "")));
@@ -101,6 +108,10 @@ public class NewArticle implements MenuItemAction {
 			}
 
 			return values;
+		}
+
+		public JTextField getArticleName() {
+			return articleName;
 		}
 	}
 

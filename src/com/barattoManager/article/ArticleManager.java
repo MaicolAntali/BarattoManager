@@ -71,8 +71,8 @@ public class ArticleManager {
 		return ArticleManagerHolder.instance;
 	}
 
-	public void addNewArticle(String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
-		var article = new Article(userNameOwner, categoryUuid, fields, values);
+	public void addNewArticle(String articleName, String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
+		var article = new Article(articleName, userNameOwner, categoryUuid, fields, values);
 		articleMap.put(article.getUuid(), article);
 		saveArticleMapChange();
 	}
