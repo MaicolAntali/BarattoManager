@@ -12,11 +12,25 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 
+/**
+ * Class used to create a JPanel that contains menu for yours article view
+ */
 public class ArticleTreeMenu extends JPanel {
-
+	/**
+	 * Cancel offer command
+	 */
+	private static final String CANCEL_OFFER_COMMAND = "Cancella Offerta";
+	/**
+	 * Article Tree
+	 */
 	private ArticleTree articleTree;
-
+	/**
+	 * User
+	 */
 	private final User user;
+	/**
+	 * {@link RepaintEventHandler}
+	 */
 	private final RepaintEventHandler repaintEventHandler;
 
 	public ArticleTreeMenu(User user, RepaintEventHandler repaintEventHandler, ArticleTree articleTree) {
@@ -29,7 +43,7 @@ public class ArticleTreeMenu extends JPanel {
 		var articleMenuItemNew = articleMenu.add(new MenuAction("Nuovo", this));
 		articleMenuItemNew.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
 
-		articleMenu.add(new MenuAction("Cancella Offerta", this));
+		articleMenu.add(new MenuAction(CANCEL_OFFER_COMMAND, this));
 
 
 		var menuBar = new JMenuBar();
@@ -46,7 +60,7 @@ public class ArticleTreeMenu extends JPanel {
 			ACTION_HASH_MAP = new HashMap<>();
 
 			ACTION_HASH_MAP.put("Nuovo", new NewArticle());
-			ACTION_HASH_MAP.put("Cancella Offerta", new CancelOffer());
+			ACTION_HASH_MAP.put(CANCEL_OFFER_COMMAND, new CancelOffer());
 		}
 
 		private final JPanel fatherPanel;

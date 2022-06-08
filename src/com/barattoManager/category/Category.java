@@ -75,6 +75,7 @@ public class Category {
 
 	/**
 	 * {@link Category} constructor
+	 * @param uuid Uuid of category
 	 * @param name Name of category
 	 * @param description Description of category
 	 * @param subCategory {@link HashMap} that contains each sub-category

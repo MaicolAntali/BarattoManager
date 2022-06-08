@@ -15,6 +15,9 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Class used to create new article
+ */
 public class NewArticle implements MenuItemAction {
 	@Override
 	public void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user, ArticleTree articleTree) {

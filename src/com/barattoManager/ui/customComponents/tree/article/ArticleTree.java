@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Class used to create a JPanel that contain a JTree
+ */
 public class ArticleTree extends JPanel {
 
 	/**
@@ -31,9 +34,23 @@ public class ArticleTree extends JPanel {
 	 * Icon for field
 	 */
 	private static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
+	/**
+	 * No node has been selected error
+	 */
+	private static final String ERROR_NO_NODE_HAS_BEEN_SELECTED = "Non è stato selezionato nessun nodo.";
 
+	/**
+	 * {@link JTree} object
+	 */
 	private final JTree tree;
 
+	/**
+	 * {@link ArticleTree} constructor
+	 *
+	 * @param dimension Dimension of the JPanel.
+	 * @param usernameFilter Username filter
+	 * @param stateFilter State filter
+	 */
 	public ArticleTree(Dimension dimension, String usernameFilter, Article.State stateFilter) {
 		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Articoli");
 
@@ -60,10 +77,10 @@ public class ArticleTree extends JPanel {
 						nodeMap.put(article.getArticleState().toString(), new HashMap<>());
 					}
 					if (nodeMap.get(article.getArticleState().toString()).containsKey(category.orElseThrow(NullPointerException::new).getName()))
-						createMeetNode(article, nodeMap.get(article.getArticleState().toString()).get(category.orElseThrow(NullPointerException::new).getName()));
+						createNode(article, nodeMap.get(article.getArticleState().toString()).get(category.orElseThrow(NullPointerException::new).getName()));
 					else {
 						nodeMap.get(article.getArticleState().toString()).put(category.get().getName(), new DefaultMutableTreeNode(category.get().getName()));
-						createMeetNode(article, nodeMap.get(article.getArticleState().toString()).get(category.orElseThrow(NullPointerException::new).getName()));
+						createNode(article, nodeMap.get(article.getArticleState().toString()).get(category.orElseThrow(NullPointerException::new).getName()));
 					}
 				});
 
@@ -87,21 +104,37 @@ public class ArticleTree extends JPanel {
 		setVisible(true);
 	}
 
+	/**
+	 * {@link ArticleTree} constructor
+	 *
+	 * @param usernameFilter Username filter
+	 * @param stateFilter State filter
+	 */
 	public ArticleTree(String usernameFilter, Article.State stateFilter) {
 		this(new Dimension(500, 290), usernameFilter, stateFilter);
 	}
 
+	/**
+	 * Method used to get the current selected node in the {@link #tree}.
+	 * @return Array of {@link TreeNode} that contains the node path.
+	 * @throws NoNodeSelected is thrown if the user does not select any node.
+	 */
 	public TreeNode[] getSelectedPathNode() throws NoNodeSelected {
 		var selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
 		if (selectedNode == null) {
-			throw new NoNodeSelected("Non è stato selezionato nessun nodo.");
+			throw new NoNodeSelected(ERROR_NO_NODE_HAS_BEEN_SELECTED);
 		}
 		else {
 			return selectedNode.getPath();
 		}
 	}
 
-	private void createMeetNode(Article article, DefaultMutableTreeNode fatherNode) {
+	/**
+	 * Method used to create new node
+	 * @param article {@link Article} want to create the node.
+	 * @param fatherNode {@link DefaultMutableTreeNode} node to attach the new node
+	 */
+	private void createNode(Article article, DefaultMutableTreeNode fatherNode) {
 		// create the article node
 		var articleNode = new DefaultMutableTreeNode(article.getUuid());
 

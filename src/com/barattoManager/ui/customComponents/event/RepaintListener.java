@@ -1,11 +1,11 @@
 package com.barattoManager.ui.customComponents.event;
 
 /**
- * Interface that represent the repaintTreeContainerComponents event
+ * Interface that represent the repaintComponents event
  */
 public interface RepaintListener {
 	/**
-	 * Event use to repaint the category tree
+	 * Event use to repaint the trees
 	 */
 	void repaintComponents();
 }

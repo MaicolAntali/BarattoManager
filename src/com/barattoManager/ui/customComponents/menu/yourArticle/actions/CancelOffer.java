@@ -12,6 +12,9 @@ import com.barattoManager.user.User;
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
 
+/**
+ * Class used to cancel an offer
+ */
 public class CancelOffer implements MenuItemAction {
 	@Override
 	public void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user, ArticleTree articleTree) {
@@ -29,8 +32,8 @@ public class CancelOffer implements MenuItemAction {
 				var article = ArticleManager.getInstance().getArticleById(nodePath[nodePath.length-1].toString());
 
 				if (article.isPresent()) {
-					if (article.get().getArticleState() != Article.State.CANCELLED_OFFERT) {
-						article.get().changeState(Article.State.CANCELLED_OFFERT);
+					if (article.get().getArticleState() != Article.State.CANCELLED_OFFER) {
+						article.get().changeState(Article.State.CANCELLED_OFFER);
 						repaintEventHandler.fireListeners();
 					}
 					else {

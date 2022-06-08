@@ -1,5 +1,6 @@
 package com.barattoManager.article;
 
+import com.barattoManager.category.CategoryManager;
 import com.barattoManager.category.field.Field;
 import com.barattoManager.config.AppConfigurator;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -15,9 +16,12 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the articles.
+ */
 public class ArticleManager {
 	/**
-	 * Category JSON file
+	 * Article JSON file
 	 */
 	private final File articleFile = new File(AppConfigurator.getInstance().getFileName("article_file"));
 	/**
@@ -34,6 +38,9 @@ public class ArticleManager {
 	 */
 	private final HashMap<String, Article> articleMap;
 
+	/**
+	 * {@link ArticleManager} constructor
+	 */
 	private ArticleManager() {
 		if (articleFile.exists()) {
 			try {
@@ -70,32 +77,62 @@ public class ArticleManager {
 		return ArticleManagerHolder.instance;
 	}
 
+	/**
+	 * Method used to add new article
+	 *
+	 * @param userNameOwner Owner name of article
+	 * @param categoryUuid Category uuid of article
+	 * @param fields {@link ArrayList} that contains fields name of article
+	 * @param values {@link ArrayList} that contains fields values
+	 */
 	public void addNewArticle(String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
 		var article = new Article(userNameOwner, categoryUuid, fields, values);
 		articleMap.put(article.getUuid(), article);
 		saveArticleMapChange();
 	}
 
+	/**
+	 * Method used to get the {@link HashMap} of articles
+	 * @return {@link HashMap} of articles
+	 */
 	public HashMap<String, Article> getArticleMap() {
 		return articleMap;
 	}
 
+	/**
+	 * Method used to get an article by UUID
+	 * @param uuid  UUID of the article to get
+	 * @return {@link Optional} that contains the article if it's find otherwise empty
+	 */
 	public Optional<Article> getArticleById(String uuid) {
 		return Optional.ofNullable(articleMap.get(uuid));
 	}
 
+	/**
+	 * Method used to get an article by owner name
+	 * @param articleOwnerFilter owner name
+	 * @return {@link List} that contains the article if it's find otherwise empty
+	 */
 	public List<Article> getArticles(String articleOwnerFilter) {
 		return getArticleMap().values().stream()
 				.filter(article -> Objects.equals(article.getUserNameOwner().toLowerCase(), articleOwnerFilter.toLowerCase()))
 				.collect(Collectors.toList());
 	}
 
+	/**
+	 * Method used to get an article by state of article
+	 * @param articleStateFilter state of article
+	 * @return {@link List} that contains the article if it's find otherwise empty
+	 */
 	public List<Article> getArticles(Article.State articleStateFilter) {
 		return getArticleMap().values().stream()
 				.filter(article -> article.getArticleState() == articleStateFilter)
 				.collect(Collectors.toList());
 	}
 
+	/**
+	 * Method used to save the {@link #articleMap} object
+	 */
 	public void forceSaveData() {
 		saveArticleMapChange();
 	}

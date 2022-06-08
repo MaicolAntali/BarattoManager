@@ -97,7 +97,7 @@ public final class CategoryManager {
 	}
 
 	/**
-	 * Method used to add a new Main category
+	 * Method used to add new Main category
 	 *
 	 * @param name        Name of new category
 	 * @param description Description of the new category
@@ -241,12 +241,13 @@ public final class CategoryManager {
 
 	/**
 	 * Method used to get a Category by UUID
-	 * @param uuid Category UUID to get
+	 * @param uuid UUID of the category to get
 	 * @return {@link Optional} that contains the category if it's find otherwise empty
 	 */
 	public Optional<Category> getCategoryByUuid(String uuid) {
 		return getCategory(rootCategoryMap, uuid);
 	}
+
 
 	private Optional<Category> getCategory(HashMap<String, Category> categoryHashMap, String uuid) {
 		Optional<Category> categoryOptional = Optional.empty();

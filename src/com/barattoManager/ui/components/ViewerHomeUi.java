@@ -19,7 +19,13 @@ public class ViewerHomeUi extends JPanel {
 	 * MeetView button to {@link ViewerMeetViewUi}
 	 */
 	private JButton viewMeetButton;
+	/**
+	 * YoursArticle button to {@link ViewerYoursArticle}
+	 */
 	private JButton yoursArticleButton;
+	/**
+	 * ArticleStore button to {@link ViewerStoreArticle}
+	 */
 	private JButton storeArticleButton;
 
 	/**
