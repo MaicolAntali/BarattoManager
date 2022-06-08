@@ -1,17 +1,1 @@
-{
-  "configurator": {
-    "username": "Configurator",
-    "password": "123",
-    "@type": "Configurator"
-  },
-  "maicol": {
-    "username": "Maicol",
-    "password": "12345",
-    "@type": "Configurator"
-  },
-  "luca": {
-    "username": "Luca",
-    "password": "12345",
-    "@type": "Viewer"
-  }
-}
+{"configurator":{"username":"Configurator","password":"123","@type":"Configurator"},"maicol":{"username":"Maicol","password":"12345","@type":"Configurator"},"s":{"username":"s","password":"12345","@type":"Viewer"},"luca":{"username":"Luca","password":"12345","@type":"Viewer"}}

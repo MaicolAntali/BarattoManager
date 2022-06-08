@@ -21,6 +21,10 @@ import java.util.stream.Collectors;
  */
 public class ArticleManager {
 	/**
+	 * Post-Condition: The article is not present in the map
+	 */
+	private static final String POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP = "Post-Condition: The article is not present in the map";
+	/**
 	 * Article JSON file
 	 */
 	private final File articleFile = new File(AppConfigurator.getInstance().getFileName("article_file"));
@@ -89,6 +93,8 @@ public class ArticleManager {
 		var article = new Article(userNameOwner, categoryUuid, fields, values);
 		articleMap.put(article.getUuid(), article);
 		saveArticleMapChange();
+
+		assert articleMap.containsKey(article.getUuid()) : POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP;
 	}
 
 	/**

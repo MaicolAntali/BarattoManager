@@ -19,6 +19,27 @@ import java.util.Optional;
  * Class used to create new article
  */
 public class NewArticle implements MenuItemAction {
+	/**
+	 * Title: Add new article
+	 */
+	private static final String TITLE_ADD_NEW_ARTICLE = "Aggiungi un nuovo articolo";
+	/**
+	 * Label: Enter all the required fields
+	 */
+	private static final String LABEL_ENTER_ALL_THE_REQUIRED_FIELDS = "Inserisci tutti i campi obbligatori:";
+	/**
+	 * Label: Choose a category for your article
+	 */
+	private static final String LABEL_SELECT_A_CATEGORY_FOR_YOUR_ARTICLE = "Seleziona una categoria per il tuo articolo:";
+
+	/**
+	 * Implementation of the method {@link MenuItemAction#run(JPanel, RepaintEventHandler, User, ArticleTree)}
+	 * Method used to add new article
+	 * @param fatherPanel {@link JPanel}
+	 * @param repaintEventHandler {@link RepaintEventHandler} object
+	 * @param user {@link User} object
+	 * @param articleTree {@link ArticleTree} object
+	 */
 	@Override
 	public void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user, ArticleTree articleTree) {
 
@@ -26,7 +47,7 @@ public class NewArticle implements MenuItemAction {
 		int result = JOptionPane.showOptionDialog(
 				fatherPanel,
 				comboCategoryPanel,
-				"Aggiungi un nuovo articolo",
+				TITLE_ADD_NEW_ARTICLE,
 				JOptionPane.OK_CANCEL_OPTION,
 				JOptionPane.QUESTION_MESSAGE,
 				null,
@@ -40,7 +61,7 @@ public class NewArticle implements MenuItemAction {
 			int resultFormPanel = JOptionPane.showOptionDialog(
 					fatherPanel,
 					formPanel,
-					"Aggiungi un nuovo articolo",
+					TITLE_ADD_NEW_ARTICLE,
 					JOptionPane.OK_CANCEL_OPTION,
 					JOptionPane.QUESTION_MESSAGE,
 					null,
@@ -62,11 +83,24 @@ public class NewArticle implements MenuItemAction {
 
 	}
 
+	/**
+	 * Inner class used to enter the details of an article
+	 */
 	static class FormArticlePanel extends JPanel {
 
+		/**
+		 * ArrayList of {@link Field}
+		 */
 		private final ArrayList<Field> fields;
+		/**
+		 * Arraylist of {@link JTextField}
+		 */
 		private final ArrayList<JTextField> jTextFields;
 
+		/**
+		 * {@link FormArticlePanel} constructor
+		 * @param category {@link Category}
+		 */
 		public FormArticlePanel(Category category) {
 			fields = new ArrayList<>();
 			jTextFields = new ArrayList<>();
@@ -74,7 +108,7 @@ public class NewArticle implements MenuItemAction {
 			var mainPanel = new JPanel();
 			mainPanel.setLayout(new GridLayout(0, 1));
 
-			mainPanel.add(new JLabel("Inserisci tutti i campi obbligatori:"));
+			mainPanel.add(new JLabel(LABEL_ENTER_ALL_THE_REQUIRED_FIELDS));
 
 			var fieldsPanel = new JPanel();
 			fieldsPanel.setLayout(new GridLayout(0, 2));
@@ -92,10 +126,18 @@ public class NewArticle implements MenuItemAction {
 			setVisible(true);
 		}
 
+		/**
+		 * Method used to get the {@link ArrayList} of fields
+		 * @return fields
+		 */
 		public ArrayList<Field> getFields() {
 			return fields;
 		}
 
+		/**
+		 * Method used to get the {@link ArrayList} of fields values
+		 * @return values
+		 */
 		public ArrayList<String> getValues() {
 			var values = new ArrayList<String>();
 
@@ -107,16 +149,24 @@ public class NewArticle implements MenuItemAction {
 		}
 	}
 
+	/**
+	 * Inner class used to select a category for the article to add
+	 */
 	static class SelectCategoryArticlePanel extends JPanel {
-
+		/**
+		 * Category ComboBox
+		 */
 		private final JComboBox<String> categoryCombo = new JComboBox<>();
 
+		/**
+		 * {@link SelectCategoryArticlePanel} constructor
+		 */
 		public SelectCategoryArticlePanel() {
 			var mainPanel = new JPanel();
 			mainPanel.setLayout(new GridLayout(0, 1));
 
 
-			mainPanel.add(new JLabel("Seleziona una categoria per il tuo articolo:"));
+			mainPanel.add(new JLabel(LABEL_SELECT_A_CATEGORY_FOR_YOUR_ARTICLE));
 
 			for (String item : generateComboBoxItems()) {
 				categoryCombo.addItem(item);
@@ -127,11 +177,20 @@ public class NewArticle implements MenuItemAction {
 			setVisible(true);
 		}
 
+		/**
+		 * Method used to get the selected category in a combo box
+		 * @return {@link Category} object
+		 */
 		public Category getSelectedCategory() {
 			return getSelectedCategoryByName(String.valueOf(categoryCombo.getSelectedItem()))
 					.orElseThrow(NullPointerException::new);
 		}
 
+		/**
+		 * Method used to get the selected category as a {@link Optional}
+		 * @param categoryToGet Name of a category to get
+		 * @return category optional
+		 */
 		private Optional<Category> getSelectedCategoryByName(String categoryToGet) {
 			var splitCategories = categoryToGet.split("-");
 
@@ -153,6 +212,10 @@ public class NewArticle implements MenuItemAction {
 			return optionalCategory;
 		}
 
+		/**
+		 * Method used to generate the items for the ComboBox of categories
+		 * @return ArrayList of categories
+		 */
 		private ArrayList<String> generateComboBoxItems() {
 			var arrayList = new ArrayList<String>();
 

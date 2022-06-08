@@ -6,6 +6,9 @@ import com.barattoManager.user.User;
 
 import javax.swing.*;
 
+/**
+ * Interface that represent action items menu
+ */
 public interface MenuItemAction {
 	void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user, ArticleTree articleTree);
 }

@@ -38,6 +38,10 @@ public final class CategoryManager {
 	 */
 	private static final String ERROR_CATEGORY_ALREADY_EXISTS = "La categoria che stai creando esiste già.";
 	/**
+	 * Field already exists error
+	 */
+	private static final String ERROR_FIELD_ALREADY_EXISTS = "Il campo che stai creando esiste già.";
+	/**
 	 * No category has been selected error
 	 */
 	private static final String ERROR_NO_CATEGORY_HAS_BEEN_SELECTED = "Non è stata selezionata una categoria.";
@@ -206,7 +210,7 @@ public final class CategoryManager {
 						assert category.get().getCategoryFields().containsKey(fieldName) : POST_CONDITION_FIELD_NOT_IN_MAP;
 					}
 					else {
-						throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
+						throw new AlreadyExistException(ERROR_FIELD_ALREADY_EXISTS);
 					}
 				}
 				else {
@@ -214,7 +218,7 @@ public final class CategoryManager {
 						category.get().addNewFields(name, isRequired);
 					}
 					else {
-						throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
+						throw new AlreadyExistException(ERROR_FIELD_ALREADY_EXISTS);
 					}
 				}
 
@@ -248,7 +252,12 @@ public final class CategoryManager {
 		return getCategory(rootCategoryMap, uuid);
 	}
 
-
+	/**
+	 * Method used to get {@link Category} as an Optional
+	 * @param categoryHashMap {@link HashMap} of categories
+	 * @param uuid Uuid of category
+	 * @return category optional
+	 */
 	private Optional<Category> getCategory(HashMap<String, Category> categoryHashMap, String uuid) {
 		Optional<Category> categoryOptional = Optional.empty();
 
