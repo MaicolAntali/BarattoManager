@@ -17,17 +17,25 @@ import java.util.UUID;
 @JsonPropertyOrder({ "uuid", "owner", "category_uuid", "state", "fields", "log" })
 public class Article {
 	/**
-	 * Not Valid fields error
+	 * Error: Not Valid fields
 	 */
 	private static final String NOT_VALID_FIELDS_ERROR = "Not Valid fields";
 	/**
-	 * One or more required fields have not been properly initialized error description
+	 * Error description: One or more required fields have not been properly initialized
 	 */
 	private static final String FIELDS_HAVE_NOT_BEEN_INITIALIZED_ERROR_DESCRIPTION = "One or more required fields have not been properly initialized";
 	/**
-	 * Article Validated message
+	 * Message: Article Validated
 	 */
 	private static final String ARTICLE_VALIDATED = "Article Validated";
+	/**
+	 * Message: Article Created
+	 */
+	private static final String ARTICLE_CREATED = "Article Created";
+	/**
+	 * Message: Article has just been created by a viewer
+	 */
+	private static final String ARTICLE_HAS_JUST_BEEN_CREATED_BY_THE_VIEWER = "Article has just been created by the viewer %s";
 	/**
 	 * "Article is valid and properly initialized description
 	 */
@@ -125,7 +133,7 @@ public class Article {
 	 */
 	public Article(String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
 		this.history = new ArrayList<>();
-		history.add(new History("Article Created", "Article has just been created by the viewer %s".formatted(userNameOwner)));
+		history.add(new History(ARTICLE_CREATED, ARTICLE_HAS_JUST_BEEN_CREATED_BY_THE_VIEWER.formatted(userNameOwner)));
 
 		assert !values.isEmpty() : PRE_CONDITION_FIELDS_VALUES_ARRAY_LIST_IS_EMPTY;
 
