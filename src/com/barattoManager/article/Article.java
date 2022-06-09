@@ -37,21 +37,41 @@ public class Article {
 	 */
 	private static final String ARTICLE_HAS_JUST_BEEN_CREATED_BY_THE_VIEWER = "Article has just been created by the viewer %s";
 	/**
-	 * "Article is valid and properly initialized description
+	 * Description: Article is valid and properly initialized
 	 */
 	private static final String ARTICLE_IS_VALID_AND_PROPERLY_INITIALIZED_DESCRIPTION = "Article is valid and properly initialized";
 	/**
 	 * "Pre-condition: Fields values ArrayList is empty"
 	 */
-	private static final String PRE_CONDITION_FIELDS_VALUES_ARRAY_LIST_IS_EMPTY = "Pre-condition: Values ArrayList is empty";
+	private static final String PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY = "Pre-condition: Fields ArrayList is empty";
 	/**
 	 * "Post-condition: Field value Map is empty"
 	 */
 	private static final String POST_CONDITION_FIELD_VALUE_MAP_IS_EMPTY = "Post-condition: Fields values Map is empty";
 	/**
-	 * Post-condition: Owner userName is empty
+	 * Pre-condition: Owner userName is empty
 	 */
-	private static final String POST_CONDITION_OWNER_USER_NAME_IS_EMPTY = "Post-condition: Owner userName is empty";
+	private static final String PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY = "Pre-condition: Owner userName is empty";
+	/**
+	 * Pre-condition: Uuid is empty
+	 */
+	private static final String PRE_CONDITION_UUID_IS_EMPTY = "Pre-condition: Uuid is empty";
+	/**
+	 * Pre-condition: Category Uuid is empty
+	 */
+	private static final String PRE_CONDITION_CATEGORY_UUID_IS_EMPTY = "Pre-condition: Category Uuid is empty";
+	/**
+	 * Pre-condition: Article state is empty
+	 */
+	private static final String PRE_CONDITION_ARTICLE_STATE_IS_EMPTY = "Pre-condition: Article state is empty";
+	/**
+	 * Pre-condition: History is empty
+	 */
+	private static final String PRE_CONDITION_HISTORY_IS_EMPTY = "Pre-condition: History is empty";
+	/**
+	 * Pre-condition: Fields value map is empty
+	 */
+	private static final String PRE_CONDITION_FIELDS_MAP_IS_EMPTY = "Pre-condition: Fields value map is empty";
 	/**
 	 * Article uuid
 	 */
@@ -135,7 +155,8 @@ public class Article {
 		this.history = new ArrayList<>();
 		history.add(new History(ARTICLE_CREATED, ARTICLE_HAS_JUST_BEEN_CREATED_BY_THE_VIEWER.formatted(userNameOwner)));
 
-		assert !values.isEmpty() : PRE_CONDITION_FIELDS_VALUES_ARRAY_LIST_IS_EMPTY;
+		assert !fields.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
+		assert !values.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
 
 		this.uuid = UUID.randomUUID().toString();
 		this.userNameOwner = userNameOwner;
@@ -164,6 +185,12 @@ public class Article {
 			@JsonProperty("log") ArrayList<History> history,
 			@JsonProperty("state") State articleState
 	) {
+		assert uuid.isEmpty() : PRE_CONDITION_UUID_IS_EMPTY;
+		assert categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
+		assert userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
+		assert fieldValueMap.isEmpty() : PRE_CONDITION_FIELDS_MAP_IS_EMPTY;
+		assert history.isEmpty() : PRE_CONDITION_HISTORY_IS_EMPTY;
+		assert articleState.italianLabel.isEmpty() : PRE_CONDITION_ARTICLE_STATE_IS_EMPTY;
 
 		this.uuid = uuid;
 		this.userNameOwner = userNameOwner;
@@ -171,8 +198,6 @@ public class Article {
 		this.fieldValueMap = fieldValueMap;
 		this.history = history;
 		this.articleState = articleState;
-
-		assert userNameOwner.isEmpty() : POST_CONDITION_OWNER_USER_NAME_IS_EMPTY;
 	}
 
 	/**
@@ -230,7 +255,7 @@ public class Article {
 	public void changeState(State state) {
 		history.add(new History("State Update", "The article state is updated from %s to %s".formatted(this.articleState, state)));
 		this.articleState = state;
-		ArticleManager.getInstance().forceSaveData();
+		ArticleManager.getInstance().saveArticleMapChange();
 	}
 
 	/**

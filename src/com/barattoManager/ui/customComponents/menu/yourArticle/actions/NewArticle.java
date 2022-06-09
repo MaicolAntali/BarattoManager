@@ -226,9 +226,14 @@ public class NewArticle implements MenuItemAction {
 			return arrayList;
 		}
 
+		/**
+		 * Method used to generate the items for the ComboBox of categories
+		 * @param categories Collection of categories
+		 * @param string String of categories and sub-categories name
+		 * @return ArrayList of categories
+		 */
 		private ArrayList<String> generateComboBoxItems(Collection<Category> categories, String string) {
 			var arrayList = new ArrayList<String>();
-
 
 			for (Category category : categories) {
 				if (category.getSubCategory().isEmpty()) {

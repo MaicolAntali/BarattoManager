@@ -137,16 +137,9 @@ public class ArticleManager {
 	}
 
 	/**
-	 * Method used to save the {@link #articleMap} object
-	 */
-	public void forceSaveData() {
-		saveArticleMapChange();
-	}
-
-	/**
 	 * Method used to save in the json file the {@link #articleMap} object
 	 */
-	private void saveArticleMapChange() {
+	protected void saveArticleMapChange() {
 		try {
 			objectMapper.writeValue(articleFile, articleMap);
 		} catch (IOException e) {

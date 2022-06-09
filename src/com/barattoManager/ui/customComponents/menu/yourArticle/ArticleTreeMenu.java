@@ -82,7 +82,7 @@ public class ArticleTreeMenu extends JPanel {
 
 		/**
 		 * {@link MenuAction} constructor
-		 * @param name name &&
+		 * @param name Action name
 		 * @param fatherPanel JPanel
 		 */
 		public MenuAction(String name, JPanel fatherPanel) {
