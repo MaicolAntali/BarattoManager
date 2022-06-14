@@ -44,6 +44,16 @@ public final class TimeParse {
 	}
 
 	/**
+	 * Parse a time into an int that represent the time in minutes
+	 * @param hour int that represent the hour
+	 * @param minute int that represent the minutes
+	 * @return int that represent the time in minutes
+	 */
+	public static int hourToMinuteTime(int hour, int minute) {
+		return  hour * 60 + minute;
+	}
+
+	/**
 	 * Parse a time string into an int that represent that time in minutes
 	 * @param time String that represent the time. Must be in the format => HH:MM
 	 * @return  int that represent that time in minutes

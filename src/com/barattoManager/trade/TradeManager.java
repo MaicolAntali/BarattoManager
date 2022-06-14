@@ -31,7 +31,7 @@ public class TradeManager {
 			.build();
 	private final HashMap<String, Trade> tradeHashMap;
 
-	private Thread daeminChecker;
+	private Thread daemonChecker;
 
 	private TradeManager() {
 		if (tradeFile.exists()) {
@@ -65,8 +65,8 @@ public class TradeManager {
 
 	public void runDaemonChecker() {
 		// Check if the thread is already running
-		if (daeminChecker == null || !daeminChecker.isAlive()) {
-			daeminChecker = new Thread(
+		if (daemonChecker == null || !daemonChecker.isAlive()) {
+			daemonChecker = new Thread(
 					() -> new Timer().scheduleAtFixedRate(
 							new TimerTask() {
 								@Override
@@ -99,8 +99,8 @@ public class TradeManager {
 							60*1_000
 					)
 			);
-			daeminChecker.setDaemon(true);
-			daeminChecker.start();
+			daemonChecker.setDaemon(true);
+			daemonChecker.start();
 		}
 	}
 

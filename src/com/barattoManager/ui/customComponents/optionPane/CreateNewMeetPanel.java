@@ -117,6 +117,7 @@ public class CreateNewMeetPanel extends JPanel {
 
 	/**
 	 * Method used to get the selected days
+	 *
 	 * @return {@link ArrayList<String>} object
 	 */
 	public ArrayList<String> getSelectedDays() {
@@ -124,7 +125,7 @@ public class CreateNewMeetPanel extends JPanel {
 
 		for (JCheckBox checkBox : daysCheckbox) {
 			if (checkBox.isSelected()) {
-				days.add(checkBox.getText());
+				days.add(checkBox.getText().replace("ì", "i").toUpperCase());
 			}
 		}
 

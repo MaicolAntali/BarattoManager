@@ -1,6 +1,5 @@
 package com.barattoManager.article;
 
-import com.barattoManager.category.Category;
 import com.barattoManager.category.field.Field;
 import com.barattoManager.config.AppConfigurator;
 import com.fasterxml.jackson.core.type.TypeReference;

@@ -4,8 +4,6 @@ import com.barattoManager.article.Article;
 import com.barattoManager.article.ArticleManager;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
-import com.barattoManager.meet.Meet;
-import com.barattoManager.meet.MeetManager;
 import com.barattoManager.trade.TradeManager;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTree;
 
@@ -147,9 +145,10 @@ class SelectMeetDate extends JPanel {
 
       mainPanel.add(new JLabel("Seleziona il giorno dello scambio:"));
 
-      for (Meet meet : MeetManager.getInstance().getMeetArrayList()) {
-         meet.getDays().forEach(days -> meetComboBox.addItem("%s ~ %s ~ %s ~ [%s-%s] ~ %s".formatted(meet.getCity(), meet.getSquare(), days, meet.getIntervals().get(1), meet.getIntervals().get(meet.getIntervals().size()-1), meet.getDaysBeforeExpire())));
-      }
+      // FIXME
+//      for (Meet meet : MeetManager.getInstance().getMeetArrayList()) {
+//         meet.getDays().forEach(days -> meetComboBox.addItem("%s ~ %s ~ %s ~ [%s-%s] ~ %s".formatted(meet.getCity(), meet.getSquare(), days, meet.getIntervals().get(1), meet.getIntervals().get(meet.getIntervals().size()-1), meet.getDaysBeforeExpire())));
+//      }
 
       mainPanel.add(meetComboBox);
 
