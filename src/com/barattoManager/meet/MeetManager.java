@@ -3,6 +3,7 @@ package com.barattoManager.meet;
 import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
+import com.barattoManager.utils.DateParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -13,32 +14,15 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.util.*;
+import java.util.stream.IntStream;
 
-/**
- * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the meets.
- */
 public final class MeetManager {
-	/**
-	 * The meet place already exists error
-	 */
-	private static final String MEET_PLACE_ALREADY_EXISTS = "I dati d'incontro che stai provando ad inserire sono già presenti.";
-	/**
-	 * Not all the fields are filled in error
-	 */
-	private static final String NOT_ALL_THE_FIELDS_ARE_FILLED_IN = "Non tutti i campi sono stati compilati.\nSi consiglia di compilare tutti i campi.";
-	/**
-	 * Post-Condition: The meet is not present in the map
-	 */
-	private static final String POST_CONDITION_THE_MEET_NOT_PRESENT_IN_THE_MAP = "Post-condition: The meet is not present in the map.";
-	/**
-	 * Meet JSON file
-	 */
-	private final File meetFile = new File(AppConfigurator.getInstance().getFileName("meet_file"));
-	/**
-	 * {@link ObjectMapper} object, used to parse JSON
-	 */
+
+	private final File jsonFile = new File(AppConfigurator.getInstance().getFileName("meet_file"));
+
 	private final ObjectMapper objectMapper = JsonMapper.builder()
 			.addModule(new ParameterNamesModule())
 			.addModule(new Jdk8Module())
@@ -46,103 +30,130 @@ public final class MeetManager {
 			.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
 			.build();
 
-	/**
-	 * {@link HashMap} meet map
-	 */
-	private final ArrayList<Meet> meetArrayList;
+	private final HashMap<String, Meet> meetHashMap;
+	private MeetUpdaterDaemon meetUpdaterDaemon;
+	private Thread deamonThread;
 
-	/**
-	 * {@link MeetManager} constructor
-	 */
 	private MeetManager() {
-		if (meetFile.exists()) {
+		if (jsonFile.exists()) {
 			try {
-				meetArrayList = objectMapper.readValue(meetFile, new TypeReference<>() {
+				meetHashMap = objectMapper.readValue(jsonFile, new TypeReference<>() {
 				});
 			} catch (IOException e) {
 				throw new RuntimeException(e);
 			}
 		}
 		else {
-			meetArrayList = new ArrayList<>();
+			meetHashMap = new HashMap<>();
 		}
+
+		this.meetUpdaterDaemon = new MeetUpdaterDaemon(this.meetHashMap);
 	}
 
-	/**
-	 * Method used to create get the {@link MeetManager} instance.
-	 * This method use the lazy loading mechanism cause the inner class is loaded only if
-	 * the {@code getInstance()} method is called.
-	 * Also is thread safe cause every thread read the same {@link MeetManager} instance.
-	 *
-	 * @return The Instance of {@link MeetManager} class
-	 */
+	private static final class MeetManagerHolder {
+		private static final MeetManager instance = new MeetManager();
+	}
+
 	public static MeetManager getInstance() {
 		return MeetManagerHolder.instance;
 	}
 
-	/**
-	 * Method used to add a new meet
-	 *
-	 * @param city City of new meet
-	 * @param square Square of new meet
-	 * @param days Days of new meet
-	 * @param startTime Start time of new meet
-	 * @param endTime End time of new meet
-	 * @throws IllegalValuesException Is thrown if there are an empty string
-	 * @throws AlreadyExistException Is thrown if the meet that are trying to add already exist.
-	 */
-	public void addNewMeet(String city, String square, ArrayList<String> days, int startTime, int endTime, int daysBeforeExpire) throws IllegalValuesException, AlreadyExistException {
-		if (!city.isBlank() && !square.isBlank() && !days.isEmpty()) {
-			var newMeet = new Meet(city, square, days, startTime, endTime, daysBeforeExpire);
-
-			var equalityCheck = meetArrayList.stream()
-					.filter(meet -> meet.equals(newMeet))
-					.findFirst()
-					.isEmpty();
-
-			if (equalityCheck) {
-				meetArrayList.add(newMeet);
-				saveMeetMapChange();
-
-				assert meetArrayList.contains(newMeet) : POST_CONDITION_THE_MEET_NOT_PRESENT_IN_THE_MAP;
-			}
-			else  {
-				throw new AlreadyExistException(MEET_PLACE_ALREADY_EXISTS);
-			}
+	public void runUpdaterDaemon() {
+		if (deamonThread == null || !deamonThread.isAlive()) {
+			deamonThread = new Thread(
+					() -> new Timer().scheduleAtFixedRate(
+							meetUpdaterDaemon,
+							0,
+							60*1_000 // 1 Minutes
+					)
+			);
+			deamonThread.start();
 		}
-		else {
-			throw new IllegalValuesException(NOT_ALL_THE_FIELDS_ARE_FILLED_IN);
+	}
+
+	public void addNewMeet(String city, String square, DayOfWeek day, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws AlreadyExistException, IllegalValuesException {
+
+		var intervals = generateIntervals(intervalStartTime, intervalEndTime);
+
+		var meets = new ArrayList<Meet>();
+		IntStream.range(0, intervals.size()-1)
+				.forEach(i -> meets.add(new Meet(city, square, day, intervals.get(i), intervals.get(i+1), daysBeforeExpire)));
+
+
+		var notUniqueMeet = new ArrayList<Meet>();
+		meets.forEach(meet -> {
+			var isMeetUnique = meetHashMap.values().stream()
+					.noneMatch(meetToCheck -> meetToCheck.equals(meet));
+
+			if (isMeetUnique) {
+				meetHashMap.put(meet.getUuid(), meet);
+				saveMapChange();
+			}
+			else
+				notUniqueMeet.add(meet);
+		});
+
+		if (!notUniqueMeet.isEmpty()) {
+			var error = new StringBuffer();
+			error.append("Alcuni meet esistono gia:\n");
+			notUniqueMeet.forEach(meet -> error.append("\t• %s %s %s: %s-%s\n".formatted(meet.getCity(), meet.getSquare(), meet.getDay().toString(), meet.getStartTime().toString(), meet.getEndTime().toString())));
+			System.out.println(error);
+			throw new AlreadyExistException(error.toString());
 		}
-
 	}
 
-	/**
-	 * Method used to get the {@link #meetArrayList}
-	 *
-	 * @return meetArrayList that contains each meet
-	 */
-	public ArrayList<Meet> getMeetArrayList() {
-		return meetArrayList;
+	public void addNewMeet(String city, String square, ArrayList<String> days, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws AlreadyExistException, IllegalValuesException {
+		for (String day : days) {
+			addNewMeet(city, square, DateParser.stringToWeekDay(day), intervalStartTime, intervalEndTime, daysBeforeExpire);
+		}
 	}
 
-	/**
-	 * Holder class of instance
-	 */
-	private static final class MeetManagerHolder {
-		/**
-		 * Instance of {@link MeetManager}
-		 */
-		private static final MeetManager instance = new MeetManager();
+	public void bookMeet(String meetUuid, String userUuid) {
+		var meet =  Optional.ofNullable(meetHashMap.get(meetUuid));
+
+		if (meet.isPresent()) {
+			meet.get().bookMeet(userUuid);
+			saveMapChange();
+		}
 	}
 
-	/**
-	 * Method used to save the {@link #meetArrayList} changes in the Json file({@link #meetFile})
-	 */
-	private void saveMeetMapChange() {
+	public void unBookMeet(String meetUuid) {
+		var meet =  Optional.ofNullable(meetHashMap.get(meetUuid));
+
+		if (meet.isPresent()) {
+			meet.get().unbookMeet();
+			saveMapChange();
+		}
+	}
+
+	public List<Meet> getMeets() {
+		return meetHashMap.values().stream().toList();
+	}
+
+	void saveMapChange() {
 		try {
-			objectMapper.writeValue(meetFile, meetArrayList);
+			objectMapper.writeValue(jsonFile, meetHashMap);
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+
+		this.meetUpdaterDaemon = new MeetUpdaterDaemon(meetHashMap);
+	}
+
+	private ArrayList<LocalTime> generateIntervals(int start, int end) throws IllegalValuesException {
+		if (start <= end) {
+			ArrayList<LocalTime> tmpList = new ArrayList<>();
+
+			int time = start;
+			while (time <= end) {
+				tmpList.add(LocalTime.of(time / 60, time % 60));
+				time += 30;
+			}
+
+			return tmpList;
+		}
+		else {
+			throw new IllegalValuesException("INVALID_TIME_INPUT");
 		}
 	}
 }
