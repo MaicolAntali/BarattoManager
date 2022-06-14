@@ -120,10 +120,8 @@ public final class MeetManager {
 	public void unBookMeet(String meetUuid) {
 		var meet =  Optional.ofNullable(meetHashMap.get(meetUuid));
 
-		if (meet.isPresent()) {
-			meet.get().unbookMeet();
-			saveMapChange();
-		}
+		meet.orElseThrow(NullPointerException::new).unbookMeet();
+		saveMapChange();
 	}
 
 	public List<Meet> getMeets() {
