@@ -32,7 +32,7 @@ public final class MeetManager {
 
 	private final HashMap<String, Meet> meetHashMap;
 	private MeetUpdaterDaemon meetUpdaterDaemon;
-	private Thread deamonThread;
+	private Thread daemonThread;
 
 	private MeetManager() {
 		if (jsonFile.exists()) {
@@ -59,15 +59,15 @@ public final class MeetManager {
 	}
 
 	public void runUpdaterDaemon() {
-		if (deamonThread == null || !deamonThread.isAlive()) {
-			deamonThread = new Thread(
+		if (daemonThread == null || !daemonThread.isAlive()) {
+			daemonThread = new Thread(
 					() -> new Timer().scheduleAtFixedRate(
 							meetUpdaterDaemon,
 							0,
 							60*1_000 // 1 Minutes
 					)
 			);
-			deamonThread.start();
+			daemonThread.start();
 		}
 	}
 
