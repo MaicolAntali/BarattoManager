@@ -1,9 +1,11 @@
 package com.barattoManager.user;
 
-import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.InvalidCredentialsException;
-import com.barattoManager.user.configurator.Configurator;
+import com.barattoManager.manager.UserManager;
+import com.barattoManager.model.user.User;
+import com.barattoManager.model.user.configurator.Configurator;
+import com.barattoManager.utils.AppConfigurator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

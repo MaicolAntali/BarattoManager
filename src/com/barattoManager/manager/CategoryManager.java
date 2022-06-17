@@ -1,9 +1,10 @@
-package com.barattoManager.category;
+package com.barattoManager.manager;
 
-import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NullCategoryException;
+import com.barattoManager.model.category.Category;
+import com.barattoManager.utils.AppConfigurator;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -296,7 +297,7 @@ public final class CategoryManager {
 						.findFirst();
 			}
 			else {
-				category = category.get().getSubCategory().values().stream()
+				category = category.orElseThrow(NullPointerException::new).getSubCategory().values().stream()
 					.filter(cat -> Objects.equals(cat.getName(), pathOfCategory.get(finalI)))
 					.findFirst();
 			}

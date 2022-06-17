@@ -1,9 +1,9 @@
 package com.barattoManager.ui.customComponents.optionPane;
 
-import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.user.UserManager;
+import com.barattoManager.manager.UserManager;
+import com.barattoManager.utils.AppConfigurator;
 
 import javax.swing.*;
 import java.awt.*;

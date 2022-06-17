@@ -1,11 +1,11 @@
 package com.barattoManager.ui.customComponents.menu;
 
+import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.menu.actions.CancelOffer;
 import com.barattoManager.ui.customComponents.menu.actions.MenuItemAction;
 import com.barattoManager.ui.customComponents.menu.actions.NewArticle;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTree;
-import com.barattoManager.user.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

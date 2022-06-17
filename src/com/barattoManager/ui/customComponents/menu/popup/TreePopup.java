@@ -1,10 +1,10 @@
 package com.barattoManager.ui.customComponents.menu.popup;
 
-import com.barattoManager.article.Article;
-import com.barattoManager.article.ArticleManager;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
-import com.barattoManager.trade.TradeManager;
+import com.barattoManager.manager.ArticleManager;
+import com.barattoManager.manager.TradeManager;
+import com.barattoManager.model.article.Article;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTree;
 
 import javax.swing.*;

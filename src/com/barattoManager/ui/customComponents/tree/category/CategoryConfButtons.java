@@ -1,10 +1,10 @@
 package com.barattoManager.ui.customComponents.tree.category;
 
-import com.barattoManager.category.CategoryManager;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.exception.NullCategoryException;
+import com.barattoManager.manager.CategoryManager;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewCategoryPanel;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewFieldPanel;

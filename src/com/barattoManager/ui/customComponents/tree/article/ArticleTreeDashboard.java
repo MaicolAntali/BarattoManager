@@ -1,6 +1,6 @@
 package com.barattoManager.ui.customComponents.tree.article;
 
-import com.barattoManager.article.Article;
+import com.barattoManager.model.article.Article;
 import com.barattoManager.utils.History;
 
 import javax.swing.tree.DefaultMutableTreeNode;

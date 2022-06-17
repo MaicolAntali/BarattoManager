@@ -1,9 +1,11 @@
-package com.barattoManager.meet;
+package com.barattoManager.manager;
 
-import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.utils.DateParser;
+import com.barattoManager.manager.daemon.MeetUpdaterDaemon;
+import com.barattoManager.model.meet.Meet;
+import com.barattoManager.utils.AppConfigurator;
+import com.barattoManager.utils.parser.DateParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -128,7 +130,7 @@ public final class MeetManager {
 		return meetHashMap.values().stream().toList();
 	}
 
-	void saveMapChange() {
+	public void saveMapChange() {
 		try {
 			objectMapper.writeValue(jsonFile, meetHashMap);
 		} catch (IOException e) {

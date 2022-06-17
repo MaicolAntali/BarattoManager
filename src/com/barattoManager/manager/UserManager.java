@@ -1,11 +1,12 @@
-package com.barattoManager.user;
+package com.barattoManager.manager;
 
-import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.InvalidCredentialsException;
-import com.barattoManager.user.configurator.Configurator;
-import com.barattoManager.user.viewer.Viewer;
+import com.barattoManager.model.user.User;
+import com.barattoManager.model.user.configurator.Configurator;
+import com.barattoManager.model.user.viewer.Viewer;
+import com.barattoManager.utils.AppConfigurator;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

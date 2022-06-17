@@ -1,8 +1,8 @@
 package com.barattoManager.ui.components;
 
-import com.barattoManager.article.Article;
+import com.barattoManager.model.article.Article;
+import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTreeStore;
-import com.barattoManager.user.User;
 
 import javax.swing.*;
 import java.awt.*;

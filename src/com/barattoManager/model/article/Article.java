@@ -1,7 +1,8 @@
-package com.barattoManager.article;
+package com.barattoManager.model.article;
 
-import com.barattoManager.category.field.Field;
-import com.barattoManager.category.field.FieldDeserializer;
+import com.barattoManager.manager.ArticleManager;
+import com.barattoManager.model.category.field.Field;
+import com.barattoManager.model.category.field.FieldDeserializer;
 import com.barattoManager.utils.History;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

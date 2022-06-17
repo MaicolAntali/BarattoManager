@@ -1,8 +1,8 @@
-package com.barattoManager.utils;
+package com.barattoManager.utils.parser;
 
 import com.barattoManager.exception.IllegalValuesException;
 
-public class StringParse {
+public final class StringParser {
 
 	private static final String ERROR_FORMAT = "Non è possibile fare il parse della stringa.";
 

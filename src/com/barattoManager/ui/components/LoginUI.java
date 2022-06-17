@@ -1,11 +1,11 @@
 package com.barattoManager.ui.components;
 
-import com.barattoManager.config.AppConfigurator;
 import com.barattoManager.exception.InvalidCredentialsException;
+import com.barattoManager.manager.UserManager;
+import com.barattoManager.model.user.configurator.Configurator;
 import com.barattoManager.ui.BarattoManagerGui;
 import com.barattoManager.ui.customComponents.optionPane.ChangePasswordPanel;
-import com.barattoManager.user.UserManager;
-import com.barattoManager.user.configurator.Configurator;
+import com.barattoManager.utils.AppConfigurator;
 
 import javax.swing.*;
 import java.awt.*;

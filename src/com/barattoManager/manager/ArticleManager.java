@@ -1,8 +1,8 @@
-package com.barattoManager.article;
+package com.barattoManager.manager;
 
-import com.barattoManager.category.CategoryManager;
-import com.barattoManager.category.field.Field;
-import com.barattoManager.config.AppConfigurator;
+import com.barattoManager.model.article.Article;
+import com.barattoManager.model.category.field.Field;
+import com.barattoManager.utils.AppConfigurator;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 /**
  * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the articles.
  */
-public class ArticleManager {
+public final class ArticleManager {
 	/**
 	 * Post-Condition: The article is not present in the map
 	 */
@@ -128,7 +128,7 @@ public class ArticleManager {
 	/**
 	 * Method used to save in the json file the {@link #articleMap} object
 	 */
-	protected void saveArticleMapChange() {
+	public void saveArticleMapChange() {
 		try {
 			objectMapper.writeValue(articleFile, articleMap);
 		} catch (IOException e) {

@@ -1,11 +1,11 @@
 package com.barattoManager.ui.components;
 
+import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.event.RepaintListener;
 import com.barattoManager.ui.customComponents.menu.ArticleMenu;
 import com.barattoManager.ui.customComponents.menu.ArticleMenuDashboard;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTreeDashboard;
-import com.barattoManager.user.User;
 
 import javax.swing.*;
 import java.awt.*;

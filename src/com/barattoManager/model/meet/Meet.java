@@ -1,5 +1,6 @@
-package com.barattoManager.meet;
+package com.barattoManager.model.meet;
 
+import com.barattoManager.manager.MeetManager;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.DayOfWeek;

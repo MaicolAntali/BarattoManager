@@ -1,8 +1,8 @@
-package com.barattoManager.user;
+package com.barattoManager.model.user;
 
-import com.barattoManager.config.AppConfigurator;
-import com.barattoManager.user.configurator.Configurator;
-import com.barattoManager.user.viewer.Viewer;
+import com.barattoManager.model.user.configurator.Configurator;
+import com.barattoManager.model.user.viewer.Viewer;
+import com.barattoManager.utils.AppConfigurator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

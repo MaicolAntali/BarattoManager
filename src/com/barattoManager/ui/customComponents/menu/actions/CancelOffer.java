@@ -1,14 +1,13 @@
 package com.barattoManager.ui.customComponents.menu.actions;
 
-import com.barattoManager.article.Article;
-import com.barattoManager.article.ArticleManager;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.exception.NullCategoryException;
+import com.barattoManager.manager.ArticleManager;
+import com.barattoManager.model.article.Article;
+import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
-import com.barattoManager.ui.customComponents.event.RepaintListener;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTree;
-import com.barattoManager.user.User;
 
 import javax.swing.*;
 import javax.swing.tree.TreeNode;

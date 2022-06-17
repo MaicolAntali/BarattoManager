@@ -1,7 +1,7 @@
 package com.barattoManager.ui.customComponents.tree.meet;
 
-import com.barattoManager.meet.Meet;
-import com.barattoManager.meet.MeetManager;
+import com.barattoManager.manager.MeetManager;
+import com.barattoManager.model.meet.Meet;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;

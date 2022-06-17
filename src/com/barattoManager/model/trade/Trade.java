@@ -1,4 +1,4 @@
-package com.barattoManager.trade;
+package com.barattoManager.model.trade;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

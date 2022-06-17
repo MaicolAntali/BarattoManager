@@ -1,6 +1,7 @@
 package com.barattoManager.meet;
 
 import com.barattoManager.exception.AlreadyExistException;
+import com.barattoManager.manager.MeetManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;

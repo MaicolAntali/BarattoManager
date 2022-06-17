@@ -1,10 +1,10 @@
 package com.barattoManager.ui.customComponents.tree.article;
 
-import com.barattoManager.article.Article;
-import com.barattoManager.article.ArticleManager;
-import com.barattoManager.category.CategoryManager;
-import com.barattoManager.category.field.Field;
 import com.barattoManager.exception.NoNodeSelected;
+import com.barattoManager.manager.ArticleManager;
+import com.barattoManager.manager.CategoryManager;
+import com.barattoManager.model.article.Article;
+import com.barattoManager.model.category.field.Field;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;

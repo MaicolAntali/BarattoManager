@@ -1,10 +1,10 @@
 package com.barattoManager.ui;
 
-import com.barattoManager.config.AppConfigurator;
-import com.barattoManager.meet.MeetManager;
+import com.barattoManager.manager.MeetManager;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.components.InitialMenuUI;
 import com.barattoManager.ui.components.LoginUI;
+import com.barattoManager.utils.AppConfigurator;
 
 import javax.swing.*;
 import java.awt.*;

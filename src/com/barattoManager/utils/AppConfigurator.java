@@ -1,4 +1,4 @@
-package com.barattoManager.config;
+package com.barattoManager.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,8 +1,8 @@
-package com.barattoManager.trade;
+package com.barattoManager.manager;
 
-import com.barattoManager.article.Article;
-import com.barattoManager.article.ArticleManager;
-import com.barattoManager.config.AppConfigurator;
+import com.barattoManager.model.article.Article;
+import com.barattoManager.model.trade.Trade;
+import com.barattoManager.utils.AppConfigurator;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -20,7 +20,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class TradeManager {
+public final class TradeManager {
 
 	private final File tradeFile = new File(AppConfigurator.getInstance().getFileName("trade_file"));
 	private final ObjectMapper objectMapper = JsonMapper.builder()

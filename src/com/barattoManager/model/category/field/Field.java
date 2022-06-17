@@ -1,4 +1,4 @@
-package com.barattoManager.category.field;
+package com.barattoManager.model.category.field;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

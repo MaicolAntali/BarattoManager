@@ -1,6 +1,6 @@
 package com.barattoManager.ui.customComponents.tree.article;
 
-import com.barattoManager.article.Article;
+import com.barattoManager.model.article.Article;
 import com.barattoManager.ui.customComponents.menu.popup.TreePopup;
 
 import javax.swing.*;

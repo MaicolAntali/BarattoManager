@@ -1,11 +1,11 @@
-package com.barattoManager.utils;
+package com.barattoManager.utils.parser;
 
 import com.barattoManager.exception.IllegalValuesException;
 
 /**
  * Utility class of time
  */
-public final class TimeParse {
+public final class TimeParser {
 
 	/**
 	 * Error: the time format is not correct, please use the correct format (HH:MM)

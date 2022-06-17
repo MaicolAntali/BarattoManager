@@ -1,4 +1,7 @@
-package com.barattoManager.meet;
+package com.barattoManager.manager.daemon;
+
+import com.barattoManager.manager.MeetManager;
+import com.barattoManager.model.meet.Meet;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
-package com.barattoManager.category;
+package com.barattoManager.model.category;
 
-import com.barattoManager.category.field.Field;
+import com.barattoManager.model.category.field.Field;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.HashMap;

@@ -1,9 +1,9 @@
 package com.barattoManager.ui.customComponents.tree.category;
 
-import com.barattoManager.category.Category;
-import com.barattoManager.category.CategoryManager;
-import com.barattoManager.category.field.Field;
 import com.barattoManager.exception.NoNodeSelected;
+import com.barattoManager.manager.CategoryManager;
+import com.barattoManager.model.category.Category;
+import com.barattoManager.model.category.field.Field;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
