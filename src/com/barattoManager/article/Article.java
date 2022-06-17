@@ -61,10 +61,6 @@ public class Article {
 	 */
 	private static final String PRE_CONDITION_CATEGORY_UUID_IS_EMPTY = "Pre-condition: Category Uuid is empty";
 	/**
-	 * Pre-condition: Article state is empty
-	 */
-	private static final String PRE_CONDITION_ARTICLE_STATE_IS_EMPTY = "Pre-condition: Article state is empty";
-	/**
 	 * Pre-condition: History is empty
 	 */
 	private static final String PRE_CONDITION_HISTORY_IS_EMPTY = "Pre-condition: History is empty";
@@ -155,6 +151,8 @@ public class Article {
 		this.history = new ArrayList<>();
 		history.add(new History(ARTICLE_CREATED, ARTICLE_HAS_JUST_BEEN_CREATED_BY_THE_VIEWER.formatted(userNameOwner)));
 
+		assert categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
+		assert userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
 		assert !fields.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
 		assert !values.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
 
@@ -190,7 +188,6 @@ public class Article {
 		assert userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
 		assert fieldValueMap.isEmpty() : PRE_CONDITION_FIELDS_MAP_IS_EMPTY;
 		assert history.isEmpty() : PRE_CONDITION_HISTORY_IS_EMPTY;
-		assert articleState.italianLabel.isEmpty() : PRE_CONDITION_ARTICLE_STATE_IS_EMPTY;
 
 		this.uuid = uuid;
 		this.userNameOwner = userNameOwner;
