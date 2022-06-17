@@ -44,7 +44,7 @@ public class TreePopup extends JPopupMenu {
             var articleToTrade = articleOptional.get();
 
             var possibleArticles = ArticleManager.getInstance()
-                    .getArticlesByOwnerStateCategory(tree.getUsername(), Article.State.OPEN_OFFERT, articleToTrade.getCategoryUuid());
+                    .getArticlesByOwnerStateCategory(tree.getUsername(), Article.State.OPEN_OFFER, articleToTrade.getCategoryUuid());
 
             if (possibleArticles.isEmpty()) {
                throw new IllegalValuesException("Non possiedi nessun articolo di questa categoria.");

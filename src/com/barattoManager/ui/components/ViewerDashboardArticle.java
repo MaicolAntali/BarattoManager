@@ -22,7 +22,6 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener {
 	private JPanel mainPanel;
 	private JButton backToHomeButton;
 	private JPanel centerPanel;
-	private JButton backToHomeButton;
 
 	public ViewerDashboardArticle(Dimension dimension, CardLayout cardLayout, JPanel panelContainer, User user) {
 		this.user = user;

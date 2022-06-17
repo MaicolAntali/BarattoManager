@@ -80,10 +80,10 @@ public class TradeManager {
 												.forEach(trade -> {
 													ArticleManager.getInstance().getArticleById(trade.articleOneUuid())
 															.orElseThrow(NullPointerException::new)
-															.changeState(Article.State.OPEN_OFFERT);
+															.changeState(Article.State.OPEN_OFFER);
 													ArticleManager.getInstance().getArticleById(trade.articleTwoUuid())
 															.orElseThrow(NullPointerException::new)
-															.changeState(Article.State.OPEN_OFFERT);
+															.changeState(Article.State.OPEN_OFFER);
 
 													tradeToRemove.add(trade);
 													hashmapHasChanged.set(true);

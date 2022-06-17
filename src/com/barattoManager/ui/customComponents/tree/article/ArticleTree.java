@@ -130,7 +130,7 @@ public abstract class ArticleTree extends JPanel {
 		if (stateFilter == null)
 			articleList = ArticleManager.getInstance().getArticlesByOwner(usernameFilter);
 		else
-			articleList = ArticleManager.getInstance().getArticlesByStatusExceptOwner(Article.State.OPEN_OFFERT, usernameFilter.substring(1));
+			articleList = ArticleManager.getInstance().getArticlesByStatusExceptOwner(Article.State.OPEN_OFFER, usernameFilter.substring(1));
 
 
 		articleList
