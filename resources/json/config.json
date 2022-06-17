@@ -1,13 +1,14 @@
 {
   "app": {
     "name": "BarattoManager",
-    "version": "3.0.0"
+    "version": "4.0.0"
   },
   "file": {
     "user_file": "users.json",
     "category_file": "categories.json",
     "meet_file": "meets.json",
-    "article_file": "articles.json"
+    "article_file": "articles.json",
+    "trade_file": "trades.json"
   },
   "password": {
     "default_pwd": "123"

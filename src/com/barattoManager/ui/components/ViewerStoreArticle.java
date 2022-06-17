@@ -1,7 +1,8 @@
 package com.barattoManager.ui.components;
 
 import com.barattoManager.article.Article;
-import com.barattoManager.ui.customComponents.tree.article.ArticleTree;
+import com.barattoManager.ui.customComponents.tree.article.ArticleTreeStore;
+import com.barattoManager.user.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,19 +23,13 @@ public class ViewerStoreArticle extends JPanel {
 	 */
 	private JPanel centerPanel;
 
-	/**
-	 * {@link ViewerStoreArticle} constructor
-	 * @param dimension Dimension of JPanel
-	 * @param cardLayout {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
-	 * @param panelContainer {@link JPanel} object that contains every cards
-	 */
-	public ViewerStoreArticle(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
+	public ViewerStoreArticle(Dimension dimension, CardLayout cardLayout, JPanel panelContainer, User user) {
 		setVisible(true);
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
 
-		centerPanel.add(new ArticleTree(new Dimension(510, 310), "*", Article.State.OPEN_OFFER));
+		centerPanel.add(new ArticleTreeStore(new Dimension(510, 310), "!%s".formatted(user.getUsername()), Article.State.OPEN_OFFER));
 
 
 		backToHomeButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString()));

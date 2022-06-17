@@ -73,6 +73,8 @@ public class Article {
 	 */
 	@JsonProperty("uuid")
 	private final String uuid;
+	@JsonProperty("name")
+	private final String articleName;
 	/**
 	 * Article owner
 	 */
@@ -115,7 +117,9 @@ public class Article {
 		/**
 		 * Cancelled offer italian label
 		 */
-		CANCELLED_OFFER("Offerta Cancellata");
+		CANCELLED_OFFER("Offerta Cancellata"),
+		LINKED_OFFERT("Offerta accoppiata"),
+		SELECTED_OFFERT("Offerta selezionata");
 
 		/**
 		 * Label in italian
@@ -140,23 +144,18 @@ public class Article {
 		}
 	}
 
-	/**
-	 * {@link Article} constructor
-	 * @param userNameOwner Owner name of article
-	 * @param categoryUuid Category uuid of article
-	 * @param fields {@link ArrayList} that contains fields name of article
-	 * @param values {@link ArrayList} that contains fields values
-	 */
-	public Article(String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
-		this.history = new ArrayList<>();
-		history.add(new History(ARTICLE_CREATED, ARTICLE_HAS_JUST_BEEN_CREATED_BY_THE_VIEWER.formatted(userNameOwner)));
-
+	public Article(String articleName, String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
 		assert categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
 		assert userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
 		assert !fields.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
 		assert !values.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
 
+
+		this.history = new ArrayList<>();
+		history.add(new History(ARTICLE_CREATED, ARTICLE_HAS_JUST_BEEN_CREATED_BY_THE_VIEWER.formatted(userNameOwner)));
+
 		this.uuid = UUID.randomUUID().toString();
+		this.articleName = articleName;
 		this.userNameOwner = userNameOwner;
 		this.categoryUuid = categoryUuid;
 		this.articleState = State.NOT_CHECKED;
@@ -177,6 +176,7 @@ public class Article {
 	 */
 	public Article(
 			@JsonProperty("uuid") String uuid,
+			@JsonProperty("name") String articleName,
 			@JsonProperty("user") String userNameOwner,
 			@JsonProperty("category_uuid") String categoryUuid,
 			@JsonProperty("fields") HashMap<Field, String> fieldValueMap,
@@ -190,6 +190,7 @@ public class Article {
 		assert history.isEmpty() : PRE_CONDITION_HISTORY_IS_EMPTY;
 
 		this.uuid = uuid;
+		this.articleName = articleName;
 		this.userNameOwner = userNameOwner;
 		this.categoryUuid = categoryUuid;
 		this.fieldValueMap = fieldValueMap;
@@ -203,6 +204,10 @@ public class Article {
 	 */
 	public String getUuid() {
 		return uuid;
+	}
+
+	public String getArticleName() {
+		return articleName;
 	}
 
 	/**

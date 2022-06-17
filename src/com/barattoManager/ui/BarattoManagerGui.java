@@ -1,7 +1,10 @@
 package com.barattoManager.ui;
 
 import com.barattoManager.config.AppConfigurator;
-import com.barattoManager.ui.components.*;
+import com.barattoManager.meet.MeetManager;
+import com.barattoManager.ui.components.ComponentsName;
+import com.barattoManager.ui.components.InitialMenuUI;
+import com.barattoManager.ui.components.LoginUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,6 +49,10 @@ public class BarattoManagerGui extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((screenSize.width - getWidth()) / 2, (screenSize.height - getHeight()) / 2);
 
+        // Start the daemon thread
+        MeetManager.getInstance().runUpdaterDaemon();
+        // FIXME: TradeManager.getInstance().runDaemonChecker();
+
         // Set the app version
         versionLabel.setText(AppConfigurator.getInstance().getAppDataAsText("version"));
 
@@ -54,14 +61,5 @@ public class BarattoManagerGui extends JFrame {
         panelContainer.setLayout(cardLayout);
         panelContainer.add(new InitialMenuUI(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.INITIAL_PANEL.toString());
         panelContainer.add(new LoginUI(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.LOGIN.toString());
-
-        panelContainer.add(new ConfiguratorHomeUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_HOME.toString());
-        panelContainer.add(new ConfiguratorCategoryEditorUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_CATEGORY_EDITOR.toString());
-        panelContainer.add(new ConfiguratorMeetEditorUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_MEET_EDITOR.toString());
-
-        panelContainer.add(new ViewerHomeUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_HOME.toString());
-        panelContainer.add(new ViewerCategoryViewUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_CATEGORY.toString());
-        panelContainer.add(new ViewerMeetViewUi(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_MEET.toString());
-        panelContainer.add(new ViewerStoreArticle(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_STORE_ARTICLES.toString());
     }
 }

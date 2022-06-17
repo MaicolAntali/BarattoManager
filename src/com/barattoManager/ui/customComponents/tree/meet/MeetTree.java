@@ -7,7 +7,6 @@ import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -38,7 +37,7 @@ public class MeetTree extends JPanel{
 		var nodeMap = new HashMap<String, DefaultMutableTreeNode>();
 
 		// Create all meet
-		for (Meet meet : MeetManager.getInstance().getMeetArrayList()) {
+		for (Meet meet : MeetManager.getInstance().getMeets()) {
 			if (nodeMap.containsKey(meet.getCity().trim().toLowerCase())) {
 				createMeetNode(meet, nodeMap.get(meet.getCity().trim().toLowerCase()));
 			}
@@ -81,26 +80,11 @@ public class MeetTree extends JPanel{
 	 * @param fatherNode {@link DefaultMutableTreeNode} node to attach the new meet node
 	 */
 	private void createMeetNode(Meet meet, DefaultMutableTreeNode fatherNode) {
-		// create the square node
 		var meetNode = new DefaultMutableTreeNode(meet.getSquare());
 
-		// create days nodes
-		var daysNode = new DefaultMutableTreeNode(meet.getDays().size() == 1 ? "Giorno" : "Giorni");
-		for (String day : meet.getDays()) {
-			var dayNode = new DefaultMutableTreeNode(day);
-			daysNode.add(dayNode);
-		}
-
-		// create intervals nodes
-		var intervalsNode = new DefaultMutableTreeNode("Orari");
-		for (LocalTime time : meet.getIntervals()) {
-			var timeNode = new DefaultMutableTreeNode("%02d:%02d".formatted(time.getHour(), time.getMinute()));
-			intervalsNode.add(timeNode);
-		}
-
-		// add the days and intervals node to the meet node
-		meetNode.add(daysNode);
-		meetNode.add(intervalsNode);
+		meetNode.add(new DefaultMutableTreeNode("Giorno: %s".formatted(meet.getDay().toString())));
+		meetNode.add(new DefaultMutableTreeNode("Orario: %s-%s".formatted(meet.getStartTime(), meet.getEndTime())));
+		meetNode.add(new DefaultMutableTreeNode("Giorni per accettare l'offerta: %d".formatted(meet.getDaysBeforeExpire())));
 
 		// add meetNode to father
 		fatherNode.add(meetNode);

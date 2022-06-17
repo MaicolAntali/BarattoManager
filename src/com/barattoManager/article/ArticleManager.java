@@ -89,50 +89,39 @@ public class ArticleManager {
 	 * @param fields {@link ArrayList} that contains fields name of article
 	 * @param values {@link ArrayList} that contains fields values
 	 */
-	public void addNewArticle(String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
-		var article = new Article(userNameOwner, categoryUuid, fields, values);
+	public void addNewArticle(String articleName, String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
+		var article = new Article(articleName, userNameOwner, categoryUuid, fields, values);
 		articleMap.put(article.getUuid(), article);
 		saveArticleMapChange();
 
 		assert articleMap.containsKey(article.getUuid()) : POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP;
 	}
 
-	/**
-	 * Method used to get the {@link HashMap} of articles
-	 * @return {@link HashMap} of articles
-	 */
-	public HashMap<String, Article> getArticleMap() {
-		return articleMap;
-	}
-
-	/**
-	 * Method used to get an article by UUID
-	 * @param uuid  UUID of the article to get
-	 * @return {@link Optional} that contains the article if it's find otherwise empty
-	 */
 	public Optional<Article> getArticleById(String uuid) {
 		return Optional.ofNullable(articleMap.get(uuid));
 	}
 
-	/**
-	 * Method used to get an article by owner name
-	 * @param articleOwnerFilter owner name
-	 * @return {@link List} that contains the article if it's find otherwise empty
-	 */
-	public List<Article> getArticles(String articleOwnerFilter) {
-		return getArticleMap().values().stream()
-				.filter(article -> Objects.equals(article.getUserNameOwner().toLowerCase(), articleOwnerFilter.toLowerCase()))
+	public List<Article> getArticles() {
+		return new ArrayList<>(articleMap.values());
+	}
+
+	public List<Article> getArticlesByOwner(String ownerFilter) {
+		return getArticles().stream()
+				.filter(article -> Objects.equals(article.getUserNameOwner().toLowerCase(), ownerFilter.toLowerCase()))
 				.collect(Collectors.toList());
 	}
 
-	/**
-	 * Method used to get an article by state of article
-	 * @param articleStateFilter state of article
-	 * @return {@link List} that contains the article if it's find otherwise empty
-	 */
-	public List<Article> getArticles(Article.State articleStateFilter) {
-		return getArticleMap().values().stream()
-				.filter(article -> article.getArticleState() == articleStateFilter)
+	public List<Article> getArticlesByOwnerStateCategory(String ownerFilter, Article.State state, String categoryUuid) {
+		return getArticlesByOwner(ownerFilter).stream()
+				.filter(article -> article.getArticleState() == state)
+				.filter(article -> Objects.equals(article.getCategoryUuid(), categoryUuid))
+				.collect(Collectors.toList());
+	}
+
+	public List<Article> getArticlesByStatusExceptOwner(Article.State stateFilter, String ownerFilter) {
+		return getArticles().stream()
+				.filter(article -> article.getArticleState() == stateFilter)
+				.filter(article -> !Objects.equals(article.getUserNameOwner().toLowerCase(), ownerFilter.toLowerCase()))
 				.collect(Collectors.toList());
 	}
 
