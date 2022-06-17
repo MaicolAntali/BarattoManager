@@ -22,6 +22,7 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener {
 	private JPanel mainPanel;
 	private JButton backToHomeButton;
 	private JPanel centerPanel;
+	private JButton questionButton;
 
 	public ViewerDashboardArticle(Dimension dimension, CardLayout cardLayout, JPanel panelContainer, User user) {
 		this.user = user;
@@ -41,6 +42,8 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener {
 
 
 		backToHomeButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString()));
+
+		questionButton.addActionListener(e -> System.out.println("PROVA"));
 	}
 
 	/**

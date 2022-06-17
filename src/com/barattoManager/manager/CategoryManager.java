@@ -5,78 +5,31 @@ import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NullCategoryException;
 import com.barattoManager.model.category.Category;
 import com.barattoManager.utils.AppConfigurator;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
+
+import static com.barattoManager.manager.Constants.*;
 
 /**
  * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the categories.
  */
-public final class CategoryManager {
-	/**
-	 * Post-condition: The category is not present in the map.
-	 */
-	public static final String POST_CONDITION_CATEGORY_NOT_IN_MAP = "Post-condition: The category is not present in the map.";
-	/**
-	 * Post-condition: The sub-category is not present in the map.
-	 */
-	public static final String POST_CONDITION_SUBCATEGORY_NOT_IN_MAP = "Post-condition: The sub-category is not present in the map.";
-	/**
-	 * Post-condition: The field is not present in the map.
-	 */
-	public static final String POST_CONDITION_FIELD_NOT_IN_MAP = "Post-condition: The field is not present in the map.";
-
-	/**
-	 * Category params not valid error
-	 */
-	private static final String ERROR_CATEGORY_PARAMS_NOT_VALID = "Il nome o la descrizione della categoria non è valido";
-	/**
-	 * Category already exists error
-	 */
-	private static final String ERROR_CATEGORY_ALREADY_EXISTS = "La categoria che stai creando esiste già.";
-	/**
-	 * Field already exists error
-	 */
-	private static final String ERROR_FIELD_ALREADY_EXISTS = "Il campo che stai creando esiste già.";
-	/**
-	 * No category has been selected error
-	 */
-	private static final String ERROR_NO_CATEGORY_HAS_BEEN_SELECTED = "Non è stata selezionata una categoria.";
-	/**
-	 * Invalid name of sub-category error
-	 */
-	private static final String ERROR_INVALID_NAME_OF_SUBCATEGORY = "Il nome della sotto-categoria non è valido";
-	/**
-	 * Category JSON file
-	 */
-	private final File categoriesFile = new File(AppConfigurator.getInstance().getFileName("category_file"));
-	/**
-	 * {@link ObjectMapper} object, used to parse JSON
-	 */
-	private final ObjectMapper objectMapper = new ObjectMapper();
-	/**
-	 * {@link HashMap} that contain the root category (KEY: UUID, VALUE: Category obj)
-	 */
-	private final HashMap<String, Category> rootCategoryMap;
-
+public final class CategoryManager extends Manager<String, Category> {
 	/**
 	 * {@link CategoryManager} constructor
 	 */
-	private CategoryManager() {
-		if (categoriesFile.exists()) {
-			try {
-				rootCategoryMap = objectMapper.readValue(categoriesFile, new TypeReference<>() {});
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}
-		else {
-			rootCategoryMap = new HashMap<>();
-		}
+	public CategoryManager() {super(String.class, Category.class);}
+
+	@Override
+	File getJsonFile() {
+		return new File(AppConfigurator.getInstance().getFileName("category_file"));
+	}
+
+	@Override
+	ObjectMapper getObjectMapper() {
+		return new ObjectMapper();
 	}
 
 	/**
@@ -106,7 +59,7 @@ public final class CategoryManager {
 	 *
 	 * @param name        Name of new category
 	 * @param description Description of the new category
-	 * @throws AlreadyExistException Is thrown if the category or field that are trying to add already exist.
+	 * @throws AlreadyExistException  Is thrown if the category or field that are trying to add already exist.
 	 * @throws IllegalValuesException Is thrown if the name or the description is an empty string
 	 * @throws NullCategoryException  Is thrown if is not found a category in the map
 	 */
@@ -116,10 +69,10 @@ public final class CategoryManager {
 			var category = new Category(name, description);
 
 			// Check if the category already exist
-			if (isUniqueCategory(rootCategoryMap, category.hashCode())) {
+			if (isUniqueCategory(getDataMap(), category.hashCode())) {
 
 				// add in the map the new root category
-				rootCategoryMap.put(category.getUuid(), category);
+				getDataMap().put(category.getUuid(), category);
 
 				// adding the default field
 				for (final JsonNode objNode : AppConfigurator.getInstance().getDefaultField()) {
@@ -130,9 +83,9 @@ public final class CategoryManager {
 					);
 				}
 				// Save map changes
-				saveCategoryMapChange();
+				saveDataMap();
 
-				assert rootCategoryMap.containsKey(name.trim().toLowerCase()) : POST_CONDITION_CATEGORY_NOT_IN_MAP;
+				assert getDataMap().containsKey(name.trim().toLowerCase()) : POST_CONDITION_CATEGORY_NOT_IN_MAP;
 			}
 			else {
 				throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
@@ -149,22 +102,22 @@ public final class CategoryManager {
 	 * @param pathOfSubcategory {@link ArrayList} that represent the path of the category
 	 * @param name              Name of the new category
 	 * @param description       Description of new category
-	 * @throws AlreadyExistException Is thrown if the category that are trying to add already exist.
-	 * @throws IllegalValuesException  Is thrown if the name is an empty string
-	 * @throws NullCategoryException Is thrown if is not found a category in the map
+	 * @throws AlreadyExistException  Is thrown if the category that are trying to add already exist.
+	 * @throws IllegalValuesException Is thrown if the name is an empty string
+	 * @throws NullCategoryException  Is thrown if is not found a category in the map
 	 */
 	public void addNewSubCategory(ArrayList<String> pathOfSubcategory, String name, String description) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
 		var categoryName = name.trim().toLowerCase();
 		if (!categoryName.isBlank() && !description.isBlank()) {
 			Optional<Category> fatherCategory = getCategoryFromPath(pathOfSubcategory);
-			var newCategory = new Category(name, description);
+			var                newCategory    = new Category(name, description);
 
 			if (fatherCategory.isPresent()) {
-				if (isUniqueCategory(rootCategoryMap, newCategory.hashCode())) {
+				if (isUniqueCategory(getDataMap(), newCategory.hashCode())) {
 					fatherCategory.get().addSubCategory(newCategory);
-					saveCategoryMapChange();
+					saveDataMap();
 
-					assert fatherCategory.get().getSubCategory().containsKey(categoryName): POST_CONDITION_SUBCATEGORY_NOT_IN_MAP;
+					assert fatherCategory.get().getSubCategory().containsKey(categoryName) : POST_CONDITION_SUBCATEGORY_NOT_IN_MAP;
 				}
 				else {
 					throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
@@ -185,9 +138,9 @@ public final class CategoryManager {
 	 * @param pathOfCategory {@link ArrayList} that represent the path of the category
 	 * @param name           Name of the new field
 	 * @param isRequired     If the field is required ({@code true}) otherwise {@code false}
-	 * @throws AlreadyExistException Is thrown if the new field that are trying to add already exist.
-	 * @throws IllegalValuesException  Is thrown if the name is an empty string
-	 * @throws NullCategoryException Is thrown if is not found a category in the map
+	 * @throws AlreadyExistException  Is thrown if the new field that are trying to add already exist.
+	 * @throws IllegalValuesException Is thrown if the name is an empty string
+	 * @throws NullCategoryException  Is thrown if is not found a category in the map
 	 */
 	public void addNewField(ArrayList<String> pathOfCategory, String name, boolean isRequired) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
 		var fieldName = name.trim().toLowerCase();
@@ -223,7 +176,7 @@ public final class CategoryManager {
 					}
 				}
 
-				saveCategoryMapChange();
+				saveDataMap();
 			}
 			else {
 				throw new NullCategoryException(ERROR_NO_CATEGORY_HAS_BEEN_SELECTED);
@@ -238,25 +191,28 @@ public final class CategoryManager {
 
 	/**
 	 * Method used to get the {@link HashMap} of root categories
+	 *
 	 * @return {@link HashMap} of root categories
 	 */
 	public HashMap<String, Category> getRootCategoryMap() {
-		return rootCategoryMap;
+		return getDataMap();
 	}
 
 	/**
 	 * Method used to get a Category by UUID
+	 *
 	 * @param uuid UUID of the category to get
 	 * @return {@link Optional} that contains the category if it's find otherwise empty
 	 */
 	public Optional<Category> getCategoryByUuid(String uuid) {
-		return getCategory(rootCategoryMap, uuid);
+		return getCategory(getDataMap(), uuid);
 	}
 
 	/**
 	 * Method used to get {@link Category} as an Optional
+	 *
 	 * @param categoryHashMap {@link HashMap} of categories
-	 * @param uuid Uuid of category
+	 * @param uuid            Uuid of category
 	 * @return category optional
 	 */
 	private Optional<Category> getCategory(HashMap<String, Category> categoryHashMap, String uuid) {
@@ -292,14 +248,14 @@ public final class CategoryManager {
 		for (int i = 1; i < pathOfCategory.size(); i++) {
 			final int finalI = i;
 			if (i == 1) {
-				category = rootCategoryMap.values().stream()
+				category = getDataMap().values().stream()
 						.filter(cat -> Objects.equals(cat.getName(), pathOfCategory.get(finalI)))
 						.findFirst();
 			}
 			else {
 				category = category.orElseThrow(NullPointerException::new).getSubCategory().values().stream()
-					.filter(cat -> Objects.equals(cat.getName(), pathOfCategory.get(finalI)))
-					.findFirst();
+						.filter(cat -> Objects.equals(cat.getName(), pathOfCategory.get(finalI)))
+						.findFirst();
 			}
 		}
 
@@ -309,8 +265,9 @@ public final class CategoryManager {
 	/**
 	 * Method used to check if a category is unique in the entire category tree.<br/>
 	 * This method takes advantage of hashcode (if the hashcode of two objects is equal then the two objects are equal)
+	 *
 	 * @param categoryHashMap Hashmap where to start searching
-	 * @param hashToCheck Hashcode used to check the uniqueness,
+	 * @param hashToCheck     Hashcode used to check the uniqueness,
 	 * @return True if the hashcode is unique in the entire hashmap and also unique in every sub hashmaps otherwise False
 	 * @see Category#hashCode()
 	 */
@@ -327,16 +284,5 @@ public final class CategoryManager {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Method used to save in the json file the {@link #rootCategoryMap} object
-	 */
-	private void saveCategoryMapChange() {
-		try {
-			objectMapper.writeValue(categoriesFile, rootCategoryMap);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 }
