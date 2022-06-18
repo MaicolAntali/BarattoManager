@@ -43,7 +43,15 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener {
 
 		backToHomeButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString()));
 
-		questionButton.addActionListener(e -> System.out.println("PROVA"));
+		questionButton.addActionListener(e -> {
+			JOptionPane.showMessageDialog(this,
+					"In questa pagina puoi visualizzare I tuoi articoli" +
+							"\nPer effettuare un operazione su un tuo articolo puoi cliccare sul menu in alto al sinistra e scegliere di:" +
+							"\n - Aggiungere un nuovo articolo da barattare;" +
+							"\n - Cancellare l'offerta di un articolo.",
+					"Help",
+					JOptionPane.INFORMATION_MESSAGE);
+		});
 	}
 
 	/**

@@ -22,6 +22,7 @@ public class ViewerStoreArticle extends JPanel {
 	 * Center Panel {@code BorderLayout.CENTER}
 	 */
 	private JPanel centerPanel;
+	private JButton questionButton;
 
 	public ViewerStoreArticle(Dimension dimension, CardLayout cardLayout, JPanel panelContainer, User user) {
 		setVisible(true);
@@ -33,5 +34,13 @@ public class ViewerStoreArticle extends JPanel {
 
 
 		backToHomeButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString()));
+
+		questionButton.addActionListener(e -> {
+			JOptionPane.showMessageDialog(this,
+					"Nello store dei articoli puoi visuallizzare gli articoli che gli altri utenti hanno messo in baratto " +
+							"\n Per scambiare un tuo articolo con uno di questi puoi cliccare sul menu in alto a sinistra e scegliere l'opzione di scambio.",
+					"Help",
+					JOptionPane.INFORMATION_MESSAGE);
+		});
 	}
 }
