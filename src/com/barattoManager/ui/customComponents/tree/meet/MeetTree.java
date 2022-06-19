@@ -2,37 +2,22 @@ package com.barattoManager.ui.customComponents.tree.meet;
 
 import com.barattoManager.manager.MeetManager;
 import com.barattoManager.model.meet.Meet;
+import com.barattoManager.ui.customComponents.tree.Tree;
 
-import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * Class used to create a JPanel that contain a JTree
  */
-public class MeetTree extends JPanel{
-	/**
-	 * Icon for open category
-	 */
-	private static final String ICON_CATEGORY_OPEN = "/icon/category_open.png";
-	/**
-	 * Icon for close category
-	 */
-	private static final String ICON_CATEGORY_CLOSE = "/icon/category_close.png";
-	/**
-	 * Icon for field
-	 */
-	private static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
+public class MeetTree extends Tree {
 
-	/**
-	 * {@link MeetTree} Constructor
-	 * @param dimension Dimension of the JPanel
-	 */
+	private DefaultMutableTreeNode rootNode;
+
 	public MeetTree(Dimension dimension) {
-		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Incontri");
+		super(dimension);
 
 		var nodeMap = new HashMap<String, DefaultMutableTreeNode>();
 
@@ -47,23 +32,12 @@ public class MeetTree extends JPanel{
 			}
 		}
 
-
 		// add city to root node
 		for (DefaultMutableTreeNode node : nodeMap.values()) {
-			rootNode.add(node);
+			getRootNode().add(node);
 		}
 
-		var tree = new JTree(rootNode);
-
-		// Change the default JTree icons
-		DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
-		renderer.setClosedIcon(new ImageIcon(Objects.requireNonNull(this.getClass().getResource(ICON_CATEGORY_OPEN))));
-		renderer.setOpenIcon(new ImageIcon(Objects.requireNonNull(this.getClass().getResource(ICON_CATEGORY_CLOSE))));
-		renderer.setLeafIcon(new ImageIcon(Objects.requireNonNull(this.getClass().getResource(ICON_CATEGORY_FIELD))));
-
-
-		add(new JScrollPane(tree)).setPreferredSize(dimension);
-		setVisible(true);
+		getTree().expandPath(new TreePath(getRootNode()));
 	}
 
 	/**
@@ -73,10 +47,19 @@ public class MeetTree extends JPanel{
 		this(new Dimension(500, 290));
 	}
 
+	@Override
+	protected DefaultMutableTreeNode getRootNode() {
+		if (rootNode == null)
+			rootNode = new DefaultMutableTreeNode("Incontri");
+
+		return rootNode;
+	}
+
+
 	/**
 	 * Method used to create a new meet node
 	 *
-	 * @param meet {@link Meet} want to create the node.
+	 * @param meet       {@link Meet} want to create the node.
 	 * @param fatherNode {@link DefaultMutableTreeNode} node to attach the new meet node
 	 */
 	private void createMeetNode(Meet meet, DefaultMutableTreeNode fatherNode) {

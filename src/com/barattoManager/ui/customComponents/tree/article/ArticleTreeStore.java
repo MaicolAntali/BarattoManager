@@ -1,29 +1,17 @@
 package com.barattoManager.ui.customComponents.tree.article;
 
 import com.barattoManager.model.article.Article;
-import com.barattoManager.ui.customComponents.menu.popup.TreePopup;
 
-import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public final class ArticleTreeStore extends ArticleTree {
 
+	private DefaultMutableTreeNode rootNode;
+
 	public ArticleTreeStore(Dimension dimension, String usernameFilter, Article.State stateFilter) {
 		super(dimension, usernameFilter, stateFilter);
-
-		final TreePopup treePopup = new TreePopup(this);
-		getTree().addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				super.mouseClicked(e);
-				if (SwingUtilities.isRightMouseButton(e)) {
-					treePopup.show(e.getComponent(), e.getX(), e.getY());
-				}
-			}
-		});
 	}
 
 	@Override
@@ -34,5 +22,15 @@ public final class ArticleTreeStore extends ArticleTree {
 		articleNode.add(generateFields(article));
 
 		fatherNode.add(articleNode);
+
+		getTree().expandPath(new TreePath(getRootNode()));
+	}
+
+	@Override
+	protected DefaultMutableTreeNode getRootNode() {
+		if (rootNode == null)
+			rootNode = new DefaultMutableTreeNode("Categorie");
+
+		return rootNode;
 	}
 }

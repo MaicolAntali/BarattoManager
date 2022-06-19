@@ -15,33 +15,8 @@ import javax.swing.tree.TreeNode;
 /**
  * Class used to cancel an offer
  */
-public class CancelOffer implements MenuItemAction {
+public class CancelOffer implements MenuAction {
 
-	/**
-	 * Message: Are you sure to change the state of article to cancelled offer?
-	 */
-	private static final String ARE_YOU_SURE_TO_CHANGE_THE_STATE_TO_CANCELLED = "Sei sicuro di voler cambiare lo stato dell'articolo in: \"Offerta Cancellata\"?";
-	/**
-	 * Title: Confirm Operation
-	 */
-	private static final String TITLE_CONFIRM = "Conferma Operazione";
-	/**
-	 * Message: The state of this article is already: Cancelled Offer
-	 */
-	private static final String THE_STATE_IS_ALREADY_CANCELLED = "Lo stato di questo articolo è gia: \"Offerta Cancellata\"";
-	/**
-	 * Error: No node has been selected, Try again by selecting the parent node of the article.
-	 */
-	private static final String NO_NODE_HAS_BEEN_SELECTED_SELECT_A_PARENT_NODE_ERROR = "Non è stato selezionato un Articolo.\nRiprovare selezionando il nodo madre dell'articolo.";
-
-	/**
-	 * Implementation of the method {@link MenuItemAction#run(JPanel, RepaintEventHandler, User, ArticleTree)}
-	 * Method used to cancel an offer
-	 * @param fatherPanel {@link JPanel}
-	 * @param repaintEventHandler {@link RepaintEventHandler} object
-	 * @param user {@link User} object
-	 * @param articleTree {@link ArticleTree} object
-	 */
 	@Override
 	public void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user, ArticleTree articleTree) {
 		try {
@@ -50,8 +25,8 @@ public class CancelOffer implements MenuItemAction {
 
 			var result = JOptionPane.showConfirmDialog(
 					fatherPanel,
-					ARE_YOU_SURE_TO_CHANGE_THE_STATE_TO_CANCELLED,
-					TITLE_CONFIRM,
+					"Sei sicuro di voler cambiare lo stato dell'articolo in: \"Offerta Cancellata\"?",
+					"Conferma Operazione",
 					JOptionPane.YES_NO_OPTION);
 
 			if (result == JOptionPane.YES_OPTION) {
@@ -63,11 +38,11 @@ public class CancelOffer implements MenuItemAction {
 						repaintEventHandler.fireListeners();
 					}
 					else {
-						throw new IllegalValuesException(THE_STATE_IS_ALREADY_CANCELLED);
+						throw new IllegalValuesException("Lo stato di questo articolo è gia: \"Offerta Cancellata\"");
 					}
 				}
 				else {
-					throw new  NullCategoryException(NO_NODE_HAS_BEEN_SELECTED_SELECT_A_PARENT_NODE_ERROR);
+					throw new  NullCategoryException("Non è stato selezionato un Articolo.\nRiprovare selezionando il nodo madre dell'articolo.");
 				}
 			}
 		} catch (NoNodeSelected | NullCategoryException | IllegalValuesException ex) {

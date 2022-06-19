@@ -1,106 +1,57 @@
 package com.barattoManager.ui.customComponents.tree.article;
 
-import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.manager.CategoryManager;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.category.field.Field;
+import com.barattoManager.ui.customComponents.tree.Tree;
 
-import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
-public abstract class ArticleTree extends JPanel {
+public abstract class ArticleTree extends Tree {
 
-	/**
-	 * Icon for open category
-	 */
-	private static final String ICON_CATEGORY_OPEN = "/icon/category_open.png";
-	/**
-	 * Icon for close category
-	 */
-	private static final String ICON_CATEGORY_CLOSE = "/icon/category_close.png";
-	/**
-	 * Icon for field
-	 */
-	private static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
-	/**
-	 * No node has been selected error
-	 */
-	private static final String ERROR_NO_NODE_HAS_BEEN_SELECTED = "Non è stato selezionato nessun nodo.";
-
-	/**
-	 * {@link JTree} object
-	 */
-	private final JTree tree;
 	private final String username;
 
 	/**
 	 * {@link ArticleTree} constructor
 	 *
-	 * @param dimension Dimension of the JPanel.
+	 * @param dimension      Dimension of the JPanel.
 	 * @param usernameFilter Username filter
-	 * @param stateFilter State filter
+	 * @param stateFilter    State filter
 	 */
 	public ArticleTree(Dimension dimension, String usernameFilter, Article.State stateFilter) {
+		super(dimension);
 		this.username = usernameFilter.replace("!", "");
 
-		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Articoli");
-
-		var nodeMap = generateNodeMap(usernameFilter, stateFilter);
+		var nodeMap = generateNodeMap(username, stateFilter);
 
 		// add city to root node
 		nodeMap.forEach((key, value) -> {
 			var stateNode = new DefaultMutableTreeNode(key);
 			value.values().forEach(stateNode::add);
-			rootNode.add(stateNode);
+			getRootNode().add(stateNode);
 		});
 
-		tree = new JTree(rootNode);
-
-		DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
-		renderer.setClosedIcon(new ImageIcon(Objects.requireNonNull(this.getClass().getResource(ICON_CATEGORY_OPEN))));
-		renderer.setOpenIcon(new ImageIcon(Objects.requireNonNull(this.getClass().getResource(ICON_CATEGORY_CLOSE))));
-		renderer.setLeafIcon(new ImageIcon(Objects.requireNonNull(this.getClass().getResource(ICON_CATEGORY_FIELD))));
-
-		add(new JScrollPane(tree)).setPreferredSize(dimension);
-		setVisible(true);
+		getTree().expandPath(new TreePath(getRootNode()));
 	}
 
 	/**
 	 * {@link ArticleTree} constructor
 	 *
 	 * @param usernameFilter Username filter
-	 * @param stateFilter State filter
+	 * @param stateFilter    State filter
 	 */
 	public ArticleTree(String usernameFilter, Article.State stateFilter) {
 		this(new Dimension(500, 290), usernameFilter, stateFilter);
 	}
 
-	/**
-	 * Method used to get the current selected node in the {@link #tree}.
-	 * @return Array of {@link TreeNode} that contains the node path.
-	 * @throws NoNodeSelected is thrown if the user does not select any node.
-	 */
-	public TreeNode[] getSelectedPathNode() throws NoNodeSelected {
-		var selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-		if (selectedNode == null) {
-			throw new NoNodeSelected(ERROR_NO_NODE_HAS_BEEN_SELECTED);
-		}
-		else {
-			return selectedNode.getPath();
-		}
-	}
 
-	public JTree getTree() {
-		return tree;
-	}
+	abstract void createNode(Article article, DefaultMutableTreeNode fatherNode);
 
 	public String getUsername() {
 		return username;
@@ -117,8 +68,6 @@ public abstract class ArticleTree extends JPanel {
 
 		return fieldsNode;
 	}
-
-	protected abstract void createNode(Article article, DefaultMutableTreeNode fatherNode);
 
 
 	private HashMap<String, HashMap<String, DefaultMutableTreeNode>> generateNodeMap(String usernameFilter, Article.State stateFilter) {

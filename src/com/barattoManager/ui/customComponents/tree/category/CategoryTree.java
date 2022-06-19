@@ -1,76 +1,44 @@
 package com.barattoManager.ui.customComponents.tree.category;
 
-import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.manager.CategoryManager;
 import com.barattoManager.model.category.Category;
 import com.barattoManager.model.category.field.Field;
+import com.barattoManager.ui.customComponents.tree.Tree;
 
-import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 import java.awt.*;
-import java.util.Objects;
 
 /**
  * Class used to create a JPanel that contain a JTree
  */
-public class CategoryTree extends JPanel {
+public class CategoryTree extends Tree {
 
-	/**
-	 * Icon for open category
-	 */
-	private static final String ICON_CATEGORY_OPEN = "/icon/category_open.png";
-	/**
-	 * Icon for close category
-	 */
-	private static final String ICON_CATEGORY_CLOSE = "/icon/category_close.png";
-	/**
-	 * Icon for field
-	 */
-	private static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
-	/**
-	 * No category has been selected, try again error
-	 */
-	private static final String ERROR_NO_CATEGORY_HAS_BEEN_SELECTED_TRY_AGAIN = "Non è stata selezionata nessuna categoria. Seleziona una categoria e riprova.";
+	private DefaultMutableTreeNode rootNode;
 
-	/**
-	 * {@link JTree} object
-	 */
-	private final JTree tree;
-
-	/**
-	 * {@link CategoryTree} constructor
-	 */
-	public CategoryTree() {
-		this(new Dimension(500, 290));
-	}
-
-	/**
-	 * {@link CategoryTree} constructor
-	 * @param dimension Dimension of the JPanel.
-	 */
 	public CategoryTree(Dimension dimension) {
-		// Populate the tree with category
-		DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode("Categorie");
+		super(dimension);
+
 		for (Category cat : CategoryManager.getInstance().getRootCategoryMap().values()) {
 			var node = createNode(cat, rootNode);
 			createSubCategoryNode(cat, node);
 		}
 
-		// Create the tree based on rootNodeNode
-		tree = new JTree(rootNode);
-
-		// Change the default JTree icons
-		DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
-		renderer.setClosedIcon(new ImageIcon(Objects.requireNonNull(this.getClass().getResource(ICON_CATEGORY_OPEN))));
-		renderer.setOpenIcon(new ImageIcon(Objects.requireNonNull(this.getClass().getResource(ICON_CATEGORY_CLOSE))));
-		renderer.setLeafIcon(new ImageIcon(Objects.requireNonNull(this.getClass().getResource(ICON_CATEGORY_FIELD))));
-
-
-		add(new JScrollPane(tree)).setPreferredSize(dimension);
-		setVisible(true);
+		getTree().expandPath(new TreePath(getRootNode()));
 	}
+
+	public CategoryTree() {
+		this(new Dimension(500, 290));
+	}
+
+	@Override
+	protected DefaultMutableTreeNode getRootNode() {
+		if (rootNode == null)
+			rootNode = new DefaultMutableTreeNode("Categorie");
+
+		return rootNode;
+	}
+
 
 	/**
 	 * Method used to create a complete node (category + field).
@@ -91,8 +59,10 @@ public class CategoryTree extends JPanel {
 		return node;
 	}
 
+
 	/**
 	 * Recursive method used to append the sub category
+	 *
 	 * @param cat    Category that want append in the tree
 	 * @param catAdd Node of the tree where the category will be appended.
 	 */
@@ -103,21 +73,6 @@ public class CategoryTree extends JPanel {
 
 				createSubCategoryNode(subCat, node);
 			}
-		}
-	}
-
-	/**
-	 * Method used to get the current selected node in the {@link #tree}.
-	 * @return Array of {@link TreeNode} that contains the node path.
-	 * @throws NoNodeSelected is thrown if the user does not select any node.
-	 */
-	public TreeNode[] getSelectedPathNode() throws NoNodeSelected {
-		var selectedNode = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
-		if (selectedNode == null) {
-			throw new NoNodeSelected(ERROR_NO_CATEGORY_HAS_BEEN_SELECTED_TRY_AGAIN);
-		}
-		else {
-			return selectedNode.getPath();
 		}
 	}
 }

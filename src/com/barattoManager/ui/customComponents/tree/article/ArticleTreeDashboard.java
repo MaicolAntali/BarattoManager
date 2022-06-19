@@ -7,6 +7,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 public final class ArticleTreeDashboard extends ArticleTree {
 
+	private DefaultMutableTreeNode rootNode;
+
 	public ArticleTreeDashboard(String usernameFilter, Article.State stateFilter) {
 		super(usernameFilter, stateFilter);
 	}
@@ -32,5 +34,13 @@ public final class ArticleTreeDashboard extends ArticleTree {
 		articleNode.add(historyNode);
 
 		fatherNode.add(articleNode);
+	}
+
+	@Override
+	protected DefaultMutableTreeNode getRootNode() {
+		if (rootNode == null)
+			rootNode = new DefaultMutableTreeNode("Categorie");
+
+		return rootNode;
 	}
 }

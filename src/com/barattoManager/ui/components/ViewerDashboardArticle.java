@@ -3,20 +3,19 @@ package com.barattoManager.ui.components;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.event.RepaintListener;
-import com.barattoManager.ui.customComponents.menu.ArticleMenu;
-import com.barattoManager.ui.customComponents.menu.ArticleMenuDashboard;
+import com.barattoManager.ui.customComponents.menu.factory.DashboardMenuFactory;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTreeDashboard;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ViewerDashboardArticle extends JPanel implements RepaintListener {
-
-	/**
-	 * User
-	 */
+	public static final String HELP_MESSAGE = """
+			In questa pagina puoi visualizzare I tuoi articoli
+			Per effettuare un operazione su un tuo articolo puoi cliccare sul menu in alto al sinistra e scegliere di:
+				 - Aggiungere un nuovo articolo da barattare;
+				 - Cancellare l'offerta di un articolo.""";
 	private final User user;
-	private final ArticleMenu articleTreeMenu;
 
 	private ArticleTreeDashboard articleTree;
 	private JPanel mainPanel;
@@ -36,22 +35,17 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener {
 		repaintEventHandler.addListener(this);
 
 
-		this.articleTreeMenu = new ArticleMenuDashboard(user, repaintEventHandler, articleTree);
-		centerPanel.add(articleTreeMenu , BorderLayout.NORTH);
+		var articleTreeMenu = new DashboardMenuFactory().createMenuObject().createMenu();
+		centerPanel.add(articleTreeMenu, BorderLayout.NORTH);
 		centerPanel.add(articleTree);
 
 
 		backToHomeButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString()));
 
-		questionButton.addActionListener(e -> {
-			JOptionPane.showMessageDialog(this,
-					"In questa pagina puoi visualizzare I tuoi articoli" +
-							"\nPer effettuare un operazione su un tuo articolo puoi cliccare sul menu in alto al sinistra e scegliere di:" +
-							"\n - Aggiungere un nuovo articolo da barattare;" +
-							"\n - Cancellare l'offerta di un articolo.",
-					"Help",
-					JOptionPane.INFORMATION_MESSAGE);
-		});
+		questionButton.addActionListener(e -> JOptionPane.showMessageDialog(this,
+				HELP_MESSAGE,
+				"Help",
+				JOptionPane.INFORMATION_MESSAGE));
 	}
 
 	/**
@@ -63,7 +57,7 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener {
 		centerPanel.remove(articleTree);
 
 		articleTree = new ArticleTreeDashboard(user.getUsername(), null);
-		articleTreeMenu.setArticleTree(articleTree);
+		//articleTreeMenu.setArticleTree(articleTree);
 
 		centerPanel.add(articleTree);
 

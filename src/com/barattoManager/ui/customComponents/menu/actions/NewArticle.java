@@ -18,7 +18,7 @@ import java.util.Optional;
 /**
  * Class used to create new article
  */
-public class NewArticle implements MenuItemAction {
+public class NewArticle implements MenuAction {
 	/**
 	 * Title: Add new article
 	 */
@@ -32,14 +32,6 @@ public class NewArticle implements MenuItemAction {
 	 */
 	private static final String LABEL_SELECT_A_CATEGORY_FOR_YOUR_ARTICLE = "Seleziona una categoria per il tuo articolo:";
 
-	/**
-	 * Implementation of the method {@link MenuItemAction#run(JPanel, RepaintEventHandler, User, ArticleTree)}
-	 * Method used to add new article
-	 * @param fatherPanel {@link JPanel}
-	 * @param repaintEventHandler {@link RepaintEventHandler} object
-	 * @param user {@link User} object
-	 * @param articleTree {@link ArticleTree} object
-	 */
 	@Override
 	public void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user, ArticleTree articleTree) {
 
