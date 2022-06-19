@@ -58,7 +58,6 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener {
 		centerPanel.remove(articleTree);
 
 		articleTree = new ArticleTreeDashboard(user.getUsername(), null);
-		//articleTreeMenu.setArticleTree(articleTree);
 
 		centerPanel.add(articleTree);
 
