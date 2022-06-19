@@ -36,7 +36,7 @@ public class DashBoardMenu extends JPanel implements Menu {
 		return menuBar;
 	}
 
-	private void runCommand(ActionEvent event, RepaintEventHandler repaintEventHandler, User user, Tree tree) {
+	public void runCommand(ActionEvent event, RepaintEventHandler repaintEventHandler, User user, Tree tree) {
 		COMMAND_MAP.get(event.getActionCommand()).run(this, repaintEventHandler, user, tree);
 	}
 
