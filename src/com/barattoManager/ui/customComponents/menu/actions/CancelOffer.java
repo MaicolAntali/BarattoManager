@@ -7,7 +7,7 @@ import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
-import com.barattoManager.ui.customComponents.tree.article.ArticleTree;
+import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
@@ -18,7 +18,7 @@ import javax.swing.tree.TreeNode;
 public class CancelOffer implements MenuAction {
 
 	@Override
-	public void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user, ArticleTree articleTree) {
+	public void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user, Tree articleTree) {
 		try {
 			// Get the selected node
 			TreeNode[] nodePath = articleTree.getSelectedPathNode();

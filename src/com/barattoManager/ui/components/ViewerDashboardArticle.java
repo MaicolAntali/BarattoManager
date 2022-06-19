@@ -35,7 +35,7 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener {
 		repaintEventHandler.addListener(this);
 
 
-		var articleTreeMenu = new DashboardMenuFactory().createMenuObject().createMenu();
+		var articleTreeMenu = new DashboardMenuFactory().createMenuObject().createMenu(repaintEventHandler, user, articleTree);
 		centerPanel.add(articleTreeMenu, BorderLayout.NORTH);
 		centerPanel.add(articleTree);
 
