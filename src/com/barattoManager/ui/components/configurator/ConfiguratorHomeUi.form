@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.barattoManager.ui.components.ViewerHomeUi">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.barattoManager.ui.components.configurator.ConfiguratorHomeUi">
   <grid id="27dc6" binding="mainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
@@ -19,46 +19,46 @@
             <properties>
               <font size="24" style="3"/>
               <horizontalAlignment value="0"/>
-              <text value="Fruitore Home"/>
+              <text value="Configuratore Home"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="82d81" layout-manager="GridLayoutManager" row-count="8" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="aad4e" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints border-constraint="Center"/>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="97b00" class="javax.swing.JButton" binding="viewCategoryButton">
+          <component id="2059c" class="javax.swing.JButton" binding="configCategoryButton">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="3" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Mostra Categorie"/>
+              <text value="Configura Categorie"/>
             </properties>
           </component>
-          <hspacer id="52b40">
+          <hspacer id="7f378">
             <constraints>
-              <grid row="0" column="2" row-span="8" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="2" row-span="6" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <hspacer id="24236">
+          <hspacer id="d6899">
             <constraints>
-              <grid row="0" column="0" row-span="8" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="6" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <vspacer id="e7842">
+          <vspacer id="2b639">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
-          <vspacer id="79c18">
+          <vspacer id="e28ab">
             <constraints>
-              <grid row="6" column="1" row-span="2" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
-          <component id="cacc0" class="javax.swing.JLabel">
+          <component id="c0d58" class="javax.swing.JLabel">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -66,28 +66,20 @@
               <text value="Scegli una della seguenti opzioni:"/>
             </properties>
           </component>
-          <component id="9f68d" class="javax.swing.JButton" binding="viewMeetButton">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="3" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Mostra Incontri"/>
-            </properties>
-          </component>
-          <component id="40f71" class="javax.swing.JButton" binding="yoursArticleButton">
+          <component id="adbe0" class="javax.swing.JButton" binding="addNewConfigurator">
             <constraints>
               <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="3" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="I tuoi Articoli"/>
+              <text value="Registra Configuratore"/>
             </properties>
           </component>
-          <component id="948c3" class="javax.swing.JButton" binding="storeArticleButton">
+          <component id="c51d4" class="javax.swing.JButton" binding="configMeetButton">
             <constraints>
-              <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="3" use-parent-layout="false"/>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="3" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Store Articoli"/>
+              <text value="Configura Incontri"/>
             </properties>
           </component>
         </children>

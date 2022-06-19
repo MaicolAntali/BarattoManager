@@ -1,5 +1,7 @@
-package com.barattoManager.ui.components;
+package com.barattoManager.ui.components.configurator;
 
+import com.barattoManager.ui.components.ComponentsName;
+import com.barattoManager.ui.components.InitialMenuUI;
 import com.barattoManager.ui.customComponents.buttons.CategoryConfButtons;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.event.RepaintListener;

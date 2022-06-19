@@ -1,15 +1,17 @@
-package com.barattoManager.ui.components;
+package com.barattoManager.ui.components.viewer;
 
-import com.barattoManager.ui.customComponents.tree.meet.MeetTree;
+import com.barattoManager.ui.components.ComponentsName;
+import com.barattoManager.ui.customComponents.tree.category.CategoryTree;
 
 import javax.swing.*;
 import java.awt.*;
+
 /**
- * Class used to create a JPanel that represent the meets view (only viewer)
+ * Class used to create a JPanel that represent the categories view (only viewer)
  */
-public class ViewerMeetViewUi extends JPanel {
+public class ViewerCategoryViewUi extends JPanel {
 	/**
-	 * Main Panel
+	 * Main panel
 	 */
 	private JPanel mainPanel;
 	/**
@@ -22,18 +24,18 @@ public class ViewerMeetViewUi extends JPanel {
 	private JButton backToHomeButton;
 
 	/**
-	 *
-	 * {@link ViewerMeetViewUi} constructor
+	 * {@link ViewerCategoryViewUi} constructor
 	 * @param dimension Dimension of JPanel
 	 * @param cardLayout {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
 	 * @param panelContainer {@link JPanel} object that contains every cards
 	 */
-	public ViewerMeetViewUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
+	public ViewerCategoryViewUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
+		// JPanel conf
 		setVisible(true);
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
-		centerPanel.add(new MeetTree(new Dimension(520, 330)));
+		centerPanel.add(new CategoryTree(new Dimension(520, 330)));
 
 		backToHomeButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString()));
 	}

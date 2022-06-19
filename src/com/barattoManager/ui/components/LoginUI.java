@@ -4,6 +4,10 @@ import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.manager.UserManager;
 import com.barattoManager.model.user.configurator.Configurator;
 import com.barattoManager.ui.BarattoManagerGui;
+import com.barattoManager.ui.components.configurator.ConfiguratorCategoryEditorUi;
+import com.barattoManager.ui.components.configurator.ConfiguratorHomeUi;
+import com.barattoManager.ui.components.configurator.ConfiguratorMeetEditorUi;
+import com.barattoManager.ui.components.viewer.*;
 import com.barattoManager.ui.customComponents.optionPane.ChangePasswordPanel;
 import com.barattoManager.utils.AppConfigurator;
 

@@ -1,6 +1,7 @@
-package com.barattoManager.ui.components;
+package com.barattoManager.ui.components.viewer;
 
 import com.barattoManager.model.user.User;
+import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.event.RepaintListener;
 import com.barattoManager.ui.customComponents.menu.factory.DashboardMenuFactory;

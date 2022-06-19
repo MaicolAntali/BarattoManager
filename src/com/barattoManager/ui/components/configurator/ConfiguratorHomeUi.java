@@ -1,5 +1,6 @@
-package com.barattoManager.ui.components;
+package com.barattoManager.ui.components.configurator;
 
+import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.customComponents.optionPane.RegisterNewUserPanel;
 
 import javax.swing.*;

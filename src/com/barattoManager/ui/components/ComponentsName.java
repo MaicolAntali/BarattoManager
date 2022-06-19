@@ -1,5 +1,13 @@
 package com.barattoManager.ui.components;
 
+import com.barattoManager.ui.components.configurator.ConfiguratorCategoryEditorUi;
+import com.barattoManager.ui.components.configurator.ConfiguratorHomeUi;
+import com.barattoManager.ui.components.configurator.ConfiguratorMeetEditorUi;
+import com.barattoManager.ui.components.viewer.ViewerCategoryViewUi;
+import com.barattoManager.ui.components.viewer.ViewerDashboardArticle;
+import com.barattoManager.ui.components.viewer.ViewerMeetViewUi;
+import com.barattoManager.ui.components.viewer.ViewerStoreArticle;
+
 /**
  * Enum that represent the views name
  */

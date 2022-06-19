@@ -1,4 +1,6 @@
-package com.barattoManager.ui.components;
+package com.barattoManager.ui.components.viewer;
+
+import com.barattoManager.ui.components.ComponentsName;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +22,7 @@ public class ViewerHomeUi extends JPanel {
 	 */
 	private JButton viewMeetButton;
 	/**
-	 * YoursArticle button to {@link ViewerYoursArticle}
+	 * YoursArticle button to {@link ViewerDashboardArticle}
 	 */
 	private JButton yoursArticleButton;
 	/**
