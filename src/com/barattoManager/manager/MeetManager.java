@@ -130,6 +130,12 @@ public final class MeetManager {
 		return meetHashMap.values().stream().toList();
 	}
 
+	public List<Meet> getAvaileblesMeet() {
+		return meetHashMap.values().stream()
+				.filter(meet -> meet.getUserBookedMeetUuid().isEmpty())
+				.toList();
+	}
+
 	public void saveMapChange() {
 		try {
 			objectMapper.writeValue(jsonFile, meetHashMap);

@@ -18,13 +18,13 @@ import javax.swing.tree.TreeNode;
 public class CancelOffer implements MenuAction {
 
 	@Override
-	public void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user, Tree articleTree) {
+	public void run(RepaintEventHandler repaintEventHandler, User user, Tree tree) {
 		try {
 			// Get the selected node
-			TreeNode[] nodePath = articleTree.getSelectedPathNode();
+			TreeNode[] nodePath = tree.getSelectedPathNode();
 
 			var result = JOptionPane.showConfirmDialog(
-					fatherPanel,
+					tree,
 					"Sei sicuro di voler cambiare lo stato dell'articolo in: \"Offerta Cancellata\"?",
 					"Conferma Operazione",
 					JOptionPane.YES_NO_OPTION);
@@ -46,7 +46,7 @@ public class CancelOffer implements MenuAction {
 				}
 			}
 		} catch (NoNodeSelected | NullCategoryException | IllegalValuesException ex) {
-			JOptionPane.showMessageDialog(fatherPanel, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(tree, ex.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

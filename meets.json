@@ -52,7 +52,7 @@
     "end_time": "10:30:00",
     "user_booked_uuid": null,
     "day_before_expire": 3,
-    "date_of_meet": "2022-06-20"
+    "date_of_meet": "2022-06-27"
   },
   "b3c99c58-653e-44c7-8a26-f3f2fa95a195": {
     "uuid": "b3c99c58-653e-44c7-8a26-f3f2fa95a195",
@@ -63,7 +63,7 @@
     "end_time": "11:00:00",
     "user_booked_uuid": null,
     "day_before_expire": 3,
-    "date_of_meet": "2022-06-20"
+    "date_of_meet": "2022-06-27"
   },
   "6ac95e66-4de4-4dad-ba90-5430c87b697f": {
     "uuid": "6ac95e66-4de4-4dad-ba90-5430c87b697f",
@@ -74,7 +74,7 @@
     "end_time": "10:00:00",
     "user_booked_uuid": null,
     "day_before_expire": 3,
-    "date_of_meet": "2022-06-20"
+    "date_of_meet": "2022-06-27"
   },
   "72c0ab38-b704-45f9-826d-d46534e0b7fa": {
     "uuid": "72c0ab38-b704-45f9-826d-d46534e0b7fa",
@@ -85,7 +85,7 @@
     "end_time": "11:30:00",
     "user_booked_uuid": null,
     "day_before_expire": 3,
-    "date_of_meet": "2022-06-20"
+    "date_of_meet": "2022-06-27"
   },
   "60cd40dd-51d5-4495-a4c1-0ad70184cf63": {
     "uuid": "60cd40dd-51d5-4495-a4c1-0ad70184cf63",

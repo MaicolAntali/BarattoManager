@@ -33,11 +33,11 @@ public class NewArticle implements MenuAction {
 	private static final String LABEL_SELECT_A_CATEGORY_FOR_YOUR_ARTICLE = "Seleziona una categoria per il tuo articolo:";
 
 	@Override
-	public void run(JPanel fatherPanel, RepaintEventHandler repaintEventHandler, User user, Tree articleTree) {
+	public void run(RepaintEventHandler repaintEventHandler, User user, Tree tree) {
 
 		var comboCategoryPanel = new SelectCategoryArticlePanel();
 		int result = JOptionPane.showOptionDialog(
-				fatherPanel,
+				tree,
 				comboCategoryPanel,
 				TITLE_ADD_NEW_ARTICLE,
 				JOptionPane.OK_CANCEL_OPTION,
@@ -51,7 +51,7 @@ public class NewArticle implements MenuAction {
 			var categorySelected = comboCategoryPanel.getSelectedCategory();
 			var formPanel = new FormArticlePanel(categorySelected);
 			int resultFormPanel = JOptionPane.showOptionDialog(
-					fatherPanel,
+					tree,
 					formPanel,
 					TITLE_ADD_NEW_ARTICLE,
 					JOptionPane.OK_CANCEL_OPTION,
