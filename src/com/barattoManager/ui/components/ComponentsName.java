@@ -3,10 +3,7 @@ package com.barattoManager.ui.components;
 import com.barattoManager.ui.components.configurator.ConfiguratorCategoryEditorUi;
 import com.barattoManager.ui.components.configurator.ConfiguratorHomeUi;
 import com.barattoManager.ui.components.configurator.ConfiguratorMeetEditorUi;
-import com.barattoManager.ui.components.viewer.ViewerCategoryViewUi;
-import com.barattoManager.ui.components.viewer.ViewerDashboardArticle;
-import com.barattoManager.ui.components.viewer.ViewerMeetViewUi;
-import com.barattoManager.ui.components.viewer.ViewerStoreArticle;
+import com.barattoManager.ui.components.viewer.*;
 
 /**
  * Enum that represent the views name
@@ -51,7 +48,12 @@ public enum ComponentsName {
     /**
      * {@link ViewerStoreArticle}
      */
-    VIEWER_STORE_ARTICLES("viewer_store_article");
+    VIEWER_STORE_ARTICLES("viewer_store_article"),
+
+    /**
+     * {@link ViewerExchangesViewUi}
+     */
+    VIEWER_EXCHANGES("viewer_exchanges_view");
 
 
     /**
