@@ -1,5 +1,6 @@
 package com.barattoManager.manager;
 
+import com.barattoManager.manager.daemon.TradeCheckerDaemon;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.trade.Trade;
 import com.barattoManager.utils.AppConfigurator;
@@ -14,11 +15,8 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class TradeManager {
 
@@ -31,6 +29,7 @@ public final class TradeManager {
 			.build();
 	private final HashMap<String, Trade> tradeHashMap;
 
+	private TradeCheckerDaemon tradeCheckerDaemon;
 	private Thread daemonChecker;
 
 	private TradeManager() {
@@ -45,6 +44,8 @@ public final class TradeManager {
 		else {
 			tradeHashMap = new HashMap<>();
 		}
+
+		this.tradeCheckerDaemon = new TradeCheckerDaemon(tradeHashMap);
 	}
 
 	public void addNewTrade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid) {
@@ -63,38 +64,17 @@ public final class TradeManager {
 		return TradeManagerHolder.instance;
 	}
 
+	public void removeTradeByUuid(String uuid) {
+		tradeHashMap.remove(uuid);
+		saveTradeMapChange();
+	}
+
+
 	public void runDaemonChecker() {
-		// Check if the thread is already running
 		if (daemonChecker == null || !daemonChecker.isAlive()) {
 			daemonChecker = new Thread(
 					() -> new Timer().scheduleAtFixedRate(
-							new TimerTask() {
-								@Override
-								public void run() {
-									System.out.printf("Running checker: %s%n", LocalDateTime.now());
-									if (!tradeHashMap.isEmpty()) {
-										AtomicBoolean hashmapHasChanged = new AtomicBoolean(false);
-										ArrayList<Trade> tradeToRemove = new ArrayList<>();
-										tradeHashMap.values().stream()
-												.filter(trade -> LocalDateTime.now().isAfter(trade.tradeEndDateTime()))
-												.forEach(trade -> {
-													ArticleManager.getInstance().getArticleById(trade.articleOneUuid())
-															.orElseThrow(NullPointerException::new)
-															.changeState(Article.State.OPEN_OFFER);
-													ArticleManager.getInstance().getArticleById(trade.articleTwoUuid())
-															.orElseThrow(NullPointerException::new)
-															.changeState(Article.State.OPEN_OFFER);
-
-													tradeToRemove.add(trade);
-													hashmapHasChanged.set(true);
-												});
-										if (hashmapHasChanged.get()) {
-											tradeToRemove.forEach(trade -> tradeHashMap.remove(trade.uuid()));
-											saveTradeMapChange();
-										}
-									}
-								}
-							},
+							tradeCheckerDaemon,
 							0,
 							60*1_000
 					)
@@ -117,5 +97,7 @@ public final class TradeManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		this.tradeCheckerDaemon = new TradeCheckerDaemon(tradeHashMap);
 	}
 }

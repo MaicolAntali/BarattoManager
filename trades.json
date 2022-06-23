@@ -1,9 +1,1 @@
-{
-  "fd09193e-e5fc-4e79-bc61-b153ebb609cb": {
-    "uuid": "fd09193e-e5fc-4e79-bc61-b153ebb609cb",
-    "trade_start_date_time": "2022-06-05T16:34:49.904955",
-    "trade_end_date_time": "2022-06-08T16:34:49.865636",
-    "article_one_uuid": "49ccbdeb-8816-4930-bf4e-aee63c934b59",
-    "article_two_uuid": "8ce6d149-b469-4455-aca1-93e2b4ce02b8"
-  }
-}
+{"3af4ea11-01c9-4cc3-a1df-56f01a3e9615":{"uuid":"3af4ea11-01c9-4cc3-a1df-56f01a3e9615","trade_start_date_time":"2022-06-23T09:03:58.012472","trade_end_date_time":"2022-06-26T09:03:57.982061","article_one_uuid":"7325aa24-b4f0-4fb0-90bc-f2bdb1f9e749","article_two_uuid":"a2555b49-1b32-42e9-8f9f-8dd76e668767"}}

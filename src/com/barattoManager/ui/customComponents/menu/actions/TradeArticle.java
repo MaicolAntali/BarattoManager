@@ -3,6 +3,7 @@ package com.barattoManager.ui.customComponents.menu.actions;
 import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.manager.MeetManager;
+import com.barattoManager.manager.TradeManager;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.model.user.User;
@@ -13,6 +14,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import javax.swing.tree.TreeNode;
 import java.awt.*;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.IntStream;
@@ -80,8 +82,15 @@ public class TradeArticle implements MenuAction {
 			);
 
 			if (resultMeetDate == JOptionPane.OK_OPTION) {
-				System.out.println(selectArticleToTradePanel.getSelectedArticle());
-				System.out.println(selectMeetDatePanel.getSelectedMeet());
+				TradeManager.getInstance().addNewTrade(
+						LocalDateTime.now().plusDays(selectMeetDatePanel.getSelectedMeet().getDaysBeforeExpire()),
+						selectArticleToTradePanel.getSelectedArticle().getUuid(),
+						articleOption.get().getUuid()
+				);
+
+				MeetManager.getInstance().bookMeet(selectMeetDatePanel.getSelectedMeet().getUuid(), user.getUsername());
+
+				repaintEventHandler.fireListeners();
 			}
 		}
 	}

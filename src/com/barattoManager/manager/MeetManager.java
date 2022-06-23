@@ -65,10 +65,11 @@ public final class MeetManager {
 			daemonThread = new Thread(
 					() -> new Timer().scheduleAtFixedRate(
 							meetUpdaterDaemon,
-							0,
-							60*1_000 // 1 Minutes
+							30000, // 30 sec
+							60000 // 1 Minutes
 					)
 			);
+			daemonThread.setDaemon(true);
 			daemonThread.start();
 		}
 	}

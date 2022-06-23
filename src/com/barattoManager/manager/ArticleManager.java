@@ -1,5 +1,6 @@
 package com.barattoManager.manager;
 
+import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.category.field.Field;
 import com.barattoManager.utils.AppConfigurator;
@@ -58,7 +59,6 @@ public final class ArticleManager {
 			articleMap = new HashMap<>();
 		}
 	}
-
 
 	/**
 	 * Holder class of instance
@@ -134,6 +134,8 @@ public final class ArticleManager {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		EventFactory.getArticlesEvent().fireListener();
 	}
 }
 

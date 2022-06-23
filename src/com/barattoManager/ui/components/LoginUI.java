@@ -1,5 +1,6 @@
 package com.barattoManager.ui.components;
 
+import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.manager.UserManager;
 import com.barattoManager.model.user.configurator.Configurator;
@@ -133,8 +134,15 @@ public class LoginUI extends JPanel {
 						panelContainer.add(new ViewerCategoryViewUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_CATEGORY.toString());
 						panelContainer.add(new ViewerMeetViewUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_MEET.toString());
 
-						panelContainer.add(new ViewerStoreArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user), ComponentsName.VIEWER_STORE_ARTICLES.toString());
-						panelContainer.add(new ViewerDashboardArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user), ComponentsName.VIEWER_YOUR_ARTICLES.toString());
+						// add Listeners
+						var viewerStore =  new ViewerStoreArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user);
+						EventFactory.getArticlesEvent().addListener(viewerStore);
+
+						var viewerDashboard = new ViewerDashboardArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user);
+						EventFactory.getArticlesEvent().addListener(viewerDashboard);
+
+						panelContainer.add(viewerStore, ComponentsName.VIEWER_STORE_ARTICLES.toString());
+						panelContainer.add(viewerDashboard, ComponentsName.VIEWER_YOUR_ARTICLES.toString());
 
 						cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString());
 					}

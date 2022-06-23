@@ -1,5 +1,6 @@
 package com.barattoManager.ui.components.viewer;
 
+import com.barattoManager.event.events.DataChangeListener;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
@@ -10,7 +11,7 @@ import com.barattoManager.ui.customComponents.tree.article.ArticleTreeDashboard;
 import javax.swing.*;
 import java.awt.*;
 
-public class ViewerDashboardArticle extends JPanel implements RepaintListener {
+public class ViewerDashboardArticle extends JPanel implements RepaintListener, DataChangeListener {
 	public static final String HELP_MESSAGE = """
 			In questa pagina puoi visualizzare I tuoi articoli
 			Per effettuare un operazione su un tuo articolo puoi cliccare sul menu in alto al sinistra e scegliere di:
@@ -63,5 +64,10 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener {
 
 		centerPanel.repaint();
 		centerPanel.revalidate();
+	}
+
+	@Override
+	public void update() {
+		repaintComponents();
 	}
 }

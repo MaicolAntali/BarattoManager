@@ -1,6 +1,7 @@
 package com.barattoManager.ui;
 
 import com.barattoManager.manager.MeetManager;
+import com.barattoManager.manager.TradeManager;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.components.InitialMenuUI;
 import com.barattoManager.ui.components.LoginUI;
@@ -51,7 +52,7 @@ public class BarattoManagerGui extends JFrame {
 
         // Start the daemon thread
         MeetManager.getInstance().runUpdaterDaemon();
-        // FIXME: TradeManager.getInstance().runDaemonChecker();
+        TradeManager.getInstance().runDaemonChecker();
 
         // Set the app version
         versionLabel.setText(AppConfigurator.getInstance().getAppDataAsText("version"));

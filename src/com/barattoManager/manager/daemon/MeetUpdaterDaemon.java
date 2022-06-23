@@ -19,7 +19,7 @@ public class MeetUpdaterDaemon extends TimerTask {
 
 	@Override
 	public void run() {
-		System.out.printf("Running the MeetUpdaterDaemon: %s%n", LocalDateTime.now());
+		System.out.printf("Running  MeetUpdaterDaemon: %s%n", LocalDateTime.now());
 		meetHashMap.values().forEach(meet -> {
 
 			if (LocalDate.now().isAfter(meet.getDateOfMeet())) {
@@ -39,6 +39,6 @@ public class MeetUpdaterDaemon extends TimerTask {
 				}
 			}
 		});
-		System.out.printf("Ended the MeetUpdaterDaemon: %s%n", LocalDateTime.now());
+		System.out.printf("Ended MeetUpdaterDaemon: %s%n", LocalDateTime.now());
 	}
 }
