@@ -3,7 +3,6 @@ package com.barattoManager.ui.customComponents.tree.article;
 import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.manager.CategoryManager;
 import com.barattoManager.model.article.Article;
-import com.barattoManager.model.category.field.Field;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -11,7 +10,6 @@ import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public abstract class ArticleTree extends Tree {
 
@@ -56,19 +54,6 @@ public abstract class ArticleTree extends Tree {
 	public String getUsername() {
 		return username;
 	}
-
-	protected DefaultMutableTreeNode generateFields(Article article) {
-		var fieldsNode = new DefaultMutableTreeNode("Campi");
-
-		for (Map.Entry<Field, String> entry : article.getFieldValueMap().entrySet()) {
-			if (!entry.getValue().isBlank() || !entry.getKey().required()) {
-				fieldsNode.add(new DefaultMutableTreeNode(("%s: %s").formatted(entry.getKey().name(), entry.getValue())));
-			}
-		}
-
-		return fieldsNode;
-	}
-
 
 	private HashMap<String, HashMap<String, DefaultMutableTreeNode>> generateNodeMap(String usernameFilter, Article.State stateFilter) {
 		CategoryManager categoryManager = CategoryManager.getInstance();

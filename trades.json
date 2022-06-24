@@ -1,1 +1,10 @@
-{"3af4ea11-01c9-4cc3-a1df-56f01a3e9615":{"uuid":"3af4ea11-01c9-4cc3-a1df-56f01a3e9615","trade_start_date_time":"2022-06-23T09:03:58.012472","trade_end_date_time":"2022-06-26T09:03:57.982061","article_one_uuid":"7325aa24-b4f0-4fb0-90bc-f2bdb1f9e749","article_two_uuid":"a2555b49-1b32-42e9-8f9f-8dd76e668767"}}
+{
+  "3af4ea11-01c9-4cc3-a1df-56f01a3e9615": {
+    "uuid": "3af4ea11-01c9-4cc3-a1df-56f01a3e9615",
+    "trade_start_date_time": "2022-06-23T09:03:58.012472",
+    "trade_end_date_time": "2022-06-26T09:03:57.982061",
+    "article_one_uuid": "7325aa24-b4f0-4fb0-90bc-f2bdb1f9e749",
+    "article_two_uuid": "a2555b49-1b32-42e9-8f9f-8dd76e668767",
+    "meet_uuid": "2b185e31-676f-4259-b627-5376a233a4fb"
+  }
+}

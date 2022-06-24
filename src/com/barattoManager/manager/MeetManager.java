@@ -137,6 +137,10 @@ public final class MeetManager {
 				.toList();
 	}
 
+	public Optional<Meet> getMeetByUuid(String meertUuid) {
+		return Optional.ofNullable(meetHashMap.get(meertUuid));
+	}
+
 	public void saveMapChange() {
 		try {
 			objectMapper.writeValue(jsonFile, meetHashMap);

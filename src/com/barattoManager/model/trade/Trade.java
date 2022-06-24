@@ -10,10 +10,11 @@ public record Trade(
 		@JsonProperty("trade_start_date_time") LocalDateTime tradeStartDateTime,
 		@JsonProperty("trade_end_date_time") LocalDateTime tradeEndDateTime,
 		@JsonProperty("article_one_uuid") String articleOneUuid,
-		@JsonProperty("article_two_uuid") String articleTwoUuid
+		@JsonProperty("article_two_uuid") String articleTwoUuid,
+		@JsonProperty("meet_uuid") String meetUuid
 		)
 {
-	public Trade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid) {
-		this(UUID.randomUUID().toString(), LocalDateTime.now(), endTradeDateTime, articleOneUuid, articleTwoUuid);
+	public Trade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid, String meetUuid) {
+		this(UUID.randomUUID().toString(), LocalDateTime.now(), endTradeDateTime, articleOneUuid, articleTwoUuid, meetUuid);
 	}
 }

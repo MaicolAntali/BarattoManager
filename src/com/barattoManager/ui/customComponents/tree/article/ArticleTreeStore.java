@@ -1,6 +1,7 @@
 package com.barattoManager.ui.customComponents.tree.article;
 
 import com.barattoManager.model.article.Article;
+import com.barattoManager.utils.TreeUtils;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -19,7 +20,7 @@ public final class ArticleTreeStore extends ArticleTree {
 		var articleNode = new DefaultMutableTreeNode(article.getArticleName());
 
 		articleNode.add(new DefaultMutableTreeNode("UUID: %s".formatted(article.getUuid())));
-		articleNode.add(generateFields(article));
+		articleNode.add(TreeUtils.generateFields(article));
 
 		fatherNode.add(articleNode);
 

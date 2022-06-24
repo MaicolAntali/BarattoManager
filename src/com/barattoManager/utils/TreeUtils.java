@@ -1,7 +1,12 @@
 package com.barattoManager.utils;
 
+import com.barattoManager.model.article.Article;
+import com.barattoManager.model.category.field.Field;
+
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Utility class of tree
@@ -19,5 +24,17 @@ public final class TreeUtils {
 			arrayList.add(node.toString().split("~")[0].trim());
 		}
 		return arrayList;
+	}
+
+	public static DefaultMutableTreeNode generateFields(Article article) {
+		var fieldsNode = new DefaultMutableTreeNode("Campi");
+
+		for (Map.Entry<Field, String> entry : article.getFieldValueMap().entrySet()) {
+			if (!entry.getValue().isBlank() || !entry.getKey().required()) {
+				fieldsNode.add(new DefaultMutableTreeNode(("%s: %s").formatted(entry.getKey().name(), entry.getValue())));
+			}
+		}
+
+		return fieldsNode;
 	}
 }

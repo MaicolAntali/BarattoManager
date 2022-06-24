@@ -85,7 +85,8 @@ public class TradeArticle implements MenuAction {
 				TradeManager.getInstance().addNewTrade(
 						LocalDateTime.now().plusDays(selectMeetDatePanel.getSelectedMeet().getDaysBeforeExpire()),
 						selectArticleToTradePanel.getSelectedArticle().getUuid(),
-						articleOption.get().getUuid()
+						articleOption.get().getUuid(),
+						selectMeetDatePanel.getSelectedMeet().getUuid()
 				);
 
 				MeetManager.getInstance().bookMeet(selectMeetDatePanel.getSelectedMeet().getUuid(), user.getUsername());

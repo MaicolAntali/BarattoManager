@@ -16,6 +16,8 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
 import java.util.Timer;
 
 public final class TradeManager {
@@ -48,17 +50,18 @@ public final class TradeManager {
 		this.tradeCheckerDaemon = new TradeCheckerDaemon(tradeHashMap);
 	}
 
-	public void addNewTrade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid) {
+	public void addNewTrade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid, String meetUuid) {
 
 		ArticleManager.getInstance().getArticleById(articleOneUuid)
 				.orElseThrow(NullPointerException::new).changeState(Article.State.LINKED_OFFERT);
 		ArticleManager.getInstance().getArticleById(articleTwoUuid)
 				.orElseThrow(NullPointerException::new).changeState(Article.State.SELECTED_OFFERT);
 
-		var trade = new Trade(endTradeDateTime, articleOneUuid, articleTwoUuid);
+		var trade = new Trade(endTradeDateTime, articleOneUuid, articleTwoUuid, meetUuid);
 		tradeHashMap.put(trade.uuid(), trade);
 		saveTradeMapChange();
 	}
+
 
 	public static TradeManager getInstance() {
 		return TradeManagerHolder.instance;
@@ -76,7 +79,7 @@ public final class TradeManager {
 					() -> new Timer().scheduleAtFixedRate(
 							tradeCheckerDaemon,
 							0,
-							60*1_000
+							60 * 1_000
 					)
 			);
 			daemonChecker.setDaemon(true);
@@ -84,11 +87,21 @@ public final class TradeManager {
 		}
 	}
 
-	private static final class  TradeManagerHolder {
+	private static final class TradeManagerHolder {
 		/**
 		 * Instance of {@link TradeManager}
 		 */
 		private static final TradeManager instance = new TradeManager();
+	}
+
+	public List<Trade> getTradeByUser(String userUuid) {
+		return tradeHashMap.values().stream()
+				.filter(trade ->
+						Objects.equals(ArticleManager.getInstance().getArticleById(trade.articleOneUuid()).orElseThrow(NullPointerException::new)
+								.getUserNameOwner(), userUuid)
+								|| Objects.equals(ArticleManager.getInstance().getArticleById(trade.articleTwoUuid()).orElseThrow(NullPointerException::new)
+								.getUserNameOwner(), userUuid))
+				.toList();
 	}
 
 	private void saveTradeMapChange() {

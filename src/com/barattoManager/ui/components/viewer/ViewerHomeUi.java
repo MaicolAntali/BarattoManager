@@ -29,7 +29,7 @@ public class ViewerHomeUi extends JPanel {
 	 * ArticleStore button to {@link ViewerStoreArticle}
 	 */
 	private JButton storeArticleButton;
-	private JButton iTuoiScambiButton;
+	private JButton myTradesButton;
 
 	/**
 	 * {@link ViewerHomeUi} constructor
@@ -48,6 +48,6 @@ public class ViewerHomeUi extends JPanel {
 		viewMeetButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_MEET.toString()));
 		yoursArticleButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_YOUR_ARTICLES.toString()));
 		storeArticleButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_STORE_ARTICLES.toString()));
-		iTuoiScambiButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_EXCHANGES.toString()));
+		myTradesButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_EXCHANGES.toString()));
 	}
 }
