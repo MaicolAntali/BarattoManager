@@ -4,7 +4,6 @@ import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.category.field.Field;
 import com.barattoManager.utils.AppConfigurator;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -13,53 +12,45 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.barattoManager.manager.Constants.POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP;
 
 /**
  * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the articles.
  */
-public final class ArticleManager {
-	/**
-	 * Post-Condition: The article is not present in the map
-	 */
-	private static final String POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP = "Post-Condition: The article is not present in the map";
-	/**
-	 * Article JSON file
-	 */
-	private final File articleFile = new File(AppConfigurator.getInstance().getFileName("article_file"));
-	/**
-	 * {@link ObjectMapper} object, used to parse JSON
-	 */
-	private final ObjectMapper objectMapper = JsonMapper.builder()
-			.addModule(new ParameterNamesModule())
-			.addModule(new Jdk8Module())
-			.addModule(new JavaTimeModule())
-			.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-			.build();
-	/**
-	 * {@link HashMap} that contain the articles
-	 */
-	private final HashMap<String, Article> articleMap;
+public final class ArticleManager extends NoConcurrencyManager<String, Article>{
 
 	/**
 	 * {@link ArticleManager} constructor
 	 */
 	private ArticleManager() {
-		if (articleFile.exists()) {
-			try {
-				articleMap = objectMapper.readValue(articleFile, new TypeReference<>() {
-				});
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}
-		else {
-			articleMap = new HashMap<>();
-		}
+		super(String.class, Article.class);
 	}
 
+	@Override
+	File getJsonFile() {
+		return new File(AppConfigurator.getInstance().getFileName("article_file"));
+	}
+
+	@Override
+	ObjectMapper getObjectMapper() {
+		return JsonMapper.builder()
+				.addModule(new ParameterNamesModule())
+				.addModule(new Jdk8Module())
+				.addModule(new JavaTimeModule())
+				.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+				.build();
+	}
+
+	@Override
+	void afterDataChangeActions() {
+		EventFactory.getArticlesEvent().fireListener();
+	}
 	/**
 	 * Holder class of instance
 	 */
@@ -91,18 +82,18 @@ public final class ArticleManager {
 	 */
 	public void addNewArticle(String articleName, String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
 		var article = new Article(articleName, userNameOwner, categoryUuid, fields, values);
-		articleMap.put(article.getUuid(), article);
-		saveArticleMapChange();
+		getDataMap().put(article.getUuid(), article);
+		saveDataMap();
 
-		assert articleMap.containsKey(article.getUuid()) : POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP;
+		assert getDataMap().containsKey(article.getUuid()) : POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP;
 	}
 
 	public Optional<Article> getArticleById(String uuid) {
-		return Optional.ofNullable(articleMap.get(uuid));
+		return Optional.ofNullable(getDataMap().get(uuid));
 	}
 
 	public List<Article> getArticles() {
-		return new ArrayList<>(articleMap.values());
+		return new ArrayList<>(getDataMap().values());
 	}
 
 	public List<Article> getArticlesByOwner(String ownerFilter) {
@@ -123,19 +114,6 @@ public final class ArticleManager {
 				.filter(article -> article.getArticleState() == stateFilter)
 				.filter(article -> !Objects.equals(article.getUserNameOwner().toLowerCase(), ownerFilter.toLowerCase()))
 				.collect(Collectors.toList());
-	}
-
-	/**
-	 * Method used to save in the json file the {@link #articleMap} object
-	 */
-	public void saveArticleMapChange() {
-		try {
-			objectMapper.writeValue(articleFile, articleMap);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		EventFactory.getArticlesEvent().fireListener();
 	}
 }
 

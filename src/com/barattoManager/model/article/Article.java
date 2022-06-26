@@ -259,7 +259,7 @@ public class Article {
 	public void changeState(State state) {
 		history.add(new History("State Update", "The article state is updated from %s to %s".formatted(this.articleState, state)));
 		this.articleState = state;
-		ArticleManager.getInstance().saveArticleMapChange();
+		ArticleManager.getInstance().saveDataMap();
 	}
 
 	/**
