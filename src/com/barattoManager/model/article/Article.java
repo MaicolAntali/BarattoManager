@@ -120,7 +120,8 @@ public class Article {
 		 */
 		CANCELLED_OFFER("Offerta Cancellata"),
 		LINKED_OFFERT("Offerta accoppiata"),
-		SELECTED_OFFERT("Offerta selezionata");
+		SELECTED_OFFERT("Offerta selezionata"),
+		CLOSE_OFFERT("Offerta chiusa");
 
 		/**
 		 * Label in italian

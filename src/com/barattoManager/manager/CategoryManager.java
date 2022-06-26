@@ -16,7 +16,7 @@ import static com.barattoManager.manager.Constants.*;
 /**
  * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the categories.
  */
-public final class CategoryManager extends Manager<String, Category> {
+public final class CategoryManager extends NoConcurrencyManager<String, Category> {
 	/**
 	 * {@link CategoryManager} constructor
 	 */

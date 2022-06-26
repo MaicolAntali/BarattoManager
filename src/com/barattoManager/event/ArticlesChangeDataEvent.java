@@ -18,11 +18,6 @@ public class ArticlesChangeDataEvent implements Event {
 	}
 
 	@Override
-	public void removeListener(DataChangeListener listener) {
-		listeners.remove(listener);
-	}
-
-	@Override
 	public void fireListener() {
 		for (DataChangeListener dataChangeListener : listeners) {
 			dataChangeListener.update();

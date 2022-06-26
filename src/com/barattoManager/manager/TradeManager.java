@@ -15,10 +15,7 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
-import java.util.Timer;
+import java.util.*;
 
 public final class TradeManager {
 
@@ -102,6 +99,10 @@ public final class TradeManager {
 								|| Objects.equals(ArticleManager.getInstance().getArticleById(trade.articleTwoUuid()).orElseThrow(NullPointerException::new)
 								.getUserNameOwner(), userUuid))
 				.toList();
+	}
+
+	public Optional<Trade> getTradeByUuid(String tradeUuid) {
+		return Optional.ofNullable(tradeHashMap.get(tradeUuid));
 	}
 
 	private void saveTradeMapChange() {

@@ -13,8 +13,6 @@ import java.util.List;
 
 public abstract class ArticleTree extends Tree {
 
-	private final String username;
-
 	/**
 	 * {@link ArticleTree} constructor
 	 *
@@ -24,7 +22,7 @@ public abstract class ArticleTree extends Tree {
 	 */
 	public ArticleTree(Dimension dimension, String usernameFilter, Article.State stateFilter) {
 		super(dimension);
-		this.username = usernameFilter.replace("!", "");
+		String username = usernameFilter.replace("!", "");
 
 		var nodeMap = generateNodeMap(username, stateFilter);
 
@@ -50,10 +48,6 @@ public abstract class ArticleTree extends Tree {
 
 
 	abstract void createNode(Article article, DefaultMutableTreeNode fatherNode);
-
-	public String getUsername() {
-		return username;
-	}
 
 	private HashMap<String, HashMap<String, DefaultMutableTreeNode>> generateNodeMap(String usernameFilter, Article.State stateFilter) {
 		CategoryManager categoryManager = CategoryManager.getInstance();

@@ -26,16 +26,16 @@ public record History(
 	 * @param description Description of history
 	 */
 	public History(String name, String description) {
-		this(LocalDateTime.now(), Optional.of(name), Optional.empty(), Optional.of(description));
+		this(name, description, false);
 	}
 
 	/**
 	 * {@link History} constructor
-	 * @param error Error of history
+	 * @param name name of history
 	 * @param description Description of history
 	 * @param isError true if is error otherwise false
 	 */
-	public History(String error, String description, boolean isError) {
-		this(LocalDateTime.now(), Optional.empty(), Optional.of(error), Optional.of(description));
+	public History(String name, String description, boolean isError) {
+		this(LocalDateTime.now(), Optional.empty(), isError ? Optional.of(name) : Optional.empty(), Optional.of(description));
 	}
 }
