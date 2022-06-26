@@ -6,6 +6,7 @@ import com.barattoManager.manager.TradeManager;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.model.trade.Trade;
+import com.barattoManager.model.trade.TradeStatus;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.tree.Tree;
 import com.barattoManager.utils.TreeUtils;
@@ -43,19 +44,20 @@ public class TradeTree extends Tree {
 	}
 
 	private DefaultMutableTreeNode createTradeNode(Trade trade) {
-		Article articleOne = ArticleManager.getInstance().getArticleById(trade.articleOneUuid()).orElseThrow(NullPointerException::new);
-		Article articleTwo = ArticleManager.getInstance().getArticleById(trade.articleTwoUuid()).orElseThrow(NullPointerException::new);
-		Meet    meet       = MeetManager.getInstance().getMeetByUuid(trade.meetUuid()).orElseThrow(NullPointerException::new);
+		Article articleOne = ArticleManager.getInstance().getArticleById(trade.getArticleOneUuid()).orElseThrow(NullPointerException::new);
+		Article articleTwo = ArticleManager.getInstance().getArticleById(trade.getArticleTwoUuid()).orElseThrow(NullPointerException::new);
+		Meet    meet       = MeetManager.getInstance().getMeetByUuid(trade.getMeetUuid()).orElseThrow(NullPointerException::new);
 
 		var tradeNode = new DefaultMutableTreeNode("%s %s -> %s".formatted(
-				articleOne.getArticleState() == Article.State.CLOSE_OFFER ? "✅" : "⏱",
+				trade.getTradeStatus() == TradeStatus.IN_PROGRESS ? "⏱" :
+						trade.getTradeStatus() == TradeStatus.CLOSED ? "✅" : "❌",
 				articleOne.getArticleName(),
 				articleTwo.getArticleName()
 
 		));
 
 
-		tradeNode.add(new DefaultMutableTreeNode("Data di validità: %s".formatted(trade.tradeStartDateTime().format(DateTimeFormatter.ofPattern("hh:mm ~ dd/MM/yyyy")))));
+		tradeNode.add(new DefaultMutableTreeNode("Data di validità: %s".formatted(trade.getTradeStartDateTime().format(DateTimeFormatter.ofPattern("hh:mm ~ dd/MM/yyyy")))));
 		tradeNode.add(new DefaultMutableTreeNode("Data dell'incontro: %s".formatted(
 				meet.getDateOfMeet().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 		)));
@@ -64,7 +66,7 @@ public class TradeTree extends Tree {
 				meet.getEndTime().format(DateTimeFormatter.ofPattern("hh:mm"))
 
 		)));
-		tradeNode.add(new DefaultMutableTreeNode("UUID: %s".formatted(trade.uuid())));
+		tradeNode.add(new DefaultMutableTreeNode("UUID: %s".formatted(trade.getUuid())));
 
 
 		var articleOneNode = new DefaultMutableTreeNode(articleOne.getArticleName());

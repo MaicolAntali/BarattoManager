@@ -58,7 +58,7 @@ public final class TradeManager extends ConcurrencyManager<String, Trade> {
 				.orElseThrow(NullPointerException::new).changeState(Article.State.SELECTED_OFFER);
 
 		var trade = new Trade(endTradeDateTime, articleOneUuid, articleTwoUuid, meetUuid);
-		getDataMap().put(trade.uuid(), trade);
+		getDataMap().put(trade.getUuid(), trade);
 		saveDataMap();
 	}
 
@@ -97,9 +97,9 @@ public final class TradeManager extends ConcurrencyManager<String, Trade> {
 	public List<Trade> getTradeByUser(String userUuid) {
 		return getDataMap().values().stream()
 				.filter(trade ->
-						Objects.equals(ArticleManager.getInstance().getArticleById(trade.articleOneUuid()).orElseThrow(NullPointerException::new)
+						Objects.equals(ArticleManager.getInstance().getArticleById(trade.getArticleOneUuid()).orElseThrow(NullPointerException::new)
 								.getUserNameOwner(), userUuid)
-								|| Objects.equals(ArticleManager.getInstance().getArticleById(trade.articleTwoUuid()).orElseThrow(NullPointerException::new)
+								|| Objects.equals(ArticleManager.getInstance().getArticleById(trade.getArticleTwoUuid()).orElseThrow(NullPointerException::new)
 								.getUserNameOwner(), userUuid))
 				.toList();
 	}

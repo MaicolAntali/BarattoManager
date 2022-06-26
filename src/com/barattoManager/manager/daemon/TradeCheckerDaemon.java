@@ -4,9 +4,9 @@ import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.manager.TradeManager;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.trade.Trade;
+import com.barattoManager.model.trade.TradeStatus;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -21,26 +21,22 @@ public class TradeCheckerDaemon extends TimerTask {
 	@Override
 	public void run() {
 		System.out.printf("Running TradeCheckerDaemon: %s%n", LocalDateTime.now());
-		if (!tradeHashMap.isEmpty()) {
 
-			ArrayList<Trade> meetToRemove = new ArrayList<>();
+		tradeHashMap.values().stream()
+				.filter(trade -> LocalDateTime.now().isAfter(trade.getTradeEndDateTime()))
+				.forEach(trade -> {
+					ArticleManager.getInstance().getArticleById(trade.getArticleOneUuid())
+							.orElseThrow(NullPointerException::new)
+							.changeState(Article.State.OPEN_OFFER);
+					ArticleManager.getInstance().getArticleById(trade.getArticleTwoUuid())
+							.orElseThrow(NullPointerException::new)
+							.changeState(Article.State.OPEN_OFFER);
 
-			tradeHashMap.values().stream()
-					.filter(trade -> LocalDateTime.now().isAfter(trade.tradeEndDateTime()))
-					.forEach(trade -> {
-						ArticleManager.getInstance().getArticleById(trade.articleOneUuid())
-								.orElseThrow(NullPointerException::new)
-								.changeState(Article.State.OPEN_OFFER);
-						ArticleManager.getInstance().getArticleById(trade.articleTwoUuid())
-								.orElseThrow(NullPointerException::new)
-								.changeState(Article.State.OPEN_OFFER);
+					TradeManager.getInstance().getTradeByUuid(trade.getUuid())
+							.orElseThrow(NullPointerException::new)
+							.setTradeStatus(TradeStatus.CANCELLED);
+				});
 
-						meetToRemove.add(trade);
-					});
-
-			if (!meetToRemove.isEmpty())
-				meetToRemove.forEach(trade -> TradeManager.getInstance().removeTradeByUuid(trade.uuid()));
-		}
 		System.out.printf("Ended TradeCheckerDaemon: %s%n", LocalDateTime.now());
 	}
 }
