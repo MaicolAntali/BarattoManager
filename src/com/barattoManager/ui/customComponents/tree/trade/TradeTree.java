@@ -48,7 +48,7 @@ public class TradeTree extends Tree {
 		Meet    meet       = MeetManager.getInstance().getMeetByUuid(trade.meetUuid()).orElseThrow(NullPointerException::new);
 
 		var tradeNode = new DefaultMutableTreeNode("%s %s -> %s".formatted(
-				articleOne.getArticleState() == Article.State.CLOSE_OFFERT ? "✅" : "⏱",
+				articleOne.getArticleState() == Article.State.CLOSE_OFFER ? "✅" : "⏱",
 				articleOne.getArticleName(),
 				articleTwo.getArticleName()
 

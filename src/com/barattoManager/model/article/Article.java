@@ -119,9 +119,9 @@ public class Article {
 		 * Cancelled offer italian label
 		 */
 		CANCELLED_OFFER("Offerta Cancellata"),
-		LINKED_OFFERT("Offerta accoppiata"),
-		SELECTED_OFFERT("Offerta selezionata"),
-		CLOSE_OFFERT("Offerta chiusa");
+		LINKED_OFFER("Offerta accoppiata"),
+		SELECTED_OFFER("Offerta selezionata"),
+		CLOSE_OFFER("Offerta chiusa");
 
 		/**
 		 * Label in italian

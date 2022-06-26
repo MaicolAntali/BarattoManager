@@ -36,6 +36,6 @@ public record History(
 	 * @param isError true if is error otherwise false
 	 */
 	public History(String name, String description, boolean isError) {
-		this(LocalDateTime.now(), Optional.empty(), isError ? Optional.of(name) : Optional.empty(), Optional.of(description));
+		this(LocalDateTime.now(), isError ? Optional.empty() : Optional.of(name), isError ? Optional.of(name) : Optional.empty(), Optional.of(description));
 	}
 }

@@ -50,9 +50,9 @@ public final class TradeManager {
 	public void addNewTrade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid, String meetUuid) {
 
 		ArticleManager.getInstance().getArticleById(articleOneUuid)
-				.orElseThrow(NullPointerException::new).changeState(Article.State.LINKED_OFFERT);
+				.orElseThrow(NullPointerException::new).changeState(Article.State.LINKED_OFFER);
 		ArticleManager.getInstance().getArticleById(articleTwoUuid)
-				.orElseThrow(NullPointerException::new).changeState(Article.State.SELECTED_OFFERT);
+				.orElseThrow(NullPointerException::new).changeState(Article.State.SELECTED_OFFER);
 
 		var trade = new Trade(endTradeDateTime, articleOneUuid, articleTwoUuid, meetUuid);
 		tradeHashMap.put(trade.uuid(), trade);

@@ -75,7 +75,7 @@
     "uuid": "f6d5ed31-4bcb-4bdd-b385-e5449c5227ed",
     "owner": "Michele",
     "category_uuid": "719e26a0-9fe5-44b5-af28-0b29c9aa5880",
-    "state": "OPEN_OFFER",
+    "state": "SELECTED_OFFER",
     "fields": {
       "Field[name=Autore, required=false]": "Cristina Cassar Scalia",
       "Field[name=Anno Pubblicazione, required=false]": "2022",
@@ -99,6 +99,11 @@
         "date_time": "2022-06-06T09:56:01.893744",
         "name": "State Update",
         "description": "The article state is updated from Non validato to Offerta Aperta"
+      },
+      {
+        "date_time": "2022-06-26T15:23:30.582189",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta Aperta to Offerta selezionata"
       }
     ],
     "name": "La carrozza della Santa"
@@ -107,7 +112,7 @@
     "uuid": "7325aa24-b4f0-4fb0-90bc-f2bdb1f9e749",
     "owner": "Luca",
     "category_uuid": "719e26a0-9fe5-44b5-af28-0b29c9aa5880",
-    "state": "OPEN_OFFER",
+    "state": "LINKED_OFFER",
     "fields": {
       "Field[name=Autore, required=false]": "Matteo Strukul",
       "Field[name=Anno Pubblicazione, required=false]": "2022",
@@ -186,6 +191,16 @@
         "date_time": "2022-06-26T09:20:14.863531",
         "name": "State Update",
         "description": "The article state is updated from Offerta accoppiata to Offerta Aperta"
+      },
+      {
+        "date_time": "2022-06-26T15:15:16.200596",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta Aperta to Offerta accoppiata"
+      },
+      {
+        "date_time": "2022-06-26T15:23:30.55384",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta Aperta to Offerta accoppiata"
       }
     ],
     "name": "Il cimitero di Venezia"
