@@ -6,7 +6,6 @@ import com.barattoManager.manager.daemon.MeetUpdaterDaemon;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.utils.AppConfigurator;
 import com.barattoManager.utils.parser.DateParser;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -15,41 +14,43 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Timer;
 import java.util.stream.IntStream;
 
-public final class MeetManager {
+public final class MeetManager extends ConcurrencyManager<String, Meet> {
 
-	private final File jsonFile = new File(AppConfigurator.getInstance().getFileName("meet_file"));
-
-	private final ObjectMapper objectMapper = JsonMapper.builder()
-			.addModule(new ParameterNamesModule())
-			.addModule(new Jdk8Module())
-			.addModule(new JavaTimeModule())
-			.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-			.build();
-
-	private final HashMap<String, Meet> meetHashMap;
-	private MeetUpdaterDaemon meetUpdaterDaemon;
+	private  MeetUpdaterDaemon meetUpdaterDaemon;
 	private Thread daemonThread;
 
 	private MeetManager() {
-		if (jsonFile.exists()) {
-			try {
-				meetHashMap = objectMapper.readValue(jsonFile, new TypeReference<>() {
-				});
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-		}
-		else {
-			meetHashMap = new HashMap<>();
-		}
+		super(String.class, Meet.class);
 
-		this.meetUpdaterDaemon = new MeetUpdaterDaemon(this.meetHashMap);
+		this.meetUpdaterDaemon = new MeetUpdaterDaemon(getDataMap());
+	}
+
+	@Override
+	File getJsonFile() {
+		return new File(AppConfigurator.getInstance().getFileName("meet_file"));
+	}
+
+	@Override
+	ObjectMapper getObjectMapper() {
+		return JsonMapper.builder()
+				.addModule(new ParameterNamesModule())
+				.addModule(new Jdk8Module())
+				.addModule(new JavaTimeModule())
+				.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+				.build();
+	}
+
+	@Override
+	void afterDataChangeActions() {
+		this.meetUpdaterDaemon = new MeetUpdaterDaemon(getDataMap());
 	}
 
 	private static final class MeetManagerHolder {
@@ -85,12 +86,12 @@ public final class MeetManager {
 
 		var notUniqueMeet = new ArrayList<Meet>();
 		meets.forEach(meet -> {
-			var isMeetUnique = meetHashMap.values().stream()
+			var isMeetUnique = getDataMap().values().stream()
 					.noneMatch(meetToCheck -> meetToCheck.equals(meet));
 
 			if (isMeetUnique) {
-				meetHashMap.put(meet.getUuid(), meet);
-				saveMapChange();
+				getDataMap().put(meet.getUuid(), meet);
+				saveDataMap();
 			}
 			else
 				notUniqueMeet.add(meet);
@@ -112,44 +113,33 @@ public final class MeetManager {
 	}
 
 	public void bookMeet(String meetUuid, String userUuid) {
-		var meet =  Optional.ofNullable(meetHashMap.get(meetUuid));
+		var meet =  Optional.ofNullable(getDataMap().get(meetUuid));
 
 		if (meet.isPresent()) {
 			meet.get().bookMeet(userUuid);
-			saveMapChange();
+			saveDataMap();
 		}
 	}
 
-	public void unBookMeet(String meetUuid) {
-		var meet =  Optional.ofNullable(meetHashMap.get(meetUuid));
-
-		meet.orElseThrow(NullPointerException::new).unbookMeet();
-		saveMapChange();
-	}
-
 	public List<Meet> getMeets() {
-		return meetHashMap.values().stream().toList();
+		return getDataMap().values().stream().toList();
 	}
 
-	public List<Meet> getAvaileblesMeet() {
-		return meetHashMap.values().stream()
+	public List<Meet> getAvailableMeet() {
+		return getDataMap().values().stream()
 				.filter(meet -> meet.getUserBookedMeetUuid().isEmpty())
 				.toList();
 	}
 
-	public Optional<Meet> getMeetByUuid(String meertUuid) {
-		return Optional.ofNullable(meetHashMap.get(meertUuid));
+	public Optional<Meet> getMeetByUuid(String meetUuid) {
+		return Optional.ofNullable(getDataMap().get(meetUuid));
 	}
 
-	public void saveMapChange() {
-		try {
-			objectMapper.writeValue(jsonFile, meetHashMap);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		this.meetUpdaterDaemon = new MeetUpdaterDaemon(meetHashMap);
+	public void removeMeetByUuid(String meetUuid) {
+		getDataMap().remove(meetUuid);
+		saveDataMap();
 	}
+
 
 	private ArrayList<LocalTime> generateIntervals(int start, int end) throws IllegalValuesException {
 		if (start <= end) {

@@ -2,18 +2,17 @@ package com.barattoManager.ui.components.viewer;
 
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.components.ComponentsName;
+import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
+import com.barattoManager.ui.customComponents.event.RepaintListener;
+import com.barattoManager.ui.customComponents.menu.factory.TradeMenuFactory;
 import com.barattoManager.ui.customComponents.tree.Tree;
 import com.barattoManager.ui.customComponents.tree.trade.TradeTree;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ViewerExchangesViewUi extends JPanel{
-    public static final String HELP_MESSAGE = """
-			In questa pagina puoi visualizzare I tuoi articoli
-			Per effettuare un operazione su un tuo articolo puoi cliccare sul menu in alto al sinistra e scegliere di:
-				 - Aggiungere un nuovo articolo da barattare;
-				 - Cancellare l'offerta di un articolo.""";
+public class ViewerExchangesViewUi extends JPanel implements RepaintListener {
+    public static final String HELP_MESSAGE = "...";
     private final User user;
 
     private Tree tradeTree;
@@ -30,8 +29,11 @@ public class ViewerExchangesViewUi extends JPanel{
         add(mainPanel);
         mainPanel.setPreferredSize(dimension);
 
-        // var articleTreeMenu = new DashboardMenuFactory().createMenuObject().createMenu(repaintEventHandler, user, articleTree);
-        // centerPanel.add(articleTreeMenu, BorderLayout.NORTH);
+        RepaintEventHandler repaintEventHandler = new RepaintEventHandler();
+        repaintEventHandler.addListener(this);
+
+        var tradeMenu = new TradeMenuFactory().createMenuObject().createMenu(repaintEventHandler, user, tradeTree);
+        centerPanel.add(tradeMenu, BorderLayout.NORTH);
         centerPanel.add(tradeTree);
 
 
@@ -41,5 +43,16 @@ public class ViewerExchangesViewUi extends JPanel{
                 HELP_MESSAGE,
                 "Help",
                 JOptionPane.INFORMATION_MESSAGE));
+    }
+
+    @Override
+    public void repaintComponents() {
+        centerPanel.remove(tradeTree);
+
+        this.tradeTree = new TradeTree(user);
+        centerPanel.add(tradeTree);
+
+        centerPanel.repaint();
+        centerPanel.revalidate();
     }
 }

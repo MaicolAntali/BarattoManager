@@ -5,5 +5,5 @@ import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 public interface MenuAction {
-	void run(RepaintEventHandler repaintEventHandler, User user, Tree articleTree);
+	void run(RepaintEventHandler repaintEventHandler, User user, Tree tree);
 }

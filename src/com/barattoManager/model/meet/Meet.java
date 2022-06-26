@@ -1,6 +1,5 @@
 package com.barattoManager.model.meet;
 
-import com.barattoManager.manager.MeetManager;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.DayOfWeek;
@@ -71,10 +70,6 @@ public final class Meet {
 		}
 	}
 
-	public void unbookMeet() {
-		userBookedMeetUuid = null;
-	}
-
 	public String getUuid() {
 		return uuid;
 	}
@@ -111,11 +106,6 @@ public final class Meet {
 		return dateOfMeet;
 	}
 
-	public void setDateOfMeet(LocalDate dateOfMeet) {
-		this.dateOfMeet = dateOfMeet;
-		MeetManager.getInstance().saveMapChange();
-	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -126,12 +116,13 @@ public final class Meet {
 		return getCity().equals(meet.getCity())
 				&& getSquare().equals(meet.getSquare())
 				&& getDay() == meet.getDay()
+				&& getDateOfMeet().isEqual(meet.getDateOfMeet())
 				&& (!getStartTime().isAfter(meet.getEndTime()) ? getStartTime().equals(meet.getStartTime()) : !getStartTime().isAfter(meet.getEndTime())
 				&& !meet.getStartTime().isAfter(getEndTime()) ? getEndTime().equals(meet.getEndTime()) : !meet.getStartTime().isAfter(getEndTime()));
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getCity(), getSquare(), getDay(), getStartTime(), getEndTime());
+		return Objects.hash(getCity(), getSquare(), getDay(), getStartTime(), getEndTime(), getDateOfMeet());
 	}
 }

@@ -145,7 +145,7 @@ public class TradeArticle implements MenuAction {
 			mainPanel.add(new JLabel("Seleziona il giorno dello scambio:"));
 
 			meetComboBox.setRenderer(new MeetComboBoxCustomRenderer());
-			MeetManager.getInstance().getAvaileblesMeet().forEach(meetComboBox::addItem);
+			MeetManager.getInstance().getAvailableMeet().forEach(meetComboBox::addItem);
 
 			mainPanel.add(meetComboBox);
 

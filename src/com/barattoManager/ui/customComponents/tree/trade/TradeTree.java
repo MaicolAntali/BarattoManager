@@ -3,6 +3,8 @@ package com.barattoManager.ui.customComponents.tree.trade;
 import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.manager.MeetManager;
 import com.barattoManager.manager.TradeManager;
+import com.barattoManager.model.article.Article;
+import com.barattoManager.model.meet.Meet;
 import com.barattoManager.model.trade.Trade;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.tree.Tree;
@@ -41,34 +43,42 @@ public class TradeTree extends Tree {
 	}
 
 	private DefaultMutableTreeNode createTradeNode(Trade trade) {
-		var articleNode = new DefaultMutableTreeNode("%s -> %s".formatted(
-				ArticleManager.getInstance().getArticleById(trade.articleOneUuid()).orElseThrow(NullPointerException::new).getArticleName(),
-				ArticleManager.getInstance().getArticleById(trade.articleTwoUuid()).orElseThrow(NullPointerException::new).getArticleName()
+		Article articleOne = ArticleManager.getInstance().getArticleById(trade.articleOneUuid()).orElseThrow(NullPointerException::new);
+		Article articleTwo = ArticleManager.getInstance().getArticleById(trade.articleTwoUuid()).orElseThrow(NullPointerException::new);
+		Meet    meet       = MeetManager.getInstance().getMeetByUuid(trade.meetUuid()).orElseThrow(NullPointerException::new);
+
+		var tradeNode = new DefaultMutableTreeNode("%s %s -> %s".formatted(
+				articleOne.getArticleState() == Article.State.CLOSE_OFFERT ? "✅" : "⏱",
+				articleOne.getArticleName(),
+				articleTwo.getArticleName()
 
 		));
 
 
-		articleNode.add(new DefaultMutableTreeNode("Data di validità: %s".formatted(trade.tradeStartDateTime().format(DateTimeFormatter.ofPattern("hh:mm ~ dd/MM/yyyy")))));
-		articleNode.add(new DefaultMutableTreeNode("Data dell'incontro: %s".formatted(
-				MeetManager.getInstance().getMeetByUuid(trade.meetUuid()).orElseThrow(NullPointerException::new).getDateOfMeet().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+		tradeNode.add(new DefaultMutableTreeNode("Data di validità: %s".formatted(trade.tradeStartDateTime().format(DateTimeFormatter.ofPattern("hh:mm ~ dd/MM/yyyy")))));
+		tradeNode.add(new DefaultMutableTreeNode("Data dell'incontro: %s".formatted(
+				meet.getDateOfMeet().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 		)));
-		articleNode.add(new DefaultMutableTreeNode("Orario dell'incontro: %s ~ %s".formatted(
-				MeetManager.getInstance().getMeetByUuid(trade.meetUuid()).orElseThrow(NullPointerException::new).getStartTime().format(DateTimeFormatter.ofPattern("hh:mm")),
-				MeetManager.getInstance().getMeetByUuid(trade.meetUuid()).orElseThrow(NullPointerException::new).getEndTime().format(DateTimeFormatter.ofPattern("hh:mm"))
+		tradeNode.add(new DefaultMutableTreeNode("Orario dell'incontro: %s ~ %s".formatted(
+				meet.getStartTime().format(DateTimeFormatter.ofPattern("hh:mm")),
+				meet.getEndTime().format(DateTimeFormatter.ofPattern("hh:mm"))
 
 		)));
+		tradeNode.add(new DefaultMutableTreeNode("UUID: %s".formatted(trade.uuid())));
 
 
-		var articleOneNode = new DefaultMutableTreeNode(ArticleManager.getInstance().getArticleById(trade.articleOneUuid()).orElseThrow(NullPointerException::new).getArticleName());
-		articleOneNode.add(TreeUtils.generateFields(ArticleManager.getInstance().getArticleById(trade.articleOneUuid()).orElseThrow(NullPointerException::new)));
+		var articleOneNode = new DefaultMutableTreeNode(articleOne.getArticleName());
+		articleOneNode.add(TreeUtils.generateFields(articleOne));
+		articleOneNode.add(new DefaultMutableTreeNode("Stato: %s".formatted(articleOne.getArticleState().toString())));
 
-		var articleTwoNode = new DefaultMutableTreeNode(ArticleManager.getInstance().getArticleById(trade.articleTwoUuid()).orElseThrow(NullPointerException::new).getArticleName());
-		articleTwoNode.add(TreeUtils.generateFields(ArticleManager.getInstance().getArticleById(trade.articleTwoUuid()).orElseThrow(NullPointerException::new)));
+		var articleTwoNode = new DefaultMutableTreeNode(articleTwo.getArticleName());
+		articleTwoNode.add(TreeUtils.generateFields(articleTwo));
+		articleTwoNode.add(new DefaultMutableTreeNode("Stato: %s".formatted(articleTwo.getArticleState().toString())));
 
-		articleNode.add(articleOneNode);
-		articleNode.add(articleTwoNode);
+		tradeNode.add(articleOneNode);
+		tradeNode.add(articleTwoNode);
 
-		return articleNode;
+		return tradeNode;
 	}
 
 }
