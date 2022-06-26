@@ -4,7 +4,6 @@ import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.User;
-import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.*;
@@ -16,7 +15,7 @@ import javax.swing.tree.TreeNode;
 public class CancelOffer implements MenuAction {
 
 	@Override
-	public void run(RepaintEventHandler repaintEventHandler, User user, Tree tree) {
+	public void run(User user, Tree tree) {
 		TreeNode[] nodePath;
 		try {
 			nodePath = tree.getSelectedPathNode();
@@ -45,7 +44,6 @@ public class CancelOffer implements MenuAction {
 			}
 
 			article.get().changeState(Article.State.CANCELLED_OFFER);
-			repaintEventHandler.fireListeners();
 		}
 	}
 }

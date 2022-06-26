@@ -1,10 +1,9 @@
 package com.barattoManager.ui.components.configurator;
 
+import com.barattoManager.event.events.DataChangeListener;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.components.InitialMenuUI;
 import com.barattoManager.ui.customComponents.buttons.MeetEditorButtons;
-import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
-import com.barattoManager.ui.customComponents.event.RepaintListener;
 import com.barattoManager.ui.customComponents.tree.meet.MeetTree;
 
 import javax.swing.*;
@@ -13,7 +12,7 @@ import java.awt.*;
 /**
  * Class used to create a JPanel that represent the meet editor view (only configurator)
  */
-public class ConfiguratorMeetEditorUi extends JPanel implements RepaintListener {
+public class ConfiguratorMeetEditorUi extends JPanel implements DataChangeListener {
 	/**
 	 * {@link MeetTree} object
 	 */
@@ -43,22 +42,14 @@ public class ConfiguratorMeetEditorUi extends JPanel implements RepaintListener 
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
-		RepaintEventHandler repaintEventHandler = new RepaintEventHandler();
-		repaintEventHandler.addListener(this);
-
 		centerPanel.add(meetTree);
-		centerPanel.add(new MeetEditorButtons(repaintEventHandler), BorderLayout.SOUTH);
-
+		centerPanel.add(new MeetEditorButtons(), BorderLayout.SOUTH);
 
 		backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
 	}
 
-	/**
-	 * Implementation of the method {@link RepaintListener#repaintComponents()}
-	 * Is used to repaint the Meet Tree
-	 */
 	@Override
-	public void repaintComponents() {
+	public void update() {
 		centerPanel.remove(meetTree);
 
 		meetTree = new MeetTree();

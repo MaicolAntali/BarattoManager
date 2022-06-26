@@ -1,10 +1,9 @@
 package com.barattoManager.ui.components.configurator;
 
+import com.barattoManager.event.events.DataChangeListener;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.components.InitialMenuUI;
 import com.barattoManager.ui.customComponents.buttons.CategoryConfButtons;
-import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
-import com.barattoManager.ui.customComponents.event.RepaintListener;
 import com.barattoManager.ui.customComponents.tree.category.CategoryTree;
 
 import javax.swing.*;
@@ -13,12 +12,8 @@ import java.awt.*;
 /**
  * Class used to create a JPanel that represent the category editor view (only configurator)
  */
-public class ConfiguratorCategoryEditorUi extends JPanel implements RepaintListener {
+public class ConfiguratorCategoryEditorUi extends JPanel implements DataChangeListener {
 
-	/**
-	 *Event Handler for reprint the category tree and buttons
-	 */
-	private final RepaintEventHandler repaintEventHandler = new RepaintEventHandler();
 	/**
 	 * {@link CategoryTree} object
 	 */
@@ -26,7 +21,7 @@ public class ConfiguratorCategoryEditorUi extends JPanel implements RepaintListe
 	/**
 	 * {@link CategoryConfButtons} object
 	 */
-	private CategoryConfButtons categoryConfButtons = new CategoryConfButtons(categoryTree, repaintEventHandler);
+	private CategoryConfButtons categoryConfButtons = new CategoryConfButtons(categoryTree);
 	/**
 	 * Main JPanel
 	 */
@@ -52,9 +47,6 @@ public class ConfiguratorCategoryEditorUi extends JPanel implements RepaintListe
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
-		// Set up the repainting event
-		repaintEventHandler.addListener(this);
-
 		// add the tree and the buttons
 		centerPanel.add(categoryTree);
 		centerPanel.add(categoryConfButtons, BorderLayout.SOUTH);
@@ -63,19 +55,15 @@ public class ConfiguratorCategoryEditorUi extends JPanel implements RepaintListe
 		backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
 	}
 
-	/**
-	 * Implementation of the method {@link RepaintListener#repaintComponents()}
-	 * Is used to repaint the Category Tree
-	 */
 	@Override
-	public void repaintComponents() {
+	public void update() {
 		// remove components
 		centerPanel.remove(categoryTree);
 		centerPanel.remove(categoryConfButtons);
 
 		// new instances
 		categoryTree = new CategoryTree();
-		categoryConfButtons = new CategoryConfButtons(categoryTree, repaintEventHandler);
+		categoryConfButtons = new CategoryConfButtons(categoryTree);
 
 		// add new component
 		centerPanel.add(categoryTree);

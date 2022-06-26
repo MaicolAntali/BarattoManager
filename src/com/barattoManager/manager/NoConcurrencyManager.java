@@ -25,10 +25,13 @@ public abstract class NoConcurrencyManager<K, V> implements Manager<HashMap<K,V>
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
+		afterDataChangeActions();
 	}
 
 	abstract File getJsonFile();
 	abstract ObjectMapper getObjectMapper();
+	abstract void afterDataChangeActions();
 
 	private HashMap<K, V> readJson(Class<K> keyClass, Class<V> valueClass) {
 

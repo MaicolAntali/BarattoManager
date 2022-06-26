@@ -5,7 +5,6 @@ import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.exception.NullCategoryException;
 import com.barattoManager.manager.CategoryManager;
-import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewCategoryPanel;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewFieldPanel;
 import com.barattoManager.ui.customComponents.tree.category.CategoryTree;
@@ -54,20 +53,15 @@ public class CategoryConfButtons extends JPanel {
 	 * {@link CategoryTree} object
 	 */
 	private final CategoryTree categoryTree;
-	/**
-	 * event handler used to fire the repaint event
-	 */
-	private final RepaintEventHandler repaintEventHandler;
+
 
 	/**
 	 * {@link CategoryConfButtons} constructor
 	 *
 	 * @param categoryTree        {@link CategoryTree} object
-	 * @param repaintEventHandler {@link RepaintEventHandler} used to repaint the view
 	 */
-	public CategoryConfButtons(CategoryTree categoryTree, RepaintEventHandler repaintEventHandler) {
+	public CategoryConfButtons(CategoryTree categoryTree) {
 		this.categoryTree = categoryTree;
-		this.repaintEventHandler = repaintEventHandler;
 
 		JButton addNewMainCategoryButton = new JButton(NEW_MAIN_CATEGORY_BUTTON_NAME);
 		JButton addNewSubCategoryButton = new JButton(NEW_SUBCATEGORY_BUTTON_NAME);
@@ -106,7 +100,6 @@ public class CategoryConfButtons extends JPanel {
 						categoryInputPanel.getCategoryName().getText(),
 						categoryInputPanel.getCategoryDescription().getText()
 				);
-				repaintEventHandler.fireListeners();
 			}
 		} catch (AlreadyExistException | IllegalValuesException | NullCategoryException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), TITLE_OF_ERROR, JOptionPane.ERROR_MESSAGE);
@@ -140,7 +133,6 @@ public class CategoryConfButtons extends JPanel {
 						categoryInputPanel.getCategoryName().getText(),
 						categoryInputPanel.getCategoryDescription().getText()
 				);
-				repaintEventHandler.fireListeners();
 			}
 		} catch (NoNodeSelected | AlreadyExistException | IllegalValuesException | NullCategoryException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), TITLE_OF_ERROR, JOptionPane.ERROR_MESSAGE);
@@ -175,7 +167,6 @@ public class CategoryConfButtons extends JPanel {
 						fieldName,
 						fieldInputPanel.getFieldIsRequired().isSelected()
 				);
-				repaintEventHandler.fireListeners();
 			}
 		} catch (NoNodeSelected | AlreadyExistException | IllegalValuesException | NullCategoryException ex) {
 			JOptionPane.showMessageDialog(this, ex.getMessage(), TITLE_OF_ERROR, JOptionPane.ERROR_MESSAGE);

@@ -3,7 +3,6 @@ package com.barattoManager.ui.customComponents.menu.actions;
 import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.manager.TradeManager;
 import com.barattoManager.model.user.User;
-import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.*;
@@ -13,7 +12,7 @@ import java.util.stream.IntStream;
 
 public class AcceptTrade implements MenuAction {
 	@Override
-	public void run(RepaintEventHandler repaintEventHandler, User user, Tree tree) {
+	public void run(User user, Tree tree) {
 		TreeNode[] nodePath;
 		try {
 			nodePath = tree.getSelectedPathNode();

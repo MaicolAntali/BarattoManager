@@ -1,5 +1,6 @@
 package com.barattoManager.manager;
 
+import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NullCategoryException;
@@ -30,6 +31,11 @@ public final class CategoryManager extends NoConcurrencyManager<String, Category
 	@Override
 	ObjectMapper getObjectMapper() {
 		return new ObjectMapper();
+	}
+
+	@Override
+	void afterDataChangeActions() {
+		EventFactory.getCategoriesEvent().fireListener();
 	}
 
 	/**

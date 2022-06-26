@@ -123,27 +123,39 @@ public class LoginUI extends JPanel {
 
 				if (user.isPasswordValid(user.getPassword())) {
 					if (user instanceof Configurator) {
-						panelContainer.add(new ConfiguratorHomeUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_HOME.toString());
-						panelContainer.add(new ConfiguratorCategoryEditorUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_CATEGORY_EDITOR.toString());
-						panelContainer.add(new ConfiguratorMeetEditorUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.CONF_MEET_EDITOR.toString());
+						// create UI
+						var configuratorHome = new ConfiguratorHomeUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer);
+						var configuratorCategories = new ConfiguratorCategoryEditorUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer);
+						var configuratorMeets = new ConfiguratorMeetEditorUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer);
+
+						// add events
+						EventFactory.getCategoriesEvent().addListener(configuratorCategories);
+						EventFactory.getMeetsEvent().addListener(configuratorMeets);
+
+						panelContainer.add(configuratorHome, ComponentsName.CONF_HOME.toString());
+						panelContainer.add(configuratorCategories, ComponentsName.CONF_CATEGORY_EDITOR.toString());
+						panelContainer.add(configuratorMeets, ComponentsName.CONF_MEET_EDITOR.toString());
 
 						cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString());
 					}
 					else {
+						// create UI
+						var viewerStore =  new ViewerStoreArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user);
+						var viewerDashboard = new ViewerDashboardArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user);
+						var viewerExchange = new ViewerExchangesViewUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user);
+
+						// add events
+						EventFactory.getArticlesEvent().addListener(viewerStore);
+						EventFactory.getArticlesEvent().addListener(viewerDashboard);
+						EventFactory.getTradesEvent().addListener(viewerExchange);
+
+						panelContainer.add(viewerStore, ComponentsName.VIEWER_STORE_ARTICLES.toString());
+						panelContainer.add(viewerDashboard, ComponentsName.VIEWER_YOUR_ARTICLES.toString());
+						panelContainer.add(viewerExchange, ComponentsName.VIEWER_EXCHANGES.toString());
 						panelContainer.add(new ViewerHomeUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_HOME.toString());
 						panelContainer.add(new ViewerCategoryViewUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_CATEGORY.toString());
 						panelContainer.add(new ViewerMeetViewUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.VIEWER_MEET.toString());
 
-						// add Listeners
-						var viewerStore =  new ViewerStoreArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user);
-						EventFactory.getArticlesEvent().addListener(viewerStore);
-
-						var viewerDashboard = new ViewerDashboardArticle(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user);
-						EventFactory.getArticlesEvent().addListener(viewerDashboard);
-
-						panelContainer.add(viewerStore, ComponentsName.VIEWER_STORE_ARTICLES.toString());
-						panelContainer.add(viewerDashboard, ComponentsName.VIEWER_YOUR_ARTICLES.toString());
-						panelContainer.add(new ViewerExchangesViewUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer, user), ComponentsName.VIEWER_EXCHANGES.toString());
 
 						cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString());
 					}

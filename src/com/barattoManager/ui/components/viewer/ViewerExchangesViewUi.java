@@ -1,9 +1,8 @@
 package com.barattoManager.ui.components.viewer;
 
+import com.barattoManager.event.events.DataChangeListener;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.components.ComponentsName;
-import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
-import com.barattoManager.ui.customComponents.event.RepaintListener;
 import com.barattoManager.ui.customComponents.menu.factory.TradeMenuFactory;
 import com.barattoManager.ui.customComponents.tree.Tree;
 import com.barattoManager.ui.customComponents.tree.trade.TradeTree;
@@ -11,7 +10,7 @@ import com.barattoManager.ui.customComponents.tree.trade.TradeTree;
 import javax.swing.*;
 import java.awt.*;
 
-public class ViewerExchangesViewUi extends JPanel implements RepaintListener {
+public class ViewerExchangesViewUi extends JPanel implements DataChangeListener {
     public static final String HELP_MESSAGE = "...";
     private final User user;
 
@@ -29,10 +28,7 @@ public class ViewerExchangesViewUi extends JPanel implements RepaintListener {
         add(mainPanel);
         mainPanel.setPreferredSize(dimension);
 
-        RepaintEventHandler repaintEventHandler = new RepaintEventHandler();
-        repaintEventHandler.addListener(this);
-
-        var tradeMenu = new TradeMenuFactory().createMenuObject().createMenu(repaintEventHandler, user, tradeTree);
+        var tradeMenu = new TradeMenuFactory().createMenuObject().createMenu(user, tradeTree);
         centerPanel.add(tradeMenu, BorderLayout.NORTH);
         centerPanel.add(tradeTree);
 
@@ -46,7 +42,7 @@ public class ViewerExchangesViewUi extends JPanel implements RepaintListener {
     }
 
     @Override
-    public void repaintComponents() {
+    public void update() {
         centerPanel.remove(tradeTree);
 
         this.tradeTree = new TradeTree(user);

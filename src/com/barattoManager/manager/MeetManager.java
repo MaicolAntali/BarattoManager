@@ -1,5 +1,6 @@
 package com.barattoManager.manager;
 
+import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.manager.daemon.MeetUpdaterDaemon;
@@ -51,6 +52,7 @@ public final class MeetManager extends ConcurrencyManager<String, Meet> {
 	@Override
 	void afterDataChangeActions() {
 		this.meetUpdaterDaemon = new MeetUpdaterDaemon(getDataMap());
+		EventFactory.getMeetsEvent().fireListener();
 	}
 
 	private static final class MeetManagerHolder {

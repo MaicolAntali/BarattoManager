@@ -4,8 +4,6 @@ import com.barattoManager.event.events.DataChangeListener;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.components.ComponentsName;
-import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
-import com.barattoManager.ui.customComponents.event.RepaintListener;
 import com.barattoManager.ui.customComponents.menu.factory.StoreMenuFactory;
 import com.barattoManager.ui.customComponents.tree.Tree;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTreeStore;
@@ -16,7 +14,7 @@ import java.awt.*;
 /**
  * Class used to create a JPanel that represent the store of the articles (only viewer)
  */
-public class ViewerStoreArticle extends JPanel implements RepaintListener, DataChangeListener {
+public class ViewerStoreArticle extends JPanel implements DataChangeListener {
 
 	private final User user;
 
@@ -45,10 +43,7 @@ public class ViewerStoreArticle extends JPanel implements RepaintListener, DataC
 
 		tree = new ArticleTreeStore(new Dimension(510, 310), "!%s".formatted(user.getUsername()), Article.State.OPEN_OFFER);
 
-		RepaintEventHandler repaintEventHandler = new RepaintEventHandler();
-		repaintEventHandler.addListener(this);
-
-		var menu = new StoreMenuFactory().createMenuObject().createMenu(repaintEventHandler, user, tree);
+		var menu = new StoreMenuFactory().createMenuObject().createMenu(user, tree);
 		centerPanel.add(menu, BorderLayout.NORTH);
 
 		centerPanel.add(tree);
@@ -63,7 +58,7 @@ public class ViewerStoreArticle extends JPanel implements RepaintListener, DataC
 	}
 
 	@Override
-	public void repaintComponents() {
+	public void update() {
 		centerPanel.remove(tree);
 
 		this.tree = new ArticleTreeStore(new Dimension(510, 310), "!%s".formatted(user.getUsername()), Article.State.OPEN_OFFER);
@@ -72,10 +67,5 @@ public class ViewerStoreArticle extends JPanel implements RepaintListener, DataC
 
 		centerPanel.repaint();
 		centerPanel.revalidate();
-	}
-
-	@Override
-	public void update() {
-		repaintComponents();
 	}
 }

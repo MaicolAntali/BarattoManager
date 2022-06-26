@@ -3,7 +3,6 @@ package com.barattoManager.ui.customComponents.buttons;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.manager.MeetManager;
-import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewMeetPanel;
 import com.barattoManager.utils.parser.StringParser;
 import com.barattoManager.utils.parser.TimeParser;
@@ -24,21 +23,13 @@ public class MeetEditorButtons extends JPanel {
 	 * Creation of new meet title
 	 */
 	private static final String CREATION_OF_NEW_MEET_TITLE = "Creazione di un nuovo luogo di incontro";
-	/**
-	 * {@link RepaintEventHandler} object
-	 */
-	private final RepaintEventHandler repaintEventHandler;
 
 
 	/**
 	 * {@link MeetEditorButtons} constructor
-	 * @param repaintEventHandler object
 	 */
-	public MeetEditorButtons(RepaintEventHandler repaintEventHandler) {
-		this.repaintEventHandler = repaintEventHandler;
-
+	public MeetEditorButtons() {
 		var addNewMeetButton = new JButton(ADD_NEW_MEET_BUTTON);
-
 
 		addNewMeetButton.addActionListener(e -> addNewMeet());
 
@@ -76,8 +67,6 @@ public class MeetEditorButtons extends JPanel {
 			} catch (AlreadyExistException | IllegalValuesException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "ERRORE", JOptionPane.ERROR_MESSAGE);
 			}
-
-			repaintEventHandler.fireListeners();
 		}
 	}
 }

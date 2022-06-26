@@ -7,14 +7,14 @@ import com.barattoManager.model.trade.Trade;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class TradeCheckerDaemon extends TimerTask {
 
-	private final HashMap<String, Trade> tradeHashMap;
+	private final ConcurrentHashMap<String, Trade> tradeHashMap;
 
-	public TradeCheckerDaemon(HashMap<String, Trade> tradeHashMap) {
+	public TradeCheckerDaemon(ConcurrentHashMap<String, Trade> tradeHashMap) {
 		this.tradeHashMap = tradeHashMap;
 	}
 

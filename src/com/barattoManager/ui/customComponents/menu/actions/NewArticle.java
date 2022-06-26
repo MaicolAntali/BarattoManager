@@ -5,7 +5,6 @@ import com.barattoManager.manager.CategoryManager;
 import com.barattoManager.model.category.Category;
 import com.barattoManager.model.category.field.Field;
 import com.barattoManager.model.user.User;
-import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.*;
@@ -33,7 +32,7 @@ public class NewArticle implements MenuAction {
 	private static final String LABEL_SELECT_A_CATEGORY_FOR_YOUR_ARTICLE = "Seleziona una categoria per il tuo articolo:";
 
 	@Override
-	public void run(RepaintEventHandler repaintEventHandler, User user, Tree tree) {
+	public void run(User user, Tree tree) {
 
 		var comboCategoryPanel = new SelectCategoryArticlePanel();
 		int result = JOptionPane.showOptionDialog(
@@ -69,8 +68,6 @@ public class NewArticle implements MenuAction {
 						formPanel.getFields(),
 						formPanel.getValues()
 				);
-
-				repaintEventHandler.fireListeners();
 			}
 		}
 

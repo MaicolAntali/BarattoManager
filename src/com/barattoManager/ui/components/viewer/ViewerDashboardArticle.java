@@ -3,15 +3,13 @@ package com.barattoManager.ui.components.viewer;
 import com.barattoManager.event.events.DataChangeListener;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.components.ComponentsName;
-import com.barattoManager.ui.customComponents.event.RepaintEventHandler;
-import com.barattoManager.ui.customComponents.event.RepaintListener;
 import com.barattoManager.ui.customComponents.menu.factory.DashboardMenuFactory;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTreeDashboard;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ViewerDashboardArticle extends JPanel implements RepaintListener, DataChangeListener {
+public class ViewerDashboardArticle extends JPanel implements DataChangeListener {
 	public static final String HELP_MESSAGE = """
 			In questa pagina puoi visualizzare I tuoi articoli
 			Per effettuare un operazione su un tuo articolo puoi cliccare sul menu in alto al sinistra e scegliere di:
@@ -33,11 +31,7 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener, D
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
-		RepaintEventHandler repaintEventHandler = new RepaintEventHandler();
-		repaintEventHandler.addListener(this);
-
-
-		var articleTreeMenu = new DashboardMenuFactory().createMenuObject().createMenu(repaintEventHandler, user, articleTree);
+		var articleTreeMenu = new DashboardMenuFactory().createMenuObject().createMenu(user, articleTree);
 		centerPanel.add(articleTreeMenu, BorderLayout.NORTH);
 		centerPanel.add(articleTree);
 
@@ -50,12 +44,8 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener, D
 				JOptionPane.INFORMATION_MESSAGE));
 	}
 
-	/**
-	 * Implementation of the method {@link RepaintListener#repaintComponents()}
-	 * Is used to repaint the Article Tree
-	 */
 	@Override
-	public void repaintComponents() {
+	public void update() {
 		centerPanel.remove(articleTree);
 
 		articleTree = new ArticleTreeDashboard(user.getUsername(), null);
@@ -64,10 +54,5 @@ public class ViewerDashboardArticle extends JPanel implements RepaintListener, D
 
 		centerPanel.repaint();
 		centerPanel.revalidate();
-	}
-
-	@Override
-	public void update() {
-		repaintComponents();
 	}
 }
