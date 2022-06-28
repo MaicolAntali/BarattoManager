@@ -8,127 +8,19 @@
     "end_time": "12:00:00",
     "user_booked_uuid": "Luca",
     "day_before_expire": 3,
-    "date_of_meet": "2022-06-28"
+    "date_of_meet": "2022-06-28",
+    "already_updated": true
   },
-  "587658c3-b92b-43f3-a2fb-9b77ab7b9df9": {
-    "uuid": "587658c3-b92b-43f3-a2fb-9b77ab7b9df9",
+  "c73cd0db-0bd3-4b1e-a053-d59953d0b8bd": {
+    "uuid": "c73cd0db-0bd3-4b1e-a053-d59953d0b8bd",
     "city": "Bergamo",
     "square": "Stazione",
     "day": "TUESDAY",
-    "start_time": "10:00:00",
-    "end_time": "10:30:00",
+    "start_time": "11:30:00",
+    "end_time": "12:00:00",
     "user_booked_uuid": null,
     "day_before_expire": 3,
-    "date_of_meet": "2022-07-05"
-  },
-  "9b9cfa78-ec15-45b6-b056-de38a631769e": {
-    "uuid": "9b9cfa78-ec15-45b6-b056-de38a631769e",
-    "city": "Brescia",
-    "square": "Stazione",
-    "day": "MONDAY",
-    "start_time": "09:30:00",
-    "end_time": "10:00:00",
-    "user_booked_uuid": null,
-    "day_before_expire": 3,
-    "date_of_meet": "2022-07-04"
-  },
-  "3c44e9f1-3eef-4e39-85df-d1d686253966": {
-    "uuid": "3c44e9f1-3eef-4e39-85df-d1d686253966",
-    "city": "Brescia",
-    "square": "Stazione",
-    "day": "MONDAY",
-    "start_time": "11:00:00",
-    "end_time": "11:30:00",
-    "user_booked_uuid": null,
-    "day_before_expire": 3,
-    "date_of_meet": "2022-07-04"
-  },
-  "08696117-6835-41f5-b42d-f8eb693e9090": {
-    "uuid": "08696117-6835-41f5-b42d-f8eb693e9090",
-    "city": "Bergamo",
-    "square": "Stazione",
-    "day": "TUESDAY",
-    "start_time": "09:00:00",
-    "end_time": "09:30:00",
-    "user_booked_uuid": null,
-    "day_before_expire": 3,
-    "date_of_meet": "2022-07-05"
-  },
-  "b0a4eedc-d09b-41f6-be99-81fcf252aa38": {
-    "uuid": "b0a4eedc-d09b-41f6-be99-81fcf252aa38",
-    "city": "Bergamo",
-    "square": "Stazione",
-    "day": "TUESDAY",
-    "start_time": "10:30:00",
-    "end_time": "11:00:00",
-    "user_booked_uuid": null,
-    "day_before_expire": 3,
-    "date_of_meet": "2022-07-05"
-  },
-  "2f4bec89-bb0d-4822-bd33-4c5bc4654e89": {
-    "uuid": "2f4bec89-bb0d-4822-bd33-4c5bc4654e89",
-    "city": "Bergamo",
-    "square": "Stazione",
-    "day": "TUESDAY",
-    "start_time": "09:30:00",
-    "end_time": "10:00:00",
-    "user_booked_uuid": null,
-    "day_before_expire": 3,
-    "date_of_meet": "2022-07-05"
-  },
-  "3ca1959a-bed1-4eeb-9afc-243d5e584b58": {
-    "uuid": "3ca1959a-bed1-4eeb-9afc-243d5e584b58",
-    "city": "Brescia",
-    "square": "Stazione",
-    "day": "MONDAY",
-    "start_time": "10:00:00",
-    "end_time": "10:30:00",
-    "user_booked_uuid": null,
-    "day_before_expire": 3,
-    "date_of_meet": "2022-07-04"
-  },
-  "4dd9ad69-207b-452c-8cdb-83367e666fca": {
-    "uuid": "4dd9ad69-207b-452c-8cdb-83367e666fca",
-    "city": "Brescia",
-    "square": "Stazione",
-    "day": "MONDAY",
-    "start_time": "10:30:00",
-    "end_time": "11:00:00",
-    "user_booked_uuid": null,
-    "day_before_expire": 3,
-    "date_of_meet": "2022-07-04"
-  },
-  "e9649293-08c1-48e2-adc2-5ea03732f215": {
-    "uuid": "e9649293-08c1-48e2-adc2-5ea03732f215",
-    "city": "Bergamo",
-    "square": "Stazione",
-    "day": "TUESDAY",
-    "start_time": "11:00:00",
-    "end_time": "11:30:00",
-    "user_booked_uuid": null,
-    "day_before_expire": 3,
-    "date_of_meet": "2022-06-28"
-  },
-  "0f98e06c-72d0-44c9-8839-58447d4f2d9a": {
-    "uuid": "0f98e06c-72d0-44c9-8839-58447d4f2d9a",
-    "city": "Bergamo",
-    "square": "Stazione",
-    "day": "TUESDAY",
-    "start_time": "08:30:00",
-    "end_time": "09:00:00",
-    "user_booked_uuid": null,
-    "day_before_expire": 3,
-    "date_of_meet": "2022-07-05"
-  },
-  "044f751d-a43e-4c74-87a5-84fa4dd77635": {
-    "uuid": "044f751d-a43e-4c74-87a5-84fa4dd77635",
-    "city": "Bergamo",
-    "square": "Stazione",
-    "day": "TUESDAY",
-    "start_time": "08:00:00",
-    "end_time": "08:30:00",
-    "user_booked_uuid": null,
-    "day_before_expire": 3,
-    "date_of_meet": "2022-07-05"
+    "date_of_meet": "2022-07-05",
+    "already_updated": false
   }
 }

@@ -30,6 +30,9 @@ public final class Meet {
 	@JsonProperty("date_of_meet")
 	private LocalDate dateOfMeet;
 
+	@JsonProperty("already_updated")
+	private boolean alreadyUpdated;
+
 	public Meet(String city, String square, DayOfWeek day, LocalTime startTime, LocalTime endTime, int daysBeforeExpire) {
 		this.uuid =  UUID.randomUUID().toString();
 		this.city = city;
@@ -40,6 +43,7 @@ public final class Meet {
 		this.userBookedMeetUuid = null;
 		this.daysBeforeExpire = daysBeforeExpire;
 		this.dateOfMeet = LocalDate.now().with(TemporalAdjusters.next(day));
+		this.alreadyUpdated=false;
 	}
 
 	public Meet(
@@ -51,7 +55,8 @@ public final class Meet {
 			@JsonProperty("end_time") LocalTime endTime,
 			@JsonProperty("user_booked_uuid") String userBookedMeetUuid,
 			@JsonProperty("day_before_expire") int daysBeforeExpire,
-			@JsonProperty("date_of_meet") LocalDate dateOfMeet
+			@JsonProperty("date_of_meet") LocalDate dateOfMeet,
+			@JsonProperty("already_updated") boolean alreadyUpdated
 	) {
 		this.uuid = uuid;
 		this.city = city;
@@ -62,6 +67,7 @@ public final class Meet {
 		this.userBookedMeetUuid = userBookedMeetUuid;
 		this.daysBeforeExpire = daysBeforeExpire;
 		this.dateOfMeet = dateOfMeet;
+		this.alreadyUpdated=alreadyUpdated;
 	}
 
 	public void bookMeet(String userUuid) {
@@ -105,6 +111,15 @@ public final class Meet {
 	public LocalDate getDateOfMeet() {
 		return dateOfMeet;
 	}
+
+	public boolean isAlreadyUpdated() {
+		return alreadyUpdated;
+	}
+
+	public void setAlreadyUpdated(boolean alreadyUpdated) {
+		this.alreadyUpdated = alreadyUpdated;
+	}
+
 
 	@Override
 	public boolean equals(Object o) {

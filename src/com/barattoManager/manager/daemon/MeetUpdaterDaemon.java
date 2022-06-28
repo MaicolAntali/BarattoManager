@@ -25,6 +25,7 @@ public class MeetUpdaterDaemon extends TimerTask {
 		System.out.printf("Running  MeetUpdaterDaemon: %s%n", LocalDateTime.now());
 
 		meetHashMap.values().stream()
+				.filter(meet -> !meet.isAlreadyUpdated())
 				.filter(meet -> LocalDate.now().isAfter(meet.getDateOfMeet()))
 				.forEach(meet -> {
 					createNewMeet(meet);
@@ -35,6 +36,7 @@ public class MeetUpdaterDaemon extends TimerTask {
 				});
 
 		meetHashMap.values().stream()
+				.filter(meet -> !meet.isAlreadyUpdated())
 				.filter(meet -> LocalDate.now().isEqual(meet.getDateOfMeet()))
 				.filter(meet -> LocalTime.now().isAfter(meet.getEndTime()))
 				.forEach(meet -> {
@@ -49,6 +51,7 @@ public class MeetUpdaterDaemon extends TimerTask {
 	}
 
 	private void createNewMeet(Meet meet) {
+		meet.setAlreadyUpdated(true);
 		try {
 			MeetManager.getInstance().addNewMeet(
 					meet.getCity(),
