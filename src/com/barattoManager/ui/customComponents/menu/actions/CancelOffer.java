@@ -1,9 +1,9 @@
 package com.barattoManager.ui.customComponents.menu.actions;
 
-import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.User;
+import com.barattoManager.ui.customComponents.menu.actions.template.NodeActionTemplate;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.*;
@@ -12,18 +12,9 @@ import javax.swing.tree.TreeNode;
 /**
  * Class used to cancel an offer
  */
-public class CancelOffer implements MenuAction {
-
+public class CancelOffer extends NodeActionTemplate {
 	@Override
-	public void run(User user, Tree tree) {
-		TreeNode[] nodePath;
-		try {
-			nodePath = tree.getSelectedPathNode();
-		} catch (NoNodeSelected e) {
-			JOptionPane.showMessageDialog(tree, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-
+	protected void customAction(TreeNode[] nodePath, Tree tree, User user) {
 		var result = JOptionPane.showConfirmDialog(
 				tree,
 				"Sei sicuro di voler cambiare lo stato dell'articolo in: \"Offerta Cancellata\"?",

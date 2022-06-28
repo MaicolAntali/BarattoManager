@@ -117,8 +117,8 @@ public final class Meet {
 				&& getSquare().equals(meet.getSquare())
 				&& getDay() == meet.getDay()
 				&& getDateOfMeet().isEqual(meet.getDateOfMeet())
-				&& (!getStartTime().isAfter(meet.getEndTime()) ? getStartTime().equals(meet.getStartTime()) : !getStartTime().isAfter(meet.getEndTime())
-				&& !meet.getStartTime().isAfter(getEndTime()) ? getEndTime().equals(meet.getEndTime()) : !meet.getStartTime().isAfter(getEndTime()));
+				&& (!getStartTime().isAfter(meet.getEndTime()) ? getStartTime().equals(meet.getStartTime()) : !getStartTime().isAfter(meet.getEndTime()))
+				&& (!meet.getStartTime().isAfter(getEndTime()) ? getEndTime().equals(meet.getEndTime()) : !meet.getStartTime().isAfter(getEndTime()));
 	}
 
 	@Override

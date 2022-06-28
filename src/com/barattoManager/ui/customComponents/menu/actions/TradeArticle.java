@@ -1,44 +1,25 @@
 package com.barattoManager.ui.customComponents.menu.actions;
 
-import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.manager.MeetManager;
 import com.barattoManager.manager.TradeManager;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.model.user.User;
+import com.barattoManager.ui.customComponents.menu.actions.template.NodeUuidActionTemplate;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
-import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.IntStream;
 
-public class TradeArticle implements MenuAction {
+public class TradeArticle extends NodeUuidActionTemplate {
+
 	@Override
-	public void run(User user, Tree tree) {
-
-		TreeNode[] nodePath;
-		try {
-			nodePath = tree.getSelectedPathNode();
-		} catch (NoNodeSelected e) {
-			JOptionPane.showMessageDialog(tree, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-
-		AtomicReference<String> articleUuid = new AtomicReference<>("");
-		IntStream.range(0, nodePath[nodePath.length - 1].getChildCount())
-				.forEach(i -> {
-					if (nodePath[nodePath.length - 1].getChildAt(i).toString().startsWith("UUID:")) {
-						articleUuid.set(nodePath[nodePath.length - 1].getChildAt(i).toString().split(":")[1].trim());
-					}
-				});
-
-		var articleOption = ArticleManager.getInstance().getArticleById(articleUuid.get());
+	protected void customAction(String uuid, Tree tree, User user) {
+		var articleOption = ArticleManager.getInstance().getArticleById(uuid);
 
 		if (articleOption.isEmpty()) {
 			JOptionPane.showMessageDialog(tree, "Non è stato selezionato nessun articolo", "Errore", JOptionPane.ERROR_MESSAGE);

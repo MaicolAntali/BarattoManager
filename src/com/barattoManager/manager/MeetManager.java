@@ -68,7 +68,7 @@ public final class MeetManager extends ConcurrencyManager<String, Meet> {
 			daemonThread = new Thread(
 					() -> new Timer().scheduleAtFixedRate(
 							meetUpdaterDaemon,
-							30000, // 30 sec
+							15000, // 15 sec
 							60000 // 1 Minutes
 					)
 			);
