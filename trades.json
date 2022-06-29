@@ -1,11 +1,23 @@
 {
-  "e5b461b3-bdfa-4c33-92dc-5c97dfa53355": {
-    "uuid": "e5b461b3-bdfa-4c33-92dc-5c97dfa53355",
-    "trade_start_date_time": "2022-06-26T15:53:27.22925",
-    "trade_end_date_time": "2022-06-29T15:53:27.187925",
+  "ab584088-2690-484c-9ca5-59893e00aa38": {
+    "uuid": "ab584088-2690-484c-9ca5-59893e00aa38",
+    "trade_start_date_time": "2022-06-29T12:55:57.813555",
+    "trade_end_date_time": "2022-07-02T12:55:57.765351",
     "article_one_uuid": "7325aa24-b4f0-4fb0-90bc-f2bdb1f9e749",
-    "article_two_uuid": "f6d5ed31-4bcb-4bdd-b385-e5449c5227ed",
-    "meet_uuid": "2b185e31-676f-4259-b627-5376a233a4fb",
+    "article_two_uuid": "a2555b49-1b32-42e9-8f9f-8dd76e668767",
+    "answer": {
+      "user_one": "Luca",
+      "user_two": "Michele",
+      "waiting_user": "Luca"
+    },
+    "meet_uuid": "c73cd0db-0bd3-4b1e-a053-d59953d0b8bd",
+    "log": [
+      {
+        "date_time": "2022-06-29T12:55:57.81383",
+        "name": "Scambio creato",
+        "description": "Creazione dello scambio avvenuta con successo"
+      }
+    ],
     "trade_status": "IN_PROGRESS"
   }
 }
