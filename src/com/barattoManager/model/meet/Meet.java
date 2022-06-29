@@ -111,8 +111,8 @@ public final class Meet {
 		return dateOfMeet;
 	}
 
-	public boolean isAlreadyUpdated() {
-		return alreadyUpdated;
+	public boolean isNotAlreadyUpdated() {
+		return !alreadyUpdated;
 	}
 
 	public void setAlreadyUpdated(boolean alreadyUpdated) {
