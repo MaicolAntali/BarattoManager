@@ -29,12 +29,11 @@ public final class Meet {
 	private int daysBeforeExpire;
 	@JsonProperty("date_of_meet")
 	private LocalDate dateOfMeet;
-
 	@JsonProperty("already_updated")
 	private boolean alreadyUpdated;
 
 	public Meet(String city, String square, DayOfWeek day, LocalTime startTime, LocalTime endTime, int daysBeforeExpire) {
-		this.uuid =  UUID.randomUUID().toString();
+		this.uuid = UUID.randomUUID().toString();
 		this.city = city;
 		this.square = square;
 		this.day = day;
@@ -43,7 +42,7 @@ public final class Meet {
 		this.userBookedMeetUuid = null;
 		this.daysBeforeExpire = daysBeforeExpire;
 		this.dateOfMeet = LocalDate.now().with(TemporalAdjusters.next(day));
-		this.alreadyUpdated=false;
+		this.alreadyUpdated = false;
 	}
 
 	public Meet(
@@ -67,7 +66,7 @@ public final class Meet {
 		this.userBookedMeetUuid = userBookedMeetUuid;
 		this.daysBeforeExpire = daysBeforeExpire;
 		this.dateOfMeet = dateOfMeet;
-		this.alreadyUpdated=alreadyUpdated;
+		this.alreadyUpdated = alreadyUpdated;
 	}
 
 	public void bookMeet(String userUuid) {
