@@ -8,7 +8,7 @@ import com.barattoManager.ui.customComponents.tree.Tree;
 import javax.swing.*;
 import java.util.Objects;
 
-public abstract class TradeWaitUserCheckTemplate extends NodeUuidActionTemplate {
+public abstract class TradeTemplate extends NodeUuidActionTemplate {
 
 	@Override
 	protected void customAction(String uuid, Tree tree, User user) {

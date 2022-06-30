@@ -4,14 +4,14 @@ import com.barattoManager.manager.MeetManager;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.model.trade.Trade;
 import com.barattoManager.model.user.User;
-import com.barattoManager.ui.customComponents.menu.actions.template.TradeWaitUserCheckTemplate;
+import com.barattoManager.ui.customComponents.menu.actions.template.TradeTemplate;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
 
-public class AcceptRescheduleTrade extends TradeWaitUserCheckTemplate {
+public class AcceptRescheduleTrade extends TradeTemplate {
 
 	@Override
 	protected void customAction(Trade trade, Tree tree, User user) {

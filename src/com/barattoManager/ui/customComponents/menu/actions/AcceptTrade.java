@@ -4,10 +4,10 @@ import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.trade.Trade;
 import com.barattoManager.model.user.User;
-import com.barattoManager.ui.customComponents.menu.actions.template.TradeWaitUserCheckTemplate;
+import com.barattoManager.ui.customComponents.menu.actions.template.TradeTemplate;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
-public class AcceptTrade extends TradeWaitUserCheckTemplate {
+public class AcceptTrade extends TradeTemplate {
 
 	@Override
 	protected void customAction(Trade trade, Tree tree, User user) {
