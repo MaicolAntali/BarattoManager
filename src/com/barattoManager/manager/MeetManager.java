@@ -123,6 +123,15 @@ public final class MeetManager extends ConcurrencyManager<String, Meet> {
 		}
 	}
 
+	public void unbookMeet(String meetUuid) {
+		var meet =  Optional.ofNullable(getDataMap().get(meetUuid));
+
+		if (meet.isPresent()) {
+			meet.get().unbookMeet();
+			saveDataMap();
+		}
+	}
+
 	public List<Meet> getMeets() {
 		return getDataMap().values().stream().toList();
 	}

@@ -75,6 +75,10 @@ public final class Meet {
 		}
 	}
 
+	public void unbookMeet() {
+		userBookedMeetUuid = null;
+	}
+
 	public String getUuid() {
 		return uuid;
 	}
@@ -111,8 +115,8 @@ public final class Meet {
 		return dateOfMeet;
 	}
 
-	public boolean isNotAlreadyUpdated() {
-		return !alreadyUpdated;
+	public boolean isAlreadyUpdated() {
+		return alreadyUpdated;
 	}
 
 	public void setAlreadyUpdated(boolean alreadyUpdated) {

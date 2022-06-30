@@ -15,6 +15,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
 
 public class TradeTree extends Tree {
 
@@ -23,10 +26,28 @@ public class TradeTree extends Tree {
 	public TradeTree(Dimension dimension, User user) {
 		super(dimension);
 
-		for (Trade trade : TradeManager.getInstance().getTradeByUser(user.getUsername())) {
-			var node = createTradeNode(trade);
-			getRootNode().add(node);
-		}
+		var nodeMap = new HashMap<String, ArrayList<DefaultMutableTreeNode>>();
+		TradeManager.getInstance().getTradeByUser(user.getUsername())
+				.forEach(trade -> {
+
+					var tradeKey = trade.getTradeStatus() != TradeStatus.IN_PROGRESS
+							? trade.getTradeStatus().toString()
+							: Objects.equals(trade.getAnswer().getWaitingUserAnswer(), user.getUsername())
+							? "Stai attendendo risposta" : "Devi rispondere";
+
+
+					if (!nodeMap.containsKey(tradeKey)) {
+						nodeMap.put(tradeKey, new ArrayList<>());
+					}
+
+					nodeMap.get(tradeKey).add(createTradeNode(trade));
+				});
+
+		nodeMap.forEach((key, value) -> {
+			var stateNode = new DefaultMutableTreeNode(key);
+			getRootNode().add(stateNode);
+			value.forEach(stateNode::add);
+		});
 
 		getTree().expandPath(new TreePath(getRootNode()));
 	}
@@ -77,8 +98,19 @@ public class TradeTree extends Tree {
 		articleTwoNode.add(TreeUtils.generateFields(articleTwo));
 		articleTwoNode.add(new DefaultMutableTreeNode("Stato: %s".formatted(articleTwo.getArticleState().toString())));
 
+		var historyNode = new DefaultMutableTreeNode("Log");
+		trade.getHistory()
+						.forEach(history -> historyNode.add(
+								new DefaultMutableTreeNode("%s %s - %s - %s".formatted(
+										history.name().isPresent() ? "\u2705" : "\u274C",
+										history.dateTime().format(DateTimeFormatter.ofPattern("HH:mm ~ dd/MM/yyyy")),
+										history.name().isPresent() ? history.name().get() : history.error().orElseThrow(NullPointerException::new),
+										history.description().orElseThrow(NullPointerException::new)
+								))));
+
 		tradeNode.add(articleOneNode);
 		tradeNode.add(articleTwoNode);
+		tradeNode.add(historyNode);
 
 		return tradeNode;
 	}

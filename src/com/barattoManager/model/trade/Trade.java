@@ -22,10 +22,11 @@ public class Trade {
 	private final String articleTwoUuid;
 	@JsonProperty("answer")
 	private final Answer answer;
-	@JsonProperty("meet_uuid")
-	private final String meetUuid;
 	@JsonProperty("log")
 	private final ArrayList<History> history;
+
+	@JsonProperty("meet_uuid")
+	private  String meetUuid;
 	@JsonProperty("trade_status")
 	private TradeStatus tradeStatus;
 
@@ -106,6 +107,15 @@ public class Trade {
 
 	public void setTradeStatus(TradeStatus tradeStatus) {
 		this.tradeStatus = tradeStatus;
+		TradeManager.getInstance().saveDataMap();
+	}
+
+	public void rescheduleTrade(String newMeetUuid) {
+		getAnswer().invertWaitingUser();
+
+		meetUuid = newMeetUuid;
+
+		history.add(new History("Trade Riprogrammati", "Il trade è riprogrammato. Attesa di un risposta da: %s".formatted(answer.getWaitingUserAnswer())));
 		TradeManager.getInstance().saveDataMap();
 	}
 

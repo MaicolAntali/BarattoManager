@@ -1,6 +1,7 @@
 package com.barattoManager.ui.customComponents.menu;
 
 import com.barattoManager.model.user.User;
+import com.barattoManager.ui.customComponents.menu.actions.AcceptRescheduleTrade;
 import com.barattoManager.ui.customComponents.menu.actions.AcceptTrade;
 import com.barattoManager.ui.customComponents.menu.actions.MenuAction;
 import com.barattoManager.ui.customComponents.tree.Tree;
@@ -14,6 +15,7 @@ public class TradeMenu extends JPanel implements Menu {
 
 	private final static HashMap<String, MenuAction> COMMAND_MAP = new HashMap<>(){{
 		put("Accetta", new AcceptTrade());
+		put("Accetta ma riprogramma", new AcceptRescheduleTrade());
 	}};
 
 
