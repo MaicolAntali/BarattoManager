@@ -1,6 +1,8 @@
 package com.barattoManager.ui.customComponents.menu.actions;
 
+import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.manager.TradeManager;
+import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.menu.actions.template.NodeUuidActionTemplate;
 import com.barattoManager.ui.customComponents.tree.Tree;
@@ -18,6 +20,14 @@ public class AcceptTrade extends NodeUuidActionTemplate {
 			return;
 		}
 
-		System.out.println("...");
+		tradeOptional.get().closeTrade();
+		closeOfferArticle(tradeOptional.get().getArticleOneUuid());
+		closeOfferArticle(tradeOptional.get().getArticleTwoUuid());
+	}
+
+	private void closeOfferArticle(String articleUuid) {
+		ArticleManager.getInstance().getArticleById(articleUuid)
+				.orElseThrow(NullPointerException::new)
+				.changeState(Article.State.CLOSE_OFFER);
 	}
 }

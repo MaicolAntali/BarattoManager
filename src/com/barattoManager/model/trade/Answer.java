@@ -35,6 +35,10 @@ public class Answer {
 			this.waitingUserAnswer = userOne;
 	}
 
+	public void setWaitingUserAnswer(String waitingUserAnswer) {
+		this.waitingUserAnswer = waitingUserAnswer;
+	}
+
 	public String getWaitingUserAnswer() {
 		return waitingUserAnswer;
 	}

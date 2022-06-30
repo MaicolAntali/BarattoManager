@@ -67,12 +67,6 @@ public final class TradeManager extends ConcurrencyManager<String, Trade> {
 		return TradeManagerHolder.instance;
 	}
 
-	public void removeTradeByUuid(String uuid) {
-		getDataMap().remove(uuid);
-		saveDataMap();
-	}
-
-
 	public void runDaemonChecker() {
 		if (daemonChecker == null || !daemonChecker.isAlive()) {
 			daemonChecker = new Thread(

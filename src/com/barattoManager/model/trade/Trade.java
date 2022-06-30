@@ -96,12 +96,25 @@ public class Trade {
 		return tradeStatus;
 	}
 
+	public Answer getAnswer() {
+		return answer;
+	}
+
 	public ArrayList<History> getHistory() {
 		return history;
 	}
 
 	public void setTradeStatus(TradeStatus tradeStatus) {
 		this.tradeStatus = tradeStatus;
+		TradeManager.getInstance().saveDataMap();
+	}
+
+	public void closeTrade() {
+		this.tradeStatus = TradeStatus.CLOSED;
+		getAnswer().setWaitingUserAnswer(null);
+
+		history.add(new History("Trade Chiuso", "Il trade è stato accettato da entrambe le parti e quindi chiuso."));
+
 		TradeManager.getInstance().saveDataMap();
 	}
 }
