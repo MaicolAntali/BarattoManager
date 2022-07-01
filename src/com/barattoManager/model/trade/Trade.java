@@ -110,10 +110,8 @@ public class Trade {
 		TradeManager.getInstance().saveDataMap();
 	}
 
-	public void rescheduleTrade(String newMeetUuid) {
+	public void rescheduleTrade() {
 		getAnswer().invertWaitingUser();
-
-		meetUuid = newMeetUuid;
 
 		history.add(new History("Trade Riprogrammati", "Il trade è riprogrammato. Attesa di un risposta da: %s".formatted(answer.getWaitingUserAnswer())));
 		TradeManager.getInstance().saveDataMap();

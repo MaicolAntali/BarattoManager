@@ -11,7 +11,6 @@ public class AcceptTrade extends TradeTemplate {
 
 	@Override
 	protected void customAction(Trade trade, Tree tree, User user) {
-
 		trade.closeTrade();
 		closeOfferArticle(trade.getArticleOneUuid());
 		closeOfferArticle(trade.getArticleTwoUuid());

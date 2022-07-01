@@ -29,10 +29,9 @@ public class AcceptRescheduleTrade extends TradeTemplate {
 		);
 
 		if (resultMeetDate == JOptionPane.OK_OPTION) {
-
 			MeetManager.getInstance().unbookMeet(selectMeetDatePanel.getSelectedMeet().getUuid());
 			MeetManager.getInstance().bookMeet(selectMeetDatePanel.getSelectedMeet().getUuid(), user.getUsername());
-			trade.rescheduleTrade(selectMeetDatePanel.getSelectedMeet().getUuid());
+			trade.rescheduleTrade();
 		}
 
 	}
