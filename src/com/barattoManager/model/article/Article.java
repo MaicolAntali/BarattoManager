@@ -121,6 +121,8 @@ public class Article {
 		CANCELLED_OFFER("Offerta Cancellata"),
 		LINKED_OFFER("Offerta accoppiata"),
 		SELECTED_OFFER("Offerta selezionata"),
+
+		IN_TRADE_OFFER("Offerta in Scambio"),
 		CLOSE_OFFER("Offerta chiusa");
 
 		/**

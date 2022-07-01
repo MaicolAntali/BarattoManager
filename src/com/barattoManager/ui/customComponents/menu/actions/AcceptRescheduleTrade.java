@@ -1,6 +1,7 @@
 package com.barattoManager.ui.customComponents.menu.actions;
 
 import com.barattoManager.manager.MeetManager;
+import com.barattoManager.model.article.Article;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.model.trade.Trade;
 import com.barattoManager.model.user.User;
@@ -31,10 +32,16 @@ public class AcceptRescheduleTrade extends TradeTemplate {
 		if (resultMeetDate == JOptionPane.OK_OPTION) {
 			MeetManager.getInstance().unbookMeet(selectMeetDatePanel.getSelectedMeet().getUuid());
 			MeetManager.getInstance().bookMeet(selectMeetDatePanel.getSelectedMeet().getUuid(), user.getUsername());
+
+			chageArticleState(trade.getArticleOneUuid(), Article.State.IN_TRADE_OFFER);
+			chageArticleState(trade.getArticleTwoUuid(), Article.State.IN_TRADE_OFFER);
+
 			trade.rescheduleTrade();
 		}
 
 	}
+
+
 
 	static class SelectMeetDatePanel extends JPanel {
 
