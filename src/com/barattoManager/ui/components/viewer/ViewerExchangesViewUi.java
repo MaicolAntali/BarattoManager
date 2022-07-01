@@ -16,7 +16,7 @@ public class ViewerExchangesViewUi extends JPanel implements DataChangeListener 
 
     private Tree tradeTree;
     private JPanel mainPanel;
-    private JButton backToHomeButton;
+	private JButton backToHomeButton;
     private JPanel centerPanel;
     private JButton questionButton;
 
