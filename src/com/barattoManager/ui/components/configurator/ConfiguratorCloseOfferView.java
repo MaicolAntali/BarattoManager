@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class ConfiguratorCloseOfferView extends JPanel{
     private JPanel mainPanel;
-    private JButton backToInitButton;
+    private JButton backToHomeButton;
     private JPanel centerPanel;
 
     public ConfiguratorCloseOfferView(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
@@ -16,7 +16,7 @@ public class ConfiguratorCloseOfferView extends JPanel{
         add(mainPanel);
         mainPanel.setPreferredSize(dimension);
 
-        backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
+        backToHomeButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
 
     }
 }

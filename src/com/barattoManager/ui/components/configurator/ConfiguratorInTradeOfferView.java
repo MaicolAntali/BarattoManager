@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class ConfiguratorInTradeOfferView extends JPanel{
     private JPanel mainPanel;
-    private JButton backToInitButton;
+    private JButton backToHomeButton;
     private JPanel centerPanel;
 
     public ConfiguratorInTradeOfferView(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
@@ -15,6 +15,6 @@ public class ConfiguratorInTradeOfferView extends JPanel{
         add(mainPanel);
         mainPanel.setPreferredSize(dimension);
 
-        backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
+        backToHomeButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
     }
 }
