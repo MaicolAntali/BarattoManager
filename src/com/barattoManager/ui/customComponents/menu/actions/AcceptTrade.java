@@ -12,8 +12,8 @@ public class AcceptTrade extends TradeTemplate {
 	protected void customAction(Trade trade, Tree tree, User user) {
 		trade.closeTrade();
 
-		chageArticleState(trade.getArticleOneUuid(), Article.State.CLOSE_OFFER);
-		chageArticleState(trade.getArticleTwoUuid(), Article.State.CLOSE_OFFER);
+		changeArticleState(trade.getArticleOneUuid(), Article.State.CLOSE_OFFER);
+		changeArticleState(trade.getArticleTwoUuid(), Article.State.CLOSE_OFFER);
 
 	}
 }

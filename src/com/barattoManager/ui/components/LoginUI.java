@@ -5,7 +5,10 @@ import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.manager.UserManager;
 import com.barattoManager.model.user.configurator.Configurator;
 import com.barattoManager.ui.BarattoManagerGui;
-import com.barattoManager.ui.components.configurator.*;
+import com.barattoManager.ui.components.configurator.ConfiguratorCategoryEditorUi;
+import com.barattoManager.ui.components.configurator.ConfiguratorHomeUi;
+import com.barattoManager.ui.components.configurator.ConfiguratorMeetEditorUi;
+import com.barattoManager.ui.components.configurator.ConfiguratorOfferView;
 import com.barattoManager.ui.components.viewer.*;
 import com.barattoManager.ui.customComponents.optionPane.ChangePasswordPanel;
 import com.barattoManager.utils.AppConfigurator;
@@ -125,9 +128,7 @@ public class LoginUI extends JPanel {
 						var configuratorHome = new ConfiguratorHomeUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer);
 						var configuratorCategories = new ConfiguratorCategoryEditorUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer);
 						var configuratorMeets = new ConfiguratorMeetEditorUi(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer);
-						var configuratorOpenOffer = new ConfiguratorOpenOfferView(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer);
-						var configuratorInTradeOffer = new ConfiguratorInTradeOfferView(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer);
-						var configuratorCloseOffer = new ConfiguratorCloseOfferView(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer);
+						var configuratorOfferView = new ConfiguratorOfferView(BarattoManagerGui.CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer);
 
 						// add events
 						EventFactory.getCategoriesEvent().addListener(configuratorCategories);
@@ -136,9 +137,7 @@ public class LoginUI extends JPanel {
 						panelContainer.add(configuratorHome, ComponentsName.CONF_HOME.toString());
 						panelContainer.add(configuratorCategories, ComponentsName.CONF_CATEGORY_EDITOR.toString());
 						panelContainer.add(configuratorMeets, ComponentsName.CONF_MEET_EDITOR.toString());
-						panelContainer.add(configuratorOpenOffer, ComponentsName.CONF_OPEN_OFFER_VIEW.toString());
-						panelContainer.add(configuratorInTradeOffer, ComponentsName.CONF_IN_TRADE_OFFER_VIEW.toString());
-						panelContainer.add(configuratorCloseOffer, ComponentsName.CONF_CLOSE_OFFER_VIEW.toString());
+						panelContainer.add(configuratorOfferView, ComponentsName.CONF_OFFER_VIEW.toString());
 
 						cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString());
 					}

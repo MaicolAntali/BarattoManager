@@ -10,6 +10,7 @@ import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class ArticleTree extends Tree {
 
@@ -47,18 +48,19 @@ public abstract class ArticleTree extends Tree {
 	}
 
 
-	abstract void createNode(Article article, DefaultMutableTreeNode fatherNode);
+	abstract void createNode(Article article,  DefaultMutableTreeNode fatherNode);
 
 	private HashMap<String, HashMap<String, DefaultMutableTreeNode>> generateNodeMap(String usernameFilter, Article.State stateFilter) {
 		CategoryManager categoryManager = CategoryManager.getInstance();
 		var             nodeMap         = new HashMap<String, HashMap<String, DefaultMutableTreeNode>>();
 		List<Article>   articleList;
 
-
-		if (stateFilter == null)
+		if (Objects.equals(usernameFilter, "") && stateFilter == null)
+			articleList = ArticleManager.getInstance().getArticles();
+		else if (stateFilter == null)
 			articleList = ArticleManager.getInstance().getArticlesByOwner(usernameFilter);
 		else
-			articleList = ArticleManager.getInstance().getArticlesByStatusExceptOwner(Article.State.OPEN_OFFER, usernameFilter);
+			articleList = ArticleManager.getInstance().getArticlesByStatusExceptOwner(stateFilter, usernameFilter);
 
 
 		articleList

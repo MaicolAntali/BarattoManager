@@ -33,8 +33,8 @@ public class AcceptRescheduleTrade extends TradeTemplate {
 			MeetManager.getInstance().unbookMeet(selectMeetDatePanel.getSelectedMeet().getUuid());
 			MeetManager.getInstance().bookMeet(selectMeetDatePanel.getSelectedMeet().getUuid(), user.getUsername());
 
-			chageArticleState(trade.getArticleOneUuid(), Article.State.IN_TRADE_OFFER);
-			chageArticleState(trade.getArticleTwoUuid(), Article.State.IN_TRADE_OFFER);
+			changeArticleState(trade.getArticleOneUuid(), Article.State.IN_TRADE_OFFER);
+			changeArticleState(trade.getArticleTwoUuid(), Article.State.IN_TRADE_OFFER);
 
 			trade.rescheduleTrade();
 		}

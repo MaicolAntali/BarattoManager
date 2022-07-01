@@ -93,9 +93,9 @@
   },
   "f6d5ed31-4bcb-4bdd-b385-e5449c5227ed": {
     "uuid": "f6d5ed31-4bcb-4bdd-b385-e5449c5227ed",
-    "owner": "Michele",
+    "owner": "Luca",
     "category_uuid": "719e26a0-9fe5-44b5-af28-0b29c9aa5880",
-    "state": "OPEN_OFFER",
+    "state": "IN_TRADE_OFFER",
     "fields": {
       "Field[name=Autore, required=false]": "Cristina Cassar Scalia",
       "Field[name=Anno Pubblicazione, required=false]": "2022",
@@ -142,7 +142,7 @@
     "uuid": "7325aa24-b4f0-4fb0-90bc-f2bdb1f9e749",
     "owner": "Luca",
     "category_uuid": "719e26a0-9fe5-44b5-af28-0b29c9aa5880",
-    "state": "OPEN_OFFER",
+    "state": "CLOSE_OFFER",
     "fields": {
       "Field[name=Autore, required=false]": "Matteo Strukul",
       "Field[name=Anno Pubblicazione, required=false]": "2022",

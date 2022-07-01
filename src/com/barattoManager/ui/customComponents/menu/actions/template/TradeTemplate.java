@@ -31,7 +31,7 @@ public abstract class TradeTemplate extends NodeUuidActionTemplate {
 
 	protected abstract void customAction(Trade trade, Tree tree, User user);
 
-	public void chageArticleState(String articleUuid, Article.State state) {
+	public void changeArticleState(String articleUuid, Article.State state) {
 		ArticleManager.getInstance().getArticleById(articleUuid)
 				.orElseThrow(NullPointerException::new)
 				.changeState(state);

@@ -1,6 +1,9 @@
 package com.barattoManager.ui.components;
 
-import com.barattoManager.ui.components.configurator.*;
+import com.barattoManager.ui.components.configurator.ConfiguratorCategoryEditorUi;
+import com.barattoManager.ui.components.configurator.ConfiguratorHomeUi;
+import com.barattoManager.ui.components.configurator.ConfiguratorMeetEditorUi;
+import com.barattoManager.ui.components.configurator.ConfiguratorOfferView;
 import com.barattoManager.ui.components.viewer.*;
 
 /**
@@ -28,17 +31,9 @@ public enum ComponentsName {
      */
     CONF_MEET_EDITOR("conf_meet_editor"),
     /**
-     * {@link ConfiguratorOpenOfferView}
+     * {@link ConfiguratorOfferView}
      */
-    CONF_OPEN_OFFER_VIEW("conf_open_offer_view"),
-    /**
-     * {@link ConfiguratorInTradeOfferView}
-     */
-    CONF_IN_TRADE_OFFER_VIEW("conf_in_trade_offer_view"),
-    /**
-     * {@link ConfiguratorCloseOfferView}
-     */
-    CONF_CLOSE_OFFER_VIEW("conf_close_offer_view"),
+    CONF_OFFER_VIEW("conf_offer_view"),
     /**
      * {@link ConfiguratorHomeUi}
      */

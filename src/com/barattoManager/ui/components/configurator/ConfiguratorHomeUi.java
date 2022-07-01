@@ -26,9 +26,7 @@ public class ConfiguratorHomeUi extends JPanel {
 	 * JButton used to fo in the {@link ConfiguratorMeetEditorUi} view
 	 */
 	private JButton configMeetButton;
-	private JButton showOpenOffer;
-	private JButton showInTradeOffer;
-	private JButton showCloseOffer;
+	private JButton showOffer;
 
 	/**
 	 * {@link ConfiguratorHomeUi} constructor
@@ -46,8 +44,6 @@ public class ConfiguratorHomeUi extends JPanel {
 		configCategoryButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_CATEGORY_EDITOR.toString()));
 		configMeetButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_MEET_EDITOR.toString()));
 		addNewConfigurator.addActionListener(e ->  new RegisterNewUserPanel(mainPanel, true).createNewUser());
-		showOpenOffer.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_OPEN_OFFER_VIEW.toString()));
-		showInTradeOffer.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_IN_TRADE_OFFER_VIEW.toString()));
-		showCloseOffer.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_CLOSE_OFFER_VIEW.toString()));
+		showOffer.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_OFFER_VIEW.toString()));
 	}
 }
