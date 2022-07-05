@@ -1,4 +1,16 @@
 {
+  "c73cd0db-0bd3-4b1e-a053-d59953d0b8ad": {
+    "uuid": "c73cd0db-0bd3-4b1e-a053-d59953d0b8bd",
+    "city": "Bergamo",
+    "square": "Stazione",
+    "day": "TUESDAY",
+    "start_time": "15:30:00",
+    "end_time": "16:00:00",
+    "user_booked_uuid": null,
+    "day_before_expire": 3,
+    "date_of_meet": "2022-07-05",
+    "already_updated": false
+  },
   "c73cd0db-0bd3-4b1e-a053-d59953d0b8bd": {
     "uuid": "c73cd0db-0bd3-4b1e-a053-d59953d0b8bd",
     "city": "Bergamo",
@@ -6,7 +18,7 @@
     "day": "TUESDAY",
     "start_time": "11:30:00",
     "end_time": "12:00:00",
-    "user_booked_uuid": null,
+    "user_booked_uuid": "Luca",
     "day_before_expire": 3,
     "date_of_meet": "2022-07-05",
     "already_updated": false

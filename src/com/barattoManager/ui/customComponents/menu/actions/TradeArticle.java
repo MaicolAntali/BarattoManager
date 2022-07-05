@@ -50,7 +50,7 @@ public class TradeArticle extends NodeUuidActionTemplate {
 		);
 
 		if (result == JOptionPane.OK_OPTION) {
-			SelectMeetDatePanel selectMeetDatePanel = null;
+			SelectMeetDatePanel selectMeetDatePanel;
 
 			try {
 				selectMeetDatePanel = new SelectMeetDatePanel();
@@ -132,8 +132,8 @@ public class TradeArticle extends NodeUuidActionTemplate {
 			mainPanel.add(new JLabel("Seleziona il giorno dello scambio:"));
 
 			meetComboBox.setRenderer(new MeetComboBoxCustomRenderer());
-			var meets = MeetManager.getInstance().getAvailableMeet();
 
+			var meets = MeetManager.getInstance().getAvailableMeet();
 			if (meets.isEmpty()) {
 				throw new IllegalValuesException("Non ci sono meet disponibili");
 			}

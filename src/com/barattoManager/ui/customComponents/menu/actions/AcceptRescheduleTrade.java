@@ -1,5 +1,6 @@
 package com.barattoManager.ui.customComponents.menu.actions;
 
+import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.manager.MeetManager;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.meet.Meet;
@@ -16,7 +17,14 @@ public class AcceptRescheduleTrade extends TradeTemplate {
 
 	@Override
 	protected void customAction(Trade trade, Tree tree, User user) {
-		var selectMeetDatePanel = new SelectMeetDatePanel();
+		TradeArticle.SelectMeetDatePanel selectMeetDatePanel;
+
+		try {
+			selectMeetDatePanel = new TradeArticle.SelectMeetDatePanel();
+		} catch (IllegalValuesException e) {
+			JOptionPane.showMessageDialog(tree, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
 		int resultMeetDate = JOptionPane.showOptionDialog(
 				tree,
@@ -47,14 +55,20 @@ public class AcceptRescheduleTrade extends TradeTemplate {
 
 		private final JComboBox<Meet> meetComboBox = new JComboBox<>();
 
-		public SelectMeetDatePanel() {
+		public SelectMeetDatePanel() throws IllegalValuesException {
 			var mainPanel = new JPanel();
 			mainPanel.setLayout(new GridLayout(0, 1));
 
 			mainPanel.add(new JLabel("Seleziona il giorno dello scambio:"));
 
 			meetComboBox.setRenderer(new MeetComboBoxCustomRenderer());
-			MeetManager.getInstance().getAvailableMeet().forEach(meetComboBox::addItem);
+
+			var meets = MeetManager.getInstance().getAvailableMeet();
+			if (meets.isEmpty()) {
+				throw new IllegalValuesException("Non ci sono meet disponibili");
+			}
+
+			meets.forEach(meetComboBox::addItem);
 
 			mainPanel.add(meetComboBox);
 
