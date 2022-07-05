@@ -18,6 +18,7 @@ public class ViewerDashboardArticle extends JPanel implements DataChangeListener
 	private final User user;
 
 	private ArticleTreeDashboard articleTree;
+	private JMenuBar menu;
 	private JPanel mainPanel;
 	private JButton backToHomeButton;
 	private JPanel centerPanel;
@@ -31,8 +32,8 @@ public class ViewerDashboardArticle extends JPanel implements DataChangeListener
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
-		var articleTreeMenu = new DashboardMenuFactory().createMenuObject().createMenu(user, articleTree);
-		centerPanel.add(articleTreeMenu, BorderLayout.NORTH);
+		menu = new DashboardMenuFactory().createMenuObject().createMenu(user, articleTree);
+		centerPanel.add(menu, BorderLayout.NORTH);
 		centerPanel.add(articleTree);
 
 
@@ -47,9 +48,12 @@ public class ViewerDashboardArticle extends JPanel implements DataChangeListener
 	@Override
 	public void update() {
 		centerPanel.remove(articleTree);
+		centerPanel.remove(menu);
 
-		articleTree = new ArticleTreeDashboard(user.getUsername(), null);
+		this.menu = new DashboardMenuFactory().createMenuObject().createMenu(user, articleTree);
+		this.articleTree = new ArticleTreeDashboard(user.getUsername(), null);
 
+		centerPanel.add(menu, BorderLayout.NORTH);
 		centerPanel.add(articleTree);
 
 		centerPanel.repaint();

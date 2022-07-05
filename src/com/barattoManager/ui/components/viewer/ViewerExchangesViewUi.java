@@ -15,6 +15,7 @@ public class ViewerExchangesViewUi extends JPanel implements DataChangeListener 
     private final User user;
 
     private Tree tradeTree;
+    private JMenuBar menu;
     private JPanel mainPanel;
 	private JButton backToHomeButton;
     private JPanel centerPanel;
@@ -28,8 +29,8 @@ public class ViewerExchangesViewUi extends JPanel implements DataChangeListener 
         add(mainPanel);
         mainPanel.setPreferredSize(dimension);
 
-        var tradeMenu = new TradeMenuFactory().createMenuObject().createMenu(user, tradeTree);
-        centerPanel.add(tradeMenu, BorderLayout.NORTH);
+        menu = new TradeMenuFactory().createMenuObject().createMenu(user, tradeTree);
+        centerPanel.add(menu, BorderLayout.NORTH);
         centerPanel.add(tradeTree);
 
 
@@ -44,8 +45,12 @@ public class ViewerExchangesViewUi extends JPanel implements DataChangeListener 
     @Override
     public void update() {
         centerPanel.remove(tradeTree);
+        centerPanel.remove(menu);
 
         this.tradeTree = new TradeTree(user);
+        this.menu = new TradeMenuFactory().createMenuObject().createMenu(user, tradeTree);
+
+        centerPanel.add(menu, BorderLayout.NORTH);
         centerPanel.add(tradeTree);
 
         centerPanel.repaint();

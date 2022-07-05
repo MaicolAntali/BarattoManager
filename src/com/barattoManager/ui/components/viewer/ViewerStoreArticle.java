@@ -17,6 +17,7 @@ import java.awt.*;
 public class ViewerStoreArticle extends JPanel implements DataChangeListener {
 
 	private final User user;
+	private JMenuBar menu;
 
 	/**
 	 * Main Panel
@@ -43,7 +44,7 @@ public class ViewerStoreArticle extends JPanel implements DataChangeListener {
 
 		tree = new ArticleTreeStore(new Dimension(510, 310), "!%s".formatted(user.getUsername()), Article.State.OPEN_OFFER);
 
-		var menu = new StoreMenuFactory().createMenuObject().createMenu(user, tree);
+		menu = new StoreMenuFactory().createMenuObject().createMenu(user, tree);
 		centerPanel.add(menu, BorderLayout.NORTH);
 
 		centerPanel.add(tree);
@@ -60,9 +61,12 @@ public class ViewerStoreArticle extends JPanel implements DataChangeListener {
 	@Override
 	public void update() {
 		centerPanel.remove(tree);
+		centerPanel.remove(menu);
 
+		this.menu = new StoreMenuFactory().createMenuObject().createMenu(user, tree);
 		this.tree = new ArticleTreeStore(new Dimension(510, 310), "!%s".formatted(user.getUsername()), Article.State.OPEN_OFFER);
 
+		centerPanel.add(menu, BorderLayout.NORTH);
 		centerPanel.add(tree);
 
 		centerPanel.repaint();
