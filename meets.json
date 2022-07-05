@@ -1,1 +1,38 @@
-{"c73cd0db-0bd3-4b1e-a053-d59953d0b8b4":{"uuid":"c73cd0db-0bd3-4b1e-a053-d59953d0b8b4","city":"Bergamo","square":"Stazione","day":"TUESDAY","start_time":"12:00:00","end_time":"12:30:00","user_booked_uuid":"Luca","day_before_expire":3,"date_of_meet":"2022-07-05","already_updated":true},"c73cd0db-0bd3-4b1e-a053-d59953d0b8b2":{"uuid":"c73cd0db-0bd3-4b1e-a053-d59953d0b8b4","city":"Bergamo","square":"Stazione","day":"TUESDAY","start_time":"15:00:00","end_time":"15:30:00","user_booked_uuid":null,"day_before_expire":3,"date_of_meet":"2022-07-05","already_updated":false},"d31de5ed-d618-4301-b2d1-f0c93df2f1e8":{"uuid":"d31de5ed-d618-4301-b2d1-f0c93df2f1e8","city":"Bergamo","square":"Stazione","day":"TUESDAY","start_time":"12:00:00","end_time":"12:30:00","user_booked_uuid":null,"day_before_expire":3,"date_of_meet":"2022-07-12","already_updated":false}}
+{
+  "76a398b2-eb22-4eca-b07b-27cb72a525d1": {
+    "uuid": "76a398b2-eb22-4eca-b07b-27cb72a525d1",
+    "city": "Bergamo",
+    "square": "Stazione",
+    "day": "TUESDAY",
+    "start_time": "15:00:00",
+    "end_time": "15:30:00",
+    "user_booked_uuid": null,
+    "day_before_expire": 3,
+    "date_of_meet": "2022-07-12",
+    "already_updated": false
+  },
+  "c73cd0db-0bd3-4b1e-a053-d59953d0b8b4": {
+    "uuid": "c73cd0db-0bd3-4b1e-a053-d59953d0b8b4",
+    "city": "Bergamo",
+    "square": "Stazione",
+    "day": "TUESDAY",
+    "start_time": "15:00:00",
+    "end_time": "15:30:00",
+    "user_booked_uuid": null,
+    "day_before_expire": 3,
+    "date_of_meet": "2022-07-05",
+    "already_updated": true
+  },
+  "d31de5ed-d618-4301-b2d1-f0c93df2f1e8": {
+    "uuid": "d31de5ed-d618-4301-b2d1-f0c93df2f1e8",
+    "city": "Bergamo",
+    "square": "Stazione",
+    "day": "TUESDAY",
+    "start_time": "12:00:00",
+    "end_time": "12:30:00",
+    "user_booked_uuid": null,
+    "day_before_expire": 3,
+    "date_of_meet": "2022-07-12",
+    "already_updated": false
+  }
+}

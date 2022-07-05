@@ -1,1 +1,288 @@
-{"733139bb-1eea-47f4-9e33-573bc8626382":{"uuid":"733139bb-1eea-47f4-9e33-573bc8626382","owner":"Luca","category_uuid":"f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46","state":"CANCELLED_OFFER","fields":{"Field[name=Pagine, required=true]":"6","Field[name=Titolo, required=true]":"6","Field[name=Anno Pubblicazione, required=false]":"6","Field[name=Stato di conservazione, required=true]":"6","Field[name=Descrizione, required=true]":"6","Field[name=Autore, required=true]":"6"},"log":[{"date_time":"2022-07-05T15:12:39.243829","name":"Article Created","description":"Article has just been created by the viewer Luca"},{"date_time":"2022-07-05T15:12:39.263592","name":"Article Validated","description":"Article is valid and properly initialized"},{"date_time":"2022-07-05T15:12:39.263705","name":"State Update","description":"The article state is updated from Non validato to Offerta Aperta"},{"date_time":"2022-07-05T15:12:44.304678","name":"State Update","description":"The article state is updated from Offerta Aperta to Offerta Cancellata"}],"name":"6"},"6d87be16-0da9-459e-85d9-09276acdabfc":{"uuid":"6d87be16-0da9-459e-85d9-09276acdabfc","owner":"Luca","category_uuid":"f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46","state":"LINKED_OFFER","fields":{"Field[name=Autore, required=false]":"1","Field[name=Anno Pubblicazione, required=false]":"1","Field[name=Stato di conservazione, required=false]":"1","Field[name=Descrizione, required=false]":"1","Field[name=Titolo, required=false]":"1","Field[name=Pagine, required=false]":"1"},"log":[{"date_time":"2022-07-05T12:03:52.528388","name":"Article Created","description":"Article has just been created by the viewer Luca"},{"date_time":"2022-07-05T12:03:52.55396","name":"Article Validated","description":"Article is valid and properly initialized"},{"date_time":"2022-07-05T12:03:52.554041","name":"State Update","description":"The article state is updated from Non validato to Offerta Aperta"},{"date_time":"2022-07-05T12:05:44.645669","name":"State Update","description":"The article state is updated from Offerta Aperta to Offerta accoppiata"}],"name":"1"},"172ec0d0-a20b-4443-8d02-cc0ca5dc8b0e":{"uuid":"172ec0d0-a20b-4443-8d02-cc0ca5dc8b0e","owner":"Michele","category_uuid":"f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46","state":"SELECTED_OFFER","fields":{"Field[name=Autore, required=false]":"3","Field[name=Anno Pubblicazione, required=false]":"3","Field[name=Stato di conservazione, required=false]":"3","Field[name=Descrizione, required=false]":"3","Field[name=Titolo, required=false]":"3","Field[name=Pagine, required=false]":"3"},"log":[{"date_time":"2022-07-05T12:04:22.645937","name":"Article Created","description":"Article has just been created by the viewer Michele"},{"date_time":"2022-07-05T12:04:22.655594","name":"Article Validated","description":"Article is valid and properly initialized"},{"date_time":"2022-07-05T12:04:22.655635","name":"State Update","description":"The article state is updated from Non validato to Offerta Aperta"},{"date_time":"2022-07-05T12:05:44.675399","name":"State Update","description":"The article state is updated from Offerta Aperta to Offerta selezionata"}],"name":"3"},"c1e91a37-f7ef-4554-a9f3-fe6ad941d6bc":{"uuid":"c1e91a37-f7ef-4554-a9f3-fe6ad941d6bc","owner":"Luca","category_uuid":"f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46","state":"LINKED_OFFER","fields":{"Field[name=Autore, required=false]":"2","Field[name=Anno Pubblicazione, required=false]":"2","Field[name=Stato di conservazione, required=false]":"2","Field[name=Descrizione, required=false]":"2","Field[name=Titolo, required=false]":"2","Field[name=Pagine, required=false]":"2"},"log":[{"date_time":"2022-07-05T12:03:59.043459","name":"Article Created","description":"Article has just been created by the viewer Luca"},{"date_time":"2022-07-05T12:03:59.043859","name":"Article Validated","description":"Article is valid and properly initialized"},{"date_time":"2022-07-05T12:03:59.043906","name":"State Update","description":"The article state is updated from Non validato to Offerta Aperta"},{"date_time":"2022-07-05T12:05:50.033776","name":"State Update","description":"The article state is updated from Offerta Aperta to Offerta accoppiata"}],"name":"2"},"8c610dda-7a04-4347-8b07-c4f69a9c1d28":{"uuid":"8c610dda-7a04-4347-8b07-c4f69a9c1d28","owner":"Luca","category_uuid":"f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46","state":"CANCELLED_OFFER","fields":{"Field[name=Autore, required=false]":"5","Field[name=Anno Pubblicazione, required=false]":"5","Field[name=Stato di conservazione, required=false]":"5","Field[name=Descrizione, required=false]":"5","Field[name=Titolo, required=false]":"5","Field[name=Pagine, required=false]":"5"},"log":[{"date_time":"2022-07-05T15:00:28.77395","name":"Article Created","description":"Article has just been created by the viewer Luca"},{"date_time":"2022-07-05T15:00:28.792899","name":"Article Validated","description":"Article is valid and properly initialized"},{"date_time":"2022-07-05T15:00:28.792955","name":"State Update","description":"The article state is updated from Non validato to Offerta Aperta"},{"date_time":"2022-07-05T15:12:30.391743","name":"State Update","description":"The article state is updated from Offerta Aperta to Offerta Cancellata"}],"name":"5"},"02d45725-64a2-41ab-8ab9-5a21a5b804c7":{"uuid":"02d45725-64a2-41ab-8ab9-5a21a5b804c7","owner":"Luca","category_uuid":"f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46","state":"OPEN_OFFER","fields":{"Field[name=Pagine, required=true]":"7","Field[name=Titolo, required=true]":"7","Field[name=Anno Pubblicazione, required=false]":"7","Field[name=Stato di conservazione, required=true]":"7","Field[name=Descrizione, required=true]":"7","Field[name=Autore, required=true]":"7"},"log":[{"date_time":"2022-07-05T15:12:53.816642","name":"Article Created","description":"Article has just been created by the viewer Luca"},{"date_time":"2022-07-05T15:12:53.817041","name":"Article Validated","description":"Article is valid and properly initialized"},{"date_time":"2022-07-05T15:12:53.817088","name":"State Update","description":"The article state is updated from Non validato to Offerta Aperta"}],"name":"7"},"811caf5e-5b47-4eb3-9779-17ccc6236055":{"uuid":"811caf5e-5b47-4eb3-9779-17ccc6236055","owner":"Michele","category_uuid":"f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46","state":"SELECTED_OFFER","fields":{"Field[name=Autore, required=false]":"4","Field[name=Anno Pubblicazione, required=false]":"4","Field[name=Stato di conservazione, required=false]":"4","Field[name=Descrizione, required=false]":"4","Field[name=Titolo, required=false]":"4","Field[name=Pagine, required=false]":"4"},"log":[{"date_time":"2022-07-05T12:04:29.001814","name":"Article Created","description":"Article has just been created by the viewer Michele"},{"date_time":"2022-07-05T12:04:29.002255","name":"Article Validated","description":"Article is valid and properly initialized"},{"date_time":"2022-07-05T12:04:29.002297","name":"State Update","description":"The article state is updated from Non validato to Offerta Aperta"},{"date_time":"2022-07-05T12:05:50.046793","name":"State Update","description":"The article state is updated from Offerta Aperta to Offerta selezionata"}],"name":"4"}}
+{
+  "733139bb-1eea-47f4-9e33-573bc8626382": {
+    "uuid": "733139bb-1eea-47f4-9e33-573bc8626382",
+    "owner": "Luca",
+    "category_uuid": "f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46",
+    "state": "CANCELLED_OFFER",
+    "fields": {
+      "Field[name=Autore, required=false]": "6",
+      "Field[name=Anno Pubblicazione, required=false]": "6",
+      "Field[name=Stato di conservazione, required=false]": "6",
+      "Field[name=Descrizione, required=false]": "6",
+      "Field[name=Titolo, required=false]": "6",
+      "Field[name=Pagine, required=false]": "6"
+    },
+    "log": [
+      {
+        "date_time": "2022-07-05T15:12:39.243829",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Luca"
+      },
+      {
+        "date_time": "2022-07-05T15:12:39.263592",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-07-05T15:12:39.263705",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      },
+      {
+        "date_time": "2022-07-05T15:12:44.304678",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta Aperta to Offerta Cancellata"
+      }
+    ],
+    "name": "6"
+  },
+  "6d87be16-0da9-459e-85d9-09276acdabfc": {
+    "uuid": "6d87be16-0da9-459e-85d9-09276acdabfc",
+    "owner": "Luca",
+    "category_uuid": "f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46",
+    "state": "LINKED_OFFER",
+    "fields": {
+      "Field[name=Autore, required=false]": "1",
+      "Field[name=Anno Pubblicazione, required=false]": "1",
+      "Field[name=Stato di conservazione, required=false]": "1",
+      "Field[name=Descrizione, required=false]": "1",
+      "Field[name=Titolo, required=false]": "1",
+      "Field[name=Pagine, required=false]": "1"
+    },
+    "log": [
+      {
+        "date_time": "2022-07-05T12:03:52.528388",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Luca"
+      },
+      {
+        "date_time": "2022-07-05T12:03:52.55396",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-07-05T12:03:52.554041",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      },
+      {
+        "date_time": "2022-07-05T12:05:44.645669",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta Aperta to Offerta accoppiata"
+      }
+    ],
+    "name": "1"
+  },
+  "172ec0d0-a20b-4443-8d02-cc0ca5dc8b0e": {
+    "uuid": "172ec0d0-a20b-4443-8d02-cc0ca5dc8b0e",
+    "owner": "Michele",
+    "category_uuid": "f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46",
+    "state": "SELECTED_OFFER",
+    "fields": {
+      "Field[name=Autore, required=false]": "3",
+      "Field[name=Anno Pubblicazione, required=false]": "3",
+      "Field[name=Stato di conservazione, required=false]": "3",
+      "Field[name=Descrizione, required=false]": "3",
+      "Field[name=Titolo, required=false]": "3",
+      "Field[name=Pagine, required=false]": "3"
+    },
+    "log": [
+      {
+        "date_time": "2022-07-05T12:04:22.645937",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Michele"
+      },
+      {
+        "date_time": "2022-07-05T12:04:22.655594",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-07-05T12:04:22.655635",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      },
+      {
+        "date_time": "2022-07-05T12:05:44.675399",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta Aperta to Offerta selezionata"
+      }
+    ],
+    "name": "3"
+  },
+  "c1e91a37-f7ef-4554-a9f3-fe6ad941d6bc": {
+    "uuid": "c1e91a37-f7ef-4554-a9f3-fe6ad941d6bc",
+    "owner": "Luca",
+    "category_uuid": "f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46",
+    "state": "LINKED_OFFER",
+    "fields": {
+      "Field[name=Autore, required=false]": "2",
+      "Field[name=Anno Pubblicazione, required=false]": "2",
+      "Field[name=Stato di conservazione, required=false]": "2",
+      "Field[name=Descrizione, required=false]": "2",
+      "Field[name=Titolo, required=false]": "2",
+      "Field[name=Pagine, required=false]": "2"
+    },
+    "log": [
+      {
+        "date_time": "2022-07-05T12:03:59.043459",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Luca"
+      },
+      {
+        "date_time": "2022-07-05T12:03:59.043859",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-07-05T12:03:59.043906",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      },
+      {
+        "date_time": "2022-07-05T12:05:50.033776",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta Aperta to Offerta accoppiata"
+      }
+    ],
+    "name": "2"
+  },
+  "8c610dda-7a04-4347-8b07-c4f69a9c1d28": {
+    "uuid": "8c610dda-7a04-4347-8b07-c4f69a9c1d28",
+    "owner": "Luca",
+    "category_uuid": "f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46",
+    "state": "CANCELLED_OFFER",
+    "fields": {
+      "Field[name=Autore, required=false]": "5",
+      "Field[name=Anno Pubblicazione, required=false]": "5",
+      "Field[name=Stato di conservazione, required=false]": "5",
+      "Field[name=Descrizione, required=false]": "5",
+      "Field[name=Titolo, required=false]": "5",
+      "Field[name=Pagine, required=false]": "5"
+    },
+    "log": [
+      {
+        "date_time": "2022-07-05T15:00:28.77395",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Luca"
+      },
+      {
+        "date_time": "2022-07-05T15:00:28.792899",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-07-05T15:00:28.792955",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      },
+      {
+        "date_time": "2022-07-05T15:12:30.391743",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta Aperta to Offerta Cancellata"
+      }
+    ],
+    "name": "5"
+  },
+  "02d45725-64a2-41ab-8ab9-5a21a5b804c7": {
+    "uuid": "02d45725-64a2-41ab-8ab9-5a21a5b804c7",
+    "owner": "Luca",
+    "category_uuid": "f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46",
+    "state": "OPEN_OFFER",
+    "fields": {
+      "Field[name=Autore, required=false]": "7",
+      "Field[name=Anno Pubblicazione, required=false]": "7",
+      "Field[name=Stato di conservazione, required=false]": "7",
+      "Field[name=Descrizione, required=false]": "7",
+      "Field[name=Titolo, required=false]": "7",
+      "Field[name=Pagine, required=false]": "7"
+    },
+    "log": [
+      {
+        "date_time": "2022-07-05T15:12:53.816642",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Luca"
+      },
+      {
+        "date_time": "2022-07-05T15:12:53.817041",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-07-05T15:12:53.817088",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      }
+    ],
+    "name": "7"
+  },
+  "c949b13c-8aa8-458f-ba78-54397c97db90": {
+    "uuid": "c949b13c-8aa8-458f-ba78-54397c97db90",
+    "owner": "Luca",
+    "category_uuid": "f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46",
+    "state": "OPEN_OFFER",
+    "fields": {
+      "Field[name=Pagine, required=true]": "1",
+      "Field[name=Titolo, required=true]": "1",
+      "Field[name=Anno Pubblicazione, required=false]": "",
+      "Field[name=Stato di conservazione, required=true]": "1",
+      "Field[name=Descrizione, required=true]": "1",
+      "Field[name=Autore, required=true]": "1"
+    },
+    "log": [
+      {
+        "date_time": "2022-07-05T15:38:07.864251",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Luca"
+      },
+      {
+        "date_time": "2022-07-05T15:38:07.865825",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-07-05T15:38:07.865907",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      }
+    ],
+    "name": "Test campi vuoti"
+  },
+  "811caf5e-5b47-4eb3-9779-17ccc6236055": {
+    "uuid": "811caf5e-5b47-4eb3-9779-17ccc6236055",
+    "owner": "Michele",
+    "category_uuid": "f09bb4b9-6d81-4b56-9fe7-3ee6a6344b46",
+    "state": "SELECTED_OFFER",
+    "fields": {
+      "Field[name=Autore, required=false]": "4",
+      "Field[name=Anno Pubblicazione, required=false]": "4",
+      "Field[name=Stato di conservazione, required=false]": "4",
+      "Field[name=Descrizione, required=false]": "4",
+      "Field[name=Titolo, required=false]": "4",
+      "Field[name=Pagine, required=false]": "4"
+    },
+    "log": [
+      {
+        "date_time": "2022-07-05T12:04:29.001814",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Michele"
+      },
+      {
+        "date_time": "2022-07-05T12:04:29.002255",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-07-05T12:04:29.002297",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      },
+      {
+        "date_time": "2022-07-05T12:05:50.046793",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta Aperta to Offerta selezionata"
+      }
+    ],
+    "name": "4"
+  }
+}
