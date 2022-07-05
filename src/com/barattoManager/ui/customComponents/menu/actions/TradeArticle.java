@@ -5,8 +5,8 @@ import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.manager.MeetManager;
 import com.barattoManager.manager.TradeManager;
 import com.barattoManager.model.article.Article;
-import com.barattoManager.model.meet.Meet;
 import com.barattoManager.model.user.User;
+import com.barattoManager.ui.customComponents.menu.actions.panels.SelectMeetDate;
 import com.barattoManager.ui.customComponents.menu.actions.template.NodeUuidActionTemplate;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
@@ -50,10 +50,10 @@ public class TradeArticle extends NodeUuidActionTemplate {
 		);
 
 		if (result == JOptionPane.OK_OPTION) {
-			SelectMeetDatePanel selectMeetDatePanel;
+			SelectMeetDate selectMeetDatePanel;
 
 			try {
-				selectMeetDatePanel = new SelectMeetDatePanel();
+				selectMeetDatePanel = new SelectMeetDate();
 			} catch (IllegalValuesException e) {
 				JOptionPane.showMessageDialog(tree, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
 				return;
@@ -115,53 +115,6 @@ public class TradeArticle extends NodeUuidActionTemplate {
 				var item = (Article) value;
 
 				setText(item.getArticleName());
-
-				return this;
-			}
-		}
-	}
-
-	static class SelectMeetDatePanel extends JPanel {
-
-		private final JComboBox<Meet> meetComboBox = new JComboBox<>();
-
-		public SelectMeetDatePanel() throws IllegalValuesException {
-			var mainPanel = new JPanel();
-			mainPanel.setLayout(new GridLayout(0, 1));
-
-			mainPanel.add(new JLabel("Seleziona il giorno dello scambio:"));
-
-			meetComboBox.setRenderer(new MeetComboBoxCustomRenderer());
-
-			var meets = MeetManager.getInstance().getAvailableMeet();
-			if (meets.isEmpty()) {
-				throw new IllegalValuesException("Non ci sono meet disponibili");
-			}
-
-			meets.forEach(meetComboBox::addItem);
-
-			mainPanel.add(meetComboBox);
-
-			add(mainPanel);
-			setVisible(true);
-		}
-
-		public Meet getSelectedMeet() {
-			return (Meet) meetComboBox.getSelectedItem();
-		}
-
-		static class MeetComboBoxCustomRenderer extends BasicComboBoxRenderer {
-			@Override
-			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-				var item = (Meet) value;
-
-				setText("%s ~ %s ~ %s ~ [%s-%s]".formatted(
-						item.getCity(),
-						item.getSquare(),
-						item.getDay(),
-						item.getStartTime(),
-						item.getEndTime()
-				));
 
 				return this;
 			}
