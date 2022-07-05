@@ -28,6 +28,6 @@
         "description": "Il trade è stato accettato da entrambe le parti e quindi chiuso."
       }
     ],
-    "trade_status": "IN_PROGRESS"
+    "trade_status": "CANCELLED"
   }
 }

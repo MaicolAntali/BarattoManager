@@ -23,6 +23,7 @@ public class TradeCheckerDaemon extends TimerTask {
 		System.out.printf("Running TradeCheckerDaemon: %s%n", LocalDateTime.now());
 
 		tradeHashMap.values().stream()
+				.filter(trade -> trade.getTradeStatus() == TradeStatus.IN_PROGRESS)
 				.filter(trade -> LocalDateTime.now().isAfter(trade.getTradeEndDateTime()))
 				.forEach(trade -> {
 					ArticleManager.getInstance().getArticleById(trade.getArticleOneUuid())
