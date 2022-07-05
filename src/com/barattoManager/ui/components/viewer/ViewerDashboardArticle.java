@@ -50,8 +50,8 @@ public class ViewerDashboardArticle extends JPanel implements DataChangeListener
 		centerPanel.remove(articleTree);
 		centerPanel.remove(menu);
 
-		this.menu = new DashboardMenuFactory().createMenuObject().createMenu(user, articleTree);
 		this.articleTree = new ArticleTreeDashboard(user.getUsername(), null);
+		this.menu = new DashboardMenuFactory().createMenuObject().createMenu(user, articleTree);
 
 		centerPanel.add(menu, BorderLayout.NORTH);
 		centerPanel.add(articleTree);

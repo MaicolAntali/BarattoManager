@@ -63,8 +63,8 @@ public class ViewerStoreArticle extends JPanel implements DataChangeListener {
 		centerPanel.remove(tree);
 		centerPanel.remove(menu);
 
-		this.menu = new StoreMenuFactory().createMenuObject().createMenu(user, tree);
 		this.tree = new ArticleTreeStore(new Dimension(510, 310), "!%s".formatted(user.getUsername()), Article.State.OPEN_OFFER);
+		this.menu = new StoreMenuFactory().createMenuObject().createMenu(user, tree);
 
 		centerPanel.add(menu, BorderLayout.NORTH);
 		centerPanel.add(tree);
