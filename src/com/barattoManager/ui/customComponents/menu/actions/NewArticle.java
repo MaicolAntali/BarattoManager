@@ -61,6 +61,12 @@ public class NewArticle implements MenuAction {
 			);
 
 			if (resultFormPanel == JOptionPane.OK_OPTION) {
+
+				if (formPanel.getArticleName().getText().trim().isBlank()) {
+					JOptionPane.showMessageDialog(tree, "Nome dell'articolo vuoto", "Errore", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
 				ArticleManager.getInstance().addNewArticle(
 						formPanel.getArticleName().getText(),
 						user.getUsername(),
@@ -103,7 +109,7 @@ public class NewArticle implements MenuAction {
 			var fieldsPanel = new JPanel();
 			fieldsPanel.setLayout(new GridLayout(0, 2));
 
-			fieldsPanel.add(new JLabel("Nome Articolo:"));
+			fieldsPanel.add(new JLabel("Nome Articolo*"));
 			this.articleName = new JTextField();
 			fieldsPanel.add(articleName);
 
