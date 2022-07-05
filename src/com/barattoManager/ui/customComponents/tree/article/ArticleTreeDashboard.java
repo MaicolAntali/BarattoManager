@@ -19,6 +19,7 @@ public final class ArticleTreeDashboard extends ArticleTree {
 		var articleNode = new DefaultMutableTreeNode(article.getArticleName());
 
 		articleNode.add(new DefaultMutableTreeNode("Proprietario: %s".formatted(article.getUserNameOwner())));
+		articleNode.add(new DefaultMutableTreeNode("UUID: %s".formatted(article.getUuid())));
 
 		articleNode.add(TreeUtils.generateFields(article));
 
