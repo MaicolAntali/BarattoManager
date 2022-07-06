@@ -131,12 +131,14 @@ public final class Meet {
 
 		Meet meet = (Meet) o;
 		if (hashCode() == meet.hashCode()) return true;
-		return getCity().equals(meet.getCity())
-				&& getSquare().equals(meet.getSquare())
+		return getCity().equalsIgnoreCase(meet.getCity())
+				&& getSquare().equalsIgnoreCase(meet.getSquare())
 				&& getDay() == meet.getDay()
 				&& getDateOfMeet().isEqual(meet.getDateOfMeet())
-				&& (!getStartTime().isAfter(meet.getEndTime()) ? getStartTime().equals(meet.getStartTime()) : !getStartTime().isAfter(meet.getEndTime()))
-				&& (!meet.getStartTime().isAfter(getEndTime()) ? getEndTime().equals(meet.getEndTime()) : !meet.getStartTime().isAfter(getEndTime()));
+				&& (
+					getStartTime().isBefore(meet.getStartTime())
+					&& getEndTime().isAfter(meet.getStartTime())
+				);
 	}
 
 	@Override
