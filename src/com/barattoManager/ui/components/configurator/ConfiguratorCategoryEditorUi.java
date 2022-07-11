@@ -55,6 +55,9 @@ public class ConfiguratorCategoryEditorUi extends JPanel implements DataChangeLi
 		backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
 	}
 
+	/**
+	 * Method used to update the JPanel components
+	 */
 	@Override
 	public void update() {
 		// remove components

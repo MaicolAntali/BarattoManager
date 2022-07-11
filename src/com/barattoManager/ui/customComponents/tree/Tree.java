@@ -22,6 +22,11 @@ public abstract class Tree extends JPanel {
 	 * Icon for field
 	 */
 	protected static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
+	/**
+	 * Error: No node has been selected, try again.
+	 */
+	private static final String ERROR_NO_NODE_HAS_BEEN_SELECTED = "Non è stata selezionata nessun nodo. Seleziona un nodo e riprova.";
+
 
 	private final JTree tree;
 
@@ -48,7 +53,7 @@ public abstract class Tree extends JPanel {
 		var selectedNode = (DefaultMutableTreeNode) this.tree.getLastSelectedPathComponent();
 
 		if (selectedNode == null)
-			throw new NoNodeSelected("Non è stata selezionata nessun nodo. Seleziona un nodo e riprova.");
+			throw new NoNodeSelected(ERROR_NO_NODE_HAS_BEEN_SELECTED);
 
 		return selectedNode.getPath();
 	}

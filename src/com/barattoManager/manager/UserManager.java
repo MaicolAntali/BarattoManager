@@ -42,11 +42,19 @@ public final class UserManager extends NoConcurrencyManager<String, User>{
 		}
 	}
 
+	/**
+	 * Method used to get the Json file
+	 * @return {@link File}
+	 */
 	@Override
 	File getJsonFile() {
 		return new File(AppConfigurator.getInstance().getFileName("user_file"));
 	}
 
+	/**
+	 * Method used to get the object mapper
+	 * @return {@link ObjectMapper}
+	 */
 	@Override
 	ObjectMapper getObjectMapper() {
 		return new ObjectMapper();
@@ -121,6 +129,13 @@ public final class UserManager extends NoConcurrencyManager<String, User>{
 
 	}
 
+	/**
+	 * Method used to check the credentials
+	 * @param username Username to check
+	 * @param password Password to check
+	 * @return {@link User}
+	 * @throws InvalidCredentialsException Is thrown if the credentials are invalid
+	 */
 	public User checkCredential(String username, String password) throws InvalidCredentialsException {
 		User user = getDataMap().get(Objects.requireNonNull(username).toLowerCase());
 
@@ -143,6 +158,7 @@ public final class UserManager extends NoConcurrencyManager<String, User>{
 		user.setPassword(password);
 		saveDataMap();
 	}
+
 
 	public HashMap<String, User> getUserMap() {
 		return getDataMap();

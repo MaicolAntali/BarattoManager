@@ -48,6 +48,9 @@ public class ConfiguratorMeetEditorUi extends JPanel implements DataChangeListen
 		backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
 	}
 
+	/**
+	 * Method used to update the JPanel components
+	 */
 	@Override
 	public void update() {
 		centerPanel.remove(meetTree);

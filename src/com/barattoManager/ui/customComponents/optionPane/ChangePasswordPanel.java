@@ -9,7 +9,7 @@ import java.awt.*;
 public class ChangePasswordPanel extends JPanel {
 
 	/**
-	 * Change your password label
+	 * Label: Change your password
 	 */
 	private static final String LABEL_CHANGE_YOUR_PASSWORD = "Cambia la tua password di accesso.";
 	/**

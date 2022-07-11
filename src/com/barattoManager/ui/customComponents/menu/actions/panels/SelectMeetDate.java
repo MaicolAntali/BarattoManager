@@ -10,19 +10,28 @@ import java.awt.*;
 
 public class SelectMeetDate extends JPanel {
 
+	/**
+	 * Label: select the day of the exchange
+	 */
+	private static final String SELECT_DAY_EXCHANGE = "Seleziona il giorno dello scambio:";
+	/**
+	 * Error: there are no meetings available
+	 */
+	private static final String ERROR_NO_MEET_AVAILABLE = "Non ci sono meet disponibili";
+
 	private final JComboBox<Meet> meetComboBox = new JComboBox<>();
 
 	public SelectMeetDate() throws IllegalValuesException {
 		var mainPanel = new JPanel();
 		mainPanel.setLayout(new GridLayout(0, 1));
 
-		mainPanel.add(new JLabel("Seleziona il giorno dello scambio:"));
+		mainPanel.add(new JLabel(SELECT_DAY_EXCHANGE));
 
 		meetComboBox.setRenderer(new MeetComboBoxCustomRenderer());
 
 		var meets = MeetManager.getInstance().getAvailableMeet();
 		if (meets.isEmpty()) {
-			throw new IllegalValuesException("Non ci sono meet disponibili");
+			throw new IllegalValuesException(ERROR_NO_MEET_AVAILABLE);
 		}
 
 		meets.forEach(meetComboBox::addItem);

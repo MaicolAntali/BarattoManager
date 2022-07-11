@@ -22,6 +22,10 @@ public class Article {
 	 */
 	private static final String NOT_VALID_FIELDS_ERROR = "Not Valid fields";
 	/**
+	 * Message: Article state has been updated
+	 */
+	private static final String ARTICLE_STATE_UPDATED = "The article state is updated from %s to %s";
+	/**
 	 * Error description: One or more required fields have not been properly initialized
 	 */
 	private static final String FIELDS_HAVE_NOT_BEEN_INITIALIZED_ERROR_DESCRIPTION = "One or more required fields have not been properly initialized";
@@ -259,7 +263,7 @@ public class Article {
 	 * @param state new {@link State}
 	 */
 	public void changeState(State state) {
-		history.add(new History("State Update", "The article state is updated from %s to %s".formatted(this.articleState, state)));
+		history.add(new History("State Update", ARTICLE_STATE_UPDATED.formatted(this.articleState, state)));
 		this.articleState = state;
 		ArticleManager.getInstance().saveDataMap();
 	}

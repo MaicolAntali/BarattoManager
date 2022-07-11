@@ -23,9 +23,12 @@ public class ConfiguratorHomeUi extends JPanel {
 	 */
 	private JButton addNewConfigurator;
 	/**
-	 * JButton used to fo in the {@link ConfiguratorMeetEditorUi} view
+	 * JButton used to go in the {@link ConfiguratorMeetEditorUi} view
 	 */
 	private JButton configMeetButton;
+	/**
+	 * JButton used to go in the {@link ConfiguratorOfferView} view
+	 */
 	private JButton showOffer;
 
 	/**

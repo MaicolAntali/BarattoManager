@@ -17,13 +17,25 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class TradeArticle extends NodeUuidActionTemplate {
+	/**
+	 * Error: no article has been selected
+	 */
+	private static final String ERROR_NO_ARTICLE_SELECTED = "Non è stato selezionato nessun articolo";
+	/**
+	 * Error: there is no article owned related to the chosen category
+	 */
+	private static final String ERROR_NO_OWNED_ARTICLE_IN_CATEGORY = "Non possiedi nessun articolo di questa categoria";
+	/**
+	 * Label: Choose an article to trade.
+	 */
+	public static final String CHOOSE_THE_ARTICLE_TO_TRADE = "Seleziona l'oggetto che vuoi scambiare:";
 
 	@Override
 	protected void customAction(String uuid, Tree tree, User user) {
 		var articleOption = ArticleManager.getInstance().getArticleById(uuid);
 
 		if (articleOption.isEmpty()) {
-			JOptionPane.showMessageDialog(tree, "Non è stato selezionato nessun articolo", "Errore", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(tree, ERROR_NO_ARTICLE_SELECTED, "Errore", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
@@ -33,7 +45,7 @@ public class TradeArticle extends NodeUuidActionTemplate {
 
 
 		if (articlesCanBeTrade.isEmpty()) {
-			JOptionPane.showMessageDialog(tree, "Non possiedi nessun articolo di questa categoria", "Errore", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(tree, ERROR_NO_OWNED_ARTICLE_IN_CATEGORY, "Errore", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
@@ -92,7 +104,7 @@ public class TradeArticle extends NodeUuidActionTemplate {
 			mainPanel.setLayout(new GridLayout(0, 1));
 
 
-			mainPanel.add(new JLabel("Seleziona l'oggetto che vuoi scambiare:"));
+			mainPanel.add(new JLabel(CHOOSE_THE_ARTICLE_TO_TRADE));
 
 			articleComboBox.setRenderer(new ArticleComboBoxCustomRenderer());
 			for (Article article : articles) {

@@ -10,6 +10,15 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Trade {
+	/**
+	 * Trade status: The trade has been rescheduled. Waiting for a reply from user
+	 */
+	private static final String TRADE_RESCHEDULED_WAITING_REPLY_FROM = "Il trade è riprogrammato. Attesa di un risposta da: %s";
+	/**
+	 * Trade status: The trade has been accepted from both parts and therefore closed.
+	 */
+	private static final String TRADE_ACCEPTED_FROM_BOTH_PARTS = "Il trade è stato accettato da entrambe le parti e quindi chiuso.";
+
 	@JsonProperty("uuid")
 	private final String uuid;
 	@JsonProperty("trade_start_date_time")
@@ -113,7 +122,7 @@ public class Trade {
 	public void rescheduleTrade() {
 		getAnswer().invertWaitingUser();
 
-		history.add(new History("Trade Riprogrammati", "Il trade è riprogrammato. Attesa di un risposta da: %s".formatted(answer.getWaitingUserAnswer())));
+		history.add(new History("Trade Riprogrammati", TRADE_RESCHEDULED_WAITING_REPLY_FROM.formatted(answer.getWaitingUserAnswer())));
 		TradeManager.getInstance().saveDataMap();
 	}
 
@@ -121,7 +130,7 @@ public class Trade {
 		this.tradeStatus = TradeStatus.CLOSED;
 		getAnswer().setWaitingUserAnswer(null);
 
-		history.add(new History("Trade Chiuso", "Il trade è stato accettato da entrambe le parti e quindi chiuso."));
+		history.add(new History("Trade Chiuso", TRADE_ACCEPTED_FROM_BOTH_PARTS));
 
 		TradeManager.getInstance().saveDataMap();
 	}
