@@ -1,72 +1,55 @@
 package com.barattoManager.manager;
 
 import com.barattoManager.event.factory.EventFactory;
+import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.manager.daemon.TradeCheckerDaemon;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.trade.Trade;
-import com.barattoManager.utils.AppConfigurator;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
-import java.io.File;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.Timer;
+import java.util.concurrent.ConcurrentHashMap;
 
-public final class TradeManager extends ConcurrencyManager<String, Trade> {
+public final class TradeManager implements Manager {
+
+	private final ConcurrentHashMap<String, Trade> tradeMap;
 	private TradeCheckerDaemon tradeCheckerDaemon;
 	private Thread daemonChecker;
 
-	private TradeManager() {
-		super(String.class, Trade.class);
-
-		this.tradeCheckerDaemon = new TradeCheckerDaemon(getDataMap());
-	}
-
-	@Override
-	File getJsonFile() {
-		return new File(AppConfigurator.getInstance().getFileName("trade_file"));
-	}
-
-	@Override
-	ObjectMapper getObjectMapper() {
-		return JsonMapper.builder()
-				.addModule(new ParameterNamesModule())
-				.addModule(new Jdk8Module())
-				.addModule(new JavaTimeModule())
-				.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-				.build();
-	}
-
-	@Override
-	void afterDataChangeActions() {
-		this.tradeCheckerDaemon = new TradeCheckerDaemon(getDataMap());
-		EventFactory.getTradesEvent().fireListener();
+	public TradeManager(ConcurrentHashMap<String, Trade> tradeMap) {
+		this.tradeMap = tradeMap;
+		this.tradeCheckerDaemon = new TradeCheckerDaemon(tradeMap);
 	}
 
 	public void addNewTrade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid, String meetUuid) {
 
-		ArticleManager.getInstance().getArticleById(articleOneUuid)
-				.orElseThrow(NullPointerException::new).changeState(Article.State.LINKED_OFFER);
-		ArticleManager.getInstance().getArticleById(articleTwoUuid)
-				.orElseThrow(NullPointerException::new).changeState(Article.State.SELECTED_OFFER);
+		try {
+			ArticleManagerFactory.getManager()
+					.changeArticleState(
+							articleOneUuid,
+							Article.State.LINKED_OFFER
+					);
+		} catch (IllegalValuesException e) {
+			throw new RuntimeException(e);
+		}
+
+		try {
+			ArticleManagerFactory.getManager()
+					.changeArticleState(
+							articleTwoUuid,
+							Article.State.SELECTED_OFFER
+					);
+		} catch (IllegalValuesException e) {
+			throw new RuntimeException(e);
+		}
+
 
 		var trade = new Trade(endTradeDateTime, articleOneUuid, articleTwoUuid, meetUuid);
-		getDataMap().put(trade.getUuid(), trade);
-		saveDataMap();
+		this.tradeMap.put(trade.getUuid(), trade);
+		saveData();
 	}
-
-
-	public static TradeManager getInstance() {
-		return TradeManagerHolder.instance;
-	}
-
 	public void runDaemonChecker() {
 		if (daemonChecker == null || !daemonChecker.isAlive()) {
 			daemonChecker = new Thread(
@@ -81,24 +64,16 @@ public final class TradeManager extends ConcurrencyManager<String, Trade> {
 		}
 	}
 
-	private static final class TradeManagerHolder {
-		/**
-		 * Instance of {@link TradeManager}
-		 */
-		private static final TradeManager instance = new TradeManager();
-	}
-
-	public List<Trade> getTradeByUser(String userUuid) {
-		return getDataMap().values().stream()
-				.filter(trade ->
-						Objects.equals(ArticleManager.getInstance().getArticleById(trade.getArticleOneUuid()).orElseThrow(NullPointerException::new)
-								.getUserNameOwner(), userUuid)
-								|| Objects.equals(ArticleManager.getInstance().getArticleById(trade.getArticleTwoUuid()).orElseThrow(NullPointerException::new)
-								.getUserNameOwner(), userUuid))
-				.toList();
-	}
-
 	public Optional<Trade> getTradeByUuid(String tradeUuid) {
-		return Optional.ofNullable(getDataMap().get(tradeUuid));
+		return Optional.ofNullable(this.tradeMap.get(tradeUuid));
+	}
+
+	public ConcurrentHashMap<String, Trade> getTradeMap() {
+		return tradeMap;
+	}
+
+	public void saveData() {
+		this.tradeCheckerDaemon = new TradeCheckerDaemon(this.tradeMap);
+		EventFactory.getTradesEvent().fireListener(this.tradeMap);
 	}
 }

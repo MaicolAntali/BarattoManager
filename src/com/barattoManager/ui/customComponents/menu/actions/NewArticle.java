@@ -1,7 +1,7 @@
 package com.barattoManager.ui.customComponents.menu.actions;
 
-import com.barattoManager.manager.ArticleManager;
-import com.barattoManager.manager.CategoryManager;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
+import com.barattoManager.manager.factory.CategoryManagerFactory;
 import com.barattoManager.model.category.Category;
 import com.barattoManager.model.category.field.Field;
 import com.barattoManager.model.user.User;
@@ -67,7 +67,7 @@ public class NewArticle implements MenuAction {
 					return;
 				}
 
-				ArticleManager.getInstance().addNewArticle(
+				ArticleManagerFactory.getManager().addNewArticle(
 						formPanel.getArticleName().getText(),
 						user.getUsername(),
 						categorySelected.getUuid(),
@@ -202,7 +202,7 @@ public class NewArticle implements MenuAction {
 			Optional<Category> optionalCategory = Optional.empty();
 			for (int i = 0; i < splitCategories.length; i++) {
 				if (i == 0) {
-					optionalCategory = CategoryManager.getInstance().getRootCategoryMap().values().stream()
+					optionalCategory = CategoryManagerFactory.getManager().getRootCategoryMap().values().stream()
 							.filter(category -> Objects.equals(category.getName(), splitCategories[0].trim()))
 							.findFirst();
 				}
@@ -224,7 +224,7 @@ public class NewArticle implements MenuAction {
 		private ArrayList<String> generateComboBoxItems() {
 			var arrayList = new ArrayList<String>();
 
-			for (Category category : CategoryManager.getInstance().getRootCategoryMap().values()) {
+			for (Category category : CategoryManagerFactory.getManager().getRootCategoryMap().values()) {
 				arrayList.addAll(generateComboBoxItems(category.getSubCategory().values(), category.getName()));
 			}
 

@@ -5,6 +5,7 @@ import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.exception.NullCategoryException;
 import com.barattoManager.manager.CategoryManager;
+import com.barattoManager.manager.factory.CategoryManagerFactory;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewCategoryPanel;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewFieldPanel;
 import com.barattoManager.ui.customComponents.tree.category.CategoryTree;
@@ -48,7 +49,7 @@ public class CategoryConfButtons extends JPanel {
 	/**
 	 * {@link CategoryManager} object
 	 */
-	private final CategoryManager categoryManager = CategoryManager.getInstance();
+	private final CategoryManager categoryManager = CategoryManagerFactory.getManager();
 	/**
 	 * {@link CategoryTree} object
 	 */

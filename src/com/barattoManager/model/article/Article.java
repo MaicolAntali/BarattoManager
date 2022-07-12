@@ -1,9 +1,8 @@
 package com.barattoManager.model.article;
 
-import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.model.category.field.Field;
 import com.barattoManager.model.category.field.FieldDeserializer;
-import com.barattoManager.utils.History;
+import com.barattoManager.model.history.History;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -149,8 +148,8 @@ public class Article {
 	}
 
 	public Article(String articleName, String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
-		assert categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
-		assert userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
+		assert !categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
+		assert !userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
 		assert !fields.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
 		assert !values.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
 
@@ -181,17 +180,17 @@ public class Article {
 	public Article(
 			@JsonProperty("uuid") String uuid,
 			@JsonProperty("name") String articleName,
-			@JsonProperty("user") String userNameOwner,
+			@JsonProperty("owner") String userNameOwner,
 			@JsonProperty("category_uuid") String categoryUuid,
 			@JsonProperty("fields") HashMap<Field, String> fieldValueMap,
 			@JsonProperty("log") ArrayList<History> history,
 			@JsonProperty("state") State articleState
 	) {
-		assert uuid.isEmpty() : PRE_CONDITION_UUID_IS_EMPTY;
-		assert categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
-		assert userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
-		assert fieldValueMap.isEmpty() : PRE_CONDITION_FIELDS_MAP_IS_EMPTY;
-		assert history.isEmpty() : PRE_CONDITION_HISTORY_IS_EMPTY;
+		assert !uuid.isEmpty() : PRE_CONDITION_UUID_IS_EMPTY;
+		assert !categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
+		assert !userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
+		assert !fieldValueMap.isEmpty() : PRE_CONDITION_FIELDS_MAP_IS_EMPTY;
+		assert !history.isEmpty() : PRE_CONDITION_HISTORY_IS_EMPTY;
 
 		this.uuid = uuid;
 		this.articleName = articleName;
@@ -258,10 +257,9 @@ public class Article {
 	 * Method used to update the state of {@link #articleState} and log the changes
 	 * @param state new {@link State}
 	 */
-	public void changeState(State state) {
+	public void setArticleState(State state) {
 		history.add(new History("State Update", "The article state is updated from %s to %s".formatted(this.articleState, state)));
 		this.articleState = state;
-		ArticleManager.getInstance().saveDataMap();
 	}
 
 	/**
@@ -283,11 +281,11 @@ public class Article {
 
 		if (isNotValideMap) {
 			history.add(new History(NOT_VALID_FIELDS_ERROR, FIELDS_HAVE_NOT_BEEN_INITIALIZED_ERROR_DESCRIPTION, true));
-			changeState(State.CANCELLED_OFFER);
+			setArticleState(State.CANCELLED_OFFER);
 		}
 		else {
 			history.add(new History(ARTICLE_VALIDATED, ARTICLE_IS_VALID_AND_PROPERLY_INITIALIZED_DESCRIPTION));
-			changeState(State.OPEN_OFFER);
+			setArticleState(State.OPEN_OFFER);
 		}
 
 		return map;

@@ -1,0 +1,64 @@
+{
+  "e7db3ac3-e8cb-4223-9b87-f3a2c0c78dd9": {
+    "uuid": "e7db3ac3-e8cb-42,23-9b87-f3a2c0c78dd9",
+    "name": "Libri",
+    "description": ".",
+    "sub_categories": {
+      "40cd72f5-b0be-4300-b258-e5cb3b268a7b": {
+        "uuid": "40cd72f5-b0be-4300-b258-e5cb3b268a7b",
+        "name": "Romanzi",
+        "description": ".",
+        "sub_categories": {
+          "690b72b7-2cc6-4056-843c-355dc32512da": {
+            "uuid": "690b72b7-2cc6-4056-843c-355dc32512da",
+            "name": "Gialli",
+            "description": ".",
+            "sub_categories": {},
+            "fields": {
+              "stato di conservazione": {
+                "name": "Stato di conservazione",
+                "required": true
+              },
+              "descrizione": {
+                "name": "Descrizione",
+                "required": true
+              },
+              "pagine": {
+                "name": "Pagine",
+                "required": true
+              }
+            }
+          }
+        },
+        "fields": {
+          "stato di conservazione": {
+            "name": "Stato di conservazione",
+            "required": true
+          },
+          "pagine": {
+            "name": "Pagine",
+            "required": true
+          },
+          "descrizione": {
+            "name": "Descrizione",
+            "required": true
+          }
+        }
+      }
+    },
+    "fields": {
+      "descrizione": {
+        "name": "Descrizione",
+        "required": true
+      },
+      "stato di conservazione": {
+        "name": "Stato di conservazione",
+        "required": true
+      },
+      "pagine": {
+        "name": "Pagine",
+        "required": true
+      }
+    }
+  }
+}

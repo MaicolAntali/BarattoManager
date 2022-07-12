@@ -1,5 +1,6 @@
 package com.barattoManager.ui.components.viewer;
 
+import com.barattoManager.manager.factory.CategoryManagerFactory;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.customComponents.tree.category.CategoryTree;
 
@@ -25,8 +26,9 @@ public class ViewerCategoryViewUi extends JPanel {
 
 	/**
 	 * {@link ViewerCategoryViewUi} constructor
-	 * @param dimension Dimension of JPanel
-	 * @param cardLayout {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
+	 *
+	 * @param dimension      Dimension of JPanel
+	 * @param cardLayout     {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
 	 * @param panelContainer {@link JPanel} object that contains every cards
 	 */
 	public ViewerCategoryViewUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
@@ -35,7 +37,11 @@ public class ViewerCategoryViewUi extends JPanel {
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
-		centerPanel.add(new CategoryTree(new Dimension(520, 330)));
+		centerPanel.add(new CategoryTree(
+					CategoryManagerFactory.getManager().getRootCategoryMap().values().stream().toList(),
+						new Dimension(520, 330)
+				)
+		);
 
 		backToHomeButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString()));
 	}

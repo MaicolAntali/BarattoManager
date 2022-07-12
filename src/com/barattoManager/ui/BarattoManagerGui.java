@@ -1,7 +1,8 @@
 package com.barattoManager.ui;
 
-import com.barattoManager.manager.MeetManager;
-import com.barattoManager.manager.TradeManager;
+import com.barattoManager.event.factory.EventFactory;
+import com.barattoManager.manager.factory.MeetManagerFactory;
+import com.barattoManager.manager.factory.TradeManagerFactory;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.components.InitialMenuUI;
 import com.barattoManager.ui.components.LoginUI;
@@ -40,7 +41,6 @@ public class BarattoManagerGui extends JFrame {
      * {@link BarattoManagerGui} constructor
      */
     public BarattoManagerGui() {
-        // Frame config
         this.setTitle(TITLE_BARATTO_MANAGER);
         this.setSize(600, 500);
         this.setResizable(false);
@@ -50,17 +50,18 @@ public class BarattoManagerGui extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation((screenSize.width - getWidth()) / 2, (screenSize.height - getHeight()) / 2);
 
-        // Start the daemon thread
-        MeetManager.getInstance().runUpdaterDaemon();
-        TradeManager.getInstance().runDaemonChecker();
+        MeetManagerFactory.getManager().runUpdaterDaemon();
+        TradeManagerFactory.getManager().runDaemonChecker();
 
-        // Set the app version
         versionLabel.setText(AppConfigurator.getInstance().getAppDataAsText("version"));
 
-        // Set up the panelContainer
         CardLayout cardLayout = new CardLayout();
+
+        var loginUi = new LoginUI(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer);
+        EventFactory.getUsersEvent().addListener(loginUi);
+
         panelContainer.setLayout(cardLayout);
         panelContainer.add(new InitialMenuUI(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.INITIAL_PANEL.toString());
-        panelContainer.add(new LoginUI(CONTENT_PANEL_DEFAULT_DIMENSION, cardLayout, panelContainer), ComponentsName.LOGIN.toString());
+        panelContainer.add(loginUi, ComponentsName.LOGIN.toString());
     }
 }

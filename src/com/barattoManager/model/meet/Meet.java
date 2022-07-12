@@ -137,7 +137,7 @@ public final class Meet {
 				&& getDateOfMeet().isEqual(meet.getDateOfMeet())
 				&& (
 					getStartTime().isBefore(meet.getStartTime())
-					&& getEndTime().isAfter(meet.getStartTime())
+					&& (getEndTime().isAfter(meet.getStartTime()))
 				);
 	}
 
