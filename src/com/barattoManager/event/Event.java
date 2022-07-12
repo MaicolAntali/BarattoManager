@@ -2,18 +2,10 @@ package com.barattoManager.event;
 
 import com.barattoManager.event.events.DataChangeListener;
 
-/**
- * Interface that represent an Event
- */
-public interface Event {
-	/**
-	 * Method used to add the listener
-	 * @param listener {@link DataChangeListener} to add
-	 */
-	void addListener(DataChangeListener listener);
+import java.util.concurrent.ConcurrentHashMap;
 
-	/**
-	 * Method used to fire the listener
-	 */
-	void fireListener();
+public interface Event<K, V> {
+	void addListener(DataChangeListener<K, V> listener);
+
+	void fireListener(ConcurrentHashMap<K, V> updatedMap);
 }

@@ -5,7 +5,7 @@ import com.barattoManager.utils.TreeUtils;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
-import java.awt.*;
+import java.util.List;
 
 /**
  * Class that represent the article tree in the store of the viewer
@@ -14,14 +14,8 @@ public final class ArticleTreeStore extends ArticleTree {
 
 	private DefaultMutableTreeNode rootNode;
 
-	/**
-	 * {@link ArticleTreeStore} constructor
-	 * @param dimension {@link Dimension}
-	 * @param usernameFilter Username filter
-	 * @param stateFilter State filter
-	 */
-	public ArticleTreeStore(Dimension dimension, String usernameFilter, Article.State stateFilter) {
-		super(dimension, usernameFilter, stateFilter);
+	public ArticleTreeStore(List<Article> articles) {
+		super(articles);
 	}
 
 	@Override

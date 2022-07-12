@@ -25,9 +25,9 @@ public class FieldDeserializer extends KeyDeserializer {
 		String  name;
 		boolean required;
 		if (split[0].contains("name=") && split[1].contains("required=")) {
-			name = split[0].replace("name=","");
+			name = split[0].replace("name=", "");
 			required = Boolean.parseBoolean(split[0].replace("required=", ""));
-	    }
+		}
 		else {
 			throw new IOException(CANNOT_READ_THE_JSON_PROPERTY_ERROR);
 		}

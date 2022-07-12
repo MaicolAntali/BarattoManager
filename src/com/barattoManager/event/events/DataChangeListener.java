@@ -1,11 +1,8 @@
 package com.barattoManager.event.events;
 
-/**
- * Data change listener used to update the ui
- */
-public interface DataChangeListener {
-	/**
-	 * Method invoked to run the event
-	 */
-	void update();
+import java.util.concurrent.ConcurrentHashMap;
+
+public interface DataChangeListener<K, V> {
+	void update(ConcurrentHashMap<K, V> updatedMap);
+
 }

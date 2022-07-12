@@ -2,7 +2,7 @@ package com.barattoManager.manager.daemon;
 
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.manager.MeetManager;
+import com.barattoManager.manager.factory.MeetManagerFactory;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.utils.parser.TimeParser;
 
@@ -22,6 +22,7 @@ public class MeetUpdaterDaemon extends TimerTask {
 
 	/**
 	 * {@link MeetUpdaterDaemon} constructor
+	 *
 	 * @param meetHashMap {@link HashMap}
 	 */
 	public MeetUpdaterDaemon(ConcurrentHashMap<String, Meet> meetHashMap) {
@@ -41,8 +42,10 @@ public class MeetUpdaterDaemon extends TimerTask {
 				.forEach(meet -> {
 					createNewMeet(meet);
 
+					meet.setAlreadyUpdated(true);
+
 					if (meet.getUserBookedMeetUuid().isEmpty()) {
-						MeetManager.getInstance().removeMeetByUuid(meet.getUuid());
+						MeetManagerFactory.getManager().removeMeetByUuid(meet.getUuid());
 					}
 				});
 
@@ -53,8 +56,10 @@ public class MeetUpdaterDaemon extends TimerTask {
 				.forEach(meet -> {
 					createNewMeet(meet);
 
+					meet.setAlreadyUpdated(true);
+
 					if (meet.getUserBookedMeetUuid().isEmpty()) {
-						MeetManager.getInstance().removeMeetByUuid(meet.getUuid());
+						MeetManagerFactory.getManager().removeMeetByUuid(meet.getUuid());
 					}
 				});
 
@@ -64,7 +69,7 @@ public class MeetUpdaterDaemon extends TimerTask {
 	private void createNewMeet(Meet meet) {
 		meet.setAlreadyUpdated(true);
 		try {
-			MeetManager.getInstance().addNewMeet(
+			MeetManagerFactory.getManager().addNewMeet(
 					meet.getCity(),
 					meet.getSquare(),
 					meet.getDay(),

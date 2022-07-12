@@ -5,78 +5,26 @@ import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.manager.daemon.MeetUpdaterDaemon;
 import com.barattoManager.model.meet.Meet;
-import com.barattoManager.utils.AppConfigurator;
 import com.barattoManager.utils.parser.DateParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
-import java.io.File;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Timer;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.IntStream;
 
-import static com.barattoManager.manager.Constants.*;
+public final class MeetManager implements Manager {
 
-/**
- * This class is a <b>Singleton Class</b><br/> used to access from anywhere to the meets.
- */
-public final class MeetManager extends ConcurrencyManager<String, Meet> {
-
-	private  MeetUpdaterDaemon meetUpdaterDaemon;
+	private final ConcurrentHashMap<String, Meet> meetMap;
+	private MeetUpdaterDaemon meetUpdaterDaemon;
 	private Thread daemonThread;
 
-	private MeetManager() {
-		super(String.class, Meet.class);
-
-		this.meetUpdaterDaemon = new MeetUpdaterDaemon(getDataMap());
-	}
-
-	@Override
-	File getJsonFile() {
-		return new File(AppConfigurator.getInstance().getFileName("meet_file"));
-	}
-
-	@Override
-	ObjectMapper getObjectMapper() {
-		return JsonMapper.builder()
-				.addModule(new ParameterNamesModule())
-				.addModule(new Jdk8Module())
-				.addModule(new JavaTimeModule())
-				.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-				.build();
-	}
-
-	@Override
-	void afterDataChangeActions() {
-		this.meetUpdaterDaemon = new MeetUpdaterDaemon(getDataMap());
-		EventFactory.getMeetsEvent().fireListener();
-	}
-
-	/**
-	 * 	Holder class of instance
-	 */
-	private static final class MeetManagerHolder {
-
-		/**
-		 * Instance of {@link MeetManager}
-		 */
-		private static final MeetManager instance = new MeetManager();
-	}
-
-	/**
-	 * Method used to create get the {@link MeetManager} instance.
-	 * This method uses the lazy loading mechanism cause the inner class is loaded only if
-	 * the {@code #getInstance()} method is called.
-	 *
-	 * @return The Instance of {@link MeetManager} class
-	 */
-	public static MeetManager getInstance() {
-		return MeetManagerHolder.instance;
+	public MeetManager(ConcurrentHashMap<String, Meet> meetMap) {
+		this.meetMap = meetMap;
+		this.meetUpdaterDaemon = new MeetUpdaterDaemon(meetMap);
 	}
 
 	/**
@@ -98,34 +46,36 @@ public final class MeetManager extends ConcurrencyManager<String, Meet> {
 
 	/**
 	 * Method used to add a new {@link Meet}
-	 * @param city City of the meet
-	 * @param square Square of the meet
-	 * @param day Day of the meet
+	 *
+	 * @param city              City of the meet
+	 * @param square            Square of the meet
+	 * @param day               Day of the meet
 	 * @param intervalStartTime Start time of the meet
-	 * @param intervalEndTime End time of the meet
-	 * @param daysBeforeExpire Days before expire of the meet
-	 * @throws AlreadyExistException Is thrown if the meet already exists
+	 * @param intervalEndTime   End time of the meet
+	 * @param daysBeforeExpire  Days before expire of the meet
+	 * @throws AlreadyExistException  Is thrown if the meet already exists
 	 * @throws IllegalValuesException Is thrown if the meet contains illegal values
 	 */
 	public void addNewMeet(String city, String square, DayOfWeek day, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws AlreadyExistException, IllegalValuesException {
 
+		if (city.isBlank() || square.isBlank() || daysBeforeExpire <= 0)
+			throw new IllegalValuesException("Uno dei valore richiesti è stato lasciato vuoto. Inserire tutti i campi.");
+
 		var intervals = generateIntervals(intervalStartTime, intervalEndTime);
 
 		var meets = new ArrayList<Meet>();
-		IntStream.range(0, intervals.size()-1)
-				.forEach(i -> meets.add(new Meet(city, square, day, intervals.get(i), intervals.get(i+1), daysBeforeExpire)));
+		IntStream.range(0, intervals.size() - 1)
+				.forEach(i -> meets.add(new Meet(city, square, day, intervals.get(i), intervals.get(i + 1), daysBeforeExpire)));
 
 
 		var notUniqueMeet = new ArrayList<Meet>();
 		meets.forEach(meet -> {
-			var isMeetUnique = getDataMap().values().stream()
+			var isMeetUnique = this.meetMap.values().stream()
 					.noneMatch(meetToCheck -> meetToCheck.equals(meet));
 
 			if (isMeetUnique) {
-				getDataMap().put(meet.getUuid(), meet);
-				saveDataMap();
-				assert getDataMap().containsKey(meet.getUuid()) : POST_CONDITION_THE_MEET_IS_NOT_PRESENT_IN_THE_MAP;
-
+				this.meetMap.put(meet.getUuid(), meet);
+				saveData();
 			}
 			else
 				notUniqueMeet.add(meet);
@@ -142,16 +92,21 @@ public final class MeetManager extends ConcurrencyManager<String, Meet> {
 
 	/**
 	 * Method used to add a new {@link Meet}
-	 * @param city City of the meet
-	 * @param square Square of the meet
-	 * @param days Days of the meet
+	 *
+	 * @param city              City of the meet
+	 * @param square            Square of the meet
+	 * @param days              Days of the meet
 	 * @param intervalStartTime Start time of the meet
-	 * @param intervalEndTime End time of the meet
-	 * @param daysBeforeExpire Days before expire of the meet
-	 * @throws AlreadyExistException Is thrown if the meet already exists
+	 * @param intervalEndTime   End time of the meet
+	 * @param daysBeforeExpire  Days before expire of the meet
+	 * @throws AlreadyExistException  Is thrown if the meet already exists
 	 * @throws IllegalValuesException Is thrown if the meet contains illegal values
 	 */
 	public void addNewMeet(String city, String square, ArrayList<String> days, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws AlreadyExistException, IllegalValuesException {
+
+		if (days.isEmpty())
+			throw new IllegalValuesException("Non è stato selezionato nessun giorno.");
+
 		for (String day : days) {
 			addNewMeet(city, square, DateParser.stringToWeekDay(day), intervalStartTime, intervalEndTime, daysBeforeExpire);
 		}
@@ -159,71 +114,73 @@ public final class MeetManager extends ConcurrencyManager<String, Meet> {
 
 	/**
 	 * Method used to book a {@link Meet}
-	 * @param meetUuid {@link UUID} of the meet
-	 * @param userUuid {@link UUID} of the user
+	 *
+	 * @param meetUuid uuid of the meet
+	 * @param userUuid uuid  of the user
 	 */
 	public void bookMeet(String meetUuid, String userUuid) {
-		var meet =  Optional.ofNullable(getDataMap().get(meetUuid));
+		var meet = Optional.ofNullable(this.meetMap.get(meetUuid));
 
 		if (meet.isPresent()) {
 			meet.get().bookMeet(userUuid);
-			saveDataMap();
+			saveData();
 		}
 	}
 
-	/**
-	 * Method used to un-book a {@link Meet}
-	 * @param meetUuid {@link UUID} of the meet
-	 */
-	public void unbookMeet(String meetUuid) {
-		var meet =  Optional.ofNullable(getDataMap().get(meetUuid));
+	public void unBookMeet(String meetUuid) {
+		var meet = Optional.ofNullable(this.meetMap.get(meetUuid));
 
 		if (meet.isPresent()) {
 			meet.get().unbookMeet();
-			saveDataMap();
+			saveData();
 		}
 	}
 
 	/**
 	 * Method used to get the meets
+	 *
 	 * @return {@link List} of meets
 	 */
 	public List<Meet> getMeets() {
-		return getDataMap().values().stream().toList();
+		return this.meetMap.values().stream().toList();
 	}
 
 	/**
 	 * Method used to get the available meets
+	 *
 	 * @return {@link List} of available meets
 	 */
 	public List<Meet> getAvailableMeet() {
-		return getDataMap().values().stream()
+		return this.meetMap.values().stream()
 				.filter(meet -> meet.getUserBookedMeetUuid().isEmpty())
 				.toList();
 	}
 
 	/**
 	 * Method used to get the meet by the UUID
-	 * @param meetUuid {@link UUID} of the {@link Meet}
+	 *
+	 * @param meetUuid uuid of the {@link Meet}
 	 * @return {@link Optional} of available meets
 	 */
 	public Optional<Meet> getMeetByUuid(String meetUuid) {
-		return Optional.ofNullable(getDataMap().get(meetUuid));
+		return Optional.ofNullable(this.meetMap.get(meetUuid));
 	}
 
 	/**
 	 * Method used to remove the meet by the UUID, from the map
-	 * @param meetUuid {@link UUID} of the {@link Meet} to remove
+	 *
+	 * @param meetUuid uuid of the {@link Meet} to remove
 	 */
 	public void removeMeetByUuid(String meetUuid) {
-		getDataMap().remove(meetUuid);
-		saveDataMap();
+		this.meetMap.remove(meetUuid);
+		saveData();
 	}
 
 	/**
 	 * Method used to generate the intervals of time for the meet
+	 *
 	 * @param start Start time of interval
-	 * @param end end time of interval
+	 * @param end   end time of interval
 	 * @return {@link ArrayList} of intervals
 	 * @throws IllegalValuesException Is thrown if the time input is invalid
 	 */
@@ -242,5 +199,10 @@ public final class MeetManager extends ConcurrencyManager<String, Meet> {
 		else {
 			throw new IllegalValuesException("INVALID_TIME_INPUT");
 		}
+	}
+
+	private void saveData() {
+		this.meetUpdaterDaemon = new MeetUpdaterDaemon(this.meetMap);
+		EventFactory.getMeetsEvent().fireListener(this.meetMap);
 	}
 }

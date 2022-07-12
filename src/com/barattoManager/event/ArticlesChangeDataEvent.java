@@ -1,42 +1,27 @@
 package com.barattoManager.event;
 
 import com.barattoManager.event.events.DataChangeListener;
+import com.barattoManager.model.article.Article;
 
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Class that represent articles change data event
- */
-public class ArticlesChangeDataEvent implements Event {
+public class ArticlesChangeDataEvent implements Event<String, Article> {
 
-	/**
-	 * {@link ArrayList} of listeners
-	 */
-	public final ArrayList<DataChangeListener> listeners;
+	public final ArrayList<DataChangeListener<String, Article>> listeners;
 
-	/**
-	 * {@link ArticlesChangeDataEvent} constructor
-	 */
 	public ArticlesChangeDataEvent() {
 		this.listeners = new ArrayList<>();
 	}
 
-	/**
-	 * Method used to add the listener
-	 * @param listener {@link DataChangeListener} to add
-	 */
+
 	@Override
-	public void addListener(DataChangeListener listener) {
+	public void addListener(DataChangeListener<String, Article> listener) {
 		listeners.add(listener);
 	}
 
-	/**
-	 * Method used to fire the listeners
-	 */
 	@Override
-	public void fireListener() {
-		for (DataChangeListener dataChangeListener : listeners) {
-			dataChangeListener.update();
-		}
+	public void fireListener(ConcurrentHashMap<String, Article> updatedMap) {
+		listeners.forEach(listener -> listener.update(updatedMap));
 	}
 }

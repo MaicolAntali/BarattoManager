@@ -9,6 +9,7 @@ import com.barattoManager.ui.customComponents.tree.Tree;
 public interface MenuAction {
 	/**
 	 * Method used to run the menu action
+	 *
 	 * @param user {@link User}
 	 * @param tree {@link Tree}
 	 */

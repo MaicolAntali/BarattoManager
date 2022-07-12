@@ -54,6 +54,7 @@ public class CreateNewFieldPanel extends JPanel {
 
 	/**
 	 * Method used to get the {@link #fieldName}
+	 *
 	 * @return {@link JTextField} object
 	 */
 	public JTextField getFieldName() {
@@ -62,6 +63,7 @@ public class CreateNewFieldPanel extends JPanel {
 
 	/**
 	 * Method used to get the {@link #fieldIsRequired}
+	 *
 	 * @return {@link JCheckBox} object
 	 */
 	public JCheckBox getFieldIsRequired() {

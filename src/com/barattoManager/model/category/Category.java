@@ -75,10 +75,11 @@ public class Category {
 
 	/**
 	 * {@link Category} constructor
-	 * @param uuid Uuid of category
-	 * @param name Name of category
-	 * @param description Description of category
-	 * @param subCategory {@link HashMap} that contains each sub-category
+	 *
+	 * @param uuid           Uuid of category
+	 * @param name           Name of category
+	 * @param description    Description of category
+	 * @param subCategory    {@link HashMap} that contains each sub-category
 	 * @param categoryFields {@link HashMap} that contains each fields
 	 */
 	public Category(
@@ -89,7 +90,7 @@ public class Category {
 			@JsonProperty("fields") HashMap<String, Field> categoryFields
 	) {
 		assert !name.isBlank() : PRE_CONDITION_CATEGORY_NAME_IS_BLANK;
-		assert !description.isBlank(): PRE_CONDITION_CATEGORY_DESCRIPTION_IS_BLANK;
+		assert !description.isBlank() : PRE_CONDITION_CATEGORY_DESCRIPTION_IS_BLANK;
 
 		this.uuid = uuid;
 		this.name = name;
@@ -103,12 +104,13 @@ public class Category {
 
 	/**
 	 * {@link Category} constructor
-	 * @param name Name of category
+	 *
+	 * @param name        Name of category
 	 * @param description Description of category
 	 */
 	public Category(String name, String description) {
 		assert !name.isBlank() : PRE_CONDITION_CATEGORY_NAME_IS_BLANK;
-		assert !description.isBlank(): PRE_CONDITION_CATEGORY_DESCRIPTION_IS_BLANK;
+		assert !description.isBlank() : PRE_CONDITION_CATEGORY_DESCRIPTION_IS_BLANK;
 
 		this.uuid = UUID.randomUUID().toString();
 		this.name = name;
@@ -119,19 +121,19 @@ public class Category {
 
 	/**
 	 * Method used to add a new sub-category to this category
+	 *
 	 * @param category {@link Category} object to add
 	 */
 	public void addSubCategory(Category category) {
-		assert !subCategory.containsKey(category.getName().toLowerCase()): PRE_CONDITION_SUBCATEGORY_ALREADY_EXIST;
+		assert !subCategory.containsKey(category.getName().toLowerCase()) : PRE_CONDITION_SUBCATEGORY_ALREADY_EXIST;
 
 		category.addNewFields(categoryFields);
 		subCategory.put(category.getUuid(), category);
-
-		assert subCategory.containsKey(name.toLowerCase()): POST_CONDITION_SUBCATEGORY_NOT_ADDED_TO_HASHMAP;
 	}
 
 	/**
 	 * Method used to add a new {@link Field}s to this category
+	 *
 	 * @param newFields {@link HashMap} that contains the fields to add
 	 */
 	public void addNewFields(HashMap<String, Field> newFields) {
@@ -140,20 +142,22 @@ public class Category {
 
 	/**
 	 * Method used to add a new {@link Field} to this category
-	 * @param name Name of field
+	 *
+	 * @param name     Name of field
 	 * @param required Is true if the field is required otherwise no
 	 */
 	public void addNewFields(String name, boolean required) {
 		assert !name.isBlank() : PRE_CONDITION_FIELD_NAME_IS_BLANK;
 		assert !categoryFields.containsKey(name.toLowerCase()) : PRE_CONDITION_FIELD_ALREADY_EXIST;
-				
+
 		categoryFields.put(name.toLowerCase(), new Field(name, required));
-		
+
 		assert categoryFields.containsKey(name.toLowerCase()) : POST_CONDITION_FIELDS_NOT_ADDED_HASHMAP;
 	}
 
 	/**
 	 * Method used to get the uuid of the category
+	 *
 	 * @return UUID of the category
 	 */
 	public String getUuid() {
@@ -162,6 +166,7 @@ public class Category {
 
 	/**
 	 * Method used to get the name of category
+	 *
 	 * @return Name of category
 	 */
 	public String getName() {
@@ -170,6 +175,7 @@ public class Category {
 
 	/**
 	 * Method used to get the description of category
+	 *
 	 * @return Description of category
 	 */
 	public String getDescription() {
@@ -178,6 +184,7 @@ public class Category {
 
 	/**
 	 * Method used to get the HashMap of sub-categories
+	 *
 	 * @return {@link HashMap} of sub-categories
 	 */
 	public HashMap<String, Category> getSubCategory() {
@@ -186,6 +193,7 @@ public class Category {
 
 	/**
 	 * Method used to get the HashMap of fields
+	 *
 	 * @return {@link HashMap} of fields
 	 */
 	public HashMap<String, Field> getCategoryFields() {
@@ -194,6 +202,7 @@ public class Category {
 
 	/**
 	 * Method used to hash the name of category ({@link #name})
+	 *
 	 * @return The hashcode of {@link #name}
 	 */
 	@Override

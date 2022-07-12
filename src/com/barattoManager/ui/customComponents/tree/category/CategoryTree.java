@@ -1,6 +1,5 @@
 package com.barattoManager.ui.customComponents.tree.category;
 
-import com.barattoManager.manager.CategoryManager;
 import com.barattoManager.model.category.Category;
 import com.barattoManager.model.category.field.Field;
 import com.barattoManager.ui.customComponents.tree.Tree;
@@ -8,6 +7,7 @@ import com.barattoManager.ui.customComponents.tree.Tree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import java.awt.*;
+import java.util.List;
 
 /**
  * Class used to create a JPanel that contain a JTree
@@ -16,26 +16,16 @@ public class CategoryTree extends Tree {
 
 	private DefaultMutableTreeNode rootNode;
 
-	/**
-	 * {@link CategoryTree} constructor
-	 * @param dimension {@link Dimension}
-	 */
-	public CategoryTree(Dimension dimension) {
+	public CategoryTree(List<Category> categories, Dimension dimension) {
 		super(dimension);
 
-		for (Category cat : CategoryManager.getInstance().getRootCategoryMap().values()) {
-			var node = createNode(cat, rootNode);
-			createSubCategoryNode(cat, node);
-		}
+		categories.forEach(category -> createSubCategoryNode(category, createNode(category, rootNode)));
 
 		getTree().expandPath(new TreePath(getRootNode()));
 	}
 
-	/**
-	 * {@link CategoryTree} constructor
-	 */
-	public CategoryTree() {
-		this(new Dimension(500, 290));
+	public CategoryTree(List<Category> categories) {
+		this(categories, new Dimension(500, 290));
 	}
 
 	@Override

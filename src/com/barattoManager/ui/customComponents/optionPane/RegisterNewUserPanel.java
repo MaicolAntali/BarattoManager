@@ -2,7 +2,7 @@ package com.barattoManager.ui.customComponents.optionPane;
 
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.manager.UserManager;
+import com.barattoManager.manager.factory.UserManagerFactory;
 import com.barattoManager.utils.AppConfigurator;
 
 import javax.swing.*;
@@ -35,7 +35,7 @@ public class RegisterNewUserPanel {
 	/**
 	 * Choose a username label
 	 */
-	private static final String LABEL_CHOOSE_USERNAME= "Scegli un username:";
+	private static final String LABEL_CHOOSE_USERNAME = "Scegli un username:";
 	/**
 	 * Error
 	 */
@@ -60,7 +60,8 @@ public class RegisterNewUserPanel {
 
 	/**
 	 * The {@link RegisterNewUserPanel} constructor
-	 * @param parentPanel {@link JPanel} Parent panel of JOptionPane
+	 *
+	 * @param parentPanel    {@link JPanel} Parent panel of JOptionPane
 	 * @param isConfigurator Boolean value that represent if a user is a configurator
 	 */
 	public RegisterNewUserPanel(JPanel parentPanel, boolean isConfigurator) {
@@ -84,7 +85,7 @@ public class RegisterNewUserPanel {
 	/**
 	 * Method used to create a new user
 	 */
-	public void createNewUser(){
+	public void createNewUser() {
 		int result = JOptionPane.showOptionDialog(
 				parentPanel,
 				mainPanel,
@@ -98,7 +99,7 @@ public class RegisterNewUserPanel {
 
 		if (result == JOptionPane.OK_OPTION) {
 			try {
-				UserManager.getInstance().addNewUser(
+				UserManagerFactory.getManager().addNewUser(
 						usernameField.getText(),
 						AppConfigurator.getInstance().getPasswordSetting("default_pwd"),
 						isConfigurator
@@ -106,7 +107,7 @@ public class RegisterNewUserPanel {
 
 				JOptionPane.showMessageDialog(
 						parentPanel,
-						NEW_USER_CORRECTLY_CREATED.formatted(isConfigurator ? "configuratore" :  "fruitore" ,usernameField.getText(), AppConfigurator.getInstance().getPasswordSetting("default_pwd")),
+						NEW_USER_CORRECTLY_CREATED.formatted(isConfigurator ? "configuratore" : "fruitore", usernameField.getText(), AppConfigurator.getInstance().getPasswordSetting("default_pwd")),
 						TITLE_REGISTERED,
 						JOptionPane.INFORMATION_MESSAGE
 				);

@@ -8,6 +8,7 @@ import com.barattoManager.ui.customComponents.menu.Menu;
 public interface MenuFactory {
 	/**
 	 * Method used to create a Menu object
+	 *
 	 * @return {@link Menu}
 	 */
 	Menu createMenuObject();

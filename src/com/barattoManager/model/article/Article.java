@@ -1,9 +1,8 @@
 package com.barattoManager.model.article;
 
-import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.model.category.field.Field;
 import com.barattoManager.model.category.field.FieldDeserializer;
-import com.barattoManager.utils.History;
+import com.barattoManager.model.history.History;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -15,7 +14,7 @@ import java.util.UUID;
 /**
  * Class that represent an article
  */
-@JsonPropertyOrder({ "uuid", "owner", "category_uuid", "state", "fields", "log" })
+@JsonPropertyOrder({"uuid", "owner", "category_uuid", "state", "fields", "log"})
 public class Article {
 	/**
 	 * Error: Not Valid fields
@@ -148,6 +147,7 @@ public class Article {
 
 		/**
 		 * {@link State} constructor
+		 *
 		 * @param italianLabel label in italian
 		 */
 		State(String italianLabel) {
@@ -156,6 +156,7 @@ public class Article {
 
 		/**
 		 * Method used to get italianLabel
+		 *
 		 * @return italianLabel
 		 */
 		@Override
@@ -164,13 +165,14 @@ public class Article {
 		}
 	}
 
-	 /**
+	/**
 	 * {@link Article} constructor
-	 * @param articleName Name of article
+	 *
+	 * @param articleName   Name of article
 	 * @param userNameOwner Owner name of article
-	 * @param categoryUuid Category uuid of article
-	 * @param fields Fields of article
-	 * @param values Values of fields
+	 * @param categoryUuid  Category uuid of article
+	 * @param fields        Fields of article
+	 * @param values        Values of fields
 	 */
 	public Article(String articleName, String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
 		assert !categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
@@ -195,18 +197,19 @@ public class Article {
 
 	/**
 	 * {@link Article} constructor
-	 * @param uuid Uuid of article
-	 * @param articleName Name of article
+	 *
+	 * @param uuid          Uuid of article
+	 * @param articleName   Name of article
 	 * @param userNameOwner Owner name of article
-	 * @param categoryUuid Category uuid of article
+	 * @param categoryUuid  Category uuid of article
 	 * @param fieldValueMap {@link HashMap} that contains fields values
-	 * @param history {@link ArrayList} that contains the history of article
-	 * @param articleState {@link State} of article
+	 * @param history       {@link ArrayList} that contains the history of article
+	 * @param articleState  {@link State} of article
 	 */
 	public Article(
 			@JsonProperty("uuid") String uuid,
 			@JsonProperty("name") String articleName,
-			@JsonProperty("user") String userNameOwner,
+			@JsonProperty("owner") String userNameOwner,
 			@JsonProperty("category_uuid") String categoryUuid,
 			@JsonProperty("fields") HashMap<Field, String> fieldValueMap,
 			@JsonProperty("log") ArrayList<History> history,
@@ -229,6 +232,7 @@ public class Article {
 
 	/**
 	 * Method used to get the uuid of the article
+	 *
 	 * @return UUID of the article
 	 */
 	public String getUuid() {
@@ -237,6 +241,7 @@ public class Article {
 
 	/**
 	 * Method used to get the article name
+	 *
 	 * @return Article name
 	 */
 	public String getArticleName() {
@@ -245,6 +250,7 @@ public class Article {
 
 	/**
 	 * Method used to get the owner name of the article
+	 *
 	 * @return Owner name of the article
 	 */
 	public String getUserNameOwner() {
@@ -253,6 +259,7 @@ public class Article {
 
 	/**
 	 * Method used to get the category uuid of the article
+	 *
 	 * @return Category uuid of the article
 	 */
 	public String getCategoryUuid() {
@@ -261,6 +268,7 @@ public class Article {
 
 	/**
 	 * Method used to get the state of the article
+	 *
 	 * @return State of the article
 	 */
 	public State getArticleState() {
@@ -269,6 +277,7 @@ public class Article {
 
 	/**
 	 * Method used to get the fields values map
+	 *
 	 * @return Fields values map of the article
 	 */
 	public HashMap<Field, String> getFieldValueMap() {
@@ -277,6 +286,7 @@ public class Article {
 
 	/**
 	 * Method used to get the history of the article
+	 *
 	 * @return History of the article
 	 */
 	public ArrayList<History> getHistory() {
@@ -285,16 +295,17 @@ public class Article {
 
 	/**
 	 * Method used to update the state of {@link #articleState} and log the changes
+	 *
 	 * @param state new {@link State}
 	 */
-	public void changeState(State state) {
-		history.add(new History("State Update", ARTICLE_STATE_UPDATED.formatted(this.articleState, state)));
+	public void setArticleState(State state) {
+		history.add(new History("State Update", "The article state is updated from %s to %s".formatted(this.articleState, state)));
 		this.articleState = state;
-		ArticleManager.getInstance().saveDataMap();
 	}
 
 	/**
 	 * Method used to create a hashmap and validate it (All required fields must be init).
+	 *
 	 * @param fields {@link ArrayList} of fields
 	 * @param values {@link ArrayList} of values
 	 * @return {@link HashMap} KEY: fields VALUE: values
@@ -312,11 +323,11 @@ public class Article {
 
 		if (isNotValideMap) {
 			history.add(new History(NOT_VALID_FIELDS_ERROR, FIELDS_HAVE_NOT_BEEN_INITIALIZED_ERROR_DESCRIPTION, true));
-			changeState(State.CANCELLED_OFFER);
+			setArticleState(State.CANCELLED_OFFER);
 		}
 		else {
 			history.add(new History(ARTICLE_VALIDATED, ARTICLE_IS_VALID_AND_PROPERLY_INITIALIZED_DESCRIPTION));
-			changeState(State.OPEN_OFFER);
+			setArticleState(State.OPEN_OFFER);
 		}
 
 		return map;

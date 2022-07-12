@@ -17,13 +17,14 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
  */
 @JsonTypeInfo(use = NAME, include = PROPERTY, property = "@type")
 @JsonSubTypes({
-		@JsonSubTypes.Type(value= Configurator.class, name = "Configurator"),
-		@JsonSubTypes.Type(value= Viewer.class, name = "Viewer"),
+		@JsonSubTypes.Type(value = Configurator.class, name = "Configurator"),
+		@JsonSubTypes.Type(value = Viewer.class, name = "Viewer"),
 })
 public abstract class User {
 
 	/**
 	 * Method used to get the child type
+	 *
 	 * @return {@link String} that represents the child type
 	 */
 	@JsonProperty("@type")
@@ -31,18 +32,21 @@ public abstract class User {
 
 	/**
 	 * Method used to set the User password
+	 *
 	 * @param password Password to set
 	 */
 	public abstract void setPassword(String password);
 
 	/**
 	 * Method used to get the username
+	 *
 	 * @return The Username of User
 	 */
 	public abstract String getUsername();
 
 	/**
 	 * Method used to get the password
+	 *
 	 * @return The password of User
 	 */
 	public abstract String getPassword();
@@ -54,6 +58,7 @@ public abstract class User {
 	 *     <li>More that 5 char</li>
 	 *     <li>Different from {@code default_pwd}</li>
 	 * </ul>
+	 *
 	 * @param password Password to check
 	 * @return True if the password is valid otherwise false
 	 */

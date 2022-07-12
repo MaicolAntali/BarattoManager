@@ -33,8 +33,9 @@ public class ViewerHomeUi extends JPanel {
 
 	/**
 	 * {@link ViewerHomeUi} constructor
-	 * @param dimension Dimension of JPanel
-	 * @param cardLayout {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
+	 *
+	 * @param dimension      Dimension of JPanel
+	 * @param cardLayout     {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
 	 * @param panelContainer {@link JPanel} object that contains every cards
 	 */
 	public ViewerHomeUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {

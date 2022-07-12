@@ -18,13 +18,14 @@ public class StoreMenu extends JPanel implements Menu {
 	/**
 	 * {@link HashMap} of commands
 	 */
-	private final static HashMap<String, MenuAction> COMMAND_MAP = new HashMap<>(){{
+	private final static HashMap<String, MenuAction> COMMAND_MAP = new HashMap<>() {{
 		put("Scambia Articolo", new TradeArticle());
 	}};
 
 
 	/**
 	 * Method used to create a {@link JMenuBar}
+	 *
 	 * @param user {@link User}
 	 * @param tree {@link Tree}
 	 * @return {@link JMenuBar}
@@ -44,9 +45,10 @@ public class StoreMenu extends JPanel implements Menu {
 
 	/**
 	 * Method used to run the commands
+	 *
 	 * @param event {@link ActionEvent}
-	 * @param user {@link User}
-	 * @param tree {@link Tree}
+	 * @param user  {@link User}
+	 * @param tree  {@link Tree}
 	 */
 	public void runCommand(ActionEvent event, User user, Tree tree) {
 		COMMAND_MAP.get(event.getActionCommand()).run(user, tree);

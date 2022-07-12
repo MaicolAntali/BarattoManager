@@ -1,8 +1,8 @@
 package com.barattoManager.model.trade;
 
-import com.barattoManager.manager.ArticleManager;
-import com.barattoManager.manager.TradeManager;
-import com.barattoManager.utils.History;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
+import com.barattoManager.manager.factory.TradeManagerFactory;
+import com.barattoManager.model.history.History;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
@@ -14,9 +14,6 @@ import java.util.UUID;
  * Class that represent a trade
  */
 public class Trade {
-
-	private static final String TRADE_RESCHEDULED_WAITING_REPLY_FROM = "Il trade è riprogrammato. Attesa di un risposta da: %s";
-	private static final String TRADE_ACCEPTED_FROM_BOTH_PARTS = "Il trade è stato accettato da entrambe le parti e quindi chiuso.";
 	private static final String PRE_CONDITION_TRADE_END_DATE_TIME_IS_NULL = "Pre_condition: trade end date time is null";
 	private static final String PRE_CONDITION_ARTICLE_ONE_UUID_IS_BLANK = "Pre_condition: Article one UUID is blank";
 	private static final String PRE_CONDITION_ARTICLE_TWO_UUID_IS_BLANK = "Pre_condition: Article two UUID is blank";
@@ -43,16 +40,17 @@ public class Trade {
 	private final ArrayList<History> history;
 
 	@JsonProperty("meet_uuid")
-	private  String meetUuid;
+	private String meetUuid;
 	@JsonProperty("trade_status")
 	private TradeStatus tradeStatus;
 
 	/**
 	 * {@link Trade} constructor
+	 *
 	 * @param endTradeDateTime End date and time of the trade
-	 * @param articleOneUuid Article one UUID
-	 * @param articleTwoUuid Article two UUID
-	 * @param meetUuid Meet UUID
+	 * @param articleOneUuid   Article one UUID
+	 * @param articleTwoUuid   Article two UUID
+	 * @param meetUuid         Meet UUID
 	 */
 	public Trade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid, String meetUuid) {
 		Objects.requireNonNull(endTradeDateTime, PRE_CONDITION_TRADE_END_DATE_TIME_IS_NULL);
@@ -61,13 +59,13 @@ public class Trade {
 		assert !meetUuid.isBlank() : PRE_CONDITION_MEET_UUID_IS_BLANK;
 
 		this.uuid = UUID.randomUUID().toString();
-		this.tradeStartDateTime =  LocalDateTime.now();
+		this.tradeStartDateTime = LocalDateTime.now();
 		this.tradeEndDateTime = endTradeDateTime;
 		this.articleOneUuid = articleOneUuid;
 		this.articleTwoUuid = articleTwoUuid;
 		this.answer = new Answer(
-				ArticleManager.getInstance().getArticleById(articleOneUuid).orElseThrow(NullPointerException::new).getUserNameOwner(),
-				ArticleManager.getInstance().getArticleById(articleTwoUuid).orElseThrow(NullPointerException::new).getUserNameOwner()
+				ArticleManagerFactory.getManager().getArticleById(articleOneUuid).orElseThrow(NullPointerException::new).getUserNameOwner(),
+				ArticleManagerFactory.getManager().getArticleById(articleTwoUuid).orElseThrow(NullPointerException::new).getUserNameOwner()
 		);
 		this.meetUuid = meetUuid;
 		this.history = new ArrayList<>();
@@ -78,15 +76,16 @@ public class Trade {
 
 	/**
 	 * {@link Trade} constructor
-	 * @param uuid UUID
+	 *
+	 * @param uuid               UUID
 	 * @param tradeStartDateTime Start date and time of the trade
-	 * @param tradeEndDateTime End date and time of the trade
-	 * @param articleOneUuid Article one UUID
-	 * @param articleTwoUuid Article two UUID
-	 * @param answer Answer of the other user
-	 * @param meetUuid Meet UUID
-	 * @param history History of the Trade
-	 * @param tradeStatus Trade status
+	 * @param tradeEndDateTime   End date and time of the trade
+	 * @param articleOneUuid     Article one UUID
+	 * @param articleTwoUuid     Article two UUID
+	 * @param answer             Answer of the other user
+	 * @param meetUuid           Meet UUID
+	 * @param history            History of the Trade
+	 * @param tradeStatus        Trade status
 	 */
 	public Trade(
 			@JsonProperty("uuid") String uuid,
@@ -97,8 +96,7 @@ public class Trade {
 			@JsonProperty("answer") Answer answer,
 			@JsonProperty("meet_uuid") String meetUuid,
 			@JsonProperty("log") ArrayList<History> history,
-			@JsonProperty("trade_status") TradeStatus tradeStatus)
-	{
+			@JsonProperty("trade_status") TradeStatus tradeStatus) {
 
 		assert !uuid.isBlank() : PRE_CONDITION_UUID_IS_BLANK;
 		Objects.requireNonNull(tradeStartDateTime, PRE_CONDITION_TRADE_START_DATE_TIME_IS_NULL);
@@ -120,12 +118,11 @@ public class Trade {
 		this.meetUuid = meetUuid;
 		this.history = history;
 		this.tradeStatus = tradeStatus;
-
-
 	}
 
 	/**
 	 * Method used to get the UUID
+	 *
 	 * @return UUID
 	 */
 	public String getUuid() {
@@ -134,6 +131,7 @@ public class Trade {
 
 	/**
 	 * Method used to get the start date of trade
+	 *
 	 * @return {@link LocalDateTime} start time
 	 */
 	public LocalDateTime getTradeStartDateTime() {
@@ -142,6 +140,7 @@ public class Trade {
 
 	/**
 	 * Method used to get the end date of trade
+	 *
 	 * @return {@link LocalDateTime} end date
 	 */
 	public LocalDateTime getTradeEndDateTime() {
@@ -150,6 +149,7 @@ public class Trade {
 
 	/**
 	 * Method used to get the article one of trade
+	 *
 	 * @return {@link #articleOneUuid} of trade
 	 */
 	public String getArticleOneUuid() {
@@ -158,6 +158,7 @@ public class Trade {
 
 	/**
 	 * Method used to get the article two of trade
+	 *
 	 * @return {@link #articleOneUuid} of trade
 	 */
 	public String getArticleTwoUuid() {
@@ -166,6 +167,7 @@ public class Trade {
 
 	/**
 	 * Method used to get the uuid of trade
+	 *
 	 * @return uuid of trade
 	 */
 	public String getMeetUuid() {
@@ -174,6 +176,7 @@ public class Trade {
 
 	/**
 	 * Method used to get the {@link #tradeStatus}
+	 *
 	 * @return {@link #tradeStatus}
 	 */
 	public TradeStatus getTradeStatus() {
@@ -182,6 +185,7 @@ public class Trade {
 
 	/**
 	 * Method used to get the {@link #answer} of trade
+	 *
 	 * @return {@link #answer} of trade
 	 */
 	public Answer getAnswer() {
@@ -190,6 +194,7 @@ public class Trade {
 
 	/**
 	 * Method used to get the {@link #history} of trade
+	 *
 	 * @return {@link #history} of trade
 	 */
 	public ArrayList<History> getHistory() {
@@ -198,11 +203,12 @@ public class Trade {
 
 	/**
 	 * Method used to set a trade status
+	 *
 	 * @param tradeStatus the new {@link TradeStatus} to set
 	 */
 	public void setTradeStatus(TradeStatus tradeStatus) {
 		this.tradeStatus = tradeStatus;
-		TradeManager.getInstance().saveDataMap();
+		TradeManagerFactory.getManager().saveData();
 	}
 
 	/**
@@ -211,8 +217,8 @@ public class Trade {
 	public void rescheduleTrade() {
 		getAnswer().invertWaitingUser();
 
-		history.add(new History("Trade Riprogrammati", TRADE_RESCHEDULED_WAITING_REPLY_FROM.formatted(answer.getWaitingUserAnswer())));
-		TradeManager.getInstance().saveDataMap();
+		history.add(new History("Trade Riprogrammati", "Il trade è riprogrammato. Attesa di un risposta da: %s".formatted(answer.getWaitingUserAnswer())));
+		TradeManagerFactory.getManager().saveData();
 	}
 
 	/**
@@ -222,8 +228,8 @@ public class Trade {
 		this.tradeStatus = TradeStatus.CLOSED;
 		getAnswer().setWaitingUserAnswer(null);
 
-		history.add(new History("Trade Chiuso", TRADE_ACCEPTED_FROM_BOTH_PARTS));
+		history.add(new History("Trade Chiuso", "Il trade è stato accettato da entrambe le parti e quindi chiuso."));
 
-		TradeManager.getInstance().saveDataMap();
+		TradeManagerFactory.getManager().saveData();
 	}
 }

@@ -13,9 +13,10 @@ public class AcceptTrade extends TradeTemplate {
 
 	/**
 	 * Implementation of customAction
+	 *
 	 * @param trade {@link Trade} to accept
-	 * @param tree {@link Tree}
-	 * @param user {@link User}
+	 * @param tree  {@link Tree}
+	 * @param user  {@link User}
 	 */
 	@Override
 	protected void customAction(Trade trade, Tree tree, User user) {

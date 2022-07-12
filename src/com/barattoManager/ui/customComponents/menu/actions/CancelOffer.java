@@ -1,6 +1,7 @@
 package com.barattoManager.ui.customComponents.menu.actions;
 
-import com.barattoManager.manager.ArticleManager;
+import com.barattoManager.exception.IllegalValuesException;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.menu.actions.template.NodeUuidActionTemplate;
@@ -28,7 +29,7 @@ public class CancelOffer extends NodeUuidActionTemplate {
 
 	@Override
 	protected void customAction(String uuid, Tree tree, User user) {
-		var article = ArticleManager.getInstance().getArticleById(uuid);
+		var article = ArticleManagerFactory.getManager().getArticleById(uuid);
 
 		if (article.isEmpty()) {
 			JOptionPane.showMessageDialog(tree, ERROR_NO_ARTICLE_SELECTED, "Errore", JOptionPane.ERROR_MESSAGE);
@@ -48,7 +49,15 @@ public class CancelOffer extends NodeUuidActionTemplate {
 				return;
 			}
 
-			article.get().changeState(Article.State.CANCELLED_OFFER);
+			try {
+				ArticleManagerFactory.getManager()
+						.changeArticleState(
+								article.get().getUuid(),
+								Article.State.CANCELLED_OFFER
+						);
+			} catch (IllegalValuesException e) {
+				throw new RuntimeException(e);
+			}
 		}
 	}
 }

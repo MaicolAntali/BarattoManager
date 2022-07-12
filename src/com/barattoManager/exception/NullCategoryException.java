@@ -6,6 +6,7 @@ package com.barattoManager.exception;
 public class NullCategoryException extends Exception {
 	/**
 	 * {@link NullCategoryException} constructor
+	 *
 	 * @param message Error message
 	 */
 	public NullCategoryException(String message) {

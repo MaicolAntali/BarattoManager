@@ -41,19 +41,21 @@ public final class AppConfigurator {
 
 	}
 
-    /**
-     * Method used to create get the {@link AppConfigurator} instance.
-     * This method uses the lazy loading mechanism cause the inner class is loaded only if
-     * the {@code getInstance()} method is called.
-     * Also is thread safe cause every thread read the same {@link AppConfigurator} instance.
-     * @return The Instance of {@link AppConfigurator} class
-     */
-    public static AppConfigurator getInstance() {
-        return AppConfiguratorHolder.instance;
-    }
+	/**
+	 * Method used to create get the {@link AppConfigurator} instance.
+	 * This method uses the lazy loading mechanism cause the inner class is loaded only if
+	 * the {@code getInstance()} method is called.
+	 * Also is thread safe cause every thread read the same {@link AppConfigurator} instance.
+	 *
+	 * @return The Instance of {@link AppConfigurator} class
+	 */
+	public static AppConfigurator getInstance() {
+		return AppConfiguratorHolder.instance;
+	}
 
 	/**
 	 * Method used to get application data as a {@link String}
+	 *
 	 * @param nodeName Name of the data to retrieve.
 	 * @return {@link String} that represent the value
 	 */
@@ -63,6 +65,7 @@ public final class AppConfigurator {
 
 	/**
 	 * Method used to get file name as a {@link String}
+	 *
 	 * @param nodeName Name of the data to retrieve.
 	 * @return {@link String} that represent the value
 	 */
@@ -72,6 +75,7 @@ public final class AppConfigurator {
 
 	/**
 	 * Method used to get password settings as a {@link String}
+	 *
 	 * @param nodeName Name of the data to retrieve.
 	 * @return {@link String} that represent the value
 	 */
@@ -81,6 +85,7 @@ public final class AppConfigurator {
 
 	/**
 	 * Method used to get default categories as a {@link JsonNode}
+	 *
 	 * @return {@link JsonNode} that represent the array of default categories
 	 */
 	public JsonNode getDefaultField() {

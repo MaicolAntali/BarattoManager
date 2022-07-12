@@ -1,7 +1,8 @@
 package com.barattoManager.manager.daemon;
 
-import com.barattoManager.manager.ArticleManager;
-import com.barattoManager.manager.TradeManager;
+import com.barattoManager.exception.IllegalValuesException;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
+import com.barattoManager.manager.factory.TradeManagerFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.trade.Trade;
 import com.barattoManager.model.trade.TradeStatus;
@@ -19,6 +20,7 @@ public class TradeCheckerDaemon extends TimerTask {
 
 	/**
 	 * {@link TradeCheckerDaemon} constructor
+	 *
 	 * @param tradeHashMap {@link ConcurrentHashMap} of trade
 	 */
 	public TradeCheckerDaemon(ConcurrentHashMap<String, Trade> tradeHashMap) {
@@ -33,14 +35,27 @@ public class TradeCheckerDaemon extends TimerTask {
 				.filter(trade -> trade.getTradeStatus() == TradeStatus.IN_PROGRESS)
 				.filter(trade -> LocalDateTime.now().isAfter(trade.getTradeEndDateTime()))
 				.forEach(trade -> {
-					ArticleManager.getInstance().getArticleById(trade.getArticleOneUuid())
-							.orElseThrow(NullPointerException::new)
-							.changeState(Article.State.OPEN_OFFER);
-					ArticleManager.getInstance().getArticleById(trade.getArticleTwoUuid())
-							.orElseThrow(NullPointerException::new)
-							.changeState(Article.State.OPEN_OFFER);
+					try {
+						ArticleManagerFactory.getManager()
+								.changeArticleState(
+										trade.getArticleOneUuid(),
+										Article.State.OPEN_OFFER
+								);
+					} catch (IllegalValuesException e) {
+						throw new RuntimeException(e);
+					}
 
-					TradeManager.getInstance().getTradeByUuid(trade.getUuid())
+					try {
+						ArticleManagerFactory.getManager()
+								.changeArticleState(
+										trade.getArticleTwoUuid(),
+										Article.State.OPEN_OFFER
+								);
+					} catch (IllegalValuesException e) {
+						throw new RuntimeException(e);
+					}
+
+					TradeManagerFactory.getManager().getTradeByUuid(trade.getUuid())
 							.orElseThrow(NullPointerException::new)
 							.setTradeStatus(TradeStatus.CANCELLED);
 				});

@@ -27,6 +27,7 @@ public abstract class NodeUuidActionTemplate extends NodeActionTemplate {
 
 	/**
 	 * Method that will run after the default implementation
+	 *
 	 * @param uuid uuid
 	 * @param tree tree
 	 * @param user user

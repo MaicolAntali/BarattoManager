@@ -23,10 +23,11 @@ public final class DateParser {
 
 	/**
 	 * Method used to get the day of the week as a String
+	 *
 	 * @param day Day of the week
 	 * @return A day of the week as a String
 	 */
 	public static DayOfWeek stringToWeekDay(String day) {
-		return dayHashMap.get(day);
+		return dayHashMap.get(day.replace('ì', 'i').toUpperCase());
 	}
 }

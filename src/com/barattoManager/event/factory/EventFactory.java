@@ -1,55 +1,41 @@
 package com.barattoManager.event.factory;
 
 import com.barattoManager.event.*;
-
-import java.util.HashMap;
+import com.barattoManager.model.article.Article;
+import com.barattoManager.model.category.Category;
+import com.barattoManager.model.meet.Meet;
+import com.barattoManager.model.trade.Trade;
+import com.barattoManager.model.user.User;
 
 /**
  * Factory of events
  */
 public class EventFactory {
 
-	/**
-	 * {@link HashMap} of events
-	 */
-	private static final HashMap<String, Event> events = new HashMap<>();
+	private static final Event<String, User> USER_EVENT = new UserChangeDataEvent();
+	private static final Event<String, Category> CATEGORY_EVENT = new CategoriesChangeDataEvent();
+	private static final Event<String, Meet> MEET_EVENT = new MeetsChangeDataEvent();
+	private static final Event<String, Article> ARTICLE_EVENT = new ArticlesChangeDataEvent();
+	private static final Event<String, Trade> TRADE_EVENT = new TradesChangeDataEvent();
 
-	static {
-		events.put("categories", new CategoriesChangeDataEvent());
-		events.put("meets", new MeetsChangeDataEvent());
-		events.put("articles", new ArticlesChangeDataEvent());
-		events.put("trades", new TradesChangeDataEvent());
+
+	public static Event<String, User> getUsersEvent() {
+		return USER_EVENT;
 	}
 
-	/**
-	 * Method used to get the articles change data event
-	 * @return The {@link ArticlesChangeDataEvent}
-	 */
-	public static Event getArticlesEvent() {
-		return events.get("articles");
+	public static Event<String, Category> getCategoriesEvent() {
+		return CATEGORY_EVENT;
 	}
 
-	/**
-	 * Method used to get the trades change data event
-	 * @return The {@link TradesChangeDataEvent}
-	 */
-	public static Event getTradesEvent() {
-		return events.get("trades");
+	public static Event<String, Meet> getMeetsEvent() {
+		return MEET_EVENT;
 	}
 
-	/**
-	 * Method used to get the categories change data event
-	 * @return The {@link CategoriesChangeDataEvent}
-	 */
-	public static Event getCategoriesEvent() {
-		return events.get("categories");
+	public static Event<String, Article> getArticlesEvent() {
+		return ARTICLE_EVENT;
 	}
 
-	/**
-	 * Method used to get the meets change data event
-	 * @return The {@link MeetsChangeDataEvent}
-	 */
-	public static Event getMeetsEvent() {
-		return events.get("meets");
+	public static Event<String, Trade> getTradesEvent() {
+		return TRADE_EVENT;
 	}
 }

@@ -12,17 +12,10 @@ public final class StringParser {
 	 */
 	private static final String ERROR_FORMAT = "Non è possibile fare il parse della stringa.";
 
-	/**
-	 * Method used to convert a string into an int
-	 * @param text String to parse
-	 * @return Parsed number
-	 * @throws IllegalValuesException Is thrown if is impossible to do the parse of the string
-	 */
-	public static int stringToInt(String text) throws IllegalValuesException {
+	public static int stringIntoInteger(String text) throws IllegalValuesException {
 		try {
 			return Integer.parseInt(text);
-		}
-		catch (NumberFormatException ex) {
+		} catch (NumberFormatException ex) {
 			throw new IllegalValuesException(ERROR_FORMAT);
 		}
 	}

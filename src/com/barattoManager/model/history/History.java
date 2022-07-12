@@ -1,4 +1,4 @@
-package com.barattoManager.utils;
+package com.barattoManager.model.history;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,9 +9,9 @@ import java.util.Optional;
 /**
  * Utility record of history
  *
- * @param dateTime Date and time of history
- * @param name Name of history
- * @param error Description of history
+ * @param dateTime    Date and time of history
+ * @param name        Name of history
+ * @param error       Description of history
  * @param description Description of history
  */
 public record History(
@@ -22,7 +22,8 @@ public record History(
 
 	/**
 	 * {@link History} constructor
-	 * @param name Name of history
+	 *
+	 * @param name        Name of history
 	 * @param description Description of history
 	 */
 	public History(String name, String description) {
@@ -31,9 +32,10 @@ public record History(
 
 	/**
 	 * {@link History} constructor
-	 * @param name name of history
+	 *
+	 * @param name        name of history
 	 * @param description Description of history
-	 * @param isError true if is error otherwise false
+	 * @param isError     true if is error otherwise false
 	 */
 	public History(String name, String description, boolean isError) {
 		this(LocalDateTime.now(), isError ? Optional.empty() : Optional.of(name), isError ? Optional.of(name) : Optional.empty(), Optional.of(description));

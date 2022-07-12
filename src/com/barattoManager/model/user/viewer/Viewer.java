@@ -32,6 +32,7 @@ public class Viewer extends User {
 
 	/**
 	 * {@link Viewer} constructor
+	 *
 	 * @param username Username of Viewer
 	 * @param password Password of Viewer
 	 */
@@ -48,6 +49,7 @@ public class Viewer extends User {
 
 	/**
 	 * Method used to get the child type
+	 *
 	 * @return {@link String} that represents the child type
 	 */
 	@Override
@@ -57,6 +59,7 @@ public class Viewer extends User {
 
 	/**
 	 * Method used to set the User password
+	 *
 	 * @param password Password to set
 	 */
 	@Override
@@ -66,6 +69,7 @@ public class Viewer extends User {
 
 	/**
 	 * Method used to get the username
+	 *
 	 * @return The Username of User
 	 */
 	@Override
@@ -75,6 +79,7 @@ public class Viewer extends User {
 
 	/**
 	 * Method used to get the password
+	 *
 	 * @return The password of User
 	 */
 	@Override

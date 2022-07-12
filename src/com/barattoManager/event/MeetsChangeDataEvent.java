@@ -1,42 +1,26 @@
 package com.barattoManager.event;
 
 import com.barattoManager.event.events.DataChangeListener;
+import com.barattoManager.model.meet.Meet;
 
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Class that represent meet change data event
- */
-public class MeetsChangeDataEvent implements Event {
+public class MeetsChangeDataEvent implements Event<String, Meet> {
 
-	/**
-	 * {@link ArrayList} of listeners
-	 */
-	public final ArrayList<DataChangeListener> listeners;
+	public final ArrayList<DataChangeListener<String, Meet>> listeners;
 
-	/**
-	 * {@link MeetsChangeDataEvent} constructor
-	 */
 	public MeetsChangeDataEvent() {
 		this.listeners = new ArrayList<>();
 	}
 
-	/**
-	 * Method used to add the listener
-	 * @param listener {@link DataChangeListener} to add
-	 */
 	@Override
-	public void addListener(DataChangeListener listener) {
+	public void addListener(DataChangeListener<String, Meet> listener) {
 		listeners.add(listener);
 	}
 
-	/**
-	 * Method used to fire the listeners
-	 */
 	@Override
-	public void fireListener() {
-		for (DataChangeListener dataChangeListener : listeners) {
-			dataChangeListener.update();
-		}
+	public void fireListener(ConcurrentHashMap<String, Meet> updatedMap) {
+		listeners.forEach(listener -> listener.update(updatedMap));
 	}
 }

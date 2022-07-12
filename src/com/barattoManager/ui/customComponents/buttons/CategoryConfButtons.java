@@ -5,6 +5,7 @@ import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.exception.NullCategoryException;
 import com.barattoManager.manager.CategoryManager;
+import com.barattoManager.manager.factory.CategoryManagerFactory;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewCategoryPanel;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewFieldPanel;
 import com.barattoManager.ui.customComponents.tree.category.CategoryTree;
@@ -48,7 +49,7 @@ public class CategoryConfButtons extends JPanel {
 	/**
 	 * {@link CategoryManager} object
 	 */
-	private final CategoryManager categoryManager = CategoryManager.getInstance();
+	private final CategoryManager categoryManager = CategoryManagerFactory.getManager();
 	/**
 	 * {@link CategoryTree} object
 	 */
@@ -58,14 +59,14 @@ public class CategoryConfButtons extends JPanel {
 	/**
 	 * {@link CategoryConfButtons} constructor
 	 *
-	 * @param categoryTree        {@link CategoryTree} object
+	 * @param categoryTree {@link CategoryTree} object
 	 */
 	public CategoryConfButtons(CategoryTree categoryTree) {
 		this.categoryTree = categoryTree;
 
 		JButton addNewMainCategoryButton = new JButton(NEW_MAIN_CATEGORY_BUTTON_NAME);
-		JButton addNewSubCategoryButton = new JButton(NEW_SUBCATEGORY_BUTTON_NAME);
-		JButton addNewFieldButton = new JButton(ADD_NEW_FIELD_BUTTON_NAME);
+		JButton addNewSubCategoryButton  = new JButton(NEW_SUBCATEGORY_BUTTON_NAME);
+		JButton addNewFieldButton        = new JButton(ADD_NEW_FIELD_BUTTON_NAME);
 
 		// Add listeners
 		addNewMainCategoryButton.addActionListener(e -> addNewMainCategory());

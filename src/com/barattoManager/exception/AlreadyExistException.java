@@ -7,6 +7,7 @@ public class AlreadyExistException extends Exception {
 
 	/**
 	 * {@link AlreadyExistException} constructor
+	 *
 	 * @param message Error message
 	 */
 	public AlreadyExistException(String message) {

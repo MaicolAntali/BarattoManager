@@ -17,7 +17,7 @@ public class CreateNewCategoryPanel extends JPanel {
 	 */
 	private static final String LABEL_CATEGORY_NAME = "Nome categoria:";
 	/**
-	 *  Category description label
+	 * Category description label
 	 */
 	private static final String LABEL_CATEGORY_DESCRIPTION = "Descrizione Categoria:";
 	/**
@@ -54,6 +54,7 @@ public class CreateNewCategoryPanel extends JPanel {
 
 	/**
 	 * Method used to get the {@link #categoryName}
+	 *
 	 * @return {@link JTextField} object
 	 */
 	public JTextField getCategoryName() {
@@ -62,6 +63,7 @@ public class CreateNewCategoryPanel extends JPanel {
 
 	/**
 	 * Method used to get the {@link #categoryDescription}
+	 *
 	 * @return {@link JTextField} object
 	 */
 	public JTextField getCategoryDescription() {

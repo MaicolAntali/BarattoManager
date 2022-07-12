@@ -1,8 +1,7 @@
 package com.barattoManager.ui.customComponents.tree.trade;
 
-import com.barattoManager.manager.ArticleManager;
-import com.barattoManager.manager.MeetManager;
-import com.barattoManager.manager.TradeManager;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
+import com.barattoManager.manager.factory.MeetManagerFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.model.trade.Trade;
@@ -17,6 +16,7 @@ import java.awt.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -26,16 +26,11 @@ public class TradeTree extends Tree {
 
 	private DefaultMutableTreeNode rootNode;
 
-	/**
-	 * {@link TradeTree} constructor
-	 * @param dimension {@link Dimension} object
-	 * @param user {@link User} logged in user
-	 */
-	public TradeTree(Dimension dimension, User user) {
+	public TradeTree(List<Trade> trades, User user, Dimension dimension) {
 		super(dimension);
 
 		var nodeMap = new HashMap<String, ArrayList<DefaultMutableTreeNode>>();
-		TradeManager.getInstance().getTradeByUser(user.getUsername())
+		trades
 				.forEach(trade -> {
 
 					var tradeKey = trade.getTradeStatus() != TradeStatus.IN_PROGRESS
@@ -60,12 +55,8 @@ public class TradeTree extends Tree {
 		getTree().expandPath(new TreePath(getRootNode()));
 	}
 
-	/**
-	 * {@link TradeTree} constructor
-	 * @param user {@link User} logged in user
-	 */
-	public TradeTree(User user) {
-		this(new Dimension(500, 290), user);
+	public TradeTree(List<Trade> trades, User user) {
+		this(trades, user, new Dimension(500, 290));
 	}
 
 	@Override
@@ -77,9 +68,9 @@ public class TradeTree extends Tree {
 	}
 
 	private DefaultMutableTreeNode createTradeNode(Trade trade) {
-		Article articleOne = ArticleManager.getInstance().getArticleById(trade.getArticleOneUuid()).orElseThrow(NullPointerException::new);
-		Article articleTwo = ArticleManager.getInstance().getArticleById(trade.getArticleTwoUuid()).orElseThrow(NullPointerException::new);
-		Meet    meet       = MeetManager.getInstance().getMeetByUuid(trade.getMeetUuid()).orElseThrow(NullPointerException::new);
+		Article articleOne = ArticleManagerFactory.getManager().getArticleById(trade.getArticleOneUuid()).orElseThrow(NullPointerException::new);
+		Article articleTwo = ArticleManagerFactory.getManager().getArticleById(trade.getArticleTwoUuid()).orElseThrow(NullPointerException::new);
+		Meet    meet       = MeetManagerFactory.getManager().getMeetByUuid(trade.getMeetUuid()).orElseThrow(NullPointerException::new);
 
 		var tradeNode = new DefaultMutableTreeNode("%s %s -> %s".formatted(
 				trade.getTradeStatus() == TradeStatus.IN_PROGRESS ? "⏱" :
@@ -112,13 +103,13 @@ public class TradeTree extends Tree {
 
 		var historyNode = new DefaultMutableTreeNode("Log");
 		trade.getHistory()
-						.forEach(history -> historyNode.add(
-								new DefaultMutableTreeNode("%s %s - %s - %s".formatted(
-										history.name().isPresent() ? "\u2705" : "\u274C",
-										history.dateTime().format(DateTimeFormatter.ofPattern("HH:mm ~ dd/MM/yyyy")),
-										history.name().isPresent() ? history.name().get() : history.error().orElseThrow(NullPointerException::new),
-										history.description().orElseThrow(NullPointerException::new)
-								))));
+				.forEach(history -> historyNode.add(
+						new DefaultMutableTreeNode("%s %s - %s - %s".formatted(
+								history.name().isPresent() ? "\u2705" : "\u274C",
+								history.dateTime().format(DateTimeFormatter.ofPattern("HH:mm ~ dd/MM/yyyy")),
+								history.name().isPresent() ? history.name().get() : history.error().orElseThrow(NullPointerException::new),
+								history.description().orElseThrow(NullPointerException::new)
+						))));
 
 		tradeNode.add(articleOneNode);
 		tradeNode.add(articleTwoNode);

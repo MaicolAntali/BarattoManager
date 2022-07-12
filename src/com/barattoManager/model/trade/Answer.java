@@ -1,6 +1,5 @@
 package com.barattoManager.model.trade;
 
-import com.barattoManager.model.user.User;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -26,6 +25,7 @@ public class Answer {
 
 	/**
 	 * {@link Answer} constructor
+	 *
 	 * @param userOne User one, who is involved in the trade
 	 * @param userTwo User two, who is involved in the trade
 	 */
@@ -37,8 +37,9 @@ public class Answer {
 
 	/**
 	 * {@link Answer} constructor
-	 * @param userOne User one, who is involved in the trade
-	 * @param userTwo User two, who is involved in the trade
+	 *
+	 * @param userOne           User one, who is involved in the trade
+	 * @param userTwo           User two, who is involved in the trade
 	 * @param waitingUserAnswer User who is waiting for an answer
 	 */
 	public Answer(
@@ -63,6 +64,7 @@ public class Answer {
 
 	/**
 	 * Method used to set the waiting user answer
+	 *
 	 * @param waitingUserAnswer User to set
 	 */
 	public void setWaitingUserAnswer(String waitingUserAnswer) {
@@ -71,6 +73,7 @@ public class Answer {
 
 	/**
 	 * Method used to get the waiting user answer
+	 *
 	 * @return WaitingUserAnswer
 	 */
 	public String getWaitingUserAnswer() {

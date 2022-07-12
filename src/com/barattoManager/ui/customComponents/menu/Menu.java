@@ -8,12 +8,13 @@ import javax.swing.*;
 /**
  * Interface that represent a Menu
  */
-public interface Menu  {
+public interface Menu {
 	/**
 	 * Method used to create a {@link JMenuBar}
+	 *
 	 * @param user {@link User}
 	 * @param tree {@link Tree}
-	 * @return  {@link JMenuBar}
+	 * @return {@link JMenuBar}
 	 */
 	JMenuBar createMenu(User user, Tree tree);
 }

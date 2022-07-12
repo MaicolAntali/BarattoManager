@@ -6,6 +6,7 @@ package com.barattoManager.exception;
 public class InvalidCredentialsException extends Exception {
 	/**
 	 * {@link InvalidCredentialsException} constructor
+	 *
 	 * @param message Error message
 	 */
 	public InvalidCredentialsException(String message) {

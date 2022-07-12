@@ -35,6 +35,7 @@ public abstract class Tree extends JPanel {
 
 	/**
 	 * {@link Tree} constructor
+	 *
 	 * @param dimension {@link Dimension} object
 	 */
 	public Tree(Dimension dimension) {
@@ -54,6 +55,7 @@ public abstract class Tree extends JPanel {
 
 	/**
 	 * Method used to get the {@link JTree} object
+	 *
 	 * @return {@link JTree} object
 	 */
 	public JTree getTree() {
@@ -62,6 +64,7 @@ public abstract class Tree extends JPanel {
 
 	/**
 	 * Method used to get the selected node path
+	 *
 	 * @return the selected node path
 	 * @throws NoNodeSelected Is thrown if no node is selected
 	 */

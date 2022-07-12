@@ -41,6 +41,7 @@ public class ChangePasswordPanel extends JPanel {
 
 	/**
 	 * Method used to get the {@link #passwordField}
+	 *
 	 * @return The {@link #passwordField}
 	 */
 	public JPasswordField getPasswordField() {

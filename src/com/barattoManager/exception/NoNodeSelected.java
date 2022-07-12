@@ -6,6 +6,7 @@ package com.barattoManager.exception;
 public class NoNodeSelected extends Exception {
 	/**
 	 * {@link NoNodeSelected} constructor
+	 *
 	 * @param message Error message
 	 */
 	public NoNodeSelected(String message) {

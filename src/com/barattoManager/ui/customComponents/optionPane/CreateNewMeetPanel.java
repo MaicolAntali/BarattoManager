@@ -50,7 +50,7 @@ public class CreateNewMeetPanel extends JPanel {
 
 	/**
 	 * {@link CreateNewMeetPanel} constructor
- 	 */
+	 */
 	public CreateNewMeetPanel() {
 		var mainPanel = new JPanel();
 
@@ -102,13 +102,16 @@ public class CreateNewMeetPanel extends JPanel {
 
 	/**
 	 * Method used to get the {@link #cityField}
+	 *
 	 * @return {@link JTextField} object
 	 */
 	public String getCity() {
 		return cityField.getText();
 	}
+
 	/**
 	 * Method used to get the {@link #squareField}
+	 *
 	 * @return {@link JTextField} object
 	 */
 	public String getSquare() {
@@ -134,6 +137,7 @@ public class CreateNewMeetPanel extends JPanel {
 
 	/**
 	 * Method used to get the {@link #startTimeField}
+	 *
 	 * @return {@link JTextField} object
 	 */
 	public JTextField getStartTimeField() {
@@ -142,6 +146,7 @@ public class CreateNewMeetPanel extends JPanel {
 
 	/**
 	 * Method used to get the {@link #endTimeField}
+	 *
 	 * @return {@link JTextField} object
 	 */
 	public JTextField getEndTimeField() {
@@ -150,6 +155,7 @@ public class CreateNewMeetPanel extends JPanel {
 
 	/**
 	 * Method used to get the days before expire field
+	 *
 	 * @return the day before expire
 	 */
 	public String getDaysBeforeExpireField() {

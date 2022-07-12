@@ -16,7 +16,7 @@ import java.util.HashMap;
  */
 public class DashBoardMenu extends JPanel implements Menu {
 
-	private final static HashMap<String, MenuAction> COMMAND_MAP = new HashMap<>(){{
+	private final static HashMap<String, MenuAction> COMMAND_MAP = new HashMap<>() {{
 		put("Nuovo", new NewArticle());
 		put("Cancella Offerta", new CancelOffer());
 	}};
@@ -40,9 +40,10 @@ public class DashBoardMenu extends JPanel implements Menu {
 
 	/**
 	 * Method used to run the commands
+	 *
 	 * @param event {@link ActionEvent}
-	 * @param user {@link User}
-	 * @param tree {@link Tree}
+	 * @param user  {@link User}
+	 * @param tree  {@link Tree}
 	 */
 	public void runCommand(ActionEvent event, User user, Tree tree) {
 		COMMAND_MAP.get(event.getActionCommand()).run(user, tree);

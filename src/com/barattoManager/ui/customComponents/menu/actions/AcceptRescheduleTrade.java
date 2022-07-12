@@ -1,7 +1,7 @@
 package com.barattoManager.ui.customComponents.menu.actions;
 
 import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.manager.MeetManager;
+import com.barattoManager.manager.factory.MeetManagerFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.trade.Trade;
 import com.barattoManager.model.user.User;
@@ -39,8 +39,8 @@ public class AcceptRescheduleTrade extends TradeTemplate {
 		);
 
 		if (resultMeetDate == JOptionPane.OK_OPTION) {
-			MeetManager.getInstance().unbookMeet(selectMeetDatePanel.getSelectedMeet().getUuid());
-			MeetManager.getInstance().bookMeet(selectMeetDatePanel.getSelectedMeet().getUuid(), user.getUsername());
+			MeetManagerFactory.getManager().unBookMeet(selectMeetDatePanel.getSelectedMeet().getUuid());
+			MeetManagerFactory.getManager().bookMeet(selectMeetDatePanel.getSelectedMeet().getUuid(), user.getUsername());
 
 			changeArticleState(trade.getArticleOneUuid(), Article.State.IN_TRADE_OFFER);
 			changeArticleState(trade.getArticleTwoUuid(), Article.State.IN_TRADE_OFFER);

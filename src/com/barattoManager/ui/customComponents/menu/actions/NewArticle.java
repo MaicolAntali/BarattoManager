@@ -1,7 +1,7 @@
 package com.barattoManager.ui.customComponents.menu.actions;
 
-import com.barattoManager.manager.ArticleManager;
-import com.barattoManager.manager.CategoryManager;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
+import com.barattoManager.manager.factory.CategoryManagerFactory;
 import com.barattoManager.model.category.Category;
 import com.barattoManager.model.category.field.Field;
 import com.barattoManager.model.user.User;
@@ -48,7 +48,7 @@ public class NewArticle implements MenuAction {
 
 		if (result == JOptionPane.OK_OPTION) {
 			var categorySelected = comboCategoryPanel.getSelectedCategory();
-			var formPanel = new FormArticlePanel(categorySelected);
+			var formPanel        = new FormArticlePanel(categorySelected);
 			int resultFormPanel = JOptionPane.showOptionDialog(
 					tree,
 					formPanel,
@@ -67,7 +67,7 @@ public class NewArticle implements MenuAction {
 					return;
 				}
 
-				ArticleManager.getInstance().addNewArticle(
+				ArticleManagerFactory.getManager().addNewArticle(
 						formPanel.getArticleName().getText(),
 						user.getUsername(),
 						categorySelected.getUuid(),
@@ -95,6 +95,7 @@ public class NewArticle implements MenuAction {
 
 		/**
 		 * {@link FormArticlePanel} constructor
+		 *
 		 * @param category {@link Category}
 		 */
 		public FormArticlePanel(Category category) {
@@ -129,6 +130,7 @@ public class NewArticle implements MenuAction {
 
 		/**
 		 * Method used to get the {@link ArrayList} of fields
+		 *
 		 * @return fields
 		 */
 		public ArrayList<Field> getFields() {
@@ -137,6 +139,7 @@ public class NewArticle implements MenuAction {
 
 		/**
 		 * Method used to get the {@link ArrayList} of fields values
+		 *
 		 * @return values
 		 */
 		public ArrayList<String> getValues() {
@@ -184,6 +187,7 @@ public class NewArticle implements MenuAction {
 
 		/**
 		 * Method used to get the selected category in a combo box
+		 *
 		 * @return {@link Category} object
 		 */
 		public Category getSelectedCategory() {
@@ -193,6 +197,7 @@ public class NewArticle implements MenuAction {
 
 		/**
 		 * Method used to get the selected category as a {@link Optional}
+		 *
 		 * @param categoryToGet Name of a category to get
 		 * @return category optional
 		 */
@@ -202,7 +207,7 @@ public class NewArticle implements MenuAction {
 			Optional<Category> optionalCategory = Optional.empty();
 			for (int i = 0; i < splitCategories.length; i++) {
 				if (i == 0) {
-					optionalCategory = CategoryManager.getInstance().getRootCategoryMap().values().stream()
+					optionalCategory = CategoryManagerFactory.getManager().getRootCategoryMap().values().stream()
 							.filter(category -> Objects.equals(category.getName(), splitCategories[0].trim()))
 							.findFirst();
 				}
@@ -219,12 +224,13 @@ public class NewArticle implements MenuAction {
 
 		/**
 		 * Method used to generate the items for the ComboBox of categories
+		 *
 		 * @return ArrayList of categories
 		 */
 		private ArrayList<String> generateComboBoxItems() {
 			var arrayList = new ArrayList<String>();
 
-			for (Category category : CategoryManager.getInstance().getRootCategoryMap().values()) {
+			for (Category category : CategoryManagerFactory.getManager().getRootCategoryMap().values()) {
 				arrayList.addAll(generateComboBoxItems(category.getSubCategory().values(), category.getName()));
 			}
 
@@ -233,8 +239,9 @@ public class NewArticle implements MenuAction {
 
 		/**
 		 * Method used to generate the items for the ComboBox of categories
+		 *
 		 * @param categories Collection of categories
-		 * @param string String of categories and sub-categories name
+		 * @param string     String of categories and sub-categories name
 		 * @return ArrayList of categories
 		 */
 		private ArrayList<String> generateComboBoxItems(Collection<Category> categories, String string) {

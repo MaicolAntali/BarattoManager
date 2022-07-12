@@ -2,7 +2,7 @@ package com.barattoManager.ui.customComponents.buttons;
 
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.manager.MeetManager;
+import com.barattoManager.manager.factory.MeetManagerFactory;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewMeetPanel;
 import com.barattoManager.utils.parser.StringParser;
 import com.barattoManager.utils.parser.TimeParser;
@@ -56,13 +56,13 @@ public class MeetEditorButtons extends JPanel {
 		if (result == JOptionPane.OK_OPTION) {
 
 			try {
-				MeetManager.getInstance().addNewMeet(
+				MeetManagerFactory.getManager().addNewMeet(
 						createNewMeetPanel.getCity(),
 						createNewMeetPanel.getSquare(),
 						createNewMeetPanel.getSelectedDays(),
 						TimeParser.hourToMinuteTime(createNewMeetPanel.getStartTimeField().getText()),
 						TimeParser.hourToMinuteTime(createNewMeetPanel.getEndTimeField().getText()),
-						StringParser.stringToInt(createNewMeetPanel.getDaysBeforeExpireField())
+						StringParser.stringIntoInteger(createNewMeetPanel.getDaysBeforeExpireField())
 				);
 			} catch (AlreadyExistException | IllegalValuesException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "ERRORE", JOptionPane.ERROR_MESSAGE);

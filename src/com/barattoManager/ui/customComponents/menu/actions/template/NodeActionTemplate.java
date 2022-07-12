@@ -29,9 +29,10 @@ public abstract class NodeActionTemplate implements MenuAction {
 
 	/**
 	 * Method that will run after the default implementation
+	 *
 	 * @param nodePath node path
-	 * @param tree tree
-	 * @param user user
+	 * @param tree     tree
+	 * @param user     user
 	 */
 	protected abstract void customAction(TreeNode[] nodePath, Tree tree, User user);
 }
