@@ -17,22 +17,30 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static com.barattoManager.manager.Constants.*;
 
+/**
+ * Class that handles categories
+ */
 public final class CategoryManager implements Manager {
 
 	private final ConcurrentHashMap<String, Category> categoryMap;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param categoryMap {@link ConcurrentHashMap} that will be used by the manager for all the operations it has to perform on the categories.
+	 */
 	public CategoryManager(ConcurrentHashMap<String, Category> categoryMap) {
 		this.categoryMap = categoryMap;
 	}
 
 	/**
-	 * Method used to add new Main category
+	 * Method used to add new root category
 	 *
-	 * @param categoryName        Name of new category
+	 * @param categoryName        Name of the new category
 	 * @param categoryDescription Description of the new category
-	 * @throws AlreadyExistException  Is thrown if the category or field that are trying to add already exist.
-	 * @throws IllegalValuesException Is thrown if the name or the description is an empty string
-	 * @throws NullCategoryException  Is thrown if is not found a category in the map
+	 * @throws AlreadyExistException  Is thrown if the category or fields that are trying to add already exist
+	 * @throws IllegalValuesException Is thrown if the name or the description is blank
+	 * @throws NullCategoryException  Is thrown if it cannot find the category in which to add the fields
 	 */
 	public void addNewMainCategory(String categoryName, String categoryDescription) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
 		if (categoryName.trim().isBlank() || categoryDescription.isBlank())
@@ -58,14 +66,14 @@ public final class CategoryManager implements Manager {
 	}
 
 	/**
-	 * Method used to add a new subcategory in the category tree.
+	 * Method used to add a new subcategory
 	 *
-	 * @param pathOfSubcategory      {@link ArrayList} that represent the path of the category
+	 * @param pathOfSubcategory      {@link ArrayList} that contains the path where to add the sub-category
 	 * @param subCategoryName        Name of the new category
 	 * @param subCategoryDescription Description of new category
-	 * @throws AlreadyExistException  Is thrown if the category that are trying to add already exist.
+	 * @throws AlreadyExistException  Is thrown if the category that are trying to add already exist
 	 * @throws IllegalValuesException Is thrown if the name is an empty string
-	 * @throws NullCategoryException  Is thrown if is not found a category in the map
+	 * @throws NullCategoryException  Is thrown if it cannot find the category in which to add the fields
 	 */
 	public void addNewSubCategory(ArrayList<String> pathOfSubcategory, String subCategoryName, String subCategoryDescription) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
 		if (subCategoryName.trim().isBlank() || subCategoryDescription.isBlank())
@@ -87,14 +95,14 @@ public final class CategoryManager implements Manager {
 	}
 
 	/**
-	 * Recursive method used to add a new field in a category (and every sub category).
+	 * Recursive method used to add a field to a category and all its sub-categories
 	 *
-	 * @param pathOfCategory {@link ArrayList} that represent the path of the category
+	 * @param pathOfCategory {@link ArrayList} that contains the path where to add the field
 	 * @param fieldName      Name of the new field
-	 * @param isRequired     If the field is required ({@code true}) otherwise {@code false}
-	 * @throws AlreadyExistException  Is thrown if the new field that are trying to add already exist.
+	 * @param isRequired     If the field is required {@code true} otherwise {@code false}
+	 * @throws AlreadyExistException  Is thrown if the new field that are trying to add already exist
 	 * @throws IllegalValuesException Is thrown if the name is an empty string
-	 * @throws NullCategoryException  Is thrown if is not found a category in the map
+	 * @throws NullCategoryException  Is thrown if it cannot find the category in which to add the fields
 	 */
 	public void addNewField(ArrayList<String> pathOfCategory, String fieldName, boolean isRequired) throws AlreadyExistException, IllegalValuesException, NullCategoryException {
 		if (fieldName.trim().isBlank())
@@ -130,10 +138,21 @@ public final class CategoryManager implements Manager {
 		EventFactory.getCategoriesEvent().fireListener(this.categoryMap);
 	}
 
+	/**
+	 * Method used to get the {@link ConcurrentHashMap} with all {@link Category categories}
+	 *
+	 * @return {@link ConcurrentHashMap} with all {@link Category categories}
+	 */
 	public ConcurrentHashMap<String, Category> getRootCategoryMap() {
 		return this.categoryMap;
 	}
 
+	/**
+	 * Method used to return a category by its uuid<br/>
+	 * The method returns an {@link Optional}  with the {@link Category} object if the past uuid is found otherwise an empty {@link Optional}
+	 *
+	 * @return An {@link Optional} with the object {@link Category} otherwise an empty {@link Optional}
+	 */
 	public Optional<Category> getCategoryByUuid(String uuid) {
 		return getCategory(this.categoryMap.values().stream().toList(), uuid);
 	}
@@ -157,13 +176,6 @@ public final class CategoryManager implements Manager {
 		return optionalAtomicReference.get();
 	}
 
-
-	/**
-	 * Method used to get a {@link Category} object from a categoryPath ({@code ArrayList<String>})
-	 *
-	 * @param pathOfCategory {@link ArrayList} Category path.
-	 * @return {@link Category} object
-	 */
 	private Optional<Category> getCategoryFromPath(ArrayList<String> pathOfCategory) {
 		Optional<Category> category = Optional.empty();
 

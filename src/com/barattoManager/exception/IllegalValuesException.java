@@ -1,13 +1,14 @@
 package com.barattoManager.exception;
 
 /**
- * Exception used when an input contains non-acceptable values
+ * Exception used when a value is invalid, null or not initialized
  */
 public class IllegalValuesException extends Exception {
+
 	/**
-	 * {@link IllegalValuesException} constructor
+	 * Constructor of the exception
 	 *
-	 * @param message Error message
+	 * @param message the detail message.
 	 */
 	public IllegalValuesException(String message) {
 		super(message);

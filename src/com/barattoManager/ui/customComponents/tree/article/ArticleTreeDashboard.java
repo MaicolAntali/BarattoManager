@@ -2,7 +2,6 @@ package com.barattoManager.ui.customComponents.tree.article;
 
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.history.History;
-import com.barattoManager.utils.TreeUtils;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.List;
@@ -25,7 +24,7 @@ public final class ArticleTreeDashboard extends ArticleTree {
 		articleNode.add(new DefaultMutableTreeNode("Proprietario: %s".formatted(article.getUserNameOwner())));
 		articleNode.add(new DefaultMutableTreeNode("UUID: %s".formatted(article.getUuid())));
 
-		articleNode.add(TreeUtils.generateFields(article));
+		articleNode.add(generateFields(article));
 
 		var historyNode = new DefaultMutableTreeNode("Log");
 		for (History history : article.getHistory()) {

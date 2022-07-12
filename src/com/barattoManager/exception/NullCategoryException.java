@@ -1,13 +1,14 @@
 package com.barattoManager.exception;
 
 /**
- * Exception used when there is no category
+ * Exception that is thrown when a category does not exist or is null
  */
 public class NullCategoryException extends Exception {
+
 	/**
-	 * {@link NullCategoryException} constructor
+	 * Constructor of the exception
 	 *
-	 * @param message Error message
+	 * @param message the detail message.
 	 */
 	public NullCategoryException(String message) {
 		super(message);

@@ -12,16 +12,18 @@ import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Trade checker
+ * Class extending {@link TimerTask} so that it can be run in a separate thread.<br/>
+ * The main purpose of the class is to check the {@link Trade} objects and verify that they are still valid.<br/>
+ * A Trade is valid until the {@link Trade#getTradeEndDateTime() tradeEndDateTime} is in the past.
  */
 public class TradeCheckerDaemon extends TimerTask {
 
 	private final ConcurrentHashMap<String, Trade> tradeHashMap;
 
 	/**
-	 * {@link TradeCheckerDaemon} constructor
+	 * Constructor of the class
 	 *
-	 * @param tradeHashMap {@link ConcurrentHashMap} of trade
+	 * @param tradeHashMap {@link ConcurrentHashMap} that contains all the trade to check
 	 */
 	public TradeCheckerDaemon(ConcurrentHashMap<String, Trade> tradeHashMap) {
 		this.tradeHashMap = tradeHashMap;

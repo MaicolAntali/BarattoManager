@@ -1,13 +1,14 @@
 package com.barattoManager.exception;
 
 /**
- * Exception used when a user try to log in with invalid credentials
+ * Exception that is thrown when login credentials are invalid
  */
 public class InvalidCredentialsException extends Exception {
+
 	/**
-	 * {@link InvalidCredentialsException} constructor
+	 * Constructor of the exception
 	 *
-	 * @param message Error message
+	 * @param message the detail message.
 	 */
 	public InvalidCredentialsException(String message) {
 		super(message);

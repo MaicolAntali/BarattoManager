@@ -1,14 +1,14 @@
 package com.barattoManager.exception;
 
 /**
- * Exception used when an Object already exist.
+ * Exception that is thrown when a system object already exists
  */
 public class AlreadyExistException extends Exception {
 
 	/**
-	 * {@link AlreadyExistException} constructor
+	 * Constructor of the exception
 	 *
-	 * @param message Error message
+	 * @param message the detail message.
 	 */
 	public AlreadyExistException(String message) {
 		super(message);

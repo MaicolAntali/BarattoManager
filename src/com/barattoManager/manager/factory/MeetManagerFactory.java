@@ -11,6 +11,10 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
+/**
+ * Class that constructs the {@link MeetManager}<br/>
+ * {@link MeetManager}is declared in the class as a static constant, to ensure one instance for the whole project.
+ */
 public class MeetManagerFactory {
 
 	private static final MeetManager MEET_MANAGER;
@@ -26,11 +30,16 @@ public class MeetManagerFactory {
 						.build()
 		);
 
-		MEET_MANAGER = new MeetManager(jsonHandler.readJson(String.class, Meet.class));
-
 		EventFactory.getMeetsEvent().addListener(jsonHandler);
+
+		MEET_MANAGER = new MeetManager(jsonHandler.readJson(String.class, Meet.class));
 	}
 
+	/**
+	 * Method used to get the instance of {@link MeetManager} stored in the class.
+	 *
+	 * @return The {@link MeetManager} object
+	 */
 	public static MeetManager getManager() {
 		return MEET_MANAGER;
 	}

@@ -6,6 +6,10 @@ import com.barattoManager.manager.json.JsonHandler;
 import com.barattoManager.model.user.User;
 import com.barattoManager.utils.AppConfigurator;
 
+/**
+ * Class that constructs the {@link UserManager}<br/>
+ * {@link UserManager}is declared in the class as a static constant, to ensure one instance for the whole project.
+ */
 public class UserManagerFactory {
 
 	private static final UserManager USER_MANAGER;
@@ -15,11 +19,16 @@ public class UserManagerFactory {
 				AppConfigurator.getInstance().getFileName("users")
 		);
 
-		USER_MANAGER = new UserManager(jsonHandler.readJson(String.class, User.class));
-
 		EventFactory.getUsersEvent().addListener(jsonHandler);
+
+		USER_MANAGER = new UserManager(jsonHandler.readJson(String.class, User.class));
 	}
 
+	/**
+	 * Method used to get the instance of {@link UserManager} stored in the class.
+	 *
+	 * @return The {@link UserManager} object
+	 */
 	public static UserManager getManager() {
 		return USER_MANAGER;
 	}

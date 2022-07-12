@@ -1,22 +1,9 @@
 package com.barattoManager.manager;
 
 /**
- * Class used to contain the constants used from the manager
+ * Class that contains all constants used in managers
  */
 public final class Constants {
-	/**
-	 * Post-condition: The category is not present in the map.
-	 */
-	public static final String POST_CONDITION_CATEGORY_NOT_IN_MAP = "Post-condition: The category is not present in the map.";
-	/**
-	 * Post-condition: The sub-category is not present in the map.
-	 */
-	public static final String POST_CONDITION_SUBCATEGORY_NOT_IN_MAP = "Post-condition: The sub-category is not present in the map.";
-	/**
-	 * Post-condition: The field is not present in the map.
-	 */
-	public static final String POST_CONDITION_FIELD_NOT_IN_MAP = "Post-condition: The field is not present in the map.";
-
 	/**
 	 * Category params not valid error
 	 */
@@ -50,36 +37,31 @@ public final class Constants {
 	 */
 	public static final String ERROR_PASSWORD_NOT_MATCH = "La password inserita non è coretta. Riprovare";
 	/**
-	 * Post-condition: The user is not present in the map.
-	 */
-	public static final String POST_CONDITION_USER_NOT_IN_MAP = "Post-condition: The user is not present in the map.";
-	/**
 	 * Invalid Username error
 	 */
 	public static final String ERROR_INVALID_USERNAME = "Lo username non è valido";
-	/**
-	 * Message to show the first configurator credentials
-	 */
-	public static final String FIRST_CONFIGURATOR_CREDENTIALS = "Sono state impostate delle credenziali di base per il primo configuratore. \n\nUsername: Configurator\nPassword: %s";
-	/**
-	 * Default credentials
-	 */
-	public static final String DEFAULT_CREDENTIALS = "Credenziali Base";
 	/**
 	 * Impossible establish user instance message
 	 */
 	public static final String MESSAGE_IMPOSSIBLE_ESTABLISH_USER_INSTANCE = "Impossibile stabilire quale istanza di User creare.";
 	/**
+	 * Post-condition: The user is not present in the map.
+	 */
+	public static final String POST_CONDITION_USER_NOT_IN_MAP = "Post-condition: The user is not present in the map.";
+	/**
 	 * Post-Condition: The article is not present in the map
 	 */
 	public static final String POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP = "Post-Condition: The article is not present in the map";
 	/**
-	 * Post_condition: The meet is not present in the map
+	 * Post-condition: The category is not present in the map.
 	 */
-	public static final String POST_CONDITION_THE_MEET_IS_NOT_PRESENT_IN_THE_MAP = "Post_condition: The meet is not present in the map";
+	public static final String POST_CONDITION_CATEGORY_NOT_IN_MAP = "Post-condition: The category is not present in the map.";
 	/**
-	 * Post_condition: The trade is not present in the map
+	 * Post-condition: The sub-category is not present in the map.
 	 */
-	public static final String POST_CONDITION_THE_TRADE_IS_NOT_PRESENT_IN_THE_MAP = "Post_condition: The trade is not present in the map";
-
+	public static final String POST_CONDITION_SUBCATEGORY_NOT_IN_MAP = "Post-condition: The sub-category is not present in the map.";
+	/**
+	 * Post-condition: The field is not present in the map.
+	 */
+	public static final String POST_CONDITION_FIELD_NOT_IN_MAP = "Post-condition: The field is not present in the map.";
 }

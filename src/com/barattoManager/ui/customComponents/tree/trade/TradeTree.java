@@ -8,7 +8,6 @@ import com.barattoManager.model.trade.Trade;
 import com.barattoManager.model.trade.TradeStatus;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.tree.Tree;
-import com.barattoManager.utils.TreeUtils;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
@@ -94,11 +93,11 @@ public class TradeTree extends Tree {
 
 
 		var articleOneNode = new DefaultMutableTreeNode(articleOne.getArticleName());
-		articleOneNode.add(TreeUtils.generateFields(articleOne));
+		articleOneNode.add(generateFields(articleOne));
 		articleOneNode.add(new DefaultMutableTreeNode("Stato: %s".formatted(articleOne.getArticleState().toString())));
 
 		var articleTwoNode = new DefaultMutableTreeNode(articleTwo.getArticleName());
-		articleTwoNode.add(TreeUtils.generateFields(articleTwo));
+		articleTwoNode.add(generateFields(articleTwo));
 		articleTwoNode.add(new DefaultMutableTreeNode("Stato: %s".formatted(articleTwo.getArticleState().toString())));
 
 		var historyNode = new DefaultMutableTreeNode("Log");

@@ -6,10 +6,19 @@ import com.barattoManager.model.meet.Meet;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Class that handles events related to meet data change.</br>
+ */
 public class MeetsChangeDataEvent implements Event<String, Meet> {
 
 	public final ArrayList<DataChangeListener<String, Meet>> listeners;
 
+	/**
+	 * Constructor of the class.<br/>
+	 * it's used to initialize listeners arraylist
+	 *
+	 * @see #listeners
+	 */
 	public MeetsChangeDataEvent() {
 		this.listeners = new ArrayList<>();
 	}

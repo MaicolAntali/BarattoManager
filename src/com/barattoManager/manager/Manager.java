@@ -1,4 +1,6 @@
 package com.barattoManager.manager;
 
-public interface Manager {
-}
+/**
+ * Marker interface for any manager
+ */
+public interface Manager {}

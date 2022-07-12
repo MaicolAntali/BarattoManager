@@ -6,14 +6,22 @@ import com.barattoManager.model.article.Article;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Class that handles events related to articles data change.</br>
+ */
 public class ArticlesChangeDataEvent implements Event<String, Article> {
 
-	public final ArrayList<DataChangeListener<String, Article>> listeners;
+	private final ArrayList<DataChangeListener<String, Article>> listeners;
 
+	/**
+	 * Constructor of the class.<br/>
+	 * it's used to initialize listeners arraylist
+	 *
+	 * @see #listeners
+	 */
 	public ArticlesChangeDataEvent() {
 		this.listeners = new ArrayList<>();
 	}
-
 
 	@Override
 	public void addListener(DataChangeListener<String, Article> listener) {

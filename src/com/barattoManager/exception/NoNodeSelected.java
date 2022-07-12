@@ -1,13 +1,14 @@
 package com.barattoManager.exception;
 
 /**
- * Exception used when is not selected a node
+ * Exception that is thrown when no node is selected in a {@link javax.swing.JTree}
  */
 public class NoNodeSelected extends Exception {
+
 	/**
-	 * {@link NoNodeSelected} constructor
+	 * Constructor of the exception
 	 *
-	 * @param message Error message
+	 * @param message the detail message.
 	 */
 	public NoNodeSelected(String message) {
 		super(message);

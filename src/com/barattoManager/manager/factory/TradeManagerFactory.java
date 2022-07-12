@@ -11,6 +11,10 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
+/**
+ * Class that constructs the {@link TradeManager}<br/>
+ * {@link TradeManager}is declared in the class as a static constant, to ensure one instance for the whole project.
+ */
 public class TradeManagerFactory {
 
 	private static final TradeManager TRADE_MANAGER;
@@ -26,11 +30,16 @@ public class TradeManagerFactory {
 						.build()
 		);
 
-		TRADE_MANAGER = new TradeManager(jsonHandler.readJson(String.class, Trade.class));
-
 		EventFactory.getTradesEvent().addListener(jsonHandler);
+
+		TRADE_MANAGER = new TradeManager(jsonHandler.readJson(String.class, Trade.class));
 	}
 
+	/**
+	 * Method used to get the instance of {@link TradeManager} stored in the class.
+	 *
+	 * @return The {@link TradeManager} object
+	 */
 	public static TradeManager getManager() {
 		return TRADE_MANAGER;
 	}

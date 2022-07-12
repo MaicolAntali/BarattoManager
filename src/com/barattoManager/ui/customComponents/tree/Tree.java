@@ -1,6 +1,7 @@
 package com.barattoManager.ui.customComponents.tree;
 
 import com.barattoManager.exception.NoNodeSelected;
+import com.barattoManager.model.article.Article;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -75,5 +76,26 @@ public abstract class Tree extends JPanel {
 			throw new NoNodeSelected(ERROR_NO_NODE_HAS_BEEN_SELECTED);
 
 		return selectedNode.getPath();
+	}
+
+	/**
+	 * Method used to generate the node of all field in an article
+	 *
+	 * @param article {@link Article} article object
+	 * @return {@link DefaultMutableTreeNode} Node that keep all fields
+	 */
+	public DefaultMutableTreeNode generateFields(Article article) {
+		var fieldsNode = new DefaultMutableTreeNode("Campi");
+
+
+		article.getFieldValueMap().forEach((key, value) -> {
+			if (key.required())
+				fieldsNode.add(new DefaultMutableTreeNode(("%s: %s").formatted(key.name(), value)));
+
+			if (!key.required() && !value.isBlank())
+				fieldsNode.add(new DefaultMutableTreeNode(("%s: %s").formatted(key.name(), value)));
+		});
+
+		return fieldsNode;
 	}
 }

@@ -16,26 +16,34 @@ import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.IntStream;
 
+/**
+ * Class that handles meets
+ */
 public final class MeetManager implements Manager {
 
 	private final ConcurrentHashMap<String, Meet> meetMap;
 	private MeetUpdaterDaemon meetUpdaterDaemon;
 	private Thread daemonThread;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param meetMap {@link ConcurrentHashMap} that will be used by the manager for all the operations it has to perform on the meets.
+	 */
 	public MeetManager(ConcurrentHashMap<String, Meet> meetMap) {
 		this.meetMap = meetMap;
 		this.meetUpdaterDaemon = new MeetUpdaterDaemon(meetMap);
 	}
 
 	/**
-	 * Method used to run the updater thread
+	 * method used to start the thread where every minute will run {@link MeetUpdaterDaemon}
 	 */
 	public void runUpdaterDaemon() {
 		if (daemonThread == null || !daemonThread.isAlive()) {
 			daemonThread = new Thread(
 					() -> new Timer().scheduleAtFixedRate(
 							meetUpdaterDaemon,
-							15000, // 15 sec
+							5000, // 5 sec
 							60000 // 1 Minutes
 					)
 			);
@@ -45,14 +53,14 @@ public final class MeetManager implements Manager {
 	}
 
 	/**
-	 * Method used to add a new {@link Meet}
+	 * Method used to add a new meet
 	 *
-	 * @param city              City of the meet
-	 * @param square            Square of the meet
-	 * @param day               Day of the meet
-	 * @param intervalStartTime Start time of the meet
-	 * @param intervalEndTime   End time of the meet
-	 * @param daysBeforeExpire  Days before expire of the meet
+	 * @param city              City of the new meet
+	 * @param square            Square of the new meet
+	 * @param day               {@link DayOfWeek} of the new meet
+	 * @param intervalStartTime Start time of the meeting in minutes
+	 * @param intervalEndTime   End time of the meeting in minutes
+	 * @param daysBeforeExpire  Number of days for which the meet is valid
 	 * @throws AlreadyExistException  Is thrown if the meet already exists
 	 * @throws IllegalValuesException Is thrown if the meet contains illegal values
 	 */
@@ -91,14 +99,14 @@ public final class MeetManager implements Manager {
 	}
 
 	/**
-	 * Method used to add a new {@link Meet}
+	 * Method used to add a new meet
 	 *
-	 * @param city              City of the meet
-	 * @param square            Square of the meet
-	 * @param days              Days of the meet
-	 * @param intervalStartTime Start time of the meet
-	 * @param intervalEndTime   End time of the meet
-	 * @param daysBeforeExpire  Days before expire of the meet
+	 * @param city              City of the new meet
+	 * @param square            Square of the new meet
+	 * @param days              {@link ArrayList} of {@link DayOfWeek}
+	 * @param intervalStartTime Start time of the meeting in minutes
+	 * @param intervalEndTime   End time of the meeting in minutes
+	 * @param daysBeforeExpire  Number of days for which the meet is valid
 	 * @throws AlreadyExistException  Is thrown if the meet already exists
 	 * @throws IllegalValuesException Is thrown if the meet contains illegal values
 	 */
@@ -113,10 +121,10 @@ public final class MeetManager implements Manager {
 	}
 
 	/**
-	 * Method used to book a {@link Meet}
+	 * method used to book a meet
 	 *
-	 * @param meetUuid uuid of the meet
-	 * @param userUuid uuid  of the user
+	 * @param meetUuid uuid of the meeting to be booked
+	 * @param userUuid username of the user booking the meet
 	 */
 	public void bookMeet(String meetUuid, String userUuid) {
 		var meet = Optional.ofNullable(this.meetMap.get(meetUuid));
@@ -127,6 +135,11 @@ public final class MeetManager implements Manager {
 		}
 	}
 
+	/**
+	 * method used to un-book a meet
+	 *
+	 * @param meetUuid uuid of the meeting to be un-booked
+	 */
 	public void unBookMeet(String meetUuid) {
 		var meet = Optional.ofNullable(this.meetMap.get(meetUuid));
 
@@ -137,18 +150,18 @@ public final class MeetManager implements Manager {
 	}
 
 	/**
-	 * Method used to get the meets
+	 * Method used to get the {@link List} with all {@link Meet meets}
 	 *
-	 * @return {@link List} of meets
+	 * @return {@link List} with all {@link Meet meets}
 	 */
 	public List<Meet> getMeets() {
 		return this.meetMap.values().stream().toList();
 	}
 
 	/**
-	 * Method used to get the available meets
+	 * Method used to get the {@link List} with all {@link Meet} available (meet not booked)
 	 *
-	 * @return {@link List} of available meets
+	 * @return {@link List} with all {@link Meet} available (meet not booked)
 	 */
 	public List<Meet> getAvailableMeet() {
 		return this.meetMap.values().stream()
@@ -157,33 +170,25 @@ public final class MeetManager implements Manager {
 	}
 
 	/**
-	 * Method used to get the meet by the UUID
+	 * Method used to return a meet by its uuid<br/>
+	 * The method returns an {@link Optional}  with the {@link Meet} object if the past uuid is found otherwise an empty {@link Optional}
 	 *
-	 * @param meetUuid uuid of the {@link Meet}
-	 * @return {@link Optional} of available meets
+	 * @return An {@link Optional} with the object {@link Meet} otherwise an empty {@link Optional}
 	 */
 	public Optional<Meet> getMeetByUuid(String meetUuid) {
 		return Optional.ofNullable(this.meetMap.get(meetUuid));
 	}
 
 	/**
-	 * Method used to remove the meet by the UUID, from the map
+	 * method used to remove/delete a {@link Meet}
 	 *
-	 * @param meetUuid uuid of the {@link Meet} to remove
+	 * @param meetUuid uuid of the {@link Meet} to be removed
 	 */
 	public void removeMeetByUuid(String meetUuid) {
 		this.meetMap.remove(meetUuid);
 		saveData();
 	}
 
-	/**
-	 * Method used to generate the intervals of time for the meet
-	 *
-	 * @param start Start time of interval
-	 * @param end   end time of interval
-	 * @return {@link ArrayList} of intervals
-	 * @throws IllegalValuesException Is thrown if the time input is invalid
-	 */
 	private ArrayList<LocalTime> generateIntervals(int start, int end) throws IllegalValuesException {
 		if (start <= end) {
 			ArrayList<LocalTime> tmpList = new ArrayList<>();

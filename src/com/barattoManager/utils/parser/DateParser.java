@@ -4,12 +4,9 @@ import java.time.DayOfWeek;
 import java.util.HashMap;
 
 /**
- * Utility class of date
+ * Utility class used to associate a string to a {@link DayOfWeek}
  */
 public final class DateParser {
-	/**
-	 * {@link HashMap} of days (of the week)
-	 */
 	private final static HashMap<String, DayOfWeek> dayHashMap = new HashMap<>() {{
 		put("LUNEDI", DayOfWeek.MONDAY);
 		put("MARTEDI", DayOfWeek.TUESDAY);
@@ -20,12 +17,11 @@ public final class DateParser {
 		put("DOMENICA", DayOfWeek.SUNDAY);
 	}};
 
-
 	/**
-	 * Method used to get the day of the week as a String
+	 * Method used to associate a string to a {@link DayOfWeek}
 	 *
-	 * @param day Day of the week
-	 * @return A day of the week as a String
+	 * @param day String with the name of the day of the week
+	 * @return {@link DayOfWeek} object
 	 */
 	public static DayOfWeek stringToWeekDay(String day) {
 		return dayHashMap.get(day.replace('ì', 'i').toUpperCase());
