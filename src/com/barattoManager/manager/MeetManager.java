@@ -5,62 +5,26 @@ import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.manager.daemon.MeetUpdaterDaemon;
 import com.barattoManager.model.meet.Meet;
-import com.barattoManager.utils.AppConfigurator;
 import com.barattoManager.utils.parser.DateParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
-import java.io.File;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Timer;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.IntStream;
 
-public final class MeetManager extends ConcurrencyManager<String, Meet> {
+public final class MeetManager implements Manager {
 
+	private final ConcurrentHashMap<String, Meet> meetMap;
 	private  MeetUpdaterDaemon meetUpdaterDaemon;
 	private Thread daemonThread;
 
-	private MeetManager() {
-		super(String.class, Meet.class);
-
-		this.meetUpdaterDaemon = new MeetUpdaterDaemon(getDataMap());
-	}
-
-	@Override
-	File getJsonFile() {
-		return new File(AppConfigurator.getInstance().getFileName("meet_file"));
-	}
-
-	@Override
-	ObjectMapper getObjectMapper() {
-		return JsonMapper.builder()
-				.addModule(new ParameterNamesModule())
-				.addModule(new Jdk8Module())
-				.addModule(new JavaTimeModule())
-				.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
-				.build();
-	}
-
-	@Override
-	void afterDataChangeActions() {
-		this.meetUpdaterDaemon = new MeetUpdaterDaemon(getDataMap());
-		EventFactory.getMeetsEvent().fireListener();
-	}
-
-	private static final class MeetManagerHolder {
-		private static final MeetManager instance = new MeetManager();
-	}
-
-	public static MeetManager getInstance() {
-		return MeetManagerHolder.instance;
+	public MeetManager(ConcurrentHashMap<String, Meet> meetMap) {
+		this.meetMap = meetMap;
+		this.meetUpdaterDaemon = new MeetUpdaterDaemon(meetMap);
 	}
 
 	public void runUpdaterDaemon() {
@@ -79,6 +43,9 @@ public final class MeetManager extends ConcurrencyManager<String, Meet> {
 
 	public void addNewMeet(String city, String square, DayOfWeek day, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws AlreadyExistException, IllegalValuesException {
 
+		if (city.isBlank() || square.isBlank() || daysBeforeExpire <= 0)
+			throw new IllegalValuesException("Uno dei valore richiesti è stato lasciato vuoto. Inserire tutti i campi.");
+
 		var intervals = generateIntervals(intervalStartTime, intervalEndTime);
 
 		var meets = new ArrayList<Meet>();
@@ -88,12 +55,12 @@ public final class MeetManager extends ConcurrencyManager<String, Meet> {
 
 		var notUniqueMeet = new ArrayList<Meet>();
 		meets.forEach(meet -> {
-			var isMeetUnique = getDataMap().values().stream()
+			var isMeetUnique = this.meetMap.values().stream()
 					.noneMatch(meetToCheck -> meetToCheck.equals(meet));
 
 			if (isMeetUnique) {
-				getDataMap().put(meet.getUuid(), meet);
-				saveDataMap();
+				this.meetMap.put(meet.getUuid(), meet);
+				saveData();
 			}
 			else
 				notUniqueMeet.add(meet);
@@ -109,46 +76,50 @@ public final class MeetManager extends ConcurrencyManager<String, Meet> {
 	}
 
 	public void addNewMeet(String city, String square, ArrayList<String> days, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws AlreadyExistException, IllegalValuesException {
+
+		if (days.isEmpty())
+			throw new IllegalValuesException("Non è stato selezionato nessun giorno.");
+
 		for (String day : days) {
 			addNewMeet(city, square, DateParser.stringToWeekDay(day), intervalStartTime, intervalEndTime, daysBeforeExpire);
 		}
 	}
 
 	public void bookMeet(String meetUuid, String userUuid) {
-		var meet =  Optional.ofNullable(getDataMap().get(meetUuid));
+		var meet =  Optional.ofNullable(this.meetMap.get(meetUuid));
 
 		if (meet.isPresent()) {
 			meet.get().bookMeet(userUuid);
-			saveDataMap();
+			saveData();
 		}
 	}
 
-	public void unbookMeet(String meetUuid) {
-		var meet =  Optional.ofNullable(getDataMap().get(meetUuid));
+	public void unBookMeet(String meetUuid) {
+		var meet =  Optional.ofNullable(this.meetMap.get(meetUuid));
 
 		if (meet.isPresent()) {
 			meet.get().unbookMeet();
-			saveDataMap();
+			saveData();
 		}
 	}
 
 	public List<Meet> getMeets() {
-		return getDataMap().values().stream().toList();
+		return this.meetMap.values().stream().toList();
 	}
 
 	public List<Meet> getAvailableMeet() {
-		return getDataMap().values().stream()
+		return this.meetMap.values().stream()
 				.filter(meet -> meet.getUserBookedMeetUuid().isEmpty())
 				.toList();
 	}
 
 	public Optional<Meet> getMeetByUuid(String meetUuid) {
-		return Optional.ofNullable(getDataMap().get(meetUuid));
+		return Optional.ofNullable(this.meetMap.get(meetUuid));
 	}
 
 	public void removeMeetByUuid(String meetUuid) {
-		getDataMap().remove(meetUuid);
-		saveDataMap();
+		this.meetMap.remove(meetUuid);
+		saveData();
 	}
 
 
@@ -167,5 +138,10 @@ public final class MeetManager extends ConcurrencyManager<String, Meet> {
 		else {
 			throw new IllegalValuesException("INVALID_TIME_INPUT");
 		}
+	}
+	
+	private void saveData() {
+		this.meetUpdaterDaemon = new MeetUpdaterDaemon(this.meetMap);
+		EventFactory.getMeetsEvent().fireListener(this.meetMap);
 	}
 }

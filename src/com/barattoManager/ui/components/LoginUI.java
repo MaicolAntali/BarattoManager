@@ -1,8 +1,11 @@
 package com.barattoManager.ui.components;
 
+import com.barattoManager.event.events.DataChangeListener;
 import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.manager.UserManager;
+import com.barattoManager.manager.factory.UserManagerFactory;
+import com.barattoManager.model.user.User;
 import com.barattoManager.model.user.configurator.Configurator;
 import com.barattoManager.ui.BarattoManagerGui;
 import com.barattoManager.ui.components.configurator.ConfiguratorCategoryEditorUi;
@@ -16,12 +19,12 @@ import com.barattoManager.utils.AppConfigurator;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Class used to create a JPanel that represent the login view
  */
-public class LoginUI extends JPanel {
-
+public class LoginUI extends JPanel implements DataChangeListener<String, User> {
 	/**
 	 * Title of JOptionPanel
 	 */
@@ -67,7 +70,7 @@ public class LoginUI extends JPanel {
 	 */
 	public LoginUI(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
 		// Get the userManager
-		this.userManager = UserManager.getInstance();
+		this.userManager = UserManagerFactory.getManager();
 
 		// JPanel conf
 		setVisible(true);
@@ -168,5 +171,10 @@ public class LoginUI extends JPanel {
 				JOptionPane.showMessageDialog(this, ex.getMessage(), ERROR_TITLE, JOptionPane.ERROR_MESSAGE);
 			}
 		});
+	}
+
+	@Override
+	public void update(ConcurrentHashMap<String, User> updatedMap) {
+		System.out.println("Login data updated.");
 	}
 }

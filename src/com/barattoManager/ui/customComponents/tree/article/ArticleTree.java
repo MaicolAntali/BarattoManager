@@ -1,7 +1,7 @@
 package com.barattoManager.ui.customComponents.tree.article;
 
-import com.barattoManager.manager.ArticleManager;
 import com.barattoManager.manager.CategoryManager;
+import com.barattoManager.manager.factory.CategoryManagerFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
@@ -10,22 +10,14 @@ import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public abstract class ArticleTree extends Tree {
 
-	/**
-	 * {@link ArticleTree} constructor
-	 *
-	 * @param dimension      Dimension of the JPanel.
-	 * @param usernameFilter Username filter
-	 * @param stateFilter    State filter
-	 */
-	public ArticleTree(Dimension dimension, String usernameFilter, Article.State stateFilter) {
-		super(dimension);
-		String username = usernameFilter.replace("!", "");
 
-		var nodeMap = generateNodeMap(username, stateFilter);
+	public ArticleTree(List<Article> articles, Dimension dimension) {
+		super(dimension);
+
+		var nodeMap = generateNodeMap(articles);
 
 		// add city to root node
 		nodeMap.forEach((key, value) -> {
@@ -37,33 +29,19 @@ public abstract class ArticleTree extends Tree {
 		getTree().expandPath(new TreePath(getRootNode()));
 	}
 
-	/**
-	 * {@link ArticleTree} constructor
-	 *
-	 * @param usernameFilter Username filter
-	 * @param stateFilter    State filter
-	 */
-	public ArticleTree(String usernameFilter, Article.State stateFilter) {
-		this(new Dimension(500, 290), usernameFilter, stateFilter);
+
+	public ArticleTree(List<Article> articles) {
+		this(articles, new Dimension(500, 290));
 	}
 
 
 	abstract void createNode(Article article,  DefaultMutableTreeNode fatherNode);
 
-	private HashMap<String, HashMap<String, DefaultMutableTreeNode>> generateNodeMap(String usernameFilter, Article.State stateFilter) {
-		CategoryManager categoryManager = CategoryManager.getInstance();
+	private HashMap<String, HashMap<String, DefaultMutableTreeNode>> generateNodeMap(List<Article> articles) {
+		CategoryManager categoryManager = CategoryManagerFactory.getManager();
 		var             nodeMap         = new HashMap<String, HashMap<String, DefaultMutableTreeNode>>();
-		List<Article>   articleList;
 
-		if (Objects.equals(usernameFilter, "") && stateFilter == null)
-			articleList = ArticleManager.getInstance().getArticles();
-		else if (stateFilter == null)
-			articleList = ArticleManager.getInstance().getArticlesByOwner(usernameFilter);
-		else
-			articleList = ArticleManager.getInstance().getArticlesByStatusExceptOwner(stateFilter, usernameFilter);
-
-
-		articleList
+		articles
 				.forEach(article -> {
 					var category = categoryManager.getCategoryByUuid(article.getCategoryUuid());
 

@@ -1,6 +1,8 @@
 package com.barattoManager.ui.components.viewer;
 
 import com.barattoManager.event.events.DataChangeListener;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
+import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.customComponents.menu.factory.DashboardMenuFactory;
@@ -8,8 +10,11 @@ import com.barattoManager.ui.customComponents.tree.article.ArticleTreeDashboard;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class ViewerDashboardArticle extends JPanel implements DataChangeListener {
+public class ViewerDashboardArticle extends JPanel implements DataChangeListener<String, Article> {
 	public static final String HELP_MESSAGE = """
 			In questa pagina puoi visualizzare I tuoi articoli
 			Per effettuare un operazione su un tuo articolo puoi cliccare sul menu in alto al sinistra e scegliere di:
@@ -26,7 +31,7 @@ public class ViewerDashboardArticle extends JPanel implements DataChangeListener
 
 	public ViewerDashboardArticle(Dimension dimension, CardLayout cardLayout, JPanel panelContainer, User user) {
 		this.user = user;
-		this.articleTree = new ArticleTreeDashboard(user.getUsername(), null);
+		this.articleTree = new ArticleTreeDashboard(articleMapFilter(ArticleManagerFactory.getManager().getArticleMap()));
 
 		setVisible(true);
 		add(mainPanel);
@@ -46,11 +51,11 @@ public class ViewerDashboardArticle extends JPanel implements DataChangeListener
 	}
 
 	@Override
-	public void update() {
+	public void update(ConcurrentHashMap<String, Article> updatedMap) {
 		centerPanel.remove(articleTree);
 		centerPanel.remove(menu);
 
-		this.articleTree = new ArticleTreeDashboard(user.getUsername(), null);
+		this.articleTree = new ArticleTreeDashboard(articleMapFilter(updatedMap));
 		this.menu = new DashboardMenuFactory().createMenuObject().createMenu(user, articleTree);
 
 		centerPanel.add(menu, BorderLayout.NORTH);
@@ -58,5 +63,12 @@ public class ViewerDashboardArticle extends JPanel implements DataChangeListener
 
 		centerPanel.repaint();
 		centerPanel.revalidate();
+	}
+
+	private List<Article> articleMapFilter(ConcurrentHashMap<String, Article> articleMap) {
+		return articleMap.values()
+				.stream()
+				.filter(article -> Objects.equals(article.getUserNameOwner().toLowerCase(), user.getUsername().toLowerCase()))
+				.toList();
 	}
 }

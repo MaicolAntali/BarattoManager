@@ -1,5 +1,6 @@
 package com.barattoManager.ui.components.configurator;
 
+import com.barattoManager.manager.factory.ArticleManagerFactory;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTreeStore;
 
@@ -16,7 +17,7 @@ public class ConfiguratorOfferView extends JPanel{
         add(mainPanel);
         mainPanel.setPreferredSize(dimension);
 
-        centerPanel.add(new ArticleTreeStore(new Dimension(520, 330), "", null));
+        centerPanel.add(new ArticleTreeStore(ArticleManagerFactory.getManager().getArticleMap().values().stream().toList()));
 
 
         backToHomeButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));

@@ -2,7 +2,7 @@ package com.barattoManager.ui.customComponents.optionPane;
 
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.manager.UserManager;
+import com.barattoManager.manager.factory.UserManagerFactory;
 import com.barattoManager.utils.AppConfigurator;
 
 import javax.swing.*;
@@ -98,7 +98,7 @@ public class RegisterNewUserPanel {
 
 		if (result == JOptionPane.OK_OPTION) {
 			try {
-				UserManager.getInstance().addNewUser(
+				UserManagerFactory.getManager().addNewUser(
 						usernameField.getText(),
 						AppConfigurator.getInstance().getPasswordSetting("default_pwd"),
 						isConfigurator

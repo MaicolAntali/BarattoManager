@@ -1,6 +1,7 @@
 package com.barattoManager.ui.components.viewer;
 
 import com.barattoManager.event.events.DataChangeListener;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.components.ComponentsName;
@@ -10,11 +11,14 @@ import com.barattoManager.ui.customComponents.tree.article.ArticleTreeStore;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Class used to create a JPanel that represent the store of the articles (only viewer)
  */
-public class ViewerStoreArticle extends JPanel implements DataChangeListener {
+public class ViewerStoreArticle extends JPanel implements DataChangeListener<String, Article> {
 
 	private final User user;
 	private JMenuBar menu;
@@ -42,7 +46,7 @@ public class ViewerStoreArticle extends JPanel implements DataChangeListener {
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
-		tree = new ArticleTreeStore(new Dimension(510, 310), "!%s".formatted(user.getUsername()), Article.State.OPEN_OFFER);
+		tree = new ArticleTreeStore(articleMapFilter(ArticleManagerFactory.getManager().getArticleMap()));
 
 		menu = new StoreMenuFactory().createMenuObject().createMenu(user, tree);
 		centerPanel.add(menu, BorderLayout.NORTH);
@@ -57,13 +61,12 @@ public class ViewerStoreArticle extends JPanel implements DataChangeListener {
 				"Help",
 				JOptionPane.INFORMATION_MESSAGE));
 	}
-
 	@Override
-	public void update() {
+	public void update(ConcurrentHashMap<String, Article> updatedMap) {
 		centerPanel.remove(tree);
 		centerPanel.remove(menu);
 
-		this.tree = new ArticleTreeStore(new Dimension(510, 310), "!%s".formatted(user.getUsername()), Article.State.OPEN_OFFER);
+		this.tree = new ArticleTreeStore(articleMapFilter(updatedMap));
 		this.menu = new StoreMenuFactory().createMenuObject().createMenu(user, tree);
 
 		centerPanel.add(menu, BorderLayout.NORTH);
@@ -71,5 +74,13 @@ public class ViewerStoreArticle extends JPanel implements DataChangeListener {
 
 		centerPanel.repaint();
 		centerPanel.revalidate();
+	}
+
+	private List<Article> articleMapFilter(ConcurrentHashMap<String, Article> articleMap) {
+		return articleMap.values()
+				.stream()
+				.filter(article -> !Objects.equals(article.getUserNameOwner().toLowerCase(), user.getUsername().toLowerCase()))
+				.filter(article -> article.getArticleState() == Article.State.OPEN_OFFER)
+				.toList();
 	}
 }

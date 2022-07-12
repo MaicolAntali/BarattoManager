@@ -16,6 +16,6 @@ public final class DateParser {
 
 
 	public static DayOfWeek stringToWeekDay(String day) {
-		return dayHashMap.get(day);
+		return dayHashMap.get(day.replace('ì', 'i').toUpperCase());
 	}
 }

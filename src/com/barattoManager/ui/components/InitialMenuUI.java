@@ -36,6 +36,8 @@ public class InitialMenuUI extends JPanel {
 
         mainPanel.setPreferredSize(dimension);
 
+
+
         loginButton.addActionListener(e -> cardLayout.show(contentPanel, ComponentsName.LOGIN.toString()));
         RegisterButton.addActionListener(e ->  new RegisterNewUserPanel(mainPanel, false).createNewUser());
     }

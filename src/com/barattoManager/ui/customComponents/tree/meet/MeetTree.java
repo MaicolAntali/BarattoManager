@@ -1,6 +1,5 @@
 package com.barattoManager.ui.customComponents.tree.meet;
 
-import com.barattoManager.manager.MeetManager;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
@@ -8,6 +7,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Class used to create a JPanel that contain a JTree
@@ -16,13 +16,13 @@ public class MeetTree extends Tree {
 
 	private DefaultMutableTreeNode rootNode;
 
-	public MeetTree(Dimension dimension) {
+	public MeetTree(List<Meet> meets, Dimension dimension) {
 		super(dimension);
 
 		var nodeMap = new HashMap<String, DefaultMutableTreeNode>();
 
 		// Create all meet
-		for (Meet meet : MeetManager.getInstance().getMeets()) {
+		for (Meet meet : meets) {
 			if (nodeMap.containsKey(meet.getCity().trim().toLowerCase())) {
 				createMeetNode(meet, nodeMap.get(meet.getCity().trim().toLowerCase()));
 			}
@@ -43,8 +43,8 @@ public class MeetTree extends Tree {
 	/**
 	 * {@link MeetTree} Constructor
 	 */
-	public MeetTree() {
-		this(new Dimension(500, 290));
+	public MeetTree(List<Meet> meets) {
+		this(meets, new Dimension(500, 290));
 	}
 
 	@Override

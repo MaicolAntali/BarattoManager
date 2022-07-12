@@ -6,7 +6,7 @@ public final class StringParser {
 
 	private static final String ERROR_FORMAT = "Non è possibile fare il parse della stringa.";
 
-	public static int strintToInt(String text) throws IllegalValuesException {
+	public static int stringIntoInteger(String text) throws IllegalValuesException {
 		try {
 			return Integer.parseInt(text);
 		}

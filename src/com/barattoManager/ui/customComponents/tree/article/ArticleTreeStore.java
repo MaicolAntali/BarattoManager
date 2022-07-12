@@ -5,14 +5,14 @@ import com.barattoManager.utils.TreeUtils;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
-import java.awt.*;
+import java.util.List;
 
 public final class ArticleTreeStore extends ArticleTree {
 
 	private DefaultMutableTreeNode rootNode;
 
-	public ArticleTreeStore(Dimension dimension, String usernameFilter, Article.State stateFilter) {
-		super(dimension, usernameFilter, stateFilter);
+	public ArticleTreeStore(List<Article> articles) {
+		super(articles);
 	}
 
 	@Override

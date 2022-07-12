@@ -126,8 +126,6 @@ public class Category {
 
 		category.addNewFields(categoryFields);
 		subCategory.put(category.getUuid(), category);
-
-		assert subCategory.containsKey(name.toLowerCase()): POST_CONDITION_SUBCATEGORY_NOT_ADDED_TO_HASHMAP;
 	}
 
 	/**

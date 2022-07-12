@@ -1,7 +1,8 @@
 package com.barattoManager.ui.customComponents.menu.actions.template;
 
-import com.barattoManager.manager.ArticleManager;
-import com.barattoManager.manager.TradeManager;
+import com.barattoManager.exception.IllegalValuesException;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
+import com.barattoManager.manager.factory.TradeManagerFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.trade.Trade;
 import com.barattoManager.model.user.User;
@@ -14,7 +15,7 @@ public abstract class TradeTemplate extends NodeUuidActionTemplate {
 
 	@Override
 	protected void customAction(String uuid, Tree tree, User user) {
-		var tradeOptional = TradeManager.getInstance().getTradeByUuid(uuid);
+		var tradeOptional = TradeManagerFactory.getManager().getTradeByUuid(uuid);
 
 		if (tradeOptional.isEmpty()) {
 			JOptionPane.showMessageDialog(tree, "Non è stato selezionato nessun articolo", "Errore", JOptionPane.ERROR_MESSAGE);
@@ -32,8 +33,14 @@ public abstract class TradeTemplate extends NodeUuidActionTemplate {
 	protected abstract void customAction(Trade trade, Tree tree, User user);
 
 	public void changeArticleState(String articleUuid, Article.State state) {
-		ArticleManager.getInstance().getArticleById(articleUuid)
-				.orElseThrow(NullPointerException::new)
-				.changeState(state);
+		try {
+			ArticleManagerFactory.getManager()
+					.changeArticleState(
+							articleUuid,
+							state
+					);
+		} catch (IllegalValuesException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

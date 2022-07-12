@@ -2,8 +2,10 @@ package com.barattoManager.event;
 
 import com.barattoManager.event.events.DataChangeListener;
 
-public interface Event {
-	void addListener(DataChangeListener listener);
+import java.util.concurrent.ConcurrentHashMap;
 
-	void fireListener();
+public interface Event<K, V> {
+	void addListener(DataChangeListener<K, V> listener);
+
+	void fireListener(ConcurrentHashMap<K, V> updatedMap);
 }

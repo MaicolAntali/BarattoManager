@@ -1,7 +1,7 @@
 package com.barattoManager.ui.customComponents.menu.actions.panels;
 
 import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.manager.MeetManager;
+import com.barattoManager.manager.factory.MeetManagerFactory;
 import com.barattoManager.model.meet.Meet;
 
 import javax.swing.*;
@@ -20,7 +20,7 @@ public class SelectMeetDate extends JPanel {
 
 		meetComboBox.setRenderer(new MeetComboBoxCustomRenderer());
 
-		var meets = MeetManager.getInstance().getAvailableMeet();
+		var meets = MeetManagerFactory.getManager().getAvailableMeet();
 		if (meets.isEmpty()) {
 			throw new IllegalValuesException("Non ci sono meet disponibili");
 		}

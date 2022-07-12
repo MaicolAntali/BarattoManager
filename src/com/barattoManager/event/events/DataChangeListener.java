@@ -1,5 +1,7 @@
 package com.barattoManager.event.events;
 
-public interface DataChangeListener {
-	void update();
+import java.util.concurrent.ConcurrentHashMap;
+
+public interface DataChangeListener<K, V> {
+	void update(ConcurrentHashMap<K, V> updatedMap);
 }

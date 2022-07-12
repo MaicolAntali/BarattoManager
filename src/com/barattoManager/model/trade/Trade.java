@@ -1,8 +1,8 @@
 package com.barattoManager.model.trade;
 
-import com.barattoManager.manager.ArticleManager;
-import com.barattoManager.manager.TradeManager;
-import com.barattoManager.utils.History;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
+import com.barattoManager.manager.factory.TradeManagerFactory;
+import com.barattoManager.model.history.History;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
@@ -38,8 +38,8 @@ public class Trade {
 		this.articleOneUuid = articleOneUuid;
 		this.articleTwoUuid = articleTwoUuid;
 		this.answer = new Answer(
-				ArticleManager.getInstance().getArticleById(articleOneUuid).orElseThrow(NullPointerException::new).getUserNameOwner(),
-				ArticleManager.getInstance().getArticleById(articleTwoUuid).orElseThrow(NullPointerException::new).getUserNameOwner()
+				ArticleManagerFactory.getManager().getArticleById(articleOneUuid).orElseThrow(NullPointerException::new).getUserNameOwner(),
+				ArticleManagerFactory.getManager().getArticleById(articleTwoUuid).orElseThrow(NullPointerException::new).getUserNameOwner()
 		);
 		this.meetUuid = meetUuid;
 		this.history = new ArrayList<>();
@@ -107,14 +107,14 @@ public class Trade {
 
 	public void setTradeStatus(TradeStatus tradeStatus) {
 		this.tradeStatus = tradeStatus;
-		TradeManager.getInstance().saveDataMap();
+		TradeManagerFactory.getManager().saveData();
 	}
 
 	public void rescheduleTrade() {
 		getAnswer().invertWaitingUser();
 
 		history.add(new History("Trade Riprogrammati", "Il trade è riprogrammato. Attesa di un risposta da: %s".formatted(answer.getWaitingUserAnswer())));
-		TradeManager.getInstance().saveDataMap();
+		TradeManagerFactory.getManager().saveData();
 	}
 
 	public void closeTrade() {
@@ -123,6 +123,6 @@ public class Trade {
 
 		history.add(new History("Trade Chiuso", "Il trade è stato accettato da entrambe le parti e quindi chiuso."));
 
-		TradeManager.getInstance().saveDataMap();
+		TradeManagerFactory.getManager().saveData();
 	}
 }

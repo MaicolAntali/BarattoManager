@@ -1,4 +1,4 @@
-package com.barattoManager.utils;
+package com.barattoManager.model.history;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;

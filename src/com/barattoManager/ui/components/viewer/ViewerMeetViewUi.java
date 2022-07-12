@@ -1,5 +1,6 @@
 package com.barattoManager.ui.components.viewer;
 
+import com.barattoManager.manager.factory.MeetManagerFactory;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.customComponents.tree.meet.MeetTree;
 
@@ -34,7 +35,7 @@ public class ViewerMeetViewUi extends JPanel {
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
-		centerPanel.add(new MeetTree(new Dimension(520, 330)));
+		centerPanel.add(new MeetTree(MeetManagerFactory.getManager().getMeets(), new Dimension(520, 330)));
 
 		backToHomeButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.VIEWER_HOME.toString()));
 	}

@@ -1,6 +1,9 @@
 package com.barattoManager.ui.components.viewer;
 
 import com.barattoManager.event.events.DataChangeListener;
+import com.barattoManager.manager.factory.ArticleManagerFactory;
+import com.barattoManager.manager.factory.TradeManagerFactory;
+import com.barattoManager.model.trade.Trade;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.customComponents.menu.factory.TradeMenuFactory;
@@ -9,8 +12,11 @@ import com.barattoManager.ui.customComponents.tree.trade.TradeTree;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class ViewerExchangesViewUi extends JPanel implements DataChangeListener {
+public class ViewerExchangesViewUi extends JPanel implements DataChangeListener<String, Trade> {
     public static final String HELP_MESSAGE = "...";
     private final User user;
 
@@ -23,7 +29,7 @@ public class ViewerExchangesViewUi extends JPanel implements DataChangeListener 
 
     public ViewerExchangesViewUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer, User user) {
         this.user = user;
-        this.tradeTree = new TradeTree(user);
+        this.tradeTree = new TradeTree(tradeMapFilter(TradeManagerFactory.getManager().getTradeMap()), user);
 
         setVisible(true);
         add(mainPanel);
@@ -43,11 +49,11 @@ public class ViewerExchangesViewUi extends JPanel implements DataChangeListener 
     }
 
     @Override
-    public void update() {
+    public void update(ConcurrentHashMap<String, Trade> updatedMap) {
         centerPanel.remove(tradeTree);
         centerPanel.remove(menu);
 
-        this.tradeTree = new TradeTree(user);
+        this.tradeTree = new TradeTree(tradeMapFilter(updatedMap), user);
         this.menu = new TradeMenuFactory().createMenuObject().createMenu(user, tradeTree);
 
         centerPanel.add(menu, BorderLayout.NORTH);
@@ -55,5 +61,16 @@ public class ViewerExchangesViewUi extends JPanel implements DataChangeListener 
 
         centerPanel.repaint();
         centerPanel.revalidate();
+    }
+
+    private List<Trade> tradeMapFilter(ConcurrentHashMap<String, Trade> tradeMap) {
+        return tradeMap.values()
+                .stream()
+                .filter(trade -> Objects.equals(ArticleManagerFactory.getManager().getArticleById(trade.getArticleOneUuid()).orElseThrow(NullPointerException::new)
+                        .getUserNameOwner(), user.getUsername())
+                        || Objects.equals(ArticleManagerFactory.getManager().getArticleById(trade.getArticleTwoUuid()).orElseThrow(NullPointerException::new)
+                        .getUserNameOwner(), user.getUsername())
+                )
+                .toList();
     }
 }
