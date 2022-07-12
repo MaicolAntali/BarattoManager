@@ -10,12 +10,16 @@ import java.awt.*;
 import java.util.HashMap;
 
 /**
- * Class used to create a JPanel that contain a JTree
+ * Class used to create a JPanel that contains a JTree of meets
  */
 public class MeetTree extends Tree {
 
 	private DefaultMutableTreeNode rootNode;
 
+	/**
+	 * {@link MeetTree} constructor
+	 * @param dimension {@link Dimension} object
+	 */
 	public MeetTree(Dimension dimension) {
 		super(dimension);
 

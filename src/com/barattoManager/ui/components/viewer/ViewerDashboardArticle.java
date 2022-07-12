@@ -9,9 +9,18 @@ import com.barattoManager.ui.customComponents.tree.article.ArticleTreeDashboard;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class used to create a JPanel that represent the dashboard view (only viewer)
+ */
 public class ViewerDashboardArticle extends JPanel implements DataChangeListener {
+	/**
+	 * Help Message: In this view you can see your articles
+	 * from the left corner menu you can do the following commands:
+	 * - Add a new article
+	 * - Cancel an open offer
+	 */
 	public static final String HELP_MESSAGE = """
-			In questa pagina puoi visualizzare I tuoi articoli
+			In questa pagina puoi visualizzare i tuoi articoli
 			Per effettuare un operazione su un tuo articolo puoi cliccare sul menu in alto al sinistra e scegliere di:
 				 - Aggiungere un nuovo articolo da barattare;
 				 - Cancellare l'offerta di un articolo.""";

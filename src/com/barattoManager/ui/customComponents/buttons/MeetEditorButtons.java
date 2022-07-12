@@ -62,7 +62,7 @@ public class MeetEditorButtons extends JPanel {
 						createNewMeetPanel.getSelectedDays(),
 						TimeParser.hourToMinuteTime(createNewMeetPanel.getStartTimeField().getText()),
 						TimeParser.hourToMinuteTime(createNewMeetPanel.getEndTimeField().getText()),
-						StringParser.strintToInt(createNewMeetPanel.getDaysBeforeExpireField())
+						StringParser.stringToInt(createNewMeetPanel.getDaysBeforeExpireField())
 				);
 			} catch (AlreadyExistException | IllegalValuesException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "ERRORE", JOptionPane.ERROR_MESSAGE);

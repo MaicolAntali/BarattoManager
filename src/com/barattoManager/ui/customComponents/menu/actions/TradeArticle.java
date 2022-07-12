@@ -16,6 +16,9 @@ import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Trade article action
+ */
 public class TradeArticle extends NodeUuidActionTemplate {
 	/**
 	 * Error: no article has been selected
@@ -95,10 +98,18 @@ public class TradeArticle extends NodeUuidActionTemplate {
 		}
 	}
 
+	/**
+	 * JPanel used to select a article to trade
+	 */
 	static class SelectArticleToTradePanel extends JPanel {
 
 		private final JComboBox<Article> articleComboBox = new JComboBox<>();
 
+
+		/**
+		 * {@link SelectArticleToTradePanel} costructor
+		 * @param articles articles list
+		 */
 		public SelectArticleToTradePanel(List<Article> articles) {
 			var mainPanel = new JPanel();
 			mainPanel.setLayout(new GridLayout(0, 1));
@@ -117,10 +128,17 @@ public class TradeArticle extends NodeUuidActionTemplate {
 			setVisible(true);
 		}
 
+		/**
+		 * Method used to get the selected article
+		 * @return {@link Article} selected
+		 */
 		public Article getSelectedArticle() {
 			return (Article) articleComboBox.getSelectedItem();
 		}
 
+		/**
+		 *  Combobox custom renderer
+		 */
 		static class ArticleComboBoxCustomRenderer extends BasicComboBoxRenderer {
 			@Override
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {

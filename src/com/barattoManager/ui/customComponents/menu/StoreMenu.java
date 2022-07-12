@@ -10,13 +10,25 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 
+/**
+ * Store Menu
+ */
 public class StoreMenu extends JPanel implements Menu {
 
+	/**
+	 * {@link HashMap} of commands
+	 */
 	private final static HashMap<String, MenuAction> COMMAND_MAP = new HashMap<>(){{
 		put("Scambia Articolo", new TradeArticle());
 	}};
 
 
+	/**
+	 * Method used to create a {@link JMenuBar}
+	 * @param user {@link User}
+	 * @param tree {@link Tree}
+	 * @return {@link JMenuBar}
+	 */
 	@Override
 	public JMenuBar createMenu(User user, Tree tree) {
 		var articleMenu = new JMenu("Scambi");
@@ -30,6 +42,12 @@ public class StoreMenu extends JPanel implements Menu {
 		return menuBar;
 	}
 
+	/**
+	 * Method used to run the commands
+	 * @param event {@link ActionEvent}
+	 * @param user {@link User}
+	 * @param tree {@link Tree}
+	 */
 	public void runCommand(ActionEvent event, User user, Tree tree) {
 		COMMAND_MAP.get(event.getActionCommand()).run(user, tree);
 	}

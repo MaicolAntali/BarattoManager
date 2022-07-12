@@ -160,6 +160,10 @@ public final class UserManager extends NoConcurrencyManager<String, User>{
 	}
 
 
+	/**
+	 * Method used to get the {@link #getDataMap()}
+	 * @return {@link HashMap} with all users
+	 */
 	public HashMap<String, User> getUserMap() {
 		return getDataMap();
 	}

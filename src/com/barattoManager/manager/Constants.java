@@ -1,5 +1,8 @@
 package com.barattoManager.manager;
 
+/**
+ * Class used to contain the constants used from the manager
+ */
 public final class Constants {
 	/**
 	 * Post-condition: The category is not present in the map.
@@ -70,5 +73,13 @@ public final class Constants {
 	 * Post-Condition: The article is not present in the map
 	 */
 	public static final String POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP = "Post-Condition: The article is not present in the map";
+	/**
+	 * Post_condition: The meet is not present in the map
+	 */
+	public static final String POST_CONDITION_THE_MEET_IS_NOT_PRESENT_IN_THE_MAP = "Post_condition: The meet is not present in the map";
+	/**
+	 * Post_condition: The trade is not present in the map
+	 */
+	public static final String POST_CONDITION_THE_TRADE_IS_NOT_PRESENT_IN_THE_MAP = "Post_condition: The trade is not present in the map";
 
 }

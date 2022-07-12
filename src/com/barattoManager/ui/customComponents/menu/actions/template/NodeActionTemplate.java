@@ -8,6 +8,9 @@ import com.barattoManager.ui.customComponents.tree.Tree;
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
 
+/**
+ * Abstract class of a node action template
+ */
 public abstract class NodeActionTemplate implements MenuAction {
 
 	@Override
@@ -24,5 +27,11 @@ public abstract class NodeActionTemplate implements MenuAction {
 		customAction(nodePath, tree, user);
 	}
 
+	/**
+	 * Method that will run after the default implementation
+	 * @param nodePath node path
+	 * @param tree tree
+	 * @param user user
+	 */
 	protected abstract void customAction(TreeNode[] nodePath, Tree tree, User user);
 }

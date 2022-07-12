@@ -148,6 +148,10 @@ public class CreateNewMeetPanel extends JPanel {
 		return endTimeField;
 	}
 
+	/**
+	 * Method used to get the days before expire field
+	 * @return the day before expire
+	 */
 	public String getDaysBeforeExpireField() {
 		return daysBeforeExpireField.getText();
 	}

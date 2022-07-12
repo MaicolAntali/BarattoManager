@@ -11,6 +11,9 @@ import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.*;
 
+/**
+ * Accept and reschedule a trade action
+ */
 public class AcceptRescheduleTrade extends TradeTemplate {
 
 	@Override

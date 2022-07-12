@@ -123,10 +123,22 @@ public class Article {
 		 * Cancelled offer italian label
 		 */
 		CANCELLED_OFFER("Offerta Cancellata"),
+		/**
+		 * Linked offer italian label
+		 */
 		LINKED_OFFER("Offerta accoppiata"),
+		/**
+		 * Selected offer italian label
+		 */
 		SELECTED_OFFER("Offerta selezionata"),
+		/**
+		 * In trade offer italian label
+		 */
 
 		IN_TRADE_OFFER("Offerta in Scambio"),
+		/**
+		 * Close offer italian label
+		 */
 		CLOSE_OFFER("Offerta chiusa");
 
 		/**
@@ -152,9 +164,17 @@ public class Article {
 		}
 	}
 
+	 /**
+	 * {@link Article} constructor
+	 * @param articleName Name of article
+	 * @param userNameOwner Owner name of article
+	 * @param categoryUuid Category uuid of article
+	 * @param fields Fields of article
+	 * @param values Values of fields
+	 */
 	public Article(String articleName, String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
-		assert categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
-		assert userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
+		assert !categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
+		assert !userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
 		assert !fields.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
 		assert !values.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
 
@@ -176,6 +196,7 @@ public class Article {
 	/**
 	 * {@link Article} constructor
 	 * @param uuid Uuid of article
+	 * @param articleName Name of article
 	 * @param userNameOwner Owner name of article
 	 * @param categoryUuid Category uuid of article
 	 * @param fieldValueMap {@link HashMap} that contains fields values
@@ -191,11 +212,11 @@ public class Article {
 			@JsonProperty("log") ArrayList<History> history,
 			@JsonProperty("state") State articleState
 	) {
-		assert uuid.isEmpty() : PRE_CONDITION_UUID_IS_EMPTY;
-		assert categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
-		assert userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
-		assert fieldValueMap.isEmpty() : PRE_CONDITION_FIELDS_MAP_IS_EMPTY;
-		assert history.isEmpty() : PRE_CONDITION_HISTORY_IS_EMPTY;
+		assert !uuid.isEmpty() : PRE_CONDITION_UUID_IS_EMPTY;
+		assert !categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
+		assert !userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
+		assert !fieldValueMap.isEmpty() : PRE_CONDITION_FIELDS_MAP_IS_EMPTY;
+		assert !history.isEmpty() : PRE_CONDITION_HISTORY_IS_EMPTY;
 
 		this.uuid = uuid;
 		this.articleName = articleName;
@@ -214,6 +235,10 @@ public class Article {
 		return uuid;
 	}
 
+	/**
+	 * Method used to get the article name
+	 * @return Article name
+	 */
 	public String getArticleName() {
 		return articleName;
 	}

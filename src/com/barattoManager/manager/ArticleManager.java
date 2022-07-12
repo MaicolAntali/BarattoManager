@@ -75,11 +75,13 @@ public final class ArticleManager extends NoConcurrencyManager<String, Article>{
 	/**
 	 * Method used to add new article
 	 *
+	 * @param articleName Article name
 	 * @param userNameOwner Owner name of article
 	 * @param categoryUuid Category uuid of article
 	 * @param fields {@link ArrayList} that contains fields name of article
 	 * @param values {@link ArrayList} that contains fields values
 	 */
+
 	public void addNewArticle(String articleName, String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
 		var article = new Article(articleName, userNameOwner, categoryUuid, fields, values);
 		getDataMap().put(article.getUuid(), article);
@@ -88,20 +90,41 @@ public final class ArticleManager extends NoConcurrencyManager<String, Article>{
 		assert getDataMap().containsKey(article.getUuid()) : POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP;
 	}
 
+	/**
+	 * Method used to get an article by the UUID
+	 * @param uuid {@link java.util.UUID} of the article
+	 * @return {@link Optional} of {@link Article}
+	 */
 	public Optional<Article> getArticleById(String uuid) {
 		return Optional.ofNullable(getDataMap().get(uuid));
 	}
 
+	/**
+	 * Method used to get a {@link List} of the Articles
+	 * @return {@link ArrayList} of {@link Article}
+	 */
 	public List<Article> getArticles() {
 		return new ArrayList<>(getDataMap().values());
 	}
 
+	/**
+	 * Method used to get the articles by the owner
+	 * @param ownerFilter Owner filter
+	 * @return {@link Article}
+	 */
 	public List<Article> getArticlesByOwner(String ownerFilter) {
 		return getArticles().stream()
 				.filter(article -> Objects.equals(article.getUserNameOwner().toLowerCase(), ownerFilter.toLowerCase()))
 				.collect(Collectors.toList());
 	}
 
+	/**
+	 * Method used to get the {@link Article}
+	 * @param ownerFilter Owner filter
+	 * @param state The state of the article
+	 * @param categoryUuid UUID of the category
+	 * @return {@link List} of articles
+	 */
 	public List<Article> getArticlesByOwnerStateCategory(String ownerFilter, Article.State state, String categoryUuid) {
 		return getArticlesByOwner(ownerFilter).stream()
 				.filter(article -> article.getArticleState() == state)
@@ -109,6 +132,12 @@ public final class ArticleManager extends NoConcurrencyManager<String, Article>{
 				.collect(Collectors.toList());
 	}
 
+	/**
+	 * Method used to get the {@link Article}
+	 * @param stateFilter State filter
+	 * @param ownerFilter Owner filter
+	 * @return {@link List} of articles
+	 */
 	public List<Article> getArticlesByStatusExceptOwner(Article.State stateFilter, String ownerFilter) {
 		return getArticles().stream()
 				.filter(article -> article.getArticleState() == stateFilter)

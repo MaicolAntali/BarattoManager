@@ -9,17 +9,28 @@ import com.barattoManager.utils.parser.TimeParser;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Meet Updater
+ */
 public class MeetUpdaterDaemon extends TimerTask {
 
 	private final ConcurrentHashMap<String, Meet> meetHashMap;
 
+	/**
+	 * {@link MeetUpdaterDaemon} constructor
+	 * @param meetHashMap {@link HashMap}
+	 */
 	public MeetUpdaterDaemon(ConcurrentHashMap<String, Meet> meetHashMap) {
 		this.meetHashMap = meetHashMap;
 	}
 
+	/**
+	 * Method used to run the Timer Task (MeetUpdaterDaemon)
+	 */
 	@Override
 	public void run() {
 		System.out.printf("Running  MeetUpdaterDaemon: %s%n", LocalDateTime.now());

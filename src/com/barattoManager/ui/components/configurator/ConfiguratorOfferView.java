@@ -1,12 +1,14 @@
 package com.barattoManager.ui.components.configurator;
 
 import com.barattoManager.ui.components.ComponentsName;
-import com.barattoManager.ui.components.InitialMenuUI;
 import com.barattoManager.ui.customComponents.tree.article.ArticleTreeStore;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * JPanel used from the Configurator to see the offers
+ */
 public class ConfiguratorOfferView extends JPanel{
     /**
      * Main Panel

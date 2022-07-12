@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Abstract class that represent the Article tree
+ */
 public abstract class ArticleTree extends Tree {
 
 	/**

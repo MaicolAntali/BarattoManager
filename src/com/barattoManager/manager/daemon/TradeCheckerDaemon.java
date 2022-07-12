@@ -10,10 +10,17 @@ import java.time.LocalDateTime;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Trade checker
+ */
 public class TradeCheckerDaemon extends TimerTask {
 
 	private final ConcurrentHashMap<String, Trade> tradeHashMap;
 
+	/**
+	 * {@link TradeCheckerDaemon} constructor
+	 * @param tradeHashMap {@link ConcurrentHashMap} of trade
+	 */
 	public TradeCheckerDaemon(ConcurrentHashMap<String, Trade> tradeHashMap) {
 		this.tradeHashMap = tradeHashMap;
 	}

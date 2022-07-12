@@ -16,6 +16,10 @@ public class CategoryTree extends Tree {
 
 	private DefaultMutableTreeNode rootNode;
 
+	/**
+	 * {@link CategoryTree} constructor
+	 * @param dimension {@link Dimension}
+	 */
 	public CategoryTree(Dimension dimension) {
 		super(dimension);
 
@@ -27,6 +31,9 @@ public class CategoryTree extends Tree {
 		getTree().expandPath(new TreePath(getRootNode()));
 	}
 
+	/**
+	 * {@link CategoryTree} constructor
+	 */
 	public CategoryTree() {
 		this(new Dimension(500, 290));
 	}

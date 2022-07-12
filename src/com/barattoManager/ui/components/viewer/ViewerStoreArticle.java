@@ -16,6 +16,7 @@ import java.awt.*;
  * Class used to create a JPanel that represent the store of the articles (only viewer)
  */
 public class ViewerStoreArticle extends JPanel implements DataChangeListener {
+
 	/**
 	 * Help message: explains what are you seeing and how to exchange articles
 	 */

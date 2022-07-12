@@ -24,6 +24,11 @@ public final class TreeUtils {
 		return arrayList;
 	}
 
+	/**
+	 * Method used to generate the node of all field in an article
+	 * @param article {@link Article} article object
+	 * @return {@link DefaultMutableTreeNode} Node that keep all fields
+	 */
 	public static DefaultMutableTreeNode generateFields(Article article) {
 		var fieldsNode = new DefaultMutableTreeNode("Campi");
 

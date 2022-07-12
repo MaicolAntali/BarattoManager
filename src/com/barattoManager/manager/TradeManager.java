@@ -19,6 +19,11 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Timer;
 
+import static com.barattoManager.manager.Constants.*;
+
+/**
+ * Class used to manage the trade
+ */
 public final class TradeManager extends ConcurrencyManager<String, Trade> {
 	private TradeCheckerDaemon tradeCheckerDaemon;
 	private Thread daemonChecker;
@@ -50,6 +55,14 @@ public final class TradeManager extends ConcurrencyManager<String, Trade> {
 		EventFactory.getTradesEvent().fireListener();
 	}
 
+
+	/**
+	 * Method used to add a new trade
+	 * @param endTradeDateTime {@link LocalDateTime} end data time of trade
+	 * @param articleOneUuid article one uuid
+	 * @param articleTwoUuid article two uuid
+	 * @param meetUuid meet uuid
+	 */
 	public void addNewTrade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid, String meetUuid) {
 
 		ArticleManager.getInstance().getArticleById(articleOneUuid)
@@ -60,13 +73,23 @@ public final class TradeManager extends ConcurrencyManager<String, Trade> {
 		var trade = new Trade(endTradeDateTime, articleOneUuid, articleTwoUuid, meetUuid);
 		getDataMap().put(trade.getUuid(), trade);
 		saveDataMap();
+		assert getDataMap().containsKey(trade.getUuid()) : POST_CONDITION_THE_TRADE_IS_NOT_PRESENT_IN_THE_MAP;
 	}
 
-
+	/**
+	 * Method used to create get the {@link TradeManager} instance.
+	 * This method uses the lazy loading mechanism cause the inner class is loaded only if
+	 * the {@code #getInstance()} method is called.
+	 *
+	 * @return The Instance of {@link TradeManager} class
+	 */
 	public static TradeManager getInstance() {
 		return TradeManagerHolder.instance;
 	}
 
+	/**
+	 * Method used to run the checker thread
+	 */
 	public void runDaemonChecker() {
 		if (daemonChecker == null || !daemonChecker.isAlive()) {
 			daemonChecker = new Thread(
@@ -88,6 +111,11 @@ public final class TradeManager extends ConcurrencyManager<String, Trade> {
 		private static final TradeManager instance = new TradeManager();
 	}
 
+	/**
+	 * Method used to get a specific user’s trade list
+	 * @param userUuid User uuid
+	 * @return user’s trade list
+	 */
 	public List<Trade> getTradeByUser(String userUuid) {
 		return getDataMap().values().stream()
 				.filter(trade ->
@@ -98,6 +126,11 @@ public final class TradeManager extends ConcurrencyManager<String, Trade> {
 				.toList();
 	}
 
+	/**
+	 * Method used to get a trade by uuid
+	 * @param tradeUuid trade uuid
+	 * @return {@link Trade}
+	 */
 	public Optional<Trade> getTradeByUuid(String tradeUuid) {
 		return Optional.ofNullable(getDataMap().get(tradeUuid));
 	}

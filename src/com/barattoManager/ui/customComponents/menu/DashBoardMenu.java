@@ -11,6 +11,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 
+/**
+ * Dashboard menu
+ */
 public class DashBoardMenu extends JPanel implements Menu {
 
 	private final static HashMap<String, MenuAction> COMMAND_MAP = new HashMap<>(){{
@@ -35,6 +38,12 @@ public class DashBoardMenu extends JPanel implements Menu {
 		return menuBar;
 	}
 
+	/**
+	 * Method used to run the commands
+	 * @param event {@link ActionEvent}
+	 * @param user {@link User}
+	 * @param tree {@link Tree}
+	 */
 	public void runCommand(ActionEvent event, User user, Tree tree) {
 		COMMAND_MAP.get(event.getActionCommand()).run(user, tree);
 	}

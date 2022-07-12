@@ -9,6 +9,9 @@ import javax.swing.tree.TreeNode;
 import java.awt.*;
 import java.util.Objects;
 
+/**
+ * Abstract class used to generate tree
+ */
 public abstract class Tree extends JPanel {
 	/**
 	 * Icon for open category
@@ -30,6 +33,10 @@ public abstract class Tree extends JPanel {
 
 	private final JTree tree;
 
+	/**
+	 * {@link Tree} constructor
+	 * @param dimension {@link Dimension} object
+	 */
 	public Tree(Dimension dimension) {
 
 		this.tree = new JTree(getRootNode());
@@ -45,10 +52,19 @@ public abstract class Tree extends JPanel {
 
 	protected abstract DefaultMutableTreeNode getRootNode();
 
+	/**
+	 * Method used to get the {@link JTree} object
+	 * @return {@link JTree} object
+	 */
 	public JTree getTree() {
 		return tree;
 	}
 
+	/**
+	 * Method used to get the selected node path
+	 * @return the selected node path
+	 * @throws NoNodeSelected Is thrown if no node is selected
+	 */
 	public TreeNode[] getSelectedPathNode() throws NoNodeSelected {
 		var selectedNode = (DefaultMutableTreeNode) this.tree.getLastSelectedPathComponent();
 

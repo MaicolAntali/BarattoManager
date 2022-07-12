@@ -6,10 +6,18 @@ import com.barattoManager.utils.TreeUtils;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
+/**
+ * Class that represent the article tree in the dashboard of the viewer
+ */
 public final class ArticleTreeDashboard extends ArticleTree {
 
 	private DefaultMutableTreeNode rootNode;
 
+	/**
+	 * {@link ArticleTreeDashboard} constructor
+	 * @param usernameFilter Username filter
+	 * @param stateFilter State filter
+	 */
 	public ArticleTreeDashboard(String usernameFilter, Article.State stateFilter) {
 		super(usernameFilter, stateFilter);
 	}

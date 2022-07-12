@@ -19,10 +19,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * Class used to generate a trade tree
+ */
 public class TradeTree extends Tree {
 
 	private DefaultMutableTreeNode rootNode;
 
+	/**
+	 * {@link TradeTree} constructor
+	 * @param dimension {@link Dimension} object
+	 * @param user {@link User} logged in user
+	 */
 	public TradeTree(Dimension dimension, User user) {
 		super(dimension);
 
@@ -52,6 +60,10 @@ public class TradeTree extends Tree {
 		getTree().expandPath(new TreePath(getRootNode()));
 	}
 
+	/**
+	 * {@link TradeTree} constructor
+	 * @param user {@link User} logged in user
+	 */
 	public TradeTree(User user) {
 		this(new Dimension(500, 290), user);
 	}

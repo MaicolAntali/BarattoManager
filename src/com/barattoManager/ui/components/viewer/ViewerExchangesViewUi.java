@@ -10,11 +10,29 @@ import com.barattoManager.ui.customComponents.tree.trade.TradeTree;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *  Class used to create a JPanel that represent the trades view (only viewer)
+ */
 public class ViewerExchangesViewUi extends JPanel implements DataChangeListener {
-    //FIXME: Help msg
-    public static final String HELP_MESSAGE = "...";
+    /**
+     * Help message: In this view you can see your trades
+     * from the left corner menu you can do the following commands:
+     * -Accept a trade
+     * -Accept and reschedule a trade
+     */
+    public static final String HELP_MESSAGE =  """
+			In questa pagina puoi visualizzare i tuoi scambi
+			Per effettuare un operazione su uno scambio puoi cliccare sul menu in alto al sinistra e scegliere di:
+				 - Accettare una proposta di scambio;
+				 - Accettare e riprogrammare una proposta di scambio.""";
+    /**
+     * {@link User}
+     */
     private final User user;
 
+    /**
+     *{@link Tree}
+     */
     private Tree tradeTree;
     private JMenuBar menu;
     /**
