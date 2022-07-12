@@ -188,17 +188,19 @@ public final class CategoryManager implements Manager {
 	}
 
 	private boolean isUniqueCategory(List<Category> categories, int hashToCheck) {
+
+		boolean result = true;
+
 		if (!categories.isEmpty()) {
 			for (Category category : categories) {
-				if (category.hashCode() != hashToCheck) {
-					return isUniqueCategory(category.getSubCategory().values().stream().toList(), hashToCheck);
-				}
+				if (category.hashCode() == hashToCheck)
+					result = false;
 				else {
-					return false;
+					result = result && isUniqueCategory(category.getSubCategory().values().stream().toList(), hashToCheck);
 				}
 			}
 		}
 
-		return true;
+		return result;
 	}
 }
