@@ -35,7 +35,7 @@ public class NewArticle implements MenuAction {
 	@Override
 	public void run(User user, Tree tree) {
 
-		SelectCategoryArticlePanel comboCategoryPanel = null;
+		SelectCategoryArticlePanel comboCategoryPanel;
 		try {
 			comboCategoryPanel = new SelectCategoryArticlePanel();
 		} catch (IllegalValuesException e) {
