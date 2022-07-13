@@ -4,7 +4,6 @@ import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NoNodeSelected;
 import com.barattoManager.exception.NullCategoryException;
-import com.barattoManager.manager.CategoryManager;
 import com.barattoManager.manager.factory.CategoryManagerFactory;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewCategoryPanel;
 import com.barattoManager.ui.customComponents.optionPane.CreateNewFieldPanel;
@@ -15,49 +14,23 @@ import javax.swing.*;
 import javax.swing.tree.TreeNode;
 
 /**
- * Class used to create a JPanel that contains buttons for the Category tree
+ * Class used to create a {@link JPanel} that contains buttons for the configurator to create new categories/fields.
  */
 public class CategoryConfButtons extends JPanel {
-	/**
-	 * Name of "New main category" button
-	 */
+
 	private static final String NEW_MAIN_CATEGORY_BUTTON_NAME = "Nuova Categoria Radice";
-	/**
-	 * Name of "New sub-category" button
-	 */
 	private static final String NEW_SUBCATEGORY_BUTTON_NAME = "Nuova Sotto-Categoria";
-	/**
-	 * Name of "add new field" button
-	 */
 	private static final String ADD_NEW_FIELD_BUTTON_NAME = "Aggiungi nuovo campo";
-	/**
-	 * Creation of main category title
-	 */
 	private static final String TITLE_CREATION_OF_MAIN_CATEGORY = "Creazione di una categoria radice";
-	/**
-	 * Creation of sub-category title
-	 */
 	private static final String TITLE_CREATION_OF_SUBCATEGORY = "Creazione di una sotto-categoria";
-	/**
-	 * Creation of a new field title
-	 */
 	private static final String TITLE_CREATION_OF_NEW_FIELD = "Creazione di un nuovo campo";
-	/**
-	 * Title of error
-	 */
 	private static final String TITLE_OF_ERROR = "Errore";
-	/**
-	 * {@link CategoryManager} object
-	 */
-	private final CategoryManager categoryManager = CategoryManagerFactory.getManager();
-	/**
-	 * {@link CategoryTree} object
-	 */
+
 	private final CategoryTree categoryTree;
 
 
 	/**
-	 * {@link CategoryConfButtons} constructor
+	 * Constructor of the class
 	 *
 	 * @param categoryTree {@link CategoryTree} object
 	 */
@@ -68,12 +41,10 @@ public class CategoryConfButtons extends JPanel {
 		JButton addNewSubCategoryButton  = new JButton(NEW_SUBCATEGORY_BUTTON_NAME);
 		JButton addNewFieldButton        = new JButton(ADD_NEW_FIELD_BUTTON_NAME);
 
-		// Add listeners
 		addNewMainCategoryButton.addActionListener(e -> addNewMainCategory());
 		addNewSubCategoryButton.addActionListener(e -> addNewSubCategory());
 		addNewFieldButton.addActionListener(e -> addNewField());
 
-		// Add buttons to panel
 		add(addNewMainCategoryButton);
 		add(addNewSubCategoryButton);
 		add(addNewFieldButton);
@@ -97,7 +68,7 @@ public class CategoryConfButtons extends JPanel {
 			);
 
 			if (result == JOptionPane.OK_OPTION) {
-				categoryManager.addNewMainCategory(
+				CategoryManagerFactory.getManager().addNewMainCategory(
 						categoryInputPanel.getCategoryName().getText(),
 						categoryInputPanel.getCategoryDescription().getText()
 				);
@@ -108,7 +79,7 @@ public class CategoryConfButtons extends JPanel {
 	}
 
 	/**
-	 * Method used to add a new sub category
+	 * Method used to add a new sub-category
 	 */
 	private void addNewSubCategory() {
 		try {
@@ -129,7 +100,7 @@ public class CategoryConfButtons extends JPanel {
 
 			if (result == JOptionPane.OK_OPTION) {
 				assert nodePath != null;
-				categoryManager.addNewSubCategory(
+				CategoryManagerFactory.getManager().addNewSubCategory(
 						TreeUtils.treeNodeArrayToArrayList(nodePath),
 						categoryInputPanel.getCategoryName().getText(),
 						categoryInputPanel.getCategoryDescription().getText()
@@ -163,7 +134,7 @@ public class CategoryConfButtons extends JPanel {
 			if (result == JOptionPane.OK_OPTION) {
 				assert nodePath != null;
 				String fieldName = fieldInputPanel.getFieldName().getText();
-				categoryManager.addNewField(
+				CategoryManagerFactory.getManager().addNewField(
 						TreeUtils.treeNodeArrayToArrayList(nodePath),
 						fieldName,
 						fieldInputPanel.getFieldIsRequired().isSelected()

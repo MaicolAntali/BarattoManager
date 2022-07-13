@@ -11,22 +11,16 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class used to create a JPanel that contains buttons for the meet editor view
+ * Class used to create a {@link JPanel} that contains buttons for the configurator to create new meet.
  */
 public class MeetEditorButtons extends JPanel {
 
-	/**
-	 * Add new meet button
-	 */
 	private static final String ADD_NEW_MEET_BUTTON = "Aggiungi un nuovo luogo di incontro";
-	/**
-	 * Creation of new meet title
-	 */
 	private static final String CREATION_OF_NEW_MEET_TITLE = "Creazione di un nuovo luogo di incontro";
 
 
 	/**
-	 * {@link MeetEditorButtons} constructor
+	 * Constructor of the class
 	 */
 	public MeetEditorButtons() {
 		var addNewMeetButton = new JButton(ADD_NEW_MEET_BUTTON);
@@ -55,6 +49,14 @@ public class MeetEditorButtons extends JPanel {
 
 		if (result == JOptionPane.OK_OPTION) {
 
+			int dayBeforeExpire;
+			try {
+				dayBeforeExpire = StringParser.stringIntoInteger(createNewMeetPanel.getDaysBeforeExpireField());
+			} catch (IllegalValuesException e) {
+				JOptionPane.showMessageDialog(this, "I dati immessi sono vuoti o non corretti ", "Errore", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
 			try {
 				MeetManagerFactory.getManager().addNewMeet(
 						createNewMeetPanel.getCity(),
@@ -62,7 +64,7 @@ public class MeetEditorButtons extends JPanel {
 						createNewMeetPanel.getSelectedDays(),
 						TimeParser.hourToMinuteTime(createNewMeetPanel.getStartTimeField().getText()),
 						TimeParser.hourToMinuteTime(createNewMeetPanel.getEndTimeField().getText()),
-						StringParser.stringIntoInteger(createNewMeetPanel.getDaysBeforeExpireField())
+						dayBeforeExpire
 				);
 			} catch (AlreadyExistException | IllegalValuesException e) {
 				JOptionPane.showMessageDialog(this, e.getMessage(), "ERRORE", JOptionPane.ERROR_MESSAGE);
