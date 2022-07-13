@@ -4,7 +4,6 @@ import com.barattoManager.event.events.DataChangeListener;
 import com.barattoManager.manager.factory.MeetManagerFactory;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.ui.components.ComponentsName;
-import com.barattoManager.ui.components.InitialMenuUI;
 import com.barattoManager.ui.customComponents.buttons.MeetEditorButtons;
 import com.barattoManager.ui.customComponents.tree.meet.MeetTree;
 
