@@ -2,10 +2,12 @@ package com.barattoManager.ui.components.configurator;
 
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
+import com.barattoManager.exception.JsonException;
 import com.barattoManager.exception.NullCategoryException;
 import com.barattoManager.manager.factory.CategoryManagerFactory;
 import com.barattoManager.ui.components.ComponentsName;
 import com.barattoManager.ui.customComponents.optionPane.RegisterNewUserPanel;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -80,17 +82,34 @@ public class ConfiguratorHomeUi extends JPanel {
 				getFileExtension(selectedFile);
 
 
-				ObjectNode[] node = getObjectNodes(selectedFile);
+				ObjectNode[] node;
+				try {
+					node = getObjectNodes(selectedFile);
+				} catch (IllegalValuesException ex) {
+					JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore nella lettura del JSON", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 
-				Arrays.stream(node).sequential()
-						.forEach(jsonNode -> {
-							if (jsonNode.fields().next().getKey().contains("_categoria")) {
-								createCategory(errors, jsonNode);
-							}
-							else {
-								createField(errors, jsonNode);
-							}
-						});
+				for (ObjectNode jsonNode: node) {
+					if (jsonNode.fields().next().getKey().contains("_categoria")) {
+						try {
+							createCategory(errors, jsonNode);
+						} catch (JsonException ex) {
+							JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore nella lettura del JSON", JOptionPane.ERROR_MESSAGE);
+							return;
+						}
+					}
+					else {
+						try {
+							createField(errors, jsonNode);
+						} catch (JsonException ex) {
+							JOptionPane.showMessageDialog(this, ex.getMessage(), "Errore nella lettura del JSON", JOptionPane.ERROR_MESSAGE);
+							return;
+						}
+					}
+				}
+
+
 
 				if (!errors.isEmpty()) {
 					JOptionPane.showMessageDialog(this, String.join("\n", errors), "Errori", JOptionPane.ERROR_MESSAGE);
@@ -109,12 +128,14 @@ public class ConfiguratorHomeUi extends JPanel {
 		return "";
 	}
 
-	private ObjectNode[] getObjectNodes(File selectedFile) {
+	private ObjectNode[] getObjectNodes(File selectedFile) throws IllegalValuesException {
 		var objectMapper = new ObjectMapper();
 
 		ObjectNode[] node;
 		try {
 			node = objectMapper.readValue(selectedFile, ObjectNode[].class);
+		} catch (JsonMappingException ex) {
+			throw new IllegalValuesException("Il JSON contiene un errore nella formattazione\n\nErrore: %s".formatted(ex.getMessage()));
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
@@ -134,8 +155,12 @@ public class ConfiguratorHomeUi extends JPanel {
 		return nodeMap;
 	}
 
-	private ArrayList<String> getPercorso(HashMap<String, String> jsonMap) {
+	private ArrayList<String> getPercorso(HashMap<String, String> jsonMap) throws JsonException {
 		var array = new ArrayList<String>();
+
+		if (jsonMap.get("percorso") == null) {
+			throw new JsonException("Errore nelle chiavi del JSON");
+		}
 
 		array.add("root");
 		Collections.addAll(array, jsonMap.get("percorso").split("\\|"));
@@ -143,10 +168,13 @@ public class ConfiguratorHomeUi extends JPanel {
 		return array;
 	}
 
-	private void createCategory(ArrayList<String> errors, ObjectNode jsonNode) {
+	private void createCategory(ArrayList<String> errors, ObjectNode jsonNode) throws JsonException {
 		var jsonMap = getJsonNodeFields(jsonNode);
 
 		if (Objects.equals(jsonMap.get("percorso"), "null")) {
+			if (jsonMap.get("nome_categoria") == null || jsonMap.get("descrizione") == null)
+				throw new JsonException("Errore nelle chiavi del JSON");
+
 			try {
 				CategoryManagerFactory.getManager()
 						.addNewMainCategory(String.valueOf(jsonMap.get("nome_categoria")), jsonMap.get("descrizione"));
@@ -157,6 +185,9 @@ public class ConfiguratorHomeUi extends JPanel {
 			}
 		}
 		else {
+			if (jsonMap.get("nome_categoria") == null || jsonMap.get("descrizione") == null)
+				throw new JsonException("Errore nelle chiavi del JSON");
+
 			try {
 				CategoryManagerFactory.getManager()
 						.addNewSubCategory(getPercorso(jsonMap), jsonMap.get("nome_categoria"), jsonMap.get("descrizione"));
@@ -166,12 +197,18 @@ public class ConfiguratorHomeUi extends JPanel {
 				errors.add("Il percorso specificato per la categoria %s non è valido.".formatted(jsonMap.get("nome_categoria")));
 			} catch (IllegalValuesException ex) {
 				throw new RuntimeException(ex);
+			} catch (JsonException e) {
+				throw new JsonException(e.getMessage());
 			}
 		}
 	}
 
-	private void createField(ArrayList<String> errors, ObjectNode jsonNode) {
+	private void createField(ArrayList<String> errors, ObjectNode jsonNode) throws JsonException {
 		var jsonMap = getJsonNodeFields(jsonNode);
+
+		if (jsonMap.get("nome_campo") == null || jsonMap.get("obbligatorio") == null)
+			throw new JsonException("Errore nelle chiavi del JSON");
+
 		try {
 			CategoryManagerFactory.getManager()
 					.addNewField(getPercorso(jsonMap), jsonMap.get("nome_campo"), Objects.equals(jsonMap.get("obbligatorio"), "true"));
@@ -181,6 +218,8 @@ public class ConfiguratorHomeUi extends JPanel {
 			errors.add("Il percorso specificato per il campo %s non è valido.".formatted(jsonMap.get("nome_campo")));
 		} catch (IllegalValuesException ex) {
 			throw new RuntimeException(ex);
+		} catch (JsonException e) {
+			throw new JsonException(e.getMessage());
 		}
 	}
 }
