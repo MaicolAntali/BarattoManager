@@ -5,6 +5,7 @@ import com.barattoManager.manager.factory.ArticleManagerFactory;
 import com.barattoManager.manager.factory.TradeManagerFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.trade.Trade;
+import com.barattoManager.model.trade.TradeStatus;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
@@ -38,6 +39,11 @@ public abstract class TradeTemplate extends NodeUuidActionTemplate {
 
 		if (Objects.equals(tradeOptional.get().getAnswer().getWaitingUserAnswer(), user.getUsername())) {
 			JOptionPane.showMessageDialog(tree, YOU_HAVE_TO_WAIT_FOR_OTHER_USER, "Errore", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (tradeOptional.get().getTradeStatus() != TradeStatus.IN_PROGRESS) {
+			JOptionPane.showMessageDialog(tree, "Non è possibile accettare un trade nello stato: %s".formatted(tradeOptional.get().getTradeStatus().toString()), "Errore", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 

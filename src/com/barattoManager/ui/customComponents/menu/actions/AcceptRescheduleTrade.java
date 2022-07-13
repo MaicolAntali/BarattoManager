@@ -4,7 +4,6 @@ import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.manager.factory.MeetManagerFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.trade.Trade;
-import com.barattoManager.model.trade.TradeStatus;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.menu.actions.panels.SelectMeetDate;
 import com.barattoManager.ui.customComponents.menu.actions.template.TradeTemplate;
@@ -19,11 +18,6 @@ public class AcceptRescheduleTrade extends TradeTemplate {
 
 	@Override
 	protected void customAction(Trade trade, Tree tree, User user) {
-		if (trade.getTradeStatus() != TradeStatus.IN_PROGRESS) {
-			JOptionPane.showMessageDialog(tree, "Non è possibile accettare un trade nello stato: %s".formatted(trade.getTradeStatus().toString()), "Errore", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-
 		SelectMeetDate selectMeetDatePanel;
 
 		try {
