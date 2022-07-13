@@ -22,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class MeetManagerTest {
 
 	/*
-	 *
 	 * Se solo alcuni test falliscono provare ad aggiornare nel json l'attributo: date_of_meet
 	 * Probabilmente la data è nel passato. Aggiornarla al lunedì successivo.
 	 */

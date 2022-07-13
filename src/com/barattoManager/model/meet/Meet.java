@@ -251,9 +251,16 @@ public final class Meet {
 				&& getDay() == meet.getDay()
 				&& getDateOfMeet().isEqual(meet.getDateOfMeet())
 				&& (
-				getStartTime().isBefore(meet.getStartTime())
+					(
+						(getStartTime().isBefore(meet.getStartTime()))
 						&& (getEndTime().isAfter(meet.getStartTime()))
-		);
+					)
+					||
+					(
+						(getEndTime().isAfter(meet.getEndTime()))
+						&& (getStartTime().isBefore(meet.getEndTime()))
+					)
+				);
 	}
 
 	@Override
