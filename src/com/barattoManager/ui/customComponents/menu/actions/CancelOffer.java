@@ -49,6 +49,11 @@ public class CancelOffer extends NodeUuidActionTemplate {
 				return;
 			}
 
+			if (article.get().getArticleState() != Article.State.OPEN_OFFER) {
+				JOptionPane.showMessageDialog(tree, "Non è possibile cancellare un offerta nello stato: %s".formatted(article.get().getArticleState().toString()), "Errore", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+
 			try {
 				ArticleManagerFactory.getManager()
 						.changeArticleState(
