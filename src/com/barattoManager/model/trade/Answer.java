@@ -6,28 +6,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Class used to represent the answer of a trade
  */
 public class Answer {
-	/**
-	 * User one, who is involved in the trade
-	 */
+
 	@JsonProperty("user_one")
 	private final String userOne;
-	/**
-	 * User two, who is involved in the trade
-	 */
 	@JsonProperty("user_two")
 	private final String userTwo;
-
-	/**
-	 * User who is waiting for an answer
-	 */
 	@JsonProperty("waiting_user")
 	private String waitingUserAnswer;
 
 	/**
-	 * {@link Answer} constructor
+	 * Constructor of the clas
 	 *
-	 * @param userOne User one, who is involved in the trade
-	 * @param userTwo User two, who is involved in the trade
+	 * @param userOne Username one of the user involved in the trade
+	 * @param userTwo Username two of the user involved in the trade
 	 */
 	public Answer(String userOne, String userTwo) {
 		this.userOne = userOne;
@@ -36,11 +27,11 @@ public class Answer {
 	}
 
 	/**
-	 * {@link Answer} constructor
+	 * Constructor of the clas
 	 *
-	 * @param userOne           User one, who is involved in the trade
-	 * @param userTwo           User two, who is involved in the trade
-	 * @param waitingUserAnswer User who is waiting for an answer
+	 * @param userOne           Username one of the user involved in the trade
+	 * @param userTwo           Username two of the user involved in the trade
+	 * @param waitingUserAnswer Username of the user waiting for an answer
 	 */
 	public Answer(
 			@JsonProperty("user_one") String userOne,
@@ -53,7 +44,7 @@ public class Answer {
 	}
 
 	/**
-	 * Method used to invert the user who is waiting for the answer
+	 * Method used to invert the username of the user waiting for an answer
 	 */
 	public void invertWaitingUser() {
 		if (this.waitingUserAnswer.equals(userOne))
@@ -63,18 +54,18 @@ public class Answer {
 	}
 
 	/**
-	 * Method used to set the waiting user answer
+	 * Method used to set the username of the user waiting for an answer
 	 *
-	 * @param waitingUserAnswer User to set
+	 * @param waitingUserAnswer username of the user waiting for an answer to set
 	 */
 	public void setWaitingUserAnswer(String waitingUserAnswer) {
 		this.waitingUserAnswer = waitingUserAnswer;
 	}
 
 	/**
-	 * Method used to get the waiting user answer
+	 * Method used to get the username of the user waiting for an answer
 	 *
-	 * @return WaitingUserAnswer
+	 * @return Username of the user waiting for an answer
 	 */
 	public String getWaitingUserAnswer() {
 		return waitingUserAnswer;

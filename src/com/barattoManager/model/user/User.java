@@ -1,7 +1,5 @@
 package com.barattoManager.model.user;
 
-import com.barattoManager.model.user.configurator.Configurator;
-import com.barattoManager.model.user.viewer.Viewer;
 import com.barattoManager.utils.AppConfigurator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
@@ -13,25 +11,27 @@ import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
 import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 
 /**
- * Abstract class used to describe the method that must implement the {@link Configurator} and {@link Viewer}
+ * Abstract class representing the user object<br/>
+ * Implement in the {@link Configurator} and {@link Viewer} classes
  */
 @JsonTypeInfo(use = NAME, include = PROPERTY, property = "@type")
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = Configurator.class, name = "Configurator"),
 		@JsonSubTypes.Type(value = Viewer.class, name = "Viewer"),
 })
-public abstract class User {
+public sealed abstract class User permits Configurator, Viewer {
 
 	/**
-	 * Method used to get the child type
+	 * Method used to get the child type<br/>
+	 * <i>Used by Jackson Library during serialization</i>
 	 *
-	 * @return {@link String} that represents the child type
+	 * @return {@link String} that represents the child type name
 	 */
 	@JsonProperty("@type")
 	public abstract String getChildType();
 
 	/**
-	 * Method used to set the User password
+	 * Method used to set the user password
 	 *
 	 * @param password Password to set
 	 */

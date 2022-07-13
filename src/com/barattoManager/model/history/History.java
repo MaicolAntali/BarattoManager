@@ -7,12 +7,13 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
- * Utility record of history
+ * Record representing a log/history of an object<br/>
+ * Usually used along with an {@link java.util.ArrayList}
  *
- * @param dateTime    Date and time of history
- * @param name        Name of history
- * @param error       Description of history
- * @param description Description of history
+ * @param dateTime    {@link LocalDateTime} of the event to be recorded
+ * @param name        Name of the event to be recorded
+ * @param error       Description error of the event to be recorded
+ * @param description Description of the event to be recorded
  */
 public record History(
 		@JsonProperty("date_time") LocalDateTime dateTime,
@@ -21,21 +22,21 @@ public record History(
 		@JsonProperty("description") @JsonInclude(JsonInclude.Include.NON_ABSENT) Optional<String> description) {
 
 	/**
-	 * {@link History} constructor
+	 * Constructor of the record
 	 *
-	 * @param name        Name of history
-	 * @param description Description of history
+	 * @param name        Name of the event to be recorded
+	 * @param description Description of the event to be recorded
 	 */
 	public History(String name, String description) {
 		this(name, description, false);
 	}
 
 	/**
-	 * {@link History} constructor
+	 * Constructor of the record
 	 *
-	 * @param name        name of history
-	 * @param description Description of history
-	 * @param isError     true if is error otherwise false
+	 * @param name        Name of the event to be recorded
+	 * @param description Description of the event to be recorded
+	 * @param isError     True if is an error otherwise false
 	 */
 	public History(String name, String description, boolean isError) {
 		this(LocalDateTime.now(), isError ? Optional.empty() : Optional.of(name), isError ? Optional.of(name) : Optional.empty(), Optional.of(description));

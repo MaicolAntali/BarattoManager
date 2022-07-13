@@ -11,7 +11,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
- * Class that represent a trade
+ * Class representing a trade object
  */
 public class Trade {
 	private static final String PRE_CONDITION_TRADE_END_DATE_TIME_IS_NULL = "Pre_condition: trade end date time is null";
@@ -45,12 +45,12 @@ public class Trade {
 	private TradeStatus tradeStatus;
 
 	/**
-	 * {@link Trade} constructor
+	 * Constructor of the class
 	 *
-	 * @param endTradeDateTime End date and time of the trade
-	 * @param articleOneUuid   Article one UUID
-	 * @param articleTwoUuid   Article two UUID
-	 * @param meetUuid         Meet UUID
+	 * @param endTradeDateTime {@link LocalDateTime} Expiry date of the trade
+	 * @param articleOneUuid   Uuid of the article one involved in the trade
+	 * @param articleTwoUuid   Uuid of the article two involved in the trade
+	 * @param meetUuid         Uuid of the meet
 	 */
 	public Trade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid, String meetUuid) {
 		Objects.requireNonNull(endTradeDateTime, PRE_CONDITION_TRADE_END_DATE_TIME_IS_NULL);
@@ -75,17 +75,17 @@ public class Trade {
 	}
 
 	/**
-	 * {@link Trade} constructor
+	 * Constructor of the class
 	 *
-	 * @param uuid               UUID
-	 * @param tradeStartDateTime Start date and time of the trade
-	 * @param tradeEndDateTime   End date and time of the trade
-	 * @param articleOneUuid     Article one UUID
-	 * @param articleTwoUuid     Article two UUID
-	 * @param answer             Answer of the other user
-	 * @param meetUuid           Meet UUID
-	 * @param history            History of the Trade
-	 * @param tradeStatus        Trade status
+	 * @param uuid               uuid of the trade
+	 * @param tradeStartDateTime {@link LocalDateTime} Date of trade initiation
+	 * @param tradeEndDateTime   {@link LocalDateTime} Expiry date of the trade
+	 * @param articleOneUuid     Uuid of the article one involved in the trade
+	 * @param articleTwoUuid     Uuid of the article one involved in the trade
+	 * @param answer             {@link Answer} of the trade
+	 * @param meetUuid           Uuid of the meet
+	 * @param history            {@link ArrayList} of the {@link History}
+	 * @param tradeStatus        {@link TradeStatus}
 	 */
 	public Trade(
 			@JsonProperty("uuid") String uuid,
@@ -121,90 +121,90 @@ public class Trade {
 	}
 
 	/**
-	 * Method used to get the UUID
+	 * Method used to get the uuid of the trade
 	 *
-	 * @return UUID
+	 * @return Uuid of the trade
 	 */
 	public String getUuid() {
 		return uuid;
 	}
 
 	/**
-	 * Method used to get the start date of trade
+	 * Method used to get the {@link LocalDateTime} Date of trade initiation of the trade
 	 *
-	 * @return {@link LocalDateTime} start time
+	 * @return {@link LocalDateTime} Date of trade initiation of the trade
 	 */
 	public LocalDateTime getTradeStartDateTime() {
 		return tradeStartDateTime;
 	}
 
 	/**
-	 * Method used to get the end date of trade
+	 * Method used to get the {@link LocalDateTime} Expiry date of the trade of the trade
 	 *
-	 * @return {@link LocalDateTime} end date
+	 * @return {@link LocalDateTime} Expiry date of the trade of the trade
 	 */
 	public LocalDateTime getTradeEndDateTime() {
 		return tradeEndDateTime;
 	}
 
 	/**
-	 * Method used to get the article one of trade
+	 * Method used to get the uuid of the article one involved in the trade
 	 *
-	 * @return {@link #articleOneUuid} of trade
+	 * @return Uuid of the article one involved in the trade
 	 */
 	public String getArticleOneUuid() {
 		return articleOneUuid;
 	}
 
 	/**
-	 * Method used to get the article two of trade
+	 * Method used to get the uuid of the article two involved in the trade
 	 *
-	 * @return {@link #articleOneUuid} of trade
+	 * @return Uuid of the article two involved in the trade
 	 */
 	public String getArticleTwoUuid() {
 		return articleTwoUuid;
 	}
 
 	/**
-	 * Method used to get the uuid of trade
+	 * Method used to get the uuid of meet
 	 *
-	 * @return uuid of trade
+	 * @return Uuid of meet
 	 */
 	public String getMeetUuid() {
 		return meetUuid;
 	}
 
 	/**
-	 * Method used to get the {@link #tradeStatus}
+	 * Method used to get the {@link TradeStatus} of the trade
 	 *
-	 * @return {@link #tradeStatus}
+	 * @return {@link TradeStatus} of the trade
 	 */
 	public TradeStatus getTradeStatus() {
 		return tradeStatus;
 	}
 
 	/**
-	 * Method used to get the {@link #answer} of trade
+	 * Method used to get the {@link Answer} of trade
 	 *
-	 * @return {@link #answer} of trade
+	 * @return {@link Answer} of trade
 	 */
 	public Answer getAnswer() {
 		return answer;
 	}
 
 	/**
-	 * Method used to get the {@link #history} of trade
+	 * Method used to get the {@link ArrayList} of the {@link History}
 	 *
-	 * @return {@link #history} of trade
+	 * @return {@link ArrayList} of the {@link History}
 	 */
 	public ArrayList<History> getHistory() {
 		return history;
 	}
 
 	/**
-	 * Method used to set a trade status
+	 * Method used to set the {@link TradeStatus}
 	 *
-	 * @param tradeStatus the new {@link TradeStatus} to set
+	 * @param tradeStatus {@link TradeStatus} to set
 	 */
 	public void setTradeStatus(TradeStatus tradeStatus) {
 		this.tradeStatus = tradeStatus;
@@ -212,7 +212,7 @@ public class Trade {
 	}
 
 	/**
-	 * Method used to reschedule a  trade
+	 * Method used to reschedule a trade
 	 */
 	public void rescheduleTrade() {
 		getAnswer().invertWaitingUser();

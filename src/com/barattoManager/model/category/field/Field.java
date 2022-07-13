@@ -3,7 +3,7 @@ package com.barattoManager.model.category.field;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Record that represent a field
+ * Record representing the Field object of a category
  */
 public record Field(
 		@JsonProperty("name") String name,

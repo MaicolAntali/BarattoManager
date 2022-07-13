@@ -11,7 +11,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * Class that represent a meet
+ * Class representing the meet object
  */
 public final class Meet {
 
@@ -46,14 +46,14 @@ public final class Meet {
 	private boolean alreadyUpdated;
 
 	/**
-	 * {@link Meet} constructor
+	 * Constructor of the class
 	 *
-	 * @param city             City of meet
-	 * @param square           Square of meet
-	 * @param day              Day of meet
-	 * @param startTime        Start time of meet
-	 * @param endTime          End time of meet
-	 * @param daysBeforeExpire Days before expire of meet
+	 * @param city             City of the meet
+	 * @param square           Square of the meet
+	 * @param day              {@link DayOfWeek} of the meet
+	 * @param startTime        Start time of the meeting in minutes
+	 * @param endTime          End time of the meeting in minutes
+	 * @param daysBeforeExpire Number of days for which the meet is valid
 	 */
 	public Meet(String city, String square, DayOfWeek day, LocalTime startTime, LocalTime endTime, int daysBeforeExpire) {
 		assert !city.isBlank() : PRE_CONDITION_CITY_NAME_IS_BLANK;
@@ -75,17 +75,17 @@ public final class Meet {
 	}
 
 	/**
-	 * {@link Meet} constructor
+	 * Constructor of the class
 	 *
-	 * @param uuid               UUID of meet
-	 * @param city               City of meet
-	 * @param square             Square of meet
-	 * @param day                Day of meet
-	 * @param startTime          Start time of meet
-	 * @param endTime            End time of meet
-	 * @param userBookedMeetUuid User UUID who has booked the meet
-	 * @param daysBeforeExpire   Days before expire
-	 * @param dateOfMeet         Date of meet
+	 * @param uuid               UUID of the meet
+	 * @param city               City of the meet
+	 * @param square             Square of the meet
+	 * @param day                {@link DayOfWeek} of the meet
+	 * @param startTime          Start time of the meeting in minutes
+	 * @param endTime            End time of the meeting in minutes
+	 * @param userBookedMeetUuid Username of the user who booked the meet (can be null)
+	 * @param daysBeforeExpire   Number of days for which the meet is valid
+	 * @param dateOfMeet         Date of the meet
 	 * @param alreadyUpdated     True if the date of meet is already updated
 	 */
 	public Meet(
@@ -124,7 +124,7 @@ public final class Meet {
 	/**
 	 * Method used to book a {@link Meet}
 	 *
-	 * @param userUuid User UUID
+	 * @param userUuid Username of the user booking the meet
 	 */
 	public void bookMeet(String userUuid) {
 		if (getUserBookedMeetUuid().isEmpty()) {
@@ -135,54 +135,59 @@ public final class Meet {
 	/**
 	 * Method used to un-book a {@link Meet}
 	 */
-	public void unbookMeet() {
+	public void unBookMeet() {
 		userBookedMeetUuid = null;
 	}
 
+	/**
+	 * Method used to return the uuid of the meet
+	 *
+	 * @return uuid of the meet
+	 */
 	public String getUuid() {
 		return uuid;
 	}
 
 	/**
-	 * Method used to get the city
+	 * Method used to get the city of the meet
 	 *
-	 * @return City
+	 * @return City of the meet
 	 */
 	public String getCity() {
 		return city;
 	}
 
 	/**
-	 * Method used to get the square
+	 * Method used to get the square of the meet
 	 *
-	 * @return square
+	 * @return square of the meet
 	 */
 	public String getSquare() {
 		return square;
 	}
 
 	/**
-	 * Method used to get the day
+	 * Method used to get the {@link DayOfWeek} of the meet
 	 *
-	 * @return day
+	 * @return {@link DayOfWeek} of the meet
 	 */
 	public DayOfWeek getDay() {
 		return day;
 	}
 
 	/**
-	 * Method used to get the start time
+	 * Method used to get the start time of the meet
 	 *
-	 * @return {@link LocalTime} start time
+	 * @return {@link LocalTime} start time of the meet
 	 */
 	public LocalTime getStartTime() {
 		return startTime;
 	}
 
 	/**
-	 * Method used to get the end time
+	 * Method used to get the end time of the meet
 	 *
-	 * @return {@link LocalTime} end time
+	 * @return {@link LocalTime} end time of the meet
 	 */
 	public LocalTime getEndTime() {
 		return endTime;
@@ -198,36 +203,36 @@ public final class Meet {
 	}
 
 	/**
-	 * Method used to get the day before expire
+	 * Method used to get the day before expire of the meet
 	 *
-	 * @return day before expire
+	 * @return day before expire of the meet
 	 */
 	public int getDaysBeforeExpire() {
 		return daysBeforeExpire;
 	}
 
 	/**
-	 * Method used to get the date of meet
+	 * Method used to get the {@link LocalDate} of the meet
 	 *
-	 * @return {@link LocalDate} of meet
+	 * @return {@link LocalDate} of the meet
 	 */
 	public LocalDate getDateOfMeet() {
 		return dateOfMeet;
 	}
 
 	/**
-	 * Method used to get the value of {@link #alreadyUpdated}
+	 * Method used to return if the meet is already updated true otherwise false
 	 *
-	 * @return boolean value
+	 * @return if the meet is already updated true otherwise false
 	 */
 	public boolean isAlreadyUpdated() {
 		return alreadyUpdated;
 	}
 
 	/**
-	 * method used to set {@link #alreadyUpdated}
+	 * Method used to set if the meet is already updated true otherwise false
 	 *
-	 * @param alreadyUpdated boolean value to set
+	 * @param alreadyUpdated True if the meet is already updated otherwise false
 	 */
 	public void setAlreadyUpdated(boolean alreadyUpdated) {
 		this.alreadyUpdated = alreadyUpdated;

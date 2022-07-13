@@ -121,10 +121,10 @@ public final class MeetManager implements Manager {
 	}
 
 	/**
-	 * method used to book a meet
+	 * Method used to book a meet
 	 *
-	 * @param meetUuid uuid of the meeting to be booked
-	 * @param userUuid username of the user booking the meet
+	 * @param meetUuid Uuid of the meeting to be booked
+	 * @param userUuid Username of the user booking the meet
 	 */
 	public void bookMeet(String meetUuid, String userUuid) {
 		var meet = Optional.ofNullable(this.meetMap.get(meetUuid));
@@ -136,15 +136,15 @@ public final class MeetManager implements Manager {
 	}
 
 	/**
-	 * method used to un-book a meet
+	 * Method used to un-book a meet
 	 *
-	 * @param meetUuid uuid of the meeting to be un-booked
+	 * @param meetUuid Uuid of the meeting to be un-booked
 	 */
 	public void unBookMeet(String meetUuid) {
 		var meet = Optional.ofNullable(this.meetMap.get(meetUuid));
 
 		if (meet.isPresent()) {
-			meet.get().unbookMeet();
+			meet.get().unBookMeet();
 			saveData();
 		}
 	}

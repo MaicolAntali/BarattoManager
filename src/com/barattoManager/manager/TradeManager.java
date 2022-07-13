@@ -53,9 +53,9 @@ public final class TradeManager implements Manager {
 	 * Method used to add a new trade
 	 *
 	 * @param endTradeDateTime {@link LocalDateTime} Expiry date of the trade
-	 * @param articleOneUuid uuid of the article one involved in the trade
-	 * @param articleTwoUuid uuid of the article two involved in the trade
-	 * @param meetUuid uuid of the meet
+	 * @param articleOneUuid Uid of the article one involved in the trade
+	 * @param articleTwoUuid Uuid of the article two involved in the trade
+	 * @param meetUuid Uuid of the meet
 	 */
 	public void addNewTrade(LocalDateTime endTradeDateTime, String articleOneUuid, String articleTwoUuid, String meetUuid) {
 

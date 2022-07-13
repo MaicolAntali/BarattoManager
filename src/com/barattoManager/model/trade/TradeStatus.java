@@ -1,19 +1,19 @@
 package com.barattoManager.model.trade;
 
 /**
- * Enum used to represent the trade status
+ * Enum representing the states that a {@link Trade} can have
  */
 public enum TradeStatus {
 	/**
-	 * In progress trade
+	 * Trade in progress
 	 */
 	IN_PROGRESS,
 	/**
-	 * Closed trade
+	 * Successful Trade
 	 */
 	CLOSED,
 	/**
-	 * Cancelled trade
+	 * Trade canceled
 	 */
 	CANCELLED
 }

@@ -4,9 +4,9 @@ import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.InvalidCredentialsException;
+import com.barattoManager.model.user.Configurator;
 import com.barattoManager.model.user.User;
-import com.barattoManager.model.user.configurator.Configurator;
-import com.barattoManager.model.user.viewer.Viewer;
+import com.barattoManager.model.user.Viewer;
 import com.barattoManager.utils.AppConfigurator;
 
 import javax.swing.*;
