@@ -44,6 +44,7 @@ public class ConfiguratorHomeUi extends JPanel {
 	 */
 	private JButton showOffer;
 	private JButton loadJsonButton;
+	private JButton questionButton;
 
 	/**
 	 * {@link ConfiguratorHomeUi} constructor
