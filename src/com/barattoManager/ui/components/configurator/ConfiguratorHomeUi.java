@@ -68,8 +68,19 @@ public class ConfiguratorHomeUi extends JPanel {
 			int result = fileChooser.showOpenDialog(this);
 
 			if (result == JFileChooser.APPROVE_OPTION) {
-				var          errors = new ArrayList<String>();
-				ObjectNode[] node   = getObjectNodes(fileChooser.getSelectedFile());
+				var  errors       = new ArrayList<String>();
+				File selectedFile = fileChooser.getSelectedFile();
+
+
+				if (!getFileExtension(selectedFile).equalsIgnoreCase("json")) {
+					JOptionPane.showMessageDialog(this, "Devi caricare un file JSON", "Errori", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+
+				getFileExtension(selectedFile);
+
+
+				ObjectNode[] node = getObjectNodes(selectedFile);
 
 				Arrays.stream(node).sequential()
 						.forEach(jsonNode -> {
@@ -86,6 +97,16 @@ public class ConfiguratorHomeUi extends JPanel {
 				}
 			}
 		});
+	}
+
+	private String getFileExtension(File selectedFile) {
+		int index = selectedFile.getName().lastIndexOf('.');
+
+		if (index > 0) {
+			return selectedFile.getName().substring(index + 1);
+		}
+
+		return "";
 	}
 
 	private ObjectNode[] getObjectNodes(File selectedFile) {
