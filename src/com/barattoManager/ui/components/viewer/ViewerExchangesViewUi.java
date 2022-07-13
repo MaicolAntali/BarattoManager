@@ -17,7 +17,11 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ViewerExchangesViewUi extends JPanel implements DataChangeListener<String, Trade> {
-	public static final String HELP_MESSAGE = "...";
+	public static final String HELP_MESSAGE = """
+			In questa pagina puoi visualizzare i tuoi scambi
+			Per effettuare un operazione su uno scambio puoi cliccare sul menu in alto al sinistra e scegliere di:
+				 - Accettare una proposta di scambio;
+				 - Accettare e riprogrammare una proposta di scambio.""";
 	private final User user;
 
 	private Tree tradeTree;

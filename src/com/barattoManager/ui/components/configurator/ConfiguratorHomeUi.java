@@ -73,14 +73,10 @@ public class ConfiguratorHomeUi extends JPanel {
 				var  errors       = new ArrayList<String>();
 				File selectedFile = fileChooser.getSelectedFile();
 
-
 				if (!getFileExtension(selectedFile).equalsIgnoreCase("json")) {
 					JOptionPane.showMessageDialog(this, "Devi caricare un file JSON", "Errori", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
-
-				getFileExtension(selectedFile);
-
 
 				ObjectNode[] node;
 				try {
