@@ -1,5 +1,6 @@
 package com.barattoManager.ui.customComponents.menu.actions;
 
+import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.manager.factory.ArticleManagerFactory;
 import com.barattoManager.manager.factory.CategoryManagerFactory;
 import com.barattoManager.model.category.Category;
@@ -34,7 +35,13 @@ public class NewArticle implements MenuAction {
 	@Override
 	public void run(User user, Tree tree) {
 
-		var comboCategoryPanel = new SelectCategoryArticlePanel();
+		SelectCategoryArticlePanel comboCategoryPanel = null;
+		try {
+			comboCategoryPanel = new SelectCategoryArticlePanel();
+		} catch (IllegalValuesException e) {
+			JOptionPane.showMessageDialog(tree, e.getMessage(), "Errore", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		int result = JOptionPane.showOptionDialog(
 				tree,
 				comboCategoryPanel,
@@ -169,14 +176,19 @@ public class NewArticle implements MenuAction {
 		/**
 		 * {@link SelectCategoryArticlePanel} constructor
 		 */
-		public SelectCategoryArticlePanel() {
+		public SelectCategoryArticlePanel() throws IllegalValuesException {
 			var mainPanel = new JPanel();
 			mainPanel.setLayout(new GridLayout(0, 1));
 
 
 			mainPanel.add(new JLabel(LABEL_SELECT_A_CATEGORY_FOR_YOUR_ARTICLE));
 
-			for (String item : generateComboBoxItems()) {
+			ArrayList<String> categories = generateComboBoxItems();
+
+			if (categories.isEmpty())
+				throw new IllegalValuesException("Non ci sono categorie disponibili.");
+
+			for (String item : categories) {
 				categoryCombo.addItem(item);
 			}
 			mainPanel.add(categoryCombo);
