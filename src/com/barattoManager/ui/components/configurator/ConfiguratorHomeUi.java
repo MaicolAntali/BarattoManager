@@ -197,8 +197,6 @@ public class ConfiguratorHomeUi extends JPanel {
 				errors.add("Il percorso specificato per la categoria %s non è valido.".formatted(jsonMap.get("nome_categoria")));
 			} catch (IllegalValuesException ex) {
 				throw new RuntimeException(ex);
-			} catch (JsonException e) {
-				throw new JsonException(e.getMessage());
 			}
 		}
 	}
@@ -218,8 +216,6 @@ public class ConfiguratorHomeUi extends JPanel {
 			errors.add("Il percorso specificato per il campo %s non è valido.".formatted(jsonMap.get("nome_campo")));
 		} catch (IllegalValuesException ex) {
 			throw new RuntimeException(ex);
-		} catch (JsonException e) {
-			throw new JsonException(e.getMessage());
 		}
 	}
 }
