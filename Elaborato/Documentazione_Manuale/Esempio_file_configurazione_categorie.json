@@ -1,0 +1,27 @@
+[
+    {
+      "nome_categoria": "Libri",
+      "descrizione": ".",
+      "percorso": null
+    },
+    {
+      "nome_categoria": "Romanzi",
+      "descrizione": ".",
+      "percorso": "Libri"
+    },
+    {
+      "nome_categoria": "Gialli",
+      "descrizione": ".",
+      "percorso": "Libri|Romanzi"
+    },
+    {
+      "nome_categoria": "Penne",
+      "descrizione": ".",
+      "percorso": null
+    },
+    {
+      "nome_campo": "Pagine",
+      "obbligatorio": true,
+      "percorso": "Libri"
+    }
+  ]
