@@ -5,6 +5,7 @@ import com.barattoManager.manager.factory.CategoryManagerFactory;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
+import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import java.awt.*;
@@ -12,11 +13,16 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Abstract class that represent the Article tree
+ * Class used to create the {@link Article} tree
  */
 public abstract class ArticleTree extends Tree {
 
-
+	/**
+	 * Constructor of the class
+	 *
+	 * @param articles  {@link List} that contains the {@link Article}
+	 * @param dimension {@link Dimension} of the {@link JPanel} that contains the tree
+	 */
 	public ArticleTree(List<Article> articles, Dimension dimension) {
 		super(dimension);
 
@@ -33,6 +39,11 @@ public abstract class ArticleTree extends Tree {
 	}
 
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param articles {@link List} that contains the {@link Article}
+	 */
 	public ArticleTree(List<Article> articles) {
 		this(articles, new Dimension(500, 290));
 	}

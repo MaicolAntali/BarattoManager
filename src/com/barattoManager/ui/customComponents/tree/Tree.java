@@ -11,33 +11,23 @@ import java.awt.*;
 import java.util.Objects;
 
 /**
- * Abstract class used to generate tree
+ * Abstract class that handles all tree creation and provides common utility methods
+ *
+ * @see JTree
  */
 public abstract class Tree extends JPanel {
-	/**
-	 * Icon for open category
-	 */
-	protected static final String ICON_CATEGORY_OPEN = "/icon/category_open.png";
-	/**
-	 * Icon for close category
-	 */
-	protected static final String ICON_CATEGORY_CLOSE = "/icon/category_close.png";
-	/**
-	 * Icon for field
-	 */
-	protected static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
-	/**
-	 * Error: No node has been selected, try again.
-	 */
-	private static final String ERROR_NO_NODE_HAS_BEEN_SELECTED = "Non è stata selezionata nessun nodo. Seleziona un nodo e riprova.";
 
+	protected static final String ICON_CATEGORY_OPEN = "/icon/category_open.png";
+	protected static final String ICON_CATEGORY_CLOSE = "/icon/category_close.png";
+	protected static final String ICON_CATEGORY_FIELD = "/icon/category_field.png";
+	private static final String ERROR_NO_NODE_HAS_BEEN_SELECTED = "Non è stata selezionata nessun nodo. Seleziona un nodo e riprova.";
 
 	private final JTree tree;
 
 	/**
-	 * {@link Tree} constructor
+	 * Constructor of the class
 	 *
-	 * @param dimension {@link Dimension} object
+	 * @param dimension {@link Dimension} of the {@link JPanel} that contains the tree
 	 */
 	public Tree(Dimension dimension) {
 
@@ -55,7 +45,7 @@ public abstract class Tree extends JPanel {
 	protected abstract DefaultMutableTreeNode getRootNode();
 
 	/**
-	 * Method used to get the {@link JTree} object
+	 * Method used to get the {@link JTree} instance stored in the class
 	 *
 	 * @return {@link JTree} object
 	 */
@@ -64,9 +54,10 @@ public abstract class Tree extends JPanel {
 	}
 
 	/**
-	 * Method used to get the selected node path
+	 * Method that returns the node selected on the tree by the user.<br/>
+	 * If the user does not select any node, an exception is thrown.
 	 *
-	 * @return the selected node path
+	 * @return {@link TreeNode} array which contains the path of the nodes
 	 * @throws NoNodeSelected Is thrown if no node is selected
 	 */
 	public TreeNode[] getSelectedPathNode() throws NoNodeSelected {
@@ -79,10 +70,10 @@ public abstract class Tree extends JPanel {
 	}
 
 	/**
-	 * Method used to generate the node of all field in an article
+	 * Method used to generate a node that contains all fields
 	 *
-	 * @param article {@link Article} article object
-	 * @return {@link DefaultMutableTreeNode} Node that keep all fields
+	 * @param article {@link Article} object
+	 * @return {@link DefaultMutableTreeNode} that contains all fields
 	 */
 	public DefaultMutableTreeNode generateFields(Article article) {
 		var fieldsNode = new DefaultMutableTreeNode("Campi");

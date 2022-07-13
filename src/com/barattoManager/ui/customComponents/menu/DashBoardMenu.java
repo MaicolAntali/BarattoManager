@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.util.HashMap;
 
 /**
- * Dashboard menu
+ * Class used to create a menu that manages the store
  */
 public class DashBoardMenu extends JPanel implements Menu {
 
@@ -39,11 +39,11 @@ public class DashBoardMenu extends JPanel implements Menu {
 	}
 
 	/**
-	 * Method used to run the commands
+	 * Method used to run actions
 	 *
 	 * @param event {@link ActionEvent}
-	 * @param user  {@link User}
-	 * @param tree  {@link Tree}
+	 * @param user  {@link User} who has logged in
+	 * @param tree  {@link Tree} on which the actions of the menu will perform
 	 */
 	public void runCommand(ActionEvent event, User user, Tree tree) {
 		COMMAND_MAP.get(event.getActionCommand()).run(user, tree);

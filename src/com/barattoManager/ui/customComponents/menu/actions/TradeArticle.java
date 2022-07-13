@@ -20,17 +20,9 @@ import java.util.List;
  * Trade article action
  */
 public class TradeArticle extends NodeUuidActionTemplate {
-	/**
-	 * Error: no article has been selected
-	 */
+
 	private static final String ERROR_NO_ARTICLE_SELECTED = "Non è stato selezionato nessun articolo";
-	/**
-	 * Error: there is no article owned related to the chosen category
-	 */
 	private static final String ERROR_NO_OWNED_ARTICLE_IN_CATEGORY = "Non possiedi nessun articolo di questa categoria";
-	/**
-	 * Label: Choose an article to trade.
-	 */
 	public static final String CHOOSE_THE_ARTICLE_TO_TRADE = "Seleziona l'oggetto che vuoi scambiare:";
 
 	@Override
@@ -99,7 +91,7 @@ public class TradeArticle extends NodeUuidActionTemplate {
 	}
 
 	/**
-	 * JPanel used to select a article to trade
+	 * JPanel used to select an article to trade
 	 */
 	static class SelectArticleToTradePanel extends JPanel {
 
@@ -107,9 +99,9 @@ public class TradeArticle extends NodeUuidActionTemplate {
 
 
 		/**
-		 * {@link SelectArticleToTradePanel} costructor
+		 * Constructor of the class
 		 *
-		 * @param articles articles list
+		 * @param articles {@link List} of {@link Article} that can be trade
 		 */
 		public SelectArticleToTradePanel(List<Article> articles) {
 			var mainPanel = new JPanel();

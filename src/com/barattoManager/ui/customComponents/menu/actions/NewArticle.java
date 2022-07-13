@@ -16,20 +16,12 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Class used to create new article
+ * New article action
  */
 public class NewArticle implements MenuAction {
-	/**
-	 * Title: Add new article
-	 */
+
 	private static final String TITLE_ADD_NEW_ARTICLE = "Aggiungi un nuovo articolo";
-	/**
-	 * Label: Enter all the required fields
-	 */
 	private static final String LABEL_ENTER_ALL_THE_REQUIRED_FIELDS = "Inserisci tutti i campi obbligatori:";
-	/**
-	 * Label: Choose a category for your article
-	 */
 	private static final String LABEL_SELECT_A_CATEGORY_FOR_YOUR_ARTICLE = "Seleziona una categoria per il tuo articolo:";
 
 	@Override
@@ -90,20 +82,14 @@ public class NewArticle implements MenuAction {
 	 */
 	static class FormArticlePanel extends JPanel {
 
-		/**
-		 * ArrayList of {@link Field}
-		 */
 		private final ArrayList<Field> fields;
-		/**
-		 * Arraylist of {@link JTextField}
-		 */
 		private final ArrayList<JTextField> jTextFields;
 		private final JTextField articleName;
 
 		/**
-		 * {@link FormArticlePanel} constructor
+		 * Constructor of the class
 		 *
-		 * @param category {@link Category}
+		 * @param category {@link Category} object where it to take the fields
 		 */
 		public FormArticlePanel(Category category) {
 			fields = new ArrayList<>();
@@ -159,6 +145,11 @@ public class NewArticle implements MenuAction {
 			return values;
 		}
 
+		/**
+		 * Method used to get {@link JTextField} with the article name
+		 *
+		 * @return {@link JTextField} with the article name
+		 */
 		public JTextField getArticleName() {
 			return articleName;
 		}
@@ -168,13 +159,11 @@ public class NewArticle implements MenuAction {
 	 * Inner class used to select a category for the article to add
 	 */
 	static class SelectCategoryArticlePanel extends JPanel {
-		/**
-		 * Category ComboBox
-		 */
+
 		private final JComboBox<String> categoryCombo = new JComboBox<>();
 
 		/**
-		 * {@link SelectCategoryArticlePanel} constructor
+		 * Constructor of the class
 		 */
 		public SelectCategoryArticlePanel() throws IllegalValuesException {
 			var mainPanel = new JPanel();
@@ -200,19 +189,13 @@ public class NewArticle implements MenuAction {
 		/**
 		 * Method used to get the selected category in a combo box
 		 *
-		 * @return {@link Category} object
+		 * @return {@link Category} object selected in the combo box
 		 */
 		public Category getSelectedCategory() {
 			return getSelectedCategoryByName(String.valueOf(categoryCombo.getSelectedItem()))
 					.orElseThrow(NullPointerException::new);
 		}
 
-		/**
-		 * Method used to get the selected category as a {@link Optional}
-		 *
-		 * @param categoryToGet Name of a category to get
-		 * @return category optional
-		 */
 		private Optional<Category> getSelectedCategoryByName(String categoryToGet) {
 			var splitCategories = categoryToGet.split("-");
 
@@ -234,11 +217,6 @@ public class NewArticle implements MenuAction {
 			return optionalCategory;
 		}
 
-		/**
-		 * Method used to generate the items for the ComboBox of categories
-		 *
-		 * @return ArrayList of categories
-		 */
 		private ArrayList<String> generateComboBoxItems() {
 			var arrayList = new ArrayList<String>();
 
@@ -249,13 +227,6 @@ public class NewArticle implements MenuAction {
 			return arrayList;
 		}
 
-		/**
-		 * Method used to generate the items for the ComboBox of categories
-		 *
-		 * @param categories Collection of categories
-		 * @param string     String of categories and sub-categories name
-		 * @return ArrayList of categories
-		 */
 		private ArrayList<String> generateComboBoxItems(Collection<Category> categories, String string) {
 			var arrayList = new ArrayList<String>();
 

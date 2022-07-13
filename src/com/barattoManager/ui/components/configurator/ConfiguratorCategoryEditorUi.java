@@ -4,7 +4,6 @@ import com.barattoManager.event.events.DataChangeListener;
 import com.barattoManager.manager.factory.CategoryManagerFactory;
 import com.barattoManager.model.category.Category;
 import com.barattoManager.ui.components.ComponentsName;
-import com.barattoManager.ui.components.InitialMenuUI;
 import com.barattoManager.ui.customComponents.buttons.CategoryConfButtons;
 import com.barattoManager.ui.customComponents.tree.category.CategoryTree;
 
@@ -13,13 +12,10 @@ import java.awt.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Class used to create a JPanel that represent the category editor view (only configurator)
+ * Class used to create a {@link JPanel} that allows the configurator to manage the {@link Category categories}
  */
 public class ConfiguratorCategoryEditorUi extends JPanel implements DataChangeListener<String, Category> {
 
-	/**
-	 * {@link CategoryTree} object
-	 */
 	private CategoryTree categoryTree = new CategoryTree(
 			CategoryManagerFactory.getManager()
 					.getRootCategoryMap()
@@ -27,40 +23,25 @@ public class ConfiguratorCategoryEditorUi extends JPanel implements DataChangeLi
 					.stream()
 					.toList()
 	);
-	/**
-	 * {@link CategoryConfButtons} object
-	 */
 	private CategoryConfButtons categoryConfButtons = new CategoryConfButtons(categoryTree);
-	/**
-	 * Main JPanel
-	 */
 	private JPanel mainPanel;
-	/**
-	 * Center JPanel {@code BorderLayout.CENTER}
-	 */
 	private JPanel centerPanel;
-	/**
-	 * Back button to {@link InitialMenuUI}
-	 */
 	private JButton backToInitButton;
 
 	/**
-	 * {@link ConfiguratorCategoryEditorUi} constructor
+	 * Constructor of the class
 	 *
-	 * @param dimension      Dimension of JPanel
-	 * @param cardLayout     {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
-	 * @param panelContainer {@link JPanel} object that contains every cards
+	 * @param dimension      {@link Dimension} of the {@link JPanel} to be created
+	 * @param cardLayout     {@link CardLayout} object that represent the type layout
+	 * @param panelContainer {@link JPanel} object which contains all useful layouts (cards)
 	 */
 	public ConfiguratorCategoryEditorUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
-		// JPanel conf
 		setVisible(true);
 		add(mainPanel);
 		mainPanel.setPreferredSize(dimension);
 
-		// add the tree and the buttons
 		centerPanel.add(categoryTree);
 		centerPanel.add(categoryConfButtons, BorderLayout.SOUTH);
-
 
 		backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
 	}

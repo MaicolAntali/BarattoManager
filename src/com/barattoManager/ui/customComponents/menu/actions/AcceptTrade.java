@@ -7,17 +7,10 @@ import com.barattoManager.ui.customComponents.menu.actions.template.TradeTemplat
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 /**
- * Class that represent the action "Accept Trade"
+ * Accept trade action
  */
 public class AcceptTrade extends TradeTemplate {
 
-	/**
-	 * Implementation of customAction
-	 *
-	 * @param trade {@link Trade} to accept
-	 * @param tree  {@link Tree}
-	 * @param user  {@link User}
-	 */
 	@Override
 	protected void customAction(Trade trade, Tree tree, User user) {
 		trade.closeTrade();

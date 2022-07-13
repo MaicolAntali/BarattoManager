@@ -75,11 +75,6 @@ public enum ComponentsName {
 		this.name = name;
 	}
 
-	/**
-	 * Method used to get the name of view
-	 *
-	 * @return Name of view
-	 */
 	@Override
 	public String toString() {
 		return this.name;

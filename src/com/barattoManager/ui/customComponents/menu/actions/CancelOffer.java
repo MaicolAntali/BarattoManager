@@ -10,20 +10,12 @@ import com.barattoManager.ui.customComponents.tree.Tree;
 import javax.swing.*;
 
 /**
- * Class used to cancel an offer
+ * Cancel offer action
  */
 public class CancelOffer extends NodeUuidActionTemplate {
-	/**
-	 * Error: no article has been selected
-	 */
+
 	private static final String ERROR_NO_ARTICLE_SELECTED = "Non è stato selezionato un articolo";
-	/**
-	 * Message: confirmation asked to change the article status to 'Offer deleted'
-	 */
 	private static final String CONFIRM_OPERATION_CANCEL_OFFER = "Sei sicuro di voler cambiare lo stato dell'articolo in: \"Offerta Cancellata\"?";
-	/**
-	 * Error: the state of the article is already 'offer deleted'
-	 */
 	private static final String ERROR_STATUS_ARTICLE_IS_ALREADY_CANCELED = "Lo stato di questo articolo è gia: \"Offerta Cancellata\"";
 
 

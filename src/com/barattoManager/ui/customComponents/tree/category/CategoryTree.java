@@ -4,18 +4,25 @@ import com.barattoManager.model.category.Category;
 import com.barattoManager.model.category.field.Field;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
+import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.util.List;
 
 /**
- * Class used to create a JPanel that contain a JTree
+ * Class used to create the {@link Category} tree
  */
 public class CategoryTree extends Tree {
 
 	private DefaultMutableTreeNode rootNode;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param categories {@link List} that contains the {@link Category categories}
+	 * @param dimension  {@link Dimension} of the {@link JPanel} that contains the tree
+	 */
 	public CategoryTree(List<Category> categories, Dimension dimension) {
 		super(dimension);
 
@@ -24,6 +31,11 @@ public class CategoryTree extends Tree {
 		getTree().expandPath(new TreePath(getRootNode()));
 	}
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param categories {@link List} that contains the {@link Category categories}
+	 */
 	public CategoryTree(List<Category> categories) {
 		this(categories, new Dimension(500, 290));
 	}
@@ -36,14 +48,6 @@ public class CategoryTree extends Tree {
 		return rootNode;
 	}
 
-
-	/**
-	 * Method used to create a complete node (category + field).
-	 *
-	 * @param category   {@link Category} want to create the node.
-	 * @param fatherNode {@link DefaultMutableTreeNode} node to attach the new category node
-	 * @return {@link DefaultMutableTreeNode} new category node
-	 */
 	private DefaultMutableTreeNode createNode(Category category, DefaultMutableTreeNode fatherNode) {
 		// Add the category
 		var node = new DefaultMutableTreeNode(("%s ~ %s").formatted(category.getName(), category.getDescription()));
@@ -56,13 +60,6 @@ public class CategoryTree extends Tree {
 		return node;
 	}
 
-
-	/**
-	 * Recursive method used to append the sub category
-	 *
-	 * @param cat    Category that want append in the tree
-	 * @param catAdd Node of the tree where the category will be appended.
-	 */
 	private void createSubCategoryNode(Category cat, DefaultMutableTreeNode catAdd) {
 		if (!cat.getSubCategory().isEmpty()) {
 			for (Category subCat : cat.getSubCategory().values()) {

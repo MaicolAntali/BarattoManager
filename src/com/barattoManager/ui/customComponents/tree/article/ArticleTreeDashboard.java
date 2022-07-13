@@ -7,12 +7,17 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.List;
 
 /**
- * Class that represent the article tree in the dashboard of the viewer
+ * Class used to create the {@link Article} tree
  */
 public final class ArticleTreeDashboard extends ArticleTree {
 
 	private DefaultMutableTreeNode rootNode;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param articles {@link List} that contains the {@link Article}
+	 */
 	public ArticleTreeDashboard(List<Article> articles) {
 		super(articles);
 	}

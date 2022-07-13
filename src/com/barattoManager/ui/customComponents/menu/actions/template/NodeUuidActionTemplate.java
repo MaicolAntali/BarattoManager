@@ -25,12 +25,5 @@ public abstract class NodeUuidActionTemplate extends NodeActionTemplate {
 		customAction(uuid.get(), tree, user);
 	}
 
-	/**
-	 * Method that will run after the default implementation
-	 *
-	 * @param uuid uuid
-	 * @param tree tree
-	 * @param user user
-	 */
 	protected abstract void customAction(String uuid, Tree tree, User user);
 }

@@ -18,6 +18,10 @@ import java.awt.*;
 public class BarattoManagerGui extends JFrame {
 
 	private static final String TITLE_BARATTO_MANAGER = "Baratto Manager";
+
+	/**
+	 * Constant defining the default panel size
+	 */
 	public static final Dimension CONTENT_PANEL_DEFAULT_DIMENSION = new Dimension(600, 430);
 
 	private JPanel mainPanel;

@@ -9,6 +9,7 @@ import com.barattoManager.model.trade.TradeStatus;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
+import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import java.awt.*;
@@ -19,12 +20,19 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Class used to generate a trade tree
+ * Class used to create the {@link Trade} tree
  */
 public class TradeTree extends Tree {
 
 	private DefaultMutableTreeNode rootNode;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param trades    {@link List} that contains the {@link Trade}
+	 * @param user      {@link User} who has logged in
+	 * @param dimension {@link Dimension} of the {@link JPanel} that contains the tree
+	 */
 	public TradeTree(List<Trade> trades, User user, Dimension dimension) {
 		super(dimension);
 
@@ -54,6 +62,12 @@ public class TradeTree extends Tree {
 		getTree().expandPath(new TreePath(getRootNode()));
 	}
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param trades {@link List} that contains the {@link Trade}
+	 * @param user   {@link User} who has logged in
+	 */
 	public TradeTree(List<Trade> trades, User user) {
 		this(trades, user, new Dimension(500, 290));
 	}
@@ -116,5 +130,4 @@ public class TradeTree extends Tree {
 
 		return tradeNode;
 	}
-
 }

@@ -8,21 +8,12 @@ import java.awt.*;
  */
 public class ChangePasswordPanel extends JPanel {
 
-	/**
-	 * Label: Change your password
-	 */
 	private static final String LABEL_CHANGE_YOUR_PASSWORD = "Cambia la tua password di accesso.";
-	/**
-	 * New password label
-	 */
 	private static final String LABEL_NEW_PASSWORD = "Nuova Password:";
-	/**
-	 * Password field
-	 */
 	private final JPasswordField passwordField = new JPasswordField(13);
 
 	/**
-	 * {@link ChangePasswordPanel} constructor
+	 * Constructor of the class
 	 */
 	public ChangePasswordPanel() {
 		var mainPanel = new JPanel();
@@ -40,9 +31,9 @@ public class ChangePasswordPanel extends JPanel {
 	}
 
 	/**
-	 * Method used to get the {@link #passwordField}
+	 * Method used to get {@link JPasswordField} with the user password
 	 *
-	 * @return The {@link #passwordField}
+	 * @return {@link JPasswordField} with the user password
 	 */
 	public JPasswordField getPasswordField() {
 		return passwordField;
