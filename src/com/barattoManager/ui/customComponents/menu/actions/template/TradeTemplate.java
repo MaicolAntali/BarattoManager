@@ -19,6 +19,7 @@ public abstract class TradeTemplate extends NodeUuidActionTemplate {
 
 	private static final String NO_ARTICLE_HAS_BEEN_SELECTED = "Non è stato selezionato nessun articolo";
 	private static final String YOU_HAVE_TO_WAIT_FOR_OTHER_USER = "Devi aspettare la risposta dell'altro utente!";
+	private static final String CANNOT_ACCEPT_TRADE_ON_STATUS = "Non è possibile accettare un trade nello stato: %s";
 
 	@Override
 	protected void customAction(String uuid, Tree tree, User user) {
@@ -35,7 +36,7 @@ public abstract class TradeTemplate extends NodeUuidActionTemplate {
 		}
 
 		if (tradeOptional.get().getTradeStatus() != TradeStatus.IN_PROGRESS) {
-			JOptionPane.showMessageDialog(tree, "Non è possibile accettare un trade nello stato: %s".formatted(tradeOptional.get().getTradeStatus().toString()), "Errore", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(tree, CANNOT_ACCEPT_TRADE_ON_STATUS.formatted(tradeOptional.get().getTradeStatus().toString()), "Errore", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 

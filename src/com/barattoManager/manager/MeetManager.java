@@ -4,6 +4,7 @@ import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.manager.daemon.MeetUpdaterDaemon;
+import com.barattoManager.model.article.Article;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.utils.parser.DateParser;
 
@@ -20,6 +21,9 @@ import java.util.stream.IntStream;
  * Class that handles meets
  */
 public final class MeetManager implements Manager {
+
+	private static final String ERROR_INSERT_ALL_FIELDS = "Uno dei valore richiesti è stato lasciato vuoto. Inserire tutti i campi.";
+	private static final String ERROR_NO_DAY_SELECTED = "Non è stato selezionato nessun giorno.";
 
 	private final ConcurrentHashMap<String, Meet> meetMap;
 	private MeetUpdaterDaemon meetUpdaterDaemon;
@@ -67,7 +71,7 @@ public final class MeetManager implements Manager {
 	public void addNewMeet(String city, String square, DayOfWeek day, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws AlreadyExistException, IllegalValuesException {
 
 		if (city.isBlank() || square.isBlank() || daysBeforeExpire <= 0)
-			throw new IllegalValuesException("Uno dei valore richiesti è stato lasciato vuoto. Inserire tutti i campi.");
+			throw new IllegalValuesException(ERROR_INSERT_ALL_FIELDS);
 
 		var intervals = generateIntervals(intervalStartTime, intervalEndTime);
 
@@ -113,7 +117,7 @@ public final class MeetManager implements Manager {
 	public void addNewMeet(String city, String square, ArrayList<String> days, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws AlreadyExistException, IllegalValuesException {
 
 		if (days.isEmpty())
-			throw new IllegalValuesException("Non è stato selezionato nessun giorno.");
+			throw new IllegalValuesException(ERROR_NO_DAY_SELECTED);
 
 		for (String day : days) {
 			addNewMeet(city, square, DateParser.stringToWeekDay(day), intervalStartTime, intervalEndTime, daysBeforeExpire);
@@ -173,6 +177,7 @@ public final class MeetManager implements Manager {
 	 * Method used to return a meet by its uuid<br/>
 	 * The method returns an {@link Optional}  with the {@link Meet} object if the past uuid is found otherwise an empty {@link Optional}
 	 *
+	 * @param meetUuid uuid of the {@link Meet} to get
 	 * @return An {@link Optional} with the object {@link Meet} otherwise an empty {@link Optional}
 	 */
 	public Optional<Meet> getMeetByUuid(String meetUuid) {

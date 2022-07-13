@@ -8,8 +8,9 @@ import com.barattoManager.ui.customComponents.tree.Tree;
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
 
+//fixme:
 /**
- * Abstract class of a node action template
+ * Abstract class used to create a {@link MenuAction} that represent a node action template
  */
 public abstract class NodeActionTemplate implements MenuAction {
 

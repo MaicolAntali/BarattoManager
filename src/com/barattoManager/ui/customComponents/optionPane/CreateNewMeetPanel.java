@@ -5,51 +5,23 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Class used to create a JPanel used to create a new meet
+ * Class used to create a {@link JPanel} used to create a new meet
  */
 public class CreateNewMeetPanel extends JPanel {
-	/**
-	 * Array of days
-	 */
 	private static final String[] DAYS = {"Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"};
-	/**
-	 * Fill all the field label
-	 */
 	private static final String LABEL_FILL_ALL_FIELDS = "Compila tutti i campi richiesti per inserire un nuovo luogo di incontro.";
-	/**
-	 * Start time label
-	 */
 	private static final String LABEL_START_TIME = "Orario di inizio (HH:MM): ";
-	/**
-	 * End time label
-	 */
 	private static final String LABEL_END_TIME = "Orario di Fine (HH:MM): ";
-
-	/**
-	 * City field
-	 */
 	private final JTextField cityField = new JTextField(26);
-	/**
-	 * Square field
-	 */
 	private final JTextField squareField = new JTextField(20);
-	/**
-	 * Days checkboxes
-	 */
 	private final JCheckBox[] daysCheckbox = new JCheckBox[7];
-	/**
-	 * Start time field
-	 */
 	private final JTextField startTimeField = new JTextField(24);
-	/**
-	 * End time field
-	 */
 	private final JTextField endTimeField = new JTextField(24);
 	private final JTextField daysBeforeExpireField = new JTextField(24);
 
 
 	/**
-	 * {@link CreateNewMeetPanel} constructor
+	 * Constructor of the class
 	 */
 	public CreateNewMeetPanel() {
 		var mainPanel = new JPanel();
@@ -101,27 +73,27 @@ public class CreateNewMeetPanel extends JPanel {
 	}
 
 	/**
-	 * Method used to get the {@link #cityField}
+	 * Method used to get the {@link String} with the city
 	 *
-	 * @return {@link JTextField} object
+	 * @return {@link String} with the city
 	 */
 	public String getCity() {
 		return cityField.getText();
 	}
 
 	/**
-	 * Method used to get the {@link #squareField}
+	 * Method used to get the {{@link String} with the square
 	 *
-	 * @return {@link JTextField} object
+	 * @return {@link String} with the square
 	 */
 	public String getSquare() {
 		return squareField.getText();
 	}
 
 	/**
-	 * Method used to get the selected days
+	 * Method used to get the {@link ArrayList<String>} with the selected days
 	 *
-	 * @return {@link ArrayList<String>} object
+	 * @return {@link ArrayList<String>} with the selected days
 	 */
 	public ArrayList<String> getSelectedDays() {
 		var days = new ArrayList<String>();
@@ -136,27 +108,27 @@ public class CreateNewMeetPanel extends JPanel {
 	}
 
 	/**
-	 * Method used to get the {@link #startTimeField}
+	 * Method used to get the {@link JTextField} with the start time
 	 *
-	 * @return {@link JTextField} object
+	 * @return {@link JTextField} with the start time
 	 */
 	public JTextField getStartTimeField() {
 		return startTimeField;
 	}
 
 	/**
-	 * Method used to get the {@link #endTimeField}
+	 * Method used to get the {@link JTextField} with the end time
 	 *
-	 * @return {@link JTextField} object
+	 * @return {@link JTextField} with the end time
 	 */
 	public JTextField getEndTimeField() {
 		return endTimeField;
 	}
 
 	/**
-	 * Method used to get the days before expire field
+	 * Method used to get the {@link String} with the day before expire
 	 *
-	 * @return the day before expire
+	 * @return {@link String} with the day before expire
 	 */
 	public String getDaysBeforeExpireField() {
 		return daysBeforeExpireField.getText();

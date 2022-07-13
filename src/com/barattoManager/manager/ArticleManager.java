@@ -4,6 +4,7 @@ import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.category.field.Field;
+import com.barattoManager.model.meet.Meet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,7 @@ public final class ArticleManager implements Manager {
 	 * Method used to return an Article by its uuid<br/>
 	 * The method returns an {@link Optional}  with the {@link Article} object if the past uuid is found otherwise an empty {@link Optional}
 	 *
+	 * @param uuid uuid of the {@link Article} to get
 	 * @return An {@link Optional} with the object {@link Article} otherwise an empty {@link Optional}
 	 */
 	public Optional<Article> getArticleById(String uuid) {

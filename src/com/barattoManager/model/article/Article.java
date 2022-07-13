@@ -30,6 +30,7 @@ public class Article {
 	private static final String PRE_CONDITION_CATEGORY_UUID_IS_EMPTY = "Pre-condition: Category Uuid is empty";
 	private static final String PRE_CONDITION_HISTORY_IS_EMPTY = "Pre-condition: History is empty";
 	private static final String PRE_CONDITION_FIELDS_MAP_IS_EMPTY = "Pre-condition: Fields value map is empty";
+	private static final String STATE_UPDATED = "The article state is updated from %s to %s";
 
 	@JsonProperty("uuid")
 	private final String uuid;
@@ -231,7 +232,7 @@ public class Article {
 	 * @param state new article {@link State} to set
 	 */
 	public void setArticleState(State state) {
-		history.add(new History("State Update", "The article state is updated from %s to %s".formatted(this.articleState, state)));
+		history.add(new History("State Update", STATE_UPDATED.formatted(this.articleState, state)));
 		this.articleState = state;
 	}
 

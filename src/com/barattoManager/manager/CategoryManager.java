@@ -4,6 +4,7 @@ import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.exception.NullCategoryException;
+import com.barattoManager.model.article.Article;
 import com.barattoManager.model.category.Category;
 import com.barattoManager.utils.AppConfigurator;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -151,6 +152,7 @@ public final class CategoryManager implements Manager {
 	 * Method used to return a category by its uuid<br/>
 	 * The method returns an {@link Optional}  with the {@link Category} object if the past uuid is found otherwise an empty {@link Optional}
 	 *
+	 * @param uuid uuid of the {@link Category} to get
 	 * @return An {@link Optional} with the object {@link Category} otherwise an empty {@link Optional}
 	 */
 	public Optional<Category> getCategoryByUuid(String uuid) {

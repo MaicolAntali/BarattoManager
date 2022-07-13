@@ -17,6 +17,7 @@ public class MeetEditorButtons extends JPanel {
 
 	private static final String ADD_NEW_MEET_BUTTON = "Aggiungi un nuovo luogo di incontro";
 	private static final String CREATION_OF_NEW_MEET_TITLE = "Creazione di un nuovo luogo di incontro";
+	private static final String ERROR_EMPTY_OR_INCORRECT_DATA = "I dati immessi sono vuoti o non corretti ";
 
 
 	/**
@@ -53,7 +54,7 @@ public class MeetEditorButtons extends JPanel {
 			try {
 				dayBeforeExpire = StringParser.stringIntoInteger(createNewMeetPanel.getDaysBeforeExpireField());
 			} catch (IllegalValuesException e) {
-				JOptionPane.showMessageDialog(this, "I dati immessi sono vuoti o non corretti ", "Errore", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, ERROR_EMPTY_OR_INCORRECT_DATA, "Errore", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 

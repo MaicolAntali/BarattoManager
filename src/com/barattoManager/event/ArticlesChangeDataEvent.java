@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Class that handles events related to articles data change.</br>
+ * Class that handles events related to articles data change.<br/>
  */
 public class ArticlesChangeDataEvent implements Event<String, Article> {
 

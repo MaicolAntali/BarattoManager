@@ -5,6 +5,7 @@ import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.manager.UserManager;
 import com.barattoManager.manager.factory.UserManagerFactory;
+import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.Configurator;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.BarattoManagerGui;
@@ -22,52 +23,30 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Class used to create a JPanel that represent the login view
+ * Class used to create a {@link JPanel} that allows the users to login
  */
 public class LoginUI extends JPanel implements DataChangeListener<String, User> {
-	/**
-	 * Title of JOptionPanel
-	 */
 	private static final String SET_NEW_PASSWORD_TITLE = "seleziona una nuova password";
-	/**
-	 * Password not valid error
-	 */
 	private static final String ERROR_PASSWORD_NOT_VALID = "La nuova password non è valida.\n Inserisci una password diversa da: %s e lunga almeno 5 caratteri.".formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
-	/**
-	 * Title of Error
-	 */
 	private static final String ERROR_TITLE = "Errore";
-	/**
-	 * {@link UserManager} Object
-	 */
 	private final UserManager userManager;
-	/**
-	 * Main JPanel
-	 */
+
 	private JPanel mainPanel;
-	/**
-	 * Username field
-	 */
+
 	private JTextField usernameField;
-	/**
-	 * JButton used to go in the {@link InitialMenuUI} view
-	 */
+
 	private JButton backToInitButton;
-	/**
-	 * JButton used to log in
-	 */
+
 	private JButton loginButton;
-	/**
-	 * Password field
-	 */
+
 	private JPasswordField passwordField;
 
 	/**
-	 * {@link LoginUI} constructor
+	 * Constructor of the class
 	 *
-	 * @param dimension      Dimension of JPanel
-	 * @param cardLayout     {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
-	 * @param panelContainer {@link JPanel} object that contains every cards
+	 * @param dimension    {@link Dimension} of the {@link JPanel} to be created
+	 * @param cardLayout   {@link CardLayout} object that represent the type layout
+	 * @param panelContainer {@link JPanel} object which contains all useful layouts (cards)
 	 */
 	public LoginUI(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
 		// Get the userManager

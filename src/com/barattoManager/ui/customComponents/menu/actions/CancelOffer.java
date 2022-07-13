@@ -17,6 +17,7 @@ public class CancelOffer extends NodeUuidActionTemplate {
 	private static final String ERROR_NO_ARTICLE_SELECTED = "Non è stato selezionato un articolo";
 	private static final String CONFIRM_OPERATION_CANCEL_OFFER = "Sei sicuro di voler cambiare lo stato dell'articolo in: \"Offerta Cancellata\"?";
 	private static final String ERROR_STATUS_ARTICLE_IS_ALREADY_CANCELED = "Lo stato di questo articolo è gia: \"Offerta Cancellata\"";
+	private static final String CANNOT_CANCEL_OFFER_IN_STATE = "Non è possibile cancellare un offerta nello stato: %s";
 
 
 	@Override
@@ -42,7 +43,7 @@ public class CancelOffer extends NodeUuidActionTemplate {
 			}
 
 			if (article.get().getArticleState() != Article.State.OPEN_OFFER) {
-				JOptionPane.showMessageDialog(tree, "Non è possibile cancellare un offerta nello stato: %s".formatted(article.get().getArticleState().toString()), "Errore", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(tree, CANNOT_CANCEL_OFFER_IN_STATE.formatted(article.get().getArticleState().toString()), "Errore", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
 

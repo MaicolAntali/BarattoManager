@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Class that handles events related to users data change.</br>
+ * Class that handles events related to users data change.<br/>
  */
 public class UserChangeDataEvent implements Event<String, User> {
 
-	public final ArrayList<DataChangeListener<String, User>> listeners;
+	private final ArrayList<DataChangeListener<String, User>> listeners;
 
 	/**
 	 * Constructor of the class.<br/>

@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("Configurator")
 public final class Configurator extends User {
 
-	public static final String PRE_CONDITION_CONFIGURATOR_USERNAME_IS_BLANK = "Pre-condition: Configurator username is blank";
-	public static final String PRE_CONDITION_CONFIGURATOR_PASSWORD_IS_BLANK = "Pre-condition: Configurator password is blank";
+	private static final String PRE_CONDITION_CONFIGURATOR_USERNAME_IS_BLANK = "Pre-condition: Configurator username is blank";
+	private static final String PRE_CONDITION_CONFIGURATOR_PASSWORD_IS_BLANK = "Pre-condition: Configurator password is blank";
 
 	@JsonProperty("username")
 	private String username;

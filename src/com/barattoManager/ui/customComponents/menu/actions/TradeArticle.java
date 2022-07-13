@@ -8,6 +8,7 @@ import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.menu.actions.panels.SelectMeetDate;
 import com.barattoManager.ui.customComponents.menu.actions.template.NodeUuidActionTemplate;
+import com.barattoManager.ui.customComponents.menu.actions.template.TradeTemplate;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.*;
@@ -17,13 +18,13 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Trade article action
+ * Class used to create a {@link NodeUuidActionTemplate} that permits to trade an {@link Article article}
  */
 public class TradeArticle extends NodeUuidActionTemplate {
 
 	private static final String ERROR_NO_ARTICLE_SELECTED = "Non è stato selezionato nessun articolo";
 	private static final String ERROR_NO_OWNED_ARTICLE_IN_CATEGORY = "Non possiedi nessun articolo di questa categoria";
-	public static final String CHOOSE_THE_ARTICLE_TO_TRADE = "Seleziona l'oggetto che vuoi scambiare:";
+	private static final String CHOOSE_THE_ARTICLE_TO_TRADE = "Seleziona l'oggetto che vuoi scambiare:";
 
 	@Override
 	protected void customAction(String uuid, Tree tree, User user) {
@@ -130,9 +131,7 @@ public class TradeArticle extends NodeUuidActionTemplate {
 			return (Article) articleComboBox.getSelectedItem();
 		}
 
-		/**
-		 * Combobox custom renderer
-		 */
+		//Fixme: non so cosa scrivere
 		static class ArticleComboBoxCustomRenderer extends BasicComboBoxRenderer {
 			@Override
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {

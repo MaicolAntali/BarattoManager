@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Class that handles events related to trade data change.</br>
+ * Class that handles events related to trade data change.<br/>
  */
 public class TradesChangeDataEvent implements Event<String, Trade> {
 
-	public final ArrayList<DataChangeListener<String, Trade>> listeners;
+	private final ArrayList<DataChangeListener<String, Trade>> listeners;
 
 	/**
 	 * Constructor of the class.<br/>

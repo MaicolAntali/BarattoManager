@@ -51,7 +51,7 @@ public final class TimeParser {
 	/**
 	 * Convert string to a time in minutes
 	 *
-	 * @param time Time string. <b></b>Must be in the format => HH:MM</b>
+	 * @param time Time string. <b>Must be in the format => HH:MM</b>
 	 * @return time in minutes
 	 * @throws IllegalValuesException Is thrown if the time format is incorrect
 	 */

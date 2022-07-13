@@ -21,7 +21,7 @@ public interface Event<K, V> {
 	void addListener(DataChangeListener<K, V> listener);
 
 	/**
-	 * Method used to run the event in each listener</br>
+	 * Method used to run the event in each listener<br/>
 	 * In the implementation will fire the {@link DataChangeListener#update(ConcurrentHashMap)} method on each listener
 	 *
 	 * @param updatedMap {@link java.util.concurrent.ConcurrentHashMap} with updated data that will pass to {@link DataChangeListener#update(ConcurrentHashMap)} method

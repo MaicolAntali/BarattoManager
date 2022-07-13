@@ -6,7 +6,7 @@ import com.barattoManager.ui.customComponents.tree.Tree;
 import javax.swing.*;
 
 /**
- * Interface representing the menus
+ * Marker interface for any menu
  */
 public interface Menu {
 	/**

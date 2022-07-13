@@ -12,7 +12,7 @@ import com.barattoManager.ui.customComponents.tree.Tree;
 import javax.swing.*;
 
 /**
- * Accept and reschedule a trade action
+ * Class used to create a {@link TradeTemplate} that permits to accept and reschedule a trade
  */
 public class AcceptRescheduleTrade extends TradeTemplate {
 

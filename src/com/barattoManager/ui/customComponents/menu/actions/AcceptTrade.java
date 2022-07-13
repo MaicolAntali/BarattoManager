@@ -7,7 +7,7 @@ import com.barattoManager.ui.customComponents.menu.actions.template.TradeTemplat
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 /**
- * Accept trade action
+ * Class used to create a {@link TradeTemplate} that permits to accept a trade
  */
 public class AcceptTrade extends TradeTemplate {
 

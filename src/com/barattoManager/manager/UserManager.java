@@ -21,6 +21,7 @@ import static com.barattoManager.manager.Constants.*;
  */
 public final class UserManager implements Manager {
 
+	private static final String SET_DEFAULT_CREDENTIALS = "Sono state impostate delle credenziali di base per il primo configuratore. \n\nUsername: Configurator\nPassword: %s";
 	private final ConcurrentHashMap<String, User> userMap;
 
 	/**
@@ -41,7 +42,7 @@ public final class UserManager implements Manager {
 
 			JOptionPane.showMessageDialog(
 					null,
-					"Sono state impostate delle credenziali di base per il primo configuratore. \n\nUsername: Configurator\nPassword: %s".formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd")),
+					SET_DEFAULT_CREDENTIALS.formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd")),
 					"Credenziali di default",
 					JOptionPane.INFORMATION_MESSAGE
 			);

@@ -23,6 +23,8 @@ public class NewArticle implements MenuAction {
 	private static final String TITLE_ADD_NEW_ARTICLE = "Aggiungi un nuovo articolo";
 	private static final String LABEL_ENTER_ALL_THE_REQUIRED_FIELDS = "Inserisci tutti i campi obbligatori:";
 	private static final String LABEL_SELECT_A_CATEGORY_FOR_YOUR_ARTICLE = "Seleziona una categoria per il tuo articolo:";
+	private static final String ERROR_ARTICLE_NAME_EMPTY = "Nome dell'articolo vuoto";
+	private static final String ERROR_THERE_ARE_NO_CATEGORY_AVAILABLE = "Non ci sono categorie disponibili.";
 
 	@Override
 	public void run(User user, Tree tree) {
@@ -62,7 +64,7 @@ public class NewArticle implements MenuAction {
 			if (resultFormPanel == JOptionPane.OK_OPTION) {
 
 				if (formPanel.getArticleName().getText().trim().isBlank()) {
-					JOptionPane.showMessageDialog(tree, "Nome dell'articolo vuoto", "Errore", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(tree, ERROR_ARTICLE_NAME_EMPTY, "Errore", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 
@@ -175,7 +177,7 @@ public class NewArticle implements MenuAction {
 			ArrayList<String> categories = generateComboBoxItems();
 
 			if (categories.isEmpty())
-				throw new IllegalValuesException("Non ci sono categorie disponibili.");
+				throw new IllegalValuesException(ERROR_THERE_ARE_NO_CATEGORY_AVAILABLE);
 
 			for (String item : categories) {
 				categoryCombo.addItem(item);

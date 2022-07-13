@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.util.HashMap;
 
 /**
- * Class used to create a menu that manages the store
+ * Class used to create a menu that manages the dashboard
  */
 public class DashBoardMenu extends JPanel implements Menu {
 

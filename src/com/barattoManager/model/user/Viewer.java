@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("Viewer")
 public final class Viewer extends User {
 
-	public static final String PRE_CONDITION_VIEWER_USERNAME_IS_BLANK = "Pre-condition: Viewer username is blank";
-	public static final String PRE_CONDITION_VIEWER_PASSWORD_IS_BLANK = "Pre-condition: Viewer password is blank";
+	private static final String PRE_CONDITION_VIEWER_USERNAME_IS_BLANK = "Pre-condition: Viewer username is blank";
+	private static final String PRE_CONDITION_VIEWER_PASSWORD_IS_BLANK = "Pre-condition: Viewer password is blank";
 
 	@JsonProperty("username")
 	private String username;

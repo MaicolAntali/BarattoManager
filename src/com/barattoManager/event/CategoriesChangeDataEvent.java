@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Class that handles events related to categories data change.</br>
+ * Class that handles events related to categories data change.<br/>
  */
 public class CategoriesChangeDataEvent implements Event<String, Category> {
 
-	public final ArrayList<DataChangeListener<String, Category>> listeners;
+	private final ArrayList<DataChangeListener<String, Category>> listeners;
 
 	/**
 	 * Constructor of the class.<br/>

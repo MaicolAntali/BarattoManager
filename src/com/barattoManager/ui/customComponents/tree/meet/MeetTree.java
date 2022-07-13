@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class MeetTree extends Tree {
 
+	private static final String DAYS_TO_ACCEPT_OFFER = "Giorni per accettare l'offerta: %d";
 	private DefaultMutableTreeNode rootNode;
 
 	/**
@@ -69,7 +70,7 @@ public class MeetTree extends Tree {
 
 		meetNode.add(new DefaultMutableTreeNode("Giorno: %s".formatted(meet.getDay().toString())));
 		meetNode.add(new DefaultMutableTreeNode("Orario: %s-%s".formatted(meet.getStartTime(), meet.getEndTime())));
-		meetNode.add(new DefaultMutableTreeNode("Giorni per accettare l'offerta: %d".formatted(meet.getDaysBeforeExpire())));
+		meetNode.add(new DefaultMutableTreeNode(DAYS_TO_ACCEPT_OFFER.formatted(meet.getDaysBeforeExpire())));
 
 		// add meetNode to father
 		fatherNode.add(meetNode);

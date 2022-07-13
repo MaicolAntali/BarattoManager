@@ -4,7 +4,7 @@ import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 /**
- * Interface that represents menu actions
+ * Marker interface for any menu action
  */
 public interface MenuAction {
 

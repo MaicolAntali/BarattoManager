@@ -9,28 +9,18 @@ import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
 
 /**
- * JPanel that permits to select a date for the meeting
+ * Class used to create a {@link JPanel} that permits to select a date for the meeting
  */
 public class SelectMeetDate extends JPanel {
 
-	/**
-	 * Label: Select the day of the exchange
-	 */
 	private static final String SELECT_DAY_EXCHANGE = "Seleziona il giorno dello scambio:";
-	/**
-	 * Error: There are no meetings available
-	 */
 	private static final String ERROR_NO_MEET_AVAILABLE = "Non ci sono meet disponibili";
-
-	/**
-	 * Meets {@link JComboBox}
-	 */
 	private final JComboBox<Meet> meetComboBox = new JComboBox<>();
 
 	/**
-	 * {@link SelectMeetDate} constructor
+	 * Constructor of the class
 	 *
-	 * @throws IllegalValuesException Is thrown if there are no meet available
+	 * @throws IllegalValuesException Is thrown if there are no available meet
 	 */
 	public SelectMeetDate() throws IllegalValuesException {
 		var mainPanel = new JPanel();
@@ -56,15 +46,12 @@ public class SelectMeetDate extends JPanel {
 	/**
 	 * Method used to get the selected {@link Meet}
 	 *
-	 * @return Selected meet
+	 * @return selected {@link Meet}
 	 */
 	public Meet getSelectedMeet() {
 		return (Meet) meetComboBox.getSelectedItem();
 	}
 
-	/**
-	 * Meet combo box custom renderer
-	 */
 	static class MeetComboBoxCustomRenderer extends BasicComboBoxRenderer {
 		@Override
 		public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {

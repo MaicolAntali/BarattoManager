@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Class used to create a {@link JPanel} that allows the viewer to manage his {@link Trade trades}
  */
 public class ViewerExchangesViewUi extends JPanel implements DataChangeListener<String, Trade> {
-	public static final String HELP_MESSAGE = """
+	private static final String HELP_MESSAGE = """
 			In questa pagina puoi visualizzare i tuoi scambi
 			Per effettuare un operazione su uno scambio puoi cliccare sul menu in alto al sinistra e scegliere di:
 				 - Accettare una proposta di scambio;

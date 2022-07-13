@@ -1,44 +1,37 @@
 package com.barattoManager.ui.components;
 
+import com.barattoManager.model.article.Article;
+import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.optionPane.RegisterNewUserPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class used to create a JPanel that represent the initial view
+ * Class used to create a {@link JPanel} that shows the initial menu to the {@link com.barattoManager.model.user.User users}
  */
 public class InitialMenuUI extends JPanel {
 
-	/**
-	 * Main JPanel
-	 */
-	private JPanel mainPanel;
-	/**
-	 * JButton used to log in
-	 */
-	private JButton loginButton;
-	/**
-	 * JButton used to register new users
-	 */
-	private JButton RegisterButton;
+    private JPanel mainPanel;
+    private JButton loginButton;
+    private JButton RegisterButton;
 
-	/**
-	 * {@link InitialMenuUI} constructor
-	 *
-	 * @param dimension    Dimension of JPanel
-	 * @param cardLayout   {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
-	 * @param contentPanel {@link JPanel} object that contains every cards
-	 */
-	public InitialMenuUI(Dimension dimension, CardLayout cardLayout, JPanel contentPanel) {
-		// JPanel conf
-		setVisible(true);
-		add(mainPanel);
+    /**
+     * Constructor of the class
+     *
+     * @param dimension    {@link Dimension} of the {@link JPanel} to be created
+     * @param cardLayout   {@link CardLayout} object that represent the type layout
+     * @param panelContainer {@link JPanel} object which contains all useful layouts (cards)
+     */
+    public InitialMenuUI(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
+        // JPanel conf
+        setVisible(true);
+        add(mainPanel);
 
-		mainPanel.setPreferredSize(dimension);
+        mainPanel.setPreferredSize(dimension);
 
 
-		loginButton.addActionListener(e -> cardLayout.show(contentPanel, ComponentsName.LOGIN.toString()));
-		RegisterButton.addActionListener(e -> new RegisterNewUserPanel(mainPanel, false).createNewUser());
-	}
+        loginButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.LOGIN.toString()));
+        RegisterButton.addActionListener(e -> new RegisterNewUserPanel(mainPanel, false).createNewUser());
+    }
 }

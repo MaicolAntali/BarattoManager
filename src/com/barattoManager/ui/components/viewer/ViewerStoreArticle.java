@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Class used to create a JPanel that represent the store of the articles (only viewer)
+ * Class used to create a {@link JPanel} that allows the viewer to exchange the {@link Article articles}
  */
 public class ViewerStoreArticle extends JPanel implements DataChangeListener<String, Article> {
 

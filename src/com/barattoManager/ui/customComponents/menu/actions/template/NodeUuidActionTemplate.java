@@ -1,6 +1,7 @@
 package com.barattoManager.ui.customComponents.menu.actions.template;
 
 import com.barattoManager.model.user.User;
+import com.barattoManager.ui.customComponents.menu.actions.MenuAction;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.tree.TreeNode;
@@ -8,7 +9,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.IntStream;
 
 /**
- * Abstract class of a node uuid template
+ * Abstract class used to create a {@link NodeActionTemplate} that represent a node uuid action template
  */
 public abstract class NodeUuidActionTemplate extends NodeActionTemplate {
 
