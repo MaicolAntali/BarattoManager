@@ -6,37 +6,23 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class used to create a JPanel that represent the Viewer home view
+ * Class used to create a {@link JPanel} that shows the viewer's home page
  */
 public class ViewerHomeUi extends JPanel {
-	/**
-	 * Main JPanel
-	 */
+
 	private JPanel mainPanel;
-	/**
-	 * CategoryView button to {@link ViewerCategoryViewUi}
-	 */
 	private JButton viewCategoryButton;
-	/**
-	 * MeetView button to {@link ViewerMeetViewUi}
-	 */
 	private JButton viewMeetButton;
-	/**
-	 * YoursArticle button to {@link ViewerDashboardArticle}
-	 */
 	private JButton yoursArticleButton;
-	/**
-	 * ArticleStore button to {@link ViewerStoreArticle}
-	 */
 	private JButton storeArticleButton;
 	private JButton myTradesButton;
 
 	/**
-	 * {@link ViewerHomeUi} constructor
+	 * Constructor of the class
 	 *
-	 * @param dimension      Dimension of JPanel
-	 * @param cardLayout     {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
-	 * @param panelContainer {@link JPanel} object that contains every cards
+	 * @param dimension      {@link Dimension} of the {@link JPanel} to be created
+	 * @param cardLayout     {@link CardLayout} object that represent the type layout
+	 * @param panelContainer {@link JPanel} object which contains all useful layouts (cards)
 	 */
 	public ViewerHomeUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
 		// JPanel conf

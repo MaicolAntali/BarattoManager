@@ -8,28 +8,20 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * JPanel used from the Configurator to see the offers
+ * Class used to create a {@link JPanel} that allows the configurator to see the offers
  */
 public class ConfiguratorOfferView extends JPanel {
-	/**
-	 * Main Panel
-	 */
+
 	private JPanel mainPanel;
-	/**
-	 * Center Panel {@code BorderLayout.CENTER}
-	 */
 	private JPanel centerPanel;
-	/**
-	 * Back button to {@link ConfiguratorHomeUi}
-	 */
 	private JButton backToHomeButton;
 
 	/**
-	 * {@link ConfiguratorOfferView} constructor
+	 * Constructor of the class
 	 *
-	 * @param dimension      Dimension of JPanel
-	 * @param cardLayout     {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
-	 * @param panelContainer {@link JPanel} object that contains every cards
+	 * @param dimension      {@link Dimension} of the {@link JPanel} to be created
+	 * @param cardLayout     {@link CardLayout} object that represent the type layout
+	 * @param panelContainer {@link JPanel} object which contains all useful layouts (cards)
 	 */
 	public ConfiguratorOfferView(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
 		setVisible(true);

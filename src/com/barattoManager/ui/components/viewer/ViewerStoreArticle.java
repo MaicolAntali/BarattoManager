@@ -20,38 +20,23 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ViewerStoreArticle extends JPanel implements DataChangeListener<String, Article> {
 
-	/**
-	 * Help message: explains what are you seeing and how to exchange articles
-	 */
-	private static final String HELP_MESSAGE = "Nello store dei articoli puoi visuallizzare gli articoli che gli altri utenti hanno messo in baratto " +
+	private static final String HELP_MESSAGE = "Nello store dei articoli puoi visualizzare gli articoli che gli altri utenti hanno messo in baratto " +
 			"\n Per scambiare un tuo articolo con uno di questi puoi cliccare sul menu in alto a sinistra e scegliere l'opzione di scambio.";
-
 	private final User user;
 	private JMenuBar menu;
-
-	/**
-	 * Main Panel
-	 */
 	private JPanel mainPanel;
-	/**
-	 * Back button to {@link ViewerHomeUi}
-	 */
 	private JButton backToHomeButton;
-	/**
-	 * Center Panel {@code BorderLayout.CENTER}
-	 */
 	private JPanel centerPanel;
 	private JButton questionButton;
-
 	private Tree tree;
 
 	/**
-	 * {@link ViewerStoreArticle} constructor
+	 * Constructor of the class
 	 *
-	 * @param dimension      Dimension of JPanel
-	 * @param cardLayout     {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
-	 * @param panelContainer {@link JPanel} object that contains every cards
-	 * @param user           {@link User}
+	 * @param dimension      {@link Dimension} of the {@link JPanel} to be created
+	 * @param cardLayout     {@link CardLayout} object that represent the type layout
+	 * @param panelContainer {@link JPanel} object which contains all useful layouts (cards)
+	 * @param user           {@link User} who has logged in
 	 */
 	public ViewerStoreArticle(Dimension dimension, CardLayout cardLayout, JPanel panelContainer, User user) {
 		this.user = user;

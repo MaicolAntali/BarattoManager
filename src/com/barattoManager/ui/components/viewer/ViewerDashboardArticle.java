@@ -14,8 +14,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Class used to create a {@link JPanel} that allows the viewer to manage his {@link Article articles}
+ */
 public class ViewerDashboardArticle extends JPanel implements DataChangeListener<String, Article> {
-	public static final String HELP_MESSAGE = """
+	private static final String HELP_MESSAGE = """
 			In questa pagina puoi visualizzare i tuoi articoli
 			Per effettuare un operazione su un tuo articolo puoi cliccare sul menu in alto al sinistra e scegliere di:
 				 - Aggiungere un nuovo articolo da barattare;
@@ -30,12 +33,12 @@ public class ViewerDashboardArticle extends JPanel implements DataChangeListener
 	private JButton questionButton;
 
 	/**
-	 * {@link ViewerDashboardArticle} constructor
+	 * Constructor of the class
 	 *
-	 * @param dimension      Dimension of JPanel
-	 * @param cardLayout     {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
-	 * @param panelContainer {@link JPanel} object that contains every cards
-	 * @param user           {@link User}
+	 * @param dimension      {@link Dimension} of the {@link JPanel} to be created
+	 * @param cardLayout     {@link CardLayout} object that represent the type layout
+	 * @param panelContainer {@link JPanel} object which contains all useful layouts (cards)
+	 * @param user           {@link User} who has logged in
 	 */
 	public ViewerDashboardArticle(Dimension dimension, CardLayout cardLayout, JPanel panelContainer, User user) {
 		this.user = user;

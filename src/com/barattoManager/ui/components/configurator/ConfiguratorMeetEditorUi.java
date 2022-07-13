@@ -12,32 +12,21 @@ import java.awt.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Class used to create a JPanel that represent the meet editor view (only configurator)
+ * Class used to create a {@link JPanel} that allows the configurator to manage the {@link Meet meets}
  */
 public class ConfiguratorMeetEditorUi extends JPanel implements DataChangeListener<String, Meet> {
-	/**
-	 * {@link MeetTree} object
-	 */
+
 	private MeetTree meetTree = new MeetTree(MeetManagerFactory.getManager().getMeets());
-	/**
-	 * Main Panel
-	 */
 	private JPanel mainPanel;
-	/**
-	 * Center Panel {@code BorderLayout.CENTER}
-	 */
 	private JPanel centerPanel;
-	/**
-	 * Back button to {@link InitialMenuUI}
-	 */
 	private JButton backToInitButton;
 
 	/**
-	 * {@link ConfiguratorCategoryEditorUi} constructor
+	 * Constructor of the class
 	 *
-	 * @param dimension      Dimension of JPanel
-	 * @param cardLayout     {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
-	 * @param panelContainer {@link JPanel} object that contains every cards
+	 * @param dimension      {@link Dimension} of the {@link JPanel} to be created
+	 * @param cardLayout     {@link CardLayout} object that represent the type layout
+	 * @param panelContainer {@link JPanel} object which contains all useful layouts (cards)
 	 */
 	public ConfiguratorMeetEditorUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
 		// JPanel conf
@@ -51,9 +40,6 @@ public class ConfiguratorMeetEditorUi extends JPanel implements DataChangeListen
 		backToInitButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_HOME.toString()));
 	}
 
-	/**
-	 * Method used to update the JPanel components
-	 */
 	@Override
 	public void update(ConcurrentHashMap<String, Meet> updatedMap) {
 		centerPanel.remove(meetTree);

@@ -8,28 +8,20 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Class used to create a JPanel that represent the meets view (only viewer)
+ * Class used to create a {@link JPanel} that allows the viewer to see the {@link com.barattoManager.model.meet.Meet meet}
  */
 public class ViewerMeetViewUi extends JPanel {
-	/**
-	 * Main Panel
-	 */
+
 	private JPanel mainPanel;
-	/**
-	 * Center Panel {@code BorderLayout.CENTER}
-	 */
 	private JPanel centerPanel;
-	/**
-	 * Back button to {@link ViewerHomeUi}
-	 */
 	private JButton backToHomeButton;
 
 	/**
-	 * {@link ViewerMeetViewUi} constructor
+	 * Constructor of the class
 	 *
-	 * @param dimension      Dimension of JPanel
-	 * @param cardLayout     {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
-	 * @param panelContainer {@link JPanel} object that contains every cards
+	 * @param dimension      {@link Dimension} of the {@link JPanel} to be created
+	 * @param cardLayout     {@link CardLayout} object that represent the type layout
+	 * @param panelContainer {@link JPanel} object which contains all useful layouts (cards)
 	 */
 	public ViewerMeetViewUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
 		setVisible(true);

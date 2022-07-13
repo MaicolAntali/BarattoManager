@@ -20,38 +20,49 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Class used to create a JPanel that represent the configurator home view
+ * Class used to create a {@link JPanel} that shows the configurator's home page
  */
 public class ConfiguratorHomeUi extends JPanel {
-	/**
-	 * Main JPanel
-	 */
+
+	private static final String HELP_MESSAGE = """
+			Formato del JSON:
+			[
+				{
+					"nome_categoria": "nome_categoria",
+			        "descrizione": "descrizione_categoria",
+			        "percorso": null
+			    },
+			    {
+					"nome_categoria": "nome_categoria",
+					"descrizione": "descrizione_categoria",
+					"percorso": "main|sub|sub"
+				},
+				{
+					"nome_campo": "nome_campo",
+					"obbligatorio": true,
+					"percorso": "main|sub|sub"
+					}
+			]
+			NB: - in una categoria radice il percorso deve essere null
+			    - in una sotto categoria e in un campo"
+			           - il percorso non deve essere null
+			           - il percorso deve essere descritto con il carattere: |
+			""";
+
 	private JPanel mainPanel;
-	/**
-	 * JButton used to go in the {@link ConfiguratorCategoryEditorUi} view
-	 */
 	private JButton configCategoryButton;
-	/**
-	 * JButton used to add a new configurator
-	 */
 	private JButton addNewConfigurator;
-	/**
-	 * JButton used to go in the {@link ConfiguratorMeetEditorUi} view
-	 */
 	private JButton configMeetButton;
-	/**
-	 * JButton used to go in the {@link ConfiguratorOfferView} view
-	 */
 	private JButton showOffer;
 	private JButton loadJsonButton;
 	private JButton questionButton;
 
 	/**
-	 * {@link ConfiguratorHomeUi} constructor
+	 * Constructor of the class
 	 *
-	 * @param dimension      Dimension of JPanel
-	 * @param cardLayout     {@link CardLayout} object instanced in {@link com.barattoManager.ui.BarattoManagerGui}
-	 * @param panelContainer {@link JPanel} object that contains every cards
+	 * @param dimension      {@link Dimension} of the {@link JPanel} to be created
+	 * @param cardLayout     {@link CardLayout} object that represent the type layout
+	 * @param panelContainer {@link JPanel} object which contains all useful layouts (cards)
 	 */
 	public ConfiguratorHomeUi(Dimension dimension, CardLayout cardLayout, JPanel panelContainer) {
 		// JPanel conf
@@ -64,6 +75,10 @@ public class ConfiguratorHomeUi extends JPanel {
 		configMeetButton.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_MEET_EDITOR.toString()));
 		addNewConfigurator.addActionListener(e -> new RegisterNewUserPanel(mainPanel, true).createNewUser());
 		showOffer.addActionListener(e -> cardLayout.show(panelContainer, ComponentsName.CONF_OFFER_VIEW.toString()));
+		questionButton.addActionListener(e -> JOptionPane.showMessageDialog(this,
+				HELP_MESSAGE,
+				"Help",
+				JOptionPane.INFORMATION_MESSAGE));
 
 		loadJsonButton.addActionListener(e -> {
 			JFileChooser fileChooser = new JFileChooser();
