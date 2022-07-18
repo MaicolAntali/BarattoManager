@@ -30,7 +30,6 @@ public abstract class Tree extends JPanel {
 	 * @param dimension {@link Dimension} of the {@link JPanel} that contains the tree
 	 */
 	public Tree(Dimension dimension) {
-
 		this.tree = new JTree(getRootNode());
 
 		DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();

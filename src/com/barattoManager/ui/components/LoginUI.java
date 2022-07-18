@@ -5,7 +5,6 @@ import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.InvalidCredentialsException;
 import com.barattoManager.manager.UserManager;
 import com.barattoManager.manager.factory.UserManagerFactory;
-import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.Configurator;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.BarattoManagerGui;

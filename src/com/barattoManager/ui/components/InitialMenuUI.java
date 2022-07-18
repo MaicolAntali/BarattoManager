@@ -1,7 +1,5 @@
 package com.barattoManager.ui.components;
 
-import com.barattoManager.model.article.Article;
-import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.optionPane.RegisterNewUserPanel;
 
 import javax.swing.*;

@@ -1,7 +1,6 @@
 package com.barattoManager.ui.customComponents.menu.actions.template;
 
 import com.barattoManager.model.user.User;
-import com.barattoManager.ui.customComponents.menu.actions.MenuAction;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.tree.TreeNode;

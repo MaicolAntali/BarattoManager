@@ -4,7 +4,6 @@ import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.AlreadyExistException;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.manager.daemon.MeetUpdaterDaemon;
-import com.barattoManager.model.article.Article;
 import com.barattoManager.model.meet.Meet;
 import com.barattoManager.utils.parser.DateParser;
 

@@ -8,7 +8,6 @@ import com.barattoManager.model.article.Article;
 import com.barattoManager.model.user.User;
 import com.barattoManager.ui.customComponents.menu.actions.panels.SelectMeetDate;
 import com.barattoManager.ui.customComponents.menu.actions.template.NodeUuidActionTemplate;
-import com.barattoManager.ui.customComponents.menu.actions.template.TradeTemplate;
 import com.barattoManager.ui.customComponents.tree.Tree;
 
 import javax.swing.*;
@@ -131,7 +130,6 @@ public class TradeArticle extends NodeUuidActionTemplate {
 			return (Article) articleComboBox.getSelectedItem();
 		}
 
-		//Fixme: non so cosa scrivere
 		static class ArticleComboBoxCustomRenderer extends BasicComboBoxRenderer {
 			@Override
 			public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {

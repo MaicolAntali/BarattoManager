@@ -93,7 +93,6 @@ public class TradeTree extends Tree {
 
 		));
 
-
 		tradeNode.add(new DefaultMutableTreeNode("Data di validità: %s".formatted(trade.getTradeStartDateTime().format(DateTimeFormatter.ofPattern("hh:mm ~ dd/MM/yyyy")))));
 		tradeNode.add(new DefaultMutableTreeNode("Data dell'incontro: %s".formatted(
 				meet.getDateOfMeet().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))

@@ -4,7 +4,6 @@ import com.barattoManager.event.factory.EventFactory;
 import com.barattoManager.exception.IllegalValuesException;
 import com.barattoManager.model.article.Article;
 import com.barattoManager.model.category.field.Field;
-import com.barattoManager.model.meet.Meet;
 
 import java.util.ArrayList;
 import java.util.List;
