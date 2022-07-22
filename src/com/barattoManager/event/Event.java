@@ -1,7 +1,5 @@
 package com.barattoManager.event;
 
-import com.barattoManager.event.events.DataChangeListener;
-
 import java.util.concurrent.ConcurrentHashMap;
 
 /**

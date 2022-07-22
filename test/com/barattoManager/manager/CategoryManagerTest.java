@@ -1,10 +1,11 @@
 package com.barattoManager.manager;
 
-import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.exception.NullCategoryException;
-import com.barattoManager.manager.json.JsonHandler;
-import com.barattoManager.model.category.Category;
+import com.barattoManager.old.exception.AlreadyExistException;
+import com.barattoManager.old.exception.IllegalValuesException;
+import com.barattoManager.old.exception.NullCategoryException;
+import com.barattoManager.old.manager.CategoryManager;
+import com.barattoManager.old.sample.category.Category;
+import ingsw.barattoManager.mvc.models.json.JsonHandler;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

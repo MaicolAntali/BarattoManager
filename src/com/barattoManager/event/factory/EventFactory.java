@@ -1,11 +1,11 @@
 package com.barattoManager.event.factory;
 
 import com.barattoManager.event.*;
-import com.barattoManager.model.article.Article;
-import com.barattoManager.model.category.Category;
-import com.barattoManager.model.meet.Meet;
-import com.barattoManager.model.trade.Trade;
-import com.barattoManager.model.user.User;
+import com.barattoManager.old.sample.article.Article;
+import com.barattoManager.old.sample.category.Category;
+import com.barattoManager.old.sample.meet.Meet;
+import com.barattoManager.old.sample.trade.Trade;
+import com.barattoManager.old.sample.user.User;
 
 /**
  * Class that constructs all kinds of events that the system needs.<br/>

@@ -1,10 +1,11 @@
 package com.barattoManager.manager;
 
-import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.exception.InvalidCredentialsException;
-import com.barattoManager.manager.json.JsonHandler;
-import com.barattoManager.model.user.User;
+import com.barattoManager.old.exception.AlreadyExistException;
+import com.barattoManager.old.exception.IllegalValuesException;
+import com.barattoManager.old.exception.InvalidCredentialsException;
+import com.barattoManager.old.sample.user.User;
+import ingsw.barattoManager.mvc.models.UserModel;
+import ingsw.barattoManager.mvc.models.json.JsonHandler;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserManagerTest {
 
-	private static UserManager userManagerInstance;
+	private static UserModel userManagerInstance;
 
 	@BeforeAll
 	static void setUp() {
-		userManagerInstance = new UserManager(
+		userManagerInstance = new UserModel(
 				new JsonHandler<String, User>("test/json/users.json")
 						.readJson(String.class, User.class)
 		);

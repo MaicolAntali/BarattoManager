@@ -1,12 +1,13 @@
 package com.barattoManager.manager;
 
-import com.barattoManager.manager.json.JsonHandler;
-import com.barattoManager.model.trade.Trade;
+import com.barattoManager.old.manager.TradeManager;
+import com.barattoManager.old.sample.trade.Trade;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import ingsw.barattoManager.mvc.models.json.JsonHandler;
 import org.junit.jupiter.api.*;
 
 import java.util.Optional;

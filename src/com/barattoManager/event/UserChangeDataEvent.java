@@ -1,7 +1,6 @@
 package com.barattoManager.event;
 
-import com.barattoManager.event.events.DataChangeListener;
-import com.barattoManager.model.user.User;
+import com.barattoManager.old.sample.user.User;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;

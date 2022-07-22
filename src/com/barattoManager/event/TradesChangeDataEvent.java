@@ -1,7 +1,6 @@
 package com.barattoManager.event;
 
-import com.barattoManager.event.events.DataChangeListener;
-import com.barattoManager.model.trade.Trade;
+import com.barattoManager.old.sample.trade.Trade;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;

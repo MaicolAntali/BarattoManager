@@ -1,14 +1,15 @@
 package com.barattoManager.manager;
 
-import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.manager.json.JsonHandler;
-import com.barattoManager.model.article.Article;
-import com.barattoManager.model.category.field.Field;
+import com.barattoManager.old.exception.IllegalValuesException;
+import com.barattoManager.old.manager.ArticleManager;
+import com.barattoManager.old.sample.article.Article;
+import com.barattoManager.old.sample.category.field.Field;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import ingsw.barattoManager.mvc.models.json.JsonHandler;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;

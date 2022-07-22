@@ -1,6 +1,7 @@
 package com.barattoManager.utils.parser;
 
-import com.barattoManager.exception.IllegalValuesException;
+import com.barattoManager.old.exception.IllegalValuesException;
+import com.barattoManager.old.utils.parser.StringParser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

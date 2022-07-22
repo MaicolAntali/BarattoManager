@@ -1,7 +1,6 @@
 package com.barattoManager.event;
 
-import com.barattoManager.event.events.DataChangeListener;
-import com.barattoManager.model.article.Article;
+import com.barattoManager.old.sample.article.Article;
 
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;

@@ -1,14 +1,15 @@
 package com.barattoManager.manager;
 
-import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.exception.IllegalValuesException;
-import com.barattoManager.manager.json.JsonHandler;
-import com.barattoManager.model.meet.Meet;
+import com.barattoManager.old.exception.AlreadyExistException;
+import com.barattoManager.old.exception.IllegalValuesException;
+import com.barattoManager.old.manager.MeetManager;
+import com.barattoManager.old.sample.meet.Meet;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
+import ingsw.barattoManager.mvc.models.json.JsonHandler;
 import org.junit.jupiter.api.*;
 
 import java.time.DayOfWeek;
