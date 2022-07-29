@@ -1,0 +1,53 @@
+package com.barattoManager.services.user;
+
+import com.barattoManager.utils.AppConfigurator;
+import com.barattoManager.utils.SHA512;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Objects;
+
+
+public class User {
+
+	@JsonProperty("username")
+	private final String username;
+	@JsonProperty("password")
+	private String password;
+	@JsonProperty("is_configurator")
+	private final boolean isConfigurator;
+
+
+	public User(
+			@JsonProperty("username") String username,
+			@JsonProperty("password") String password,
+			@JsonProperty("is_configurator") boolean isConfigurator
+	) {
+
+		assert username.isBlank() : "Pre-condition: User username is blank";
+		assert password.isBlank() : "Pre-condition: User password is blank";
+
+		this.username = username;
+		this.password = SHA512.hash(password);
+		this.isConfigurator = isConfigurator;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public boolean isConfigurator() {
+		return isConfigurator;
+	}
+
+	public void setPassword(String password) {
+		this.password = SHA512.hash(password);
+	}
+
+	public boolean isPasswordValid(String password) {
+		return !Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_pwd")) && password.trim().length() >= 5;
+	}
+}

@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "BarattoManager",
-    "version": "5.0.0"
+    "version": "5.0.0 ~ 2"
   },
   "file": {
     "users": "users.json",
