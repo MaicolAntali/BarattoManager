@@ -6,14 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
-
 public class User {
 
 	@JsonProperty("username")
 	private final String username;
 	@JsonProperty("password")
 	private String password;
-	@JsonProperty("is_configurator")
+	@JsonProperty("configurator")
 	private final boolean isConfigurator;
 
 
@@ -31,14 +30,17 @@ public class User {
 		this.isConfigurator = isConfigurator;
 	}
 
+	@JsonProperty("username")
 	public String getUsername() {
 		return username;
 	}
 
+	@JsonProperty("password")
 	public String getPassword() {
 		return password;
 	}
 
+	@JsonProperty("configurator")
 	public boolean isConfigurator() {
 		return isConfigurator;
 	}

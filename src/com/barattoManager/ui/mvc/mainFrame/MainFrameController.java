@@ -4,17 +4,44 @@ import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.event.RegisterControllerListener;
+import com.barattoManager.ui.mvc.event.ShowControllerListener;
 
-public class MainFrameController extends BaseController<MainFrameModel, MainFrameView> implements RegisterControllerListener {
+import java.util.Objects;
+
+public class MainFrameController implements BaseController, RegisterControllerListener, ShowControllerListener {
+
+	private final MainFrameModel model;
+	private final MainFrameView view;
 
 	public MainFrameController(MainFrameModel model, MainFrameView view) {
-		super(model, view);
+		this.model = Objects.requireNonNull(model);
+		this.view = Objects.requireNonNull(view);
 
-		getView().setVersion(getModel().getVersion());
+		view.setVersion(model.getVersion());
 	}
 
 	@Override
-	public void register(BaseController<? extends BaseModel, ? extends BaseView> controller, String controllerName) {
-		getModel().addNewController(controller, controllerName);
+	public BaseModel getModel() {
+		return model;
+	}
+
+	@Override
+	public BaseView getView() {
+		return view;
+	}
+
+	@Override
+	public void register(BaseController controller, String controllerName) {
+		model.addNewController(controller, controllerName);
+	}
+
+	@Override
+	public void show(String controllerName) {
+		view.updateContentPanel(
+				model.getControllerByName(controllerName)
+						.orElseThrow()
+						.getView()
+						.getMainJPanel()
+		);
 	}
 }

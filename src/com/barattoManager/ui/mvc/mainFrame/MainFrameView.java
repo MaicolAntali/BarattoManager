@@ -3,20 +3,34 @@ package com.barattoManager.ui.mvc.mainFrame;
 import com.barattoManager.ui.mvc.base.BaseView;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class MainFrameView extends BaseView {
+public class MainFrameView extends JPanel implements BaseView {
 	private JPanel mainPanel;
 	private JPanel contentPanel;
 	private JLabel versionLabel;
 
+	private JPanel loadedPanel;
+
 	public MainFrameView() {
-		super(new Dimension(600, 470));
-		addMainPanel(mainPanel);
+		setSize(600, 500);
 	}
 
 	public void setVersion(String versionLabel) {
 		this.versionLabel.setText(versionLabel);
 	}
 
+	public void updateContentPanel(JPanel panel) {
+		if (loadedPanel != null)
+			contentPanel.remove(loadedPanel);
+
+		loadedPanel = panel;
+
+		contentPanel.add(panel);
+		contentPanel.revalidate();
+	}
+
+	@Override
+	public JPanel getMainJPanel() {
+		return mainPanel;
+	}
 }

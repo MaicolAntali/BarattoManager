@@ -1,9 +1,9 @@
 package com.barattoManager;
 
-import com.barattoManager.ui.mvc.mainFrame.MainFrameController;
-import com.barattoManager.ui.mvc.mainFrame.MainFrameModel;
-import com.barattoManager.ui.mvc.mainFrame.MainFrameView;
-import com.barattoManager.ui.mvc.mainFrame.RegisterControllerHandlerFactory;
+import com.barattoManager.services.user.UserManagerFactory;
+import com.barattoManager.ui.mvc.homepage.HomepageController;
+import com.barattoManager.ui.mvc.homepage.HomepageView;
+import com.barattoManager.ui.mvc.mainFrame.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,9 +12,15 @@ public class BarattoManager {
 
 	public static void main(String[] args) {
 
-		var mainFrameController = new MainFrameController(new MainFrameModel(), new MainFrameView());
-		RegisterControllerHandlerFactory.getHandler().addListener(mainFrameController);
+		new Thread(new UserManagerFactory()).start();
 
+
+		var mainFrameController = new MainFrameController(new MainFrameModel(), new MainFrameView());
+		var homepageController = new HomepageController(new HomepageView());
+
+		RegisterControllerHandlerFactory.getHandler().addListener(mainFrameController);
+		ShowControllerHandlerFactory.getHandler().addListener(mainFrameController);
+		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(homepageController, "homepage");
 
 		new Thread(
 				() -> EventQueue.invokeLater(
@@ -27,9 +33,9 @@ public class BarattoManager {
 							var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 							jFrame.setLocation((screenSize.width - jFrame.getWidth()) / 2, (screenSize.height - jFrame.getHeight()) / 2);
 
+							ShowControllerHandlerFactory.getHandler().fireShowListeners("homepage");
 
-
-							jFrame.add(mainFrameController.getView().getJPanel());
+							jFrame.add(mainFrameController.getView().getMainJPanel());
 
 							jFrame.setVisible(true);
 						}
