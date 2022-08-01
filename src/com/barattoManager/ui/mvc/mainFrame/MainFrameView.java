@@ -26,6 +26,7 @@ public class MainFrameView extends JPanel implements BaseView {
 		loadedPanel = panel;
 
 		contentPanel.add(panel);
+		contentPanel.repaint();
 		contentPanel.revalidate();
 	}
 

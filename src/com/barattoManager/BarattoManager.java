@@ -3,7 +3,11 @@ package com.barattoManager;
 import com.barattoManager.services.user.UserManagerFactory;
 import com.barattoManager.ui.mvc.homepage.HomepageController;
 import com.barattoManager.ui.mvc.homepage.HomepageView;
-import com.barattoManager.ui.mvc.mainFrame.*;
+import com.barattoManager.ui.mvc.mainFrame.MainFrameController;
+import com.barattoManager.ui.mvc.mainFrame.MainFrameModel;
+import com.barattoManager.ui.mvc.mainFrame.MainFrameView;
+import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
+import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +17,6 @@ public class BarattoManager {
 	public static void main(String[] args) {
 
 		new Thread(new UserManagerFactory()).start();
-
 
 		var mainFrameController = new MainFrameController(new MainFrameModel(), new MainFrameView());
 		var homepageController = new HomepageController(new HomepageView());

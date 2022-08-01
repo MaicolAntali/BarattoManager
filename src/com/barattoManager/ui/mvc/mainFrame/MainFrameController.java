@@ -3,8 +3,8 @@ package com.barattoManager.ui.mvc.mainFrame;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
-import com.barattoManager.ui.mvc.event.RegisterControllerListener;
-import com.barattoManager.ui.mvc.event.ShowControllerListener;
+import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerListener;
+import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerListener;
 
 import java.util.Objects;
 

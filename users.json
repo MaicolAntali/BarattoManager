@@ -1,7 +1,7 @@
 {
-  "configurator": {
-    "username": "Configurator",
-    "password": "3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2",
+  "maicol": {
+    "username": "Maicol",
+    "password": "2ce45428f0c9fb4eacf3dcbc76c29d508e8d64dad60e4b0ca44e025c8756a0ddf08078b885ecf3ba17ccbfa3b518b8d5b411cda7f47e3c19e18b2eaa8d8805de",
     "configurator": true
   }
 }

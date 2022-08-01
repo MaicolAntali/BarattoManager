@@ -1,13 +1,18 @@
 package com.barattoManager.ui.mvc.homepage;
 
-import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.services.user.UserManagerFactory;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
+import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
+import com.barattoManager.ui.mvc.registerUser.RegisterUserController;
+import com.barattoManager.ui.mvc.registerUser.RegisterUserModel;
+import com.barattoManager.ui.mvc.registerUser.RegisterUserView;
 
 public class HomepageController implements BaseController, HomepageLoginButtonListener, HomepageRegisterButtonListener {
 
 	private final HomepageView view;
+
+	private RegisterUserController registerUserController;
 
 	public HomepageController(HomepageView view) {
 		this.view = view;
@@ -32,11 +37,11 @@ public class HomepageController implements BaseController, HomepageLoginButtonLi
 
 	@Override
 	public void clickOnRegister() {
-		try {
-			UserManagerFactory.getManager().addNewUser("Maicol", "123", false);
-		} catch (AlreadyExistException e) {
-			throw new RuntimeException(e);
+		if (registerUserController == null) {
+			registerUserController = new RegisterUserController(new RegisterUserModel(), new RegisterUserView());
+			RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(registerUserController, "register-user");
 		}
-		System.out.println("REGISTRAZIONE AVVENUTA, (FORSE)");
+
+		ShowControllerHandlerFactory.getHandler().fireShowListeners("register-user");
 	}
 }
