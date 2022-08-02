@@ -1,23 +1,24 @@
 package com.barattoManager.ui.mvc.homepage;
 
+import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
+import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
-import com.barattoManager.ui.mvc.registerUser.RegisterUserController;
-import com.barattoManager.ui.mvc.registerUser.RegisterUserModel;
-import com.barattoManager.ui.mvc.registerUser.RegisterUserView;
+import com.barattoManager.ui.mvc.register.RegisterController;
+import com.barattoManager.ui.mvc.register.RegisterModel;
+import com.barattoManager.ui.mvc.register.RegisterView;
 
-public class HomepageController implements BaseController, HomepageLoginButtonListener, HomepageRegisterButtonListener {
+public class HomepageController implements BaseController {
 
 	private final HomepageView view;
 
-	private RegisterUserController registerUserController;
-
 	public HomepageController(HomepageView view) {
 		this.view = view;
-		this.view.addLoginButtonListeners(this);
-		this.view.addRegisterButtonListeners(this);
+
+		ActionListenerInstaller.processAnnotations(this, view);
 	}
 
 	@Override
@@ -26,22 +27,21 @@ public class HomepageController implements BaseController, HomepageLoginButtonLi
 	}
 
 	@Override
-	public BaseHomepageView getView() {
+	public BaseView getView() {
 		return view;
 	}
 
-	@Override
+
+	@ActionListenerFor(sourceField = "loginButton")
 	public void clickOnLogin() {
 		System.out.println("LOGIN");
 	}
 
-	@Override
+	@ActionListenerFor(sourceField = "registerButton")
 	public void clickOnRegister() {
-		if (registerUserController == null) {
-			registerUserController = new RegisterUserController(new RegisterUserModel(), new RegisterUserView());
-			RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(registerUserController, "register-user");
-		}
-
+		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
+				new RegisterController(new RegisterModel(), new RegisterView()), "register-user"
+		);
 		ShowControllerHandlerFactory.getHandler().fireShowListeners("register-user");
 	}
 }

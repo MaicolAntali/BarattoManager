@@ -1,6 +1,7 @@
 package com.barattoManager.services.user;
 
 import com.barattoManager.exception.AlreadyExistException;
+import com.barattoManager.exception.InvalidArgumentException;
 import com.barattoManager.exception.InvalidCredentialException;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 import com.barattoManager.utils.AppConfigurator;
@@ -29,7 +30,7 @@ public class UserManager {
 		if (userMap.isEmpty()) {
 			try {
 				addNewUser("Configurator", AppConfigurator.getInstance().getPasswordSetting("default_pwd"), true);
-			} catch (AlreadyExistException | IllegalArgumentException e) {
+			} catch (AlreadyExistException | InvalidArgumentException e) {
 				e.printStackTrace();
 			}
 
@@ -41,9 +42,9 @@ public class UserManager {
 	}
 
 
-	public void addNewUser(String username, String password, Boolean isConfigurator) throws AlreadyExistException, IllegalArgumentException {
-		if (username.isBlank() && password.isBlank())
-			throw new IllegalArgumentException("Username o password non validi (stringa vuota o null).");
+	public void addNewUser(String username, String password, Boolean isConfigurator) throws AlreadyExistException, InvalidArgumentException {
+		if (username.isBlank() || password.isBlank())
+			throw new InvalidArgumentException("Username o password non validi (stringa vuota o null).");
 
 		if (userMap.containsKey(username.toLowerCase()))
 			throw new AlreadyExistException(ERROR_USER_ALREADY_EXIST.formatted(username));

@@ -22,6 +22,9 @@ public class MainFrameModel implements BaseModel {
 	}
 
 	public void addNewController(BaseController controller, String controllerName) {
+		if (this.controllerHashMap.get(controllerName) != null)
+			this.controllerHashMap.remove(controllerName);
+
 		this.controllerHashMap.put(controllerName.toLowerCase(), controller);
 	}
 
