@@ -52,7 +52,7 @@ public class LoginController implements BaseController {
 
         } catch (InvalidCredentialException e) {
             new MessageDialogDisplay()
-                    .setParentComponent(view)
+                    .setParentComponent(view.getMainJPanel())
                     .setMessageType(JOptionPane.ERROR_MESSAGE)
                     .setTitle("Errore")
                     .setMessage(e.getMessage())

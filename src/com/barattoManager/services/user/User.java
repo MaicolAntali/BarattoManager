@@ -2,6 +2,7 @@ package com.barattoManager.services.user;
 
 import com.barattoManager.utils.AppConfigurator;
 import com.barattoManager.utils.SHA512;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
@@ -49,6 +50,7 @@ public class User {
 		this.password = SHA512.hash(password);
 	}
 
+	@JsonIgnore
 	public boolean isPasswordValid() {
 		return !Objects.equals(this.password, AppConfigurator.getInstance().getPasswordSetting("default_pwd")) && this.password.trim().length() >= 5;
 	}

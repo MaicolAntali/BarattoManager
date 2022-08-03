@@ -54,7 +54,7 @@ public class RegisterController implements BaseController {
 					);
 		} catch (AlreadyExistException | InvalidArgumentException e) {
 			new MessageDialogDisplay()
-					.setParentComponent(view)
+					.setParentComponent(view.getMainJPanel())
 					.setMessageType(JOptionPane.ERROR_MESSAGE)
 					.setTitle("Errore")
 					.setMessage(e.getMessage())
@@ -62,7 +62,7 @@ public class RegisterController implements BaseController {
 		}
 
 		new MessageDialogDisplay()
-				.setParentComponent(view)
+				.setParentComponent(view.getMainJPanel())
 				.setMessage(
 						"Registrazione avvenuta con successo.\n\nLo username impostato è: %s\nÈ stata impostata la password di default: %s"
 								.formatted(model.getUsername(), model.getDefaultPassword()))

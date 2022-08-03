@@ -5,7 +5,7 @@ import com.barattoManager.ui.mvc.base.BaseView;
 
 import javax.swing.*;
 
-public class HomepageView extends JPanel implements BaseView {
+public class HomepageView implements BaseView {
 
 	private JPanel mainPanel;
 	@ActionListenerField
@@ -13,9 +13,6 @@ public class HomepageView extends JPanel implements BaseView {
 	@ActionListenerField
 	private JButton registerButton;
 
-	public HomepageView() {
-		setSize(PANEL_DIMENSION);
-	}
 	@Override
 	public JPanel getMainJPanel() {
 		return mainPanel;

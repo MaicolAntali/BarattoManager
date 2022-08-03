@@ -6,7 +6,7 @@ import com.barattoManager.ui.mvc.base.BaseView;
 
 import javax.swing.*;
 
-public class LoginView extends JPanel implements BaseView {
+public class LoginView implements BaseView {
 	private JPanel mainPanel;
 	@ActionListenerField
 	private JButton loginButton;
@@ -16,12 +16,6 @@ public class LoginView extends JPanel implements BaseView {
 	private JTextField usernameField;
 	@DocumentListenerField
 	private JPasswordField passwordField;
-
-
-	public LoginView() {
-		setSize(PANEL_DIMENSION);
-	}
-
 
 	@Override
 	public JPanel getMainJPanel() {
