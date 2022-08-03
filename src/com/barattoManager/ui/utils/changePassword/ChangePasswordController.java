@@ -32,4 +32,8 @@ public class ChangePasswordController implements BaseController {
     public void passwordHasChange() {
         model.setPassword(view.getPassword());
     }
+
+    public String getPassword() {
+        return model.getPassword();
+    }
 }

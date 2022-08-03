@@ -5,8 +5,9 @@ import com.barattoManager.exception.InvalidArgumentException;
 import com.barattoManager.exception.InvalidCredentialException;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 import com.barattoManager.utils.AppConfigurator;
-import com.barattoManager.utils.SHA512;
+import com.barattoManager.utils.SHA256;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
@@ -61,7 +62,7 @@ public class UserManager {
 	public User loginUser(String username, String password) throws InvalidCredentialException {
 		User user = userMap.get(Objects.requireNonNull(username).toLowerCase());
 
-		if (Objects.equals(user.getUsername(), username) && Objects.equals(user.getPassword(), SHA512.hash(password)))
+		if (Objects.equals(user.getUsername(), username) && Arrays.equals(user.getPassword(), SHA256.hash(password)))
 			return user;
 
 		throw new InvalidCredentialException("Username e password non corrispondono.");

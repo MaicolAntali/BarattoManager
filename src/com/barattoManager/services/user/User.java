@@ -1,10 +1,11 @@
 package com.barattoManager.services.user;
 
 import com.barattoManager.utils.AppConfigurator;
-import com.barattoManager.utils.SHA512;
+import com.barattoManager.utils.SHA256;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class User {
@@ -12,22 +13,28 @@ public class User {
 	@JsonProperty("username")
 	private final String username;
 	@JsonProperty("password")
-	private String password;
+	private byte[] password;
 	@JsonProperty("configurator")
 	private final boolean isConfigurator;
 
 
-	public User(
-			@JsonProperty("username") String username,
-			@JsonProperty("password") String password,
-			@JsonProperty("is_configurator") boolean isConfigurator
-	) {
+	public User(String username, String password, boolean isConfigurator) {
 
 		assert username.isBlank() : "Pre-condition: User username is blank";
 		assert password.isBlank() : "Pre-condition: User password is blank";
 
 		this.username = username;
-		this.password = SHA512.hash(password);
+		this.password = SHA256.hash(password);
+		this.isConfigurator = isConfigurator;
+	}
+
+	public User(
+			@JsonProperty("username") String username,
+			@JsonProperty("password") byte[] password,
+			@JsonProperty("is_configurator") boolean isConfigurator
+	) {
+		this.username = username;
+		this.password = password;
 		this.isConfigurator = isConfigurator;
 	}
 
@@ -36,9 +43,9 @@ public class User {
 		return username;
 	}
 
-	@JsonProperty("password")
-	public String getPassword() {
-		return password;
+	@JsonIgnore
+	public byte[] getPassword() {
+		return this.password;
 	}
 
 	@JsonProperty("configurator")
@@ -47,11 +54,15 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = SHA512.hash(password);
+		this.password = SHA256.hash(password);
 	}
 
 	@JsonIgnore
 	public boolean isPasswordValid() {
-		return !Objects.equals(this.password, AppConfigurator.getInstance().getPasswordSetting("default_pwd")) && this.password.trim().length() >= 5;
+		return !Arrays.equals(this.password, SHA256.hash(AppConfigurator.getInstance().getPasswordSetting("default_pwd")));
+	}
+
+	public static boolean checkPassword(String password) {
+		return !Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
 	}
 }
