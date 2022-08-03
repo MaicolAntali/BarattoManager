@@ -49,7 +49,7 @@ public class User {
 		this.password = SHA512.hash(password);
 	}
 
-	public boolean isPasswordValid(String password) {
-		return !Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_pwd")) && password.trim().length() >= 5;
+	public boolean isPasswordValid() {
+		return !Objects.equals(this.password, AppConfigurator.getInstance().getPasswordSetting("default_pwd")) && this.password.trim().length() >= 5;
 	}
 }

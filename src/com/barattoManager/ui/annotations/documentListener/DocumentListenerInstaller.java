@@ -21,6 +21,7 @@ public class DocumentListenerInstaller {
 					if (field.getAnnotation(DocumentListenerField.class) == null)
 						throw new IllegalArgumentException("Field is not annotated with ActionListenerLinked.");
 
+					method.setAccessible(true);
 					addListener(field.get(sourceFieldsObj), sourceMethodsObj, method);
 				}
 			}

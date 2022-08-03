@@ -5,6 +5,9 @@ import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.login.LoginController;
+import com.barattoManager.ui.mvc.login.LoginModel;
+import com.barattoManager.ui.mvc.login.LoginView;
 import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.mvc.register.RegisterController;
@@ -34,7 +37,10 @@ public class HomepageController implements BaseController {
 
 	@ActionListenerFor(sourceField = "loginButton")
 	public void clickOnLogin() {
-		System.out.println("LOGIN");
+		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
+				new LoginController(new LoginModel(), new LoginView()), "login-user"
+		);
+		ShowControllerHandlerFactory.getHandler().fireShowListeners("login-user");
 	}
 
 	@ActionListenerFor(sourceField = "registerButton")

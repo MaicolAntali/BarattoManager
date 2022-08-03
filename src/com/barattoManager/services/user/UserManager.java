@@ -58,7 +58,7 @@ public class UserManager {
 	}
 
 
-	public User checkCredential(String username, String password) throws InvalidCredentialException {
+	public User loginUser(String username, String password) throws InvalidCredentialException {
 		User user = userMap.get(Objects.requireNonNull(username).toLowerCase());
 
 		if (Objects.equals(user.getUsername(), username) && Objects.equals(user.getPassword(), SHA512.hash(password)))
@@ -86,5 +86,4 @@ public class UserManager {
 	public List<User> getUserList() {
 		return userMap.values().stream().toList();
 	}
-
 }
