@@ -5,6 +5,8 @@ import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorController;
+import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorView;
 import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.mvc.register.RegisterController;
@@ -15,6 +17,8 @@ import com.barattoManager.ui.utils.ControllerNames;
 public class ConfiguratorHomepageController implements BaseController {
 
 	private final ConfiguratorHomepageView view;
+
+	private CategoryEditorController categoryEditorController;
 
 	public ConfiguratorHomepageController(ConfiguratorHomepageView view) {
 		this.view = view;
@@ -34,7 +38,13 @@ public class ConfiguratorHomepageController implements BaseController {
 
 	@ActionListenerFor(sourceField = "configCategoryButton")
 	private void clickOnConfigCategoryButton() {
-		System.out.println("Configura categorie");
+		if (categoryEditorController == null) {
+			categoryEditorController = new CategoryEditorController(new CategoryEditorView());
+			RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
+					categoryEditorController, ControllerNames.CATEGORY_EDITOR.toString()
+			);
+		}
+		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.CATEGORY_EDITOR.toString());
 	}
 
 	@ActionListenerFor(sourceField = "configMeetButton")

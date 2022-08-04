@@ -8,6 +8,7 @@ public enum ControllerNames {
 	REGISTER_VIEWER("register-viewer"),
 
 	HOMEPAGE_CONFIGURATOR("homepage-configurator"),
+	CATEGORY_EDITOR("category-editor"),
 	REGISTER_CONFIGURATOR("register-configurator");
 
 	private final String controllerName;
