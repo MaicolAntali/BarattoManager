@@ -8,32 +8,32 @@ import com.barattoManager.ui.mvc.base.BaseView;
 
 public class ChangePasswordController implements BaseController {
 
-    private final ChangePasswordModel model;
-    private final ChangePasswordView view;
+	private final ChangePasswordModel model;
+	private final ChangePasswordView view;
 
-    public ChangePasswordController(ChangePasswordModel model, ChangePasswordView view) {
-        this.model = model;
-        this.view = view;
+	public ChangePasswordController(ChangePasswordModel model, ChangePasswordView view) {
+		this.model = model;
+		this.view = view;
 
-        DocumentListenerInstaller.processAnnotations(this, view);
-    }
+		DocumentListenerInstaller.processAnnotations(this, view);
+	}
 
-    @Override
-    public BaseModel getModel() {
-        return model;
-    }
+	@Override
+	public BaseModel getModel() {
+		return model;
+	}
 
-    @Override
-    public BaseView getView() {
-        return view;
-    }
+	@Override
+	public BaseView getView() {
+		return view;
+	}
 
-    @DocumentListenerFor(sourceField = "passwordField")
-    public void passwordHasChange() {
-        model.setPassword(view.getPassword());
-    }
+	@DocumentListenerFor(sourceField = "passwordField")
+	public void passwordHasChange() {
+		model.setPassword(view.getPassword());
+	}
 
-    public String getPassword() {
-        return model.getPassword();
-    }
+	public String getPassword() {
+		return model.getPassword();
+	}
 }

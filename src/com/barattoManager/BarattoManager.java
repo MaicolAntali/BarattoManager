@@ -20,7 +20,7 @@ public class BarattoManager {
 		new Thread(new UserManagerFactory()).start();
 
 		var mainFrameController = new MainFrameController(new MainFrameModel(), new MainFrameView());
-		var homepageController = new HomepageController(new HomepageView());
+		var homepageController  = new HomepageController(new HomepageView());
 
 		RegisterControllerHandlerFactory.getHandler().addListener(mainFrameController);
 		ShowControllerHandlerFactory.getHandler().addListener(mainFrameController);
