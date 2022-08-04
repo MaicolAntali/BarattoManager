@@ -1,5 +1,6 @@
 package com.barattoManager;
 
+import com.barattoManager.services.category.CategoryManagerFactory;
 import com.barattoManager.services.user.UserManagerFactory;
 import com.barattoManager.ui.mvc.homepage.HomepageController;
 import com.barattoManager.ui.mvc.homepage.HomepageView;
@@ -18,6 +19,7 @@ public class BarattoManager {
 	public static void main(String[] args) {
 
 		new Thread(new UserManagerFactory()).start();
+		new Thread(new CategoryManagerFactory()).start();
 
 		var mainFrameController = new MainFrameController(new MainFrameModel(), new MainFrameView());
 		var homepageController  = new HomepageController(new HomepageView());
