@@ -62,6 +62,9 @@ public class UserManager {
 	public User loginUser(String username, String password) throws InvalidCredentialException {
 		User user = userMap.get(Objects.requireNonNull(username).toLowerCase());
 
+		if (user == null)
+			throw new InvalidCredentialException("Utente non trovato.");
+
 		if (Objects.equals(user.getUsername(), username) && Arrays.equals(user.getPassword(), SHA256.hash(password)))
 			return user;
 

@@ -11,6 +11,7 @@ import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
+import com.barattoManager.ui.utils.ControllerNames;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 
 import javax.swing.*;
@@ -39,19 +40,25 @@ public class RegisterController implements BaseController {
 	}
 
 	@ActionListenerFor(sourceField = "abortButton")
-	public void clickOnAbort() {
-		ShowControllerHandlerFactory.getHandler().fireShowListeners("homepage");
+	private void clickOnAbort() {
+		if (model.isConfigurator())
+			ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE_CONFIGURATOR.toString());
+		else
+			ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE.toString());
 	}
 
 	@ActionListenerFor(sourceField = "registerButton")
-	public void clickOnRegister() {
+	private void clickOnRegister() {
 		try {
 			UserManagerFactory.getManager()
 					.addNewUser(
 							model.getUsername(),
 							model.getDefaultPassword(),
-							false
+							model.isConfigurator()
 					);
+
+			registrationCompleted();
+
 		} catch (AlreadyExistException | InvalidArgumentException e) {
 			new MessageDialogDisplay()
 					.setParentComponent(view.getMainJPanel())
@@ -60,7 +67,14 @@ public class RegisterController implements BaseController {
 					.setMessage(e.getMessage())
 					.show();
 		}
+	}
 
+	@DocumentListenerFor(sourceField = "usernameField")
+	private void usernameHasChange() {
+		model.setUsername(view.getUsername());
+	}
+
+	private void registrationCompleted() {
 		new MessageDialogDisplay()
 				.setParentComponent(view.getMainJPanel())
 				.setMessage(
@@ -68,11 +82,9 @@ public class RegisterController implements BaseController {
 								.formatted(model.getUsername(), model.getDefaultPassword()))
 				.show();
 
-		ShowControllerHandlerFactory.getHandler().fireShowListeners("homepage");
-	}
-
-	@DocumentListenerFor(sourceField = "usernameField")
-	public void usernameHasChange() {
-		model.setUsername(view.getUsername());
+		if (model.isConfigurator())
+			ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE_CONFIGURATOR.toString());
+		else
+			ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE.toString());
 	}
 }

@@ -13,6 +13,7 @@ import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.mvc.register.RegisterController;
 import com.barattoManager.ui.mvc.register.RegisterModel;
 import com.barattoManager.ui.mvc.register.RegisterView;
+import com.barattoManager.ui.utils.ControllerNames;
 
 public class HomepageController implements BaseController {
 
@@ -36,18 +37,18 @@ public class HomepageController implements BaseController {
 
 
 	@ActionListenerFor(sourceField = "loginButton")
-	public void clickOnLogin() {
+	private void clickOnLogin() {
 		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new LoginController(new LoginModel(), new LoginView()), "login-user"
+				new LoginController(new LoginModel(), new LoginView()), ControllerNames.LOGIN.toString()
 		);
-		ShowControllerHandlerFactory.getHandler().fireShowListeners("login-user");
+		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.LOGIN.toString());
 	}
 
 	@ActionListenerFor(sourceField = "registerButton")
-	public void clickOnRegister() {
+	private void clickOnRegister() {
 		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new RegisterController(new RegisterModel(), new RegisterView()), "register-user"
+				new RegisterController(new RegisterModel(), new RegisterView()), ControllerNames.REGISTER_VIEWER.toString()
 		);
-		ShowControllerHandlerFactory.getHandler().fireShowListeners("register-user");
+		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.REGISTER_VIEWER.toString());
 	}
 }

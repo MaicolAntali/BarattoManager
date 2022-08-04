@@ -8,6 +8,7 @@ import com.barattoManager.ui.mvc.mainFrame.MainFrameModel;
 import com.barattoManager.ui.mvc.mainFrame.MainFrameView;
 import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
+import com.barattoManager.ui.utils.ControllerNames;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +24,7 @@ public class BarattoManager {
 
 		RegisterControllerHandlerFactory.getHandler().addListener(mainFrameController);
 		ShowControllerHandlerFactory.getHandler().addListener(mainFrameController);
-		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(homepageController, "homepage");
+		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(homepageController, ControllerNames.HOMEPAGE.toString());
 
 		new Thread(
 				() -> EventQueue.invokeLater(
@@ -36,7 +37,7 @@ public class BarattoManager {
 							var screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 							jFrame.setLocation((screenSize.width - jFrame.getWidth()) / 2, (screenSize.height - jFrame.getHeight()) / 2);
 
-							ShowControllerHandlerFactory.getHandler().fireShowListeners("homepage");
+							ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE.toString());
 
 							jFrame.add(mainFrameController.getView().getMainJPanel());
 

@@ -1,1 +1,12 @@
-{"configurator":{"username":"Configurator","password":"4f22a5b713259a8b3e6d47c9073d7eef25e6ced4c20cbe49abaaa2e80b01e4e37c1a7c16891810668dd9a6bd88f259bbf8b7a672d37e785c3f2f3aa0b7169b54","configurator":true},"maicol":{"username":"Maicol","password":"ffbe327dc75a39755b9807a72c6d93eaca350570b223a4ad19255da5904c591dc6d0744494c2123d0276d050d86b783a4cf7e0c6812c30fddc71ad8b882474a6","configurator":false}}
+{
+  "configurator": {
+    "username": "Configurator",
+    "password": "pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=",
+    "configurator": true
+  },
+  "maicol": {
+    "username": "Maicol",
+    "password": "WZRHGrsBESr8wYFZ9sx0tPURuZgG2lmzyvWpwXPKz8U=",
+    "configurator": true
+  }
+}
