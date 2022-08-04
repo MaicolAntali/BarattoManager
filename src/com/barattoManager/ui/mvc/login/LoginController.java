@@ -11,7 +11,11 @@ import com.barattoManager.ui.annotations.documentListener.DocumentListenerInstal
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.configurator.homepage.ConfiguratorHomepageController;
+import com.barattoManager.ui.mvc.configurator.homepage.ConfiguratorHomepageView;
+import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
+import com.barattoManager.ui.utils.ControllerNames;
 import com.barattoManager.ui.utils.changePassword.ChangePasswordController;
 import com.barattoManager.ui.utils.changePassword.ChangePasswordModel;
 import com.barattoManager.ui.utils.changePassword.ChangePasswordView;
@@ -44,7 +48,7 @@ public class LoginController implements BaseController {
 
 	@ActionListenerFor(sourceField = "abortButton")
 	private void clickOnAbort() {
-		ShowControllerHandlerFactory.getHandler().fireShowListeners("homepage");
+		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE.toString());
 	}
 
 	@ActionListenerFor(sourceField = "loginButton")
@@ -59,8 +63,14 @@ public class LoginController implements BaseController {
 				changePassword();
 
 			if (user.isPasswordValid())
-				if (user.isConfigurator())
-					System.out.println("LOGIN ESEGUITO COME CONFIUGURATORE");
+				if (user.isConfigurator()) {
+					RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
+							new ConfiguratorHomepageController(new ConfiguratorHomepageView()),
+							ControllerNames.HOMEPAGE_CONFIGURATOR.toString()
+					);
+					ShowControllerHandlerFactory.getHandler().fireShowListeners(
+							ControllerNames.HOMEPAGE_CONFIGURATOR.toString());
+				}
 				else
 					System.out.println("LOGIN ESEGUITO COME FRUITORE");
 
@@ -117,5 +127,4 @@ public class LoginController implements BaseController {
 
 		} while (!User.checkPassword(changePasswordController.getPassword()));
 	}
-
 }
