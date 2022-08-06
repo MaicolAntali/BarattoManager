@@ -1,11 +1,15 @@
 package com.barattoManager.ui.mvc.configurator.categoryEditor;
 
+import com.barattoManager.services.category.CategoryManagerFactory;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
+import com.barattoManager.ui.mvc.tree.category.CategoryTreeController;
+import com.barattoManager.ui.mvc.tree.category.CategoryTreeModel;
+import com.barattoManager.ui.mvc.tree.category.CategoryTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
 
 public class CategoryEditorController implements BaseController {
@@ -16,6 +20,15 @@ public class CategoryEditorController implements BaseController {
         this.view = view;
 
         ActionListenerInstaller.processAnnotations(this, view);
+
+        var categoryTreeController = new CategoryTreeController(
+                new CategoryTreeModel(
+                        CategoryManagerFactory.getManager().getRootCategoryMap().values().stream().toList()
+                ),
+                new CategoryTreeView()
+        );
+
+        this.view.setTreePanel(categoryTreeController.getView().getMainJPanel());
     }
 
     @Override
@@ -35,7 +48,7 @@ public class CategoryEditorController implements BaseController {
 
     @ActionListenerFor(sourceField = "addRootCategoryButton")
     private void clickAddRootCategoryButton() {
-        System.out.println("Aggiungi categoria");
+       //TODO: ADD ROOT CATEGORY
     }
 
     @ActionListenerFor(sourceField = "addSubCategoryButton")

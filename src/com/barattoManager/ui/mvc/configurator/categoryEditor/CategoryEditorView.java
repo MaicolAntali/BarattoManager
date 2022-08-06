@@ -20,4 +20,8 @@ public class CategoryEditorView implements BaseView {
 	public JPanel getMainJPanel() {
 		return mainPanel;
 	}
+
+	public void setTreePanel(JPanel tree) {
+		this.treePanel.add(tree);
+	}
 }
