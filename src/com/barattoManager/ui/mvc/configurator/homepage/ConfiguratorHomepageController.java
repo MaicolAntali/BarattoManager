@@ -7,6 +7,8 @@ import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorController;
 import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorView;
+import com.barattoManager.ui.mvc.configurator.meetEditor.MeetEditorController;
+import com.barattoManager.ui.mvc.configurator.meetEditor.MeetEditorView;
 import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.mvc.register.RegisterController;
@@ -49,7 +51,10 @@ public class ConfiguratorHomepageController implements BaseController {
 
 	@ActionListenerFor(sourceField = "configMeetButton")
 	private void clickOnConfigMeetButton() {
-		System.out.println("Configura incontro");
+		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
+				new MeetEditorController(new MeetEditorView()), ControllerNames.MEET_EDITOR.toString()
+		);
+		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.MEET_EDITOR.toString());
 	}
 
 	@ActionListenerFor(sourceField = "addNewConfigurator")

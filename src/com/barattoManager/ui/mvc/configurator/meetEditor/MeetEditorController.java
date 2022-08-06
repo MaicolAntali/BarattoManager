@@ -1,4 +1,4 @@
-package com.barattoManager.ui.mvc.configurator.categoryEditor;
+package com.barattoManager.ui.mvc.configurator.meetEditor;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
@@ -8,11 +8,11 @@ import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.utils.ControllerNames;
 
-public class CategoryEditorController implements BaseController {
+public class MeetEditorController implements BaseController {
 
-    private final CategoryEditorView view;
+    private final MeetEditorView view;
 
-    public CategoryEditorController(CategoryEditorView view) {
+    public MeetEditorController(MeetEditorView view) {
         this.view = view;
 
         ActionListenerInstaller.processAnnotations(this, view);
@@ -33,18 +33,8 @@ public class CategoryEditorController implements BaseController {
         ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE_CONFIGURATOR.toString());
     }
 
-    @ActionListenerFor(sourceField = "addRootCategoryButton")
-    private void clickAddRootCategoryButton() {
-        System.out.println("Aggiungi categoria");
-    }
-
-    @ActionListenerFor(sourceField = "addSubCategoryButton")
-    private void clickOnAddSubCategoryButton() {
-        System.out.println("Aggiungi Sotto-Categoria");
-    }
-
-    @ActionListenerFor(sourceField = "addFieldButton")
-    private void clickOnAddFieldButton() {
-        System.out.println("Aggiungi field");
+    @ActionListenerFor(sourceField = "addMeetButton")
+    private void clickOnAddMeetButton() {
+        System.out.println("Aggiungi nuovo incontro");
     }
 }
