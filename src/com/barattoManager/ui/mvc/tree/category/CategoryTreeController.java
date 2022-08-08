@@ -4,7 +4,6 @@ import com.barattoManager.services.category.CategoryUpdateDataEventFactory;
 import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedListenerFor;
 import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedistenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.tree.event.ModelDataHasChangeListener;
 
@@ -29,7 +28,7 @@ public class CategoryTreeController implements BaseController, ModelDataHasChang
 
 
 	@Override
-	public BaseModel getModel() {
+	public CategoryTreeModel getModel() {
 		return model;
 	}
 
@@ -41,11 +40,15 @@ public class CategoryTreeController implements BaseController, ModelDataHasChang
 	@Override
 	public void dataChange() {
 		this.view.drawTree(model.getCategories());
+		TreeNodeSelectedistenerInstaller.processAnnotations(this, view);
 	}
 
 	@TreeNodeSelectedListenerFor(sourceField = "tree")
 	private void nodeSelectedChange() {
-		model.setTreeNodes(((DefaultMutableTreeNode) view.getTree().getLastSelectedPathComponent()).getPath());
+		Object lastSelectedPathComponent = view.getTree().getLastSelectedPathComponent();
+
+		if (lastSelectedPathComponent != null)
+			model.setTreeNodes(((DefaultMutableTreeNode) lastSelectedPathComponent).getPath());
 	}
 
 }

@@ -17,8 +17,10 @@ public class CategoryTreeModel implements BaseModel, UpdateDataListener<String, 
 	private TreeNode[] treeNodes;
 
 	public CategoryTreeModel(List<Category> categories) {
-		listeners = new ArrayList<>();
 		this.categories = categories;
+
+		listeners = new ArrayList<>();
+		treeNodes = null;
 	}
 
 	@Override
