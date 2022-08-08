@@ -13,12 +13,12 @@ import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.configurator.homepage.ConfiguratorHomepageController;
 import com.barattoManager.ui.mvc.configurator.homepage.ConfiguratorHomepageView;
+import com.barattoManager.ui.mvc.dialogs.changePassword.ChangePasswordController;
+import com.barattoManager.ui.mvc.dialogs.changePassword.ChangePasswordModel;
+import com.barattoManager.ui.mvc.dialogs.changePassword.ChangePasswordView;
 import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.utils.ControllerNames;
-import com.barattoManager.ui.utils.changePassword.ChangePasswordController;
-import com.barattoManager.ui.utils.changePassword.ChangePasswordModel;
-import com.barattoManager.ui.utils.changePassword.ChangePasswordView;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 

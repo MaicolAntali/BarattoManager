@@ -16,6 +16,7 @@ public class CategoryEditorView implements BaseView {
 	private JButton addSubCategoryButton;
 	@ActionListenerField
 	private JButton addFieldButton;
+
 	@Override
 	public JPanel getMainJPanel() {
 		return mainPanel;

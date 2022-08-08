@@ -1,5 +1,6 @@
 package com.barattoManager.ui.mvc.tree;
 
+import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedField;
 import com.barattoManager.ui.mvc.base.BaseView;
 
 import javax.swing.*;
@@ -16,6 +17,8 @@ public abstract class TreeView<T> implements BaseView {
 	private static final String ICON_LEAF = "/icon/category_field.png";
 
 	private final JPanel mainPanel;
+
+	@TreeNodeSelectedField
 	private JTree tree;
 	private DefaultMutableTreeNode rootNode;
 
@@ -24,6 +27,7 @@ public abstract class TreeView<T> implements BaseView {
 	}
 
 	protected abstract void drawNodes(List<T> list);
+
 	protected abstract String getRootNodeName();
 
 	@Override
@@ -53,5 +57,9 @@ public abstract class TreeView<T> implements BaseView {
 
 	public DefaultMutableTreeNode getRootNode() {
 		return rootNode;
+	}
+
+	public JTree getTree() {
+		return tree;
 	}
 }
