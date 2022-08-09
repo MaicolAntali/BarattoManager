@@ -9,7 +9,7 @@
     "user_booked_uuid": "Maicol",
     "day_before_expire": 3,
     "date_of_meet": "2022-06-28",
-    "already_updated": true
+    "meet_not_in_past": false
   },
   "0e2adc46-d78e-4d7d-9782-fb183edf7bd3": {
     "uuid": "0e2adc46-d78e-4d7d-9782-fb183edf7bd3",
@@ -21,7 +21,7 @@
     "user_booked_uuid": null,
     "day_before_expire": 3,
     "date_of_meet": "2022-08-16",
-    "already_updated": false
+    "meet_not_in_past": true
   },
   "438d90a4-1c28-4c42-9d02-a840e6aa76bf": {
     "uuid": "438d90a4-1c28-4c42-9d02-a840e6aa76bf",
@@ -33,6 +33,6 @@
     "user_booked_uuid": null,
     "day_before_expire": 3,
     "date_of_meet": "2022-08-16",
-    "already_updated": false
+    "meet_not_in_past": true
   }
 }

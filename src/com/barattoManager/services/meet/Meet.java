@@ -40,8 +40,8 @@ public class Meet {
 	private int daysBeforeExpire;
 	@JsonProperty("date_of_meet")
 	private LocalDate dateOfMeet;
-	@JsonProperty("already_updated")
-	private boolean alreadyUpdated;
+	@JsonProperty("meet_not_in_past")
+	private boolean meetNotInPast;
 
 	/**
 	 * Constructor of the class
@@ -69,7 +69,7 @@ public class Meet {
 		this.userBookedMeetUuid = null;
 		this.daysBeforeExpire = daysBeforeExpire;
 		this.dateOfMeet = LocalDate.now().with(TemporalAdjusters.next(day));
-		this.alreadyUpdated = false;
+		this.meetNotInPast = true;
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class Meet {
 			@JsonProperty("user_booked_uuid") String userBookedMeetUuid,
 			@JsonProperty("day_before_expire") int daysBeforeExpire,
 			@JsonProperty("date_of_meet") LocalDate dateOfMeet,
-			@JsonProperty("already_updated") boolean alreadyUpdated
+			@JsonProperty("meet_not_in_past") boolean alreadyUpdated
 	) {
 		assert !uuid.isBlank() : PRE_CONDITION_UUID_IS_BLANK;
 		assert !city.isBlank() : PRE_CONDITION_CITY_NAME_IS_BLANK;
@@ -116,7 +116,7 @@ public class Meet {
 		this.userBookedMeetUuid = userBookedMeetUuid;
 		this.daysBeforeExpire = daysBeforeExpire;
 		this.dateOfMeet = dateOfMeet;
-		this.alreadyUpdated = alreadyUpdated;
+		this.meetNotInPast = alreadyUpdated;
 	}
 
 	/**
@@ -223,17 +223,17 @@ public class Meet {
 	 *
 	 * @return if the meet is already updated true otherwise false
 	 */
-	public boolean isAlreadyUpdated() {
-		return alreadyUpdated;
+	public boolean isMeetNotInPast() {
+		return meetNotInPast;
 	}
 
 	/**
 	 * Method used to set if the meet is already updated true otherwise false
 	 *
-	 * @param alreadyUpdated True if the meet is already updated otherwise false
+	 * @param meetNotInPast True if the meet is already updated otherwise false
 	 */
-	public void setAlreadyUpdated(boolean alreadyUpdated) {
-		this.alreadyUpdated = alreadyUpdated;
+	public void setMeetNotInPast(boolean meetNotInPast) {
+		this.meetNotInPast = meetNotInPast;
 	}
 
 

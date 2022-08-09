@@ -9,10 +9,6 @@ import java.util.List;
 
 public class CategoryTreeView extends TreeView<Category> {
 
-	public CategoryTreeView() {
-		super();
-	}
-
 	@Override
 	protected void drawNodes(List<Category> list) {
 		list.forEach(

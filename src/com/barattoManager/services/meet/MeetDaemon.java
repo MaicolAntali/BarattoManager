@@ -5,7 +5,6 @@ import com.barattoManager.exception.InvalidArgumentException;
 import com.barattoManager.utils.parser.TimeParser;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,15 +24,13 @@ public class MeetDaemon extends TimerTask {
 
 	@Override
 	public void run() {
-		System.out.printf("Running  MeetUpdaterDaemon: %s%n", LocalDateTime.now());
-
 		meetHashMap.values().stream()
-				.filter(meet -> !meet.isAlreadyUpdated())
+				.filter(Meet::isMeetNotInPast)
 				.filter(meet -> LocalDate.now().isAfter(meet.getDateOfMeet()))
 				.forEach(meet -> {
 					createNewMeet(meet);
 
-					meet.setAlreadyUpdated(true);
+					meet.setMeetNotInPast(false);
 
 					if (meet.getUserBookedMeetUuid().isEmpty()) {
 						MeetManagerFactory.getManager().removeMeetByUuid(meet.getUuid());
@@ -41,24 +38,22 @@ public class MeetDaemon extends TimerTask {
 				});
 
 		meetHashMap.values().stream()
-				.filter(meet -> !meet.isAlreadyUpdated())
+				.filter(Meet::isMeetNotInPast)
 				.filter(meet -> LocalDate.now().isEqual(meet.getDateOfMeet()))
 				.filter(meet -> LocalTime.now().isAfter(meet.getEndTime()))
 				.forEach(meet -> {
 					createNewMeet(meet);
 
-					meet.setAlreadyUpdated(true);
+					meet.setMeetNotInPast(false);
 
 					if (meet.getUserBookedMeetUuid().isEmpty()) {
 						MeetManagerFactory.getManager().removeMeetByUuid(meet.getUuid());
 					}
 				});
-
-		System.out.printf("Ended MeetUpdaterDaemon: %s%n", LocalDateTime.now());
 	}
 
 	private void createNewMeet(Meet meet) {
-		meet.setAlreadyUpdated(true);
+		meet.setMeetNotInPast(true);
 		try {
 			MeetManagerFactory.getManager().addNewMeet(
 					meet.getCity(),
