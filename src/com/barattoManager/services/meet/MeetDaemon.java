@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class MeetDeamon extends TimerTask {
+public class MeetDaemon extends TimerTask {
 
 	private final ConcurrentHashMap<String, Meet> meetHashMap;
 
@@ -19,7 +19,7 @@ public class MeetDeamon extends TimerTask {
 	 *
 	 * @param meetHashMap {@link ConcurrentHashMap} that contains all the meet to check
 	 */
-	public MeetDeamon(ConcurrentHashMap<String, Meet> meetHashMap) {
+	public MeetDaemon(ConcurrentHashMap<String, Meet> meetHashMap) {
 		this.meetHashMap = meetHashMap;
 	}
 

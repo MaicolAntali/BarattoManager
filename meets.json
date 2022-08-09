@@ -1,38 +1,38 @@
 {
-  "c73cd0db-0bd3-4b1e-a053-d59953d0b8ad": {
-    "uuid": "c73cd0db-0bd3-4b1e-a053-d59953d0b8bd",
+  "eb148333-bef6-4f2e-b781-79ae8a17cc23": {
+    "uuid": "eb148333-bef6-4f2e-b781-79ae8a17cc23",
     "city": "Bergamo",
     "square": "Stazione",
     "day": "TUESDAY",
-    "start_time": "15:30:00",
-    "end_time": "16:00:00",
-    "user_booked_uuid": null,
+    "start_time": "08:00:00",
+    "end_time": "08:30:00",
+    "user_booked_uuid": "Maicol",
     "day_before_expire": 3,
-    "date_of_meet": "2022-07-05",
-    "already_updated": false
+    "date_of_meet": "2022-06-28",
+    "already_updated": true
   },
-  "c73cd0db-0bd3-4b1e-a053-d59953d0b8bd": {
-    "uuid": "c73cd0db-0bd3-4b1e-a053-d59953d0b8bd",
+  "0e2adc46-d78e-4d7d-9782-fb183edf7bd3": {
+    "uuid": "0e2adc46-d78e-4d7d-9782-fb183edf7bd3",
     "city": "Bergamo",
     "square": "Stazione",
     "day": "TUESDAY",
     "start_time": "11:30:00",
     "end_time": "12:00:00",
-    "user_booked_uuid": "Maicol",
+    "user_booked_uuid": null,
     "day_before_expire": 3,
-    "date_of_meet": "2022-07-05",
+    "date_of_meet": "2022-08-16",
     "already_updated": false
   },
-  "c73cd0db-0bd3-4b1e-a053-d59953d0b8b4": {
-    "uuid": "c73cd0db-0bd3-4b1e-a053-d59953d0b8b4",
+  "438d90a4-1c28-4c42-9d02-a840e6aa76bf": {
+    "uuid": "438d90a4-1c28-4c42-9d02-a840e6aa76bf",
     "city": "Bergamo",
     "square": "Stazione",
     "day": "TUESDAY",
-    "start_time": "12:00:00",
-    "end_time": "12:30:00",
-    "user_booked_uuid": "Maicol",
+    "start_time": "08:00:00",
+    "end_time": "08:30:00",
+    "user_booked_uuid": null,
     "day_before_expire": 3,
-    "date_of_meet": "2022-07-05",
+    "date_of_meet": "2022-08-16",
     "already_updated": false
   }
 }
