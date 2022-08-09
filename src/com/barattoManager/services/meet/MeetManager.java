@@ -43,7 +43,7 @@ public class MeetManager {
 	 * @param intervalStartTime Start time of the meeting in minutes
 	 * @param intervalEndTime   End time of the meeting in minutes
 	 * @param daysBeforeExpire  Number of days for which the meet is valid
-	 * @throws AlreadyExistException  Is thrown if the meet already exists
+	 * @throws AlreadyExistException    Is thrown if the meet already exists
 	 * @throws InvalidArgumentException Is thrown if the meet contains illegal values
 	 */
 	public void addNewMeet(String city, String square, DayOfWeek day, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws AlreadyExistException, InvalidArgumentException {
@@ -75,7 +75,6 @@ public class MeetManager {
 			var error = new StringBuffer();
 			error.append("Alcuni meet esistono gia:\n");
 			notUniqueMeet.forEach(meet -> error.append("\t• %s %s %s: %s-%s\n".formatted(meet.getCity(), meet.getSquare(), meet.getDay().toString(), meet.getStartTime().toString(), meet.getEndTime().toString())));
-			System.out.println(error);
 			throw new AlreadyExistException(error.toString());
 		}
 	}
@@ -89,7 +88,7 @@ public class MeetManager {
 	 * @param intervalStartTime Start time of the meeting in minutes
 	 * @param intervalEndTime   End time of the meeting in minutes
 	 * @param daysBeforeExpire  Number of days for which the meet is valid
-	 * @throws AlreadyExistException  Is thrown if the meet already exists
+	 * @throws AlreadyExistException    Is thrown if the meet already exists
 	 * @throws InvalidArgumentException Is thrown if the meet contains illegal values
 	 */
 	public void addNewMeet(String city, String square, ArrayList<String> days, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws InvalidArgumentException, AlreadyExistException {

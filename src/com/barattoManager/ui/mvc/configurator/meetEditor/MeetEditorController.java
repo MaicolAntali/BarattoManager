@@ -1,26 +1,36 @@
 package com.barattoManager.ui.mvc.configurator.meetEditor;
 
+import com.barattoManager.exception.AlreadyExistException;
+import com.barattoManager.exception.InvalidArgumentException;
 import com.barattoManager.services.meet.MeetManagerFactory;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.dialogs.newMeet.NewMeetController;
+import com.barattoManager.ui.mvc.dialogs.newMeet.NewMeetModel;
+import com.barattoManager.ui.mvc.dialogs.newMeet.NewMeetView;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.mvc.tree.meet.MeetTreeController;
 import com.barattoManager.ui.mvc.tree.meet.MeetTreeModel;
 import com.barattoManager.ui.mvc.tree.meet.MeetTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
+import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
+import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
+import com.barattoManager.utils.parser.StringParser;
+import com.barattoManager.utils.parser.TimeParser;
+
+import javax.swing.*;
 
 public class MeetEditorController implements BaseController {
 
 	private final MeetEditorView view;
-	private final MeetTreeController meetTreeController;
 
 	public MeetEditorController(MeetEditorView view) {
 		this.view = view;
 
-		meetTreeController = new MeetTreeController(
+		MeetTreeController meetTreeController = new MeetTreeController(
 				new MeetTreeModel(
 						MeetManagerFactory.getManager().getAvailableMeet()
 				),
@@ -49,6 +59,35 @@ public class MeetEditorController implements BaseController {
 
 	@ActionListenerFor(sourceField = "addMeetButton")
 	private void clickOnAddMeetButton() {
-		System.out.println("Aggiungi nuovo incontro");
+
+		var newMeetController = new NewMeetController(new NewMeetModel(), new NewMeetView());
+
+		var result = new OptionDialogDisplay()
+				.setParentComponent(view.getMainJPanel())
+				.setMessage(newMeetController.getView().getMainJPanel())
+				.setTitle("Creazione di un nuovo incontro")
+				.setMessageType(JOptionPane.QUESTION_MESSAGE)
+				.show();
+
+		if (result == JOptionPane.OK_OPTION) {
+			try {
+				MeetManagerFactory.getManager()
+						.addNewMeet(
+								newMeetController.getModel().getCity(),
+								newMeetController.getModel().getSquare(),
+								newMeetController.getModel().getDays(),
+								TimeParser.hourToMinuteTime(newMeetController.getModel().getStartTime()),
+								TimeParser.hourToMinuteTime(newMeetController.getModel().getEndTime()),
+								StringParser.stringIntoInteger(newMeetController.getModel().getDaysBeforeExpire())
+						);
+			} catch (InvalidArgumentException | AlreadyExistException e) {
+				new MessageDialogDisplay()
+						.setParentComponent(view.getMainJPanel())
+						.setMessageType(JOptionPane.ERROR_MESSAGE)
+						.setTitle("Errore")
+						.setMessage(e.getMessage())
+						.show();
+			}
+		}
 	}
 }

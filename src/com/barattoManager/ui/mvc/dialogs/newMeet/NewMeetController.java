@@ -5,50 +5,59 @@ import com.barattoManager.ui.annotations.documentListener.DocumentListenerInstal
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseView;
 
-public class NewMeetController implements BaseController {
+public class NewMeetController implements BaseController, DaysCheckboxListener {
 
-    private final NewMeetModel model;
-    private final NewMeetView view;
+	private final NewMeetModel model;
+	private final NewMeetView view;
 
-    public NewMeetController(NewMeetModel model, NewMeetView view) {
-        this.model = model;
-        this.view = view;
+	public NewMeetController(NewMeetModel model, NewMeetView view) {
+		this.model = model;
+		this.view = view;
 
-        DocumentListenerInstaller.processAnnotations(this, model);
-    }
+		this.view.addDaysCheckboxListener(this);
+		DocumentListenerInstaller.processAnnotations(this, view);
+	}
 
-    @Override
-    public NewMeetModel getModel() {
-        return model;
-    }
+	@Override
+	public NewMeetModel getModel() {
+		return model;
+	}
 
-    @Override
-    public BaseView getView() {
-        return view;
-    }
+	@Override
+	public BaseView getView() {
+		return view;
+	}
 
-    @DocumentListenerFor(sourceField = "cityField")
-    private void cityHasChanged() {
-        model.setCity(view.getCityField());
-    }
+	@Override
+	public void daysUpdate(String day, boolean selected) {
+		if (selected)
+			model.getDays().add(day);
+		else
+			model.getDays().remove(day);
+	}
 
-    @DocumentListenerFor(sourceField = "squareField")
-    private void squareHasChanged() {
-        model.setSquare(view.getSquareField());
-    }
+	@DocumentListenerFor(sourceField = "cityField")
+	private void cityHasChanged() {
+		model.setCity(view.getCityField());
+	}
 
-    @DocumentListenerFor(sourceField = "startTimeField")
-    private void startTimeHasChanged() {
-        model.setStartTime(view.getStartTimeField());
-    }
+	@DocumentListenerFor(sourceField = "squareField")
+	private void squareHasChanged() {
+		model.setSquare(view.getSquareField());
+	}
 
-    @DocumentListenerFor(sourceField = "endTimeField")
-    private void endTimeHasChanged() {
-        model.setEndTime(view.getEndTimeField());
-    }
+	@DocumentListenerFor(sourceField = "startTimeField")
+	private void startTimeHasChanged() {
+		model.setStartTime(view.getStartTimeField());
+	}
 
-    @DocumentListenerFor(sourceField = "daysBeforeExpireField")
-    private void daysBeforeExpireHasChanged() {
-        model.setDaysBeforeExpire(view.getDaysBeforeExpireField());
-    }
+	@DocumentListenerFor(sourceField = "endTimeField")
+	private void endTimeHasChanged() {
+		model.setEndTime(view.getEndTimeField());
+	}
+
+	@DocumentListenerFor(sourceField = "daysBeforeExpireField")
+	private void daysBeforeExpireHasChanged() {
+		model.setDaysBeforeExpire(view.getDaysBeforeExpireField());
+	}
 }
