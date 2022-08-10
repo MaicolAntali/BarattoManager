@@ -1,4 +1,4 @@
-package com.barattoManager.ui.mvc.viewer.articleViewer;
+package com.barattoManager.ui.mvc.viewer.yourArticle;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
@@ -10,11 +10,11 @@ import com.barattoManager.ui.mvc.menu.yourArticle.YourArticleMenuController;
 import com.barattoManager.ui.mvc.menu.yourArticle.YourArticleMenuView;
 import com.barattoManager.ui.utils.ControllerNames;
 
-public class ViewerArticleController implements BaseController {
+public class YourArticleController implements BaseController {
 
-    private final ViewerArticleView view;
+    private final YourArticleView view;
 
-    public ViewerArticleController(ViewerArticleView view){
+    public YourArticleController(YourArticleView view){
         this.view = view;
 
         var yourArticleMenu = new YourArticleMenuController(new YourArticleMenuView());
@@ -38,8 +38,8 @@ public class ViewerArticleController implements BaseController {
         ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE_VIEWER.toString());
     }
 
-    @ActionListenerFor(sourceField = "loadJsonQuestionButton")
-    private void clickOnLoadJsonQuestionButton() {
+    @ActionListenerFor(sourceField = "questionButton")
+    private void clickOnQuestionButton() {
         System.out.println("Informazioni");
     }
 }

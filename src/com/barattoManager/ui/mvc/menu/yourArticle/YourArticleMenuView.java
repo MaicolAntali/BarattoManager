@@ -22,9 +22,11 @@ public class YourArticleMenuView implements BaseView {
         newArticleAction.setAccelerator(KeyStroke.getKeyStroke('N', Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
 
         cancelArticleAction = articleMenu.add(new JMenuItem("Cancella Offerta"));
+        cancelArticleAction.setAccelerator(KeyStroke.getKeyStroke('C', Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
 
         var menuBar = new JMenuBar();
         menuBar.add(articleMenu);
+        menuBar.setPreferredSize(new Dimension(500, 30));
 
         mainPanel.add(menuBar);
     }

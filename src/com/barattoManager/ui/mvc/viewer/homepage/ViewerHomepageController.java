@@ -7,12 +7,12 @@ import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
-import com.barattoManager.ui.mvc.viewer.articleViewer.ViewerArticleController;
-import com.barattoManager.ui.mvc.viewer.articleViewer.ViewerArticleView;
 import com.barattoManager.ui.mvc.viewer.categoryViewer.ViewerCategoryController;
 import com.barattoManager.ui.mvc.viewer.categoryViewer.ViewerCategoryView;
 import com.barattoManager.ui.mvc.viewer.meetViewer.ViewerMeetController;
 import com.barattoManager.ui.mvc.viewer.meetViewer.ViewerMeetView;
+import com.barattoManager.ui.mvc.viewer.yourArticle.YourArticleController;
+import com.barattoManager.ui.mvc.viewer.yourArticle.YourArticleView;
 import com.barattoManager.ui.utils.ControllerNames;
 
 public class ViewerHomepageController implements BaseController {
@@ -54,7 +54,7 @@ public class ViewerHomepageController implements BaseController {
 	@ActionListenerFor(sourceField = "yourArticleButton")
 	private void clickOnYourArticleButton() {
 		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new ViewerArticleController(new ViewerArticleView()), ControllerNames.ARTICLE_VIEWER.toString()
+				new YourArticleController(new YourArticleView()), ControllerNames.ARTICLE_VIEWER.toString()
 		);
 		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.ARTICLE_VIEWER.toString());
 	}

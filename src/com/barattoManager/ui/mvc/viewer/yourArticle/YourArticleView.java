@@ -1,18 +1,16 @@
-package com.barattoManager.ui.mvc.viewer.articleViewer;
+package com.barattoManager.ui.mvc.viewer.yourArticle;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
 import com.barattoManager.ui.mvc.base.BaseView;
-import com.barattoManager.ui.mvc.menu.yourArticle.YourArticleMenuController;
-import com.barattoManager.ui.mvc.menu.yourArticle.YourArticleMenuView;
 
 import javax.swing.*;
 
-public class ViewerArticleView implements BaseView {
+public class YourArticleView implements BaseView {
 	private JPanel mainPanel;
 	@ActionListenerField
 	private JButton backToHome;
 	@ActionListenerField
-	private JButton loadJsonQuestionButton;
+	private JButton questionButton;
 	private JPanel treePanel;
 	private JPanel menuPanel;
 
