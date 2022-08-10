@@ -18,6 +18,8 @@ import com.barattoManager.ui.mvc.dialogs.changePassword.ChangePasswordModel;
 import com.barattoManager.ui.mvc.dialogs.changePassword.ChangePasswordView;
 import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
+import com.barattoManager.ui.mvc.viewer.homepage.ViewerHomepageController;
+import com.barattoManager.ui.mvc.viewer.homepage.ViewerHomepageView;
 import com.barattoManager.ui.utils.ControllerNames;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
@@ -71,8 +73,14 @@ public class LoginController implements BaseController {
 					ShowControllerHandlerFactory.getHandler().fireShowListeners(
 							ControllerNames.HOMEPAGE_CONFIGURATOR.toString());
 				}
-				else
-					System.out.println("LOGIN ESEGUITO COME FRUITORE");
+				else {
+					RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
+							new ViewerHomepageController(new ViewerHomepageView()),
+							ControllerNames.HOMEPAGE_VIEWER.toString()
+					);
+					ShowControllerHandlerFactory.getHandler().fireShowListeners(
+							ControllerNames.HOMEPAGE_VIEWER.toString());
+				}
 
 		} catch (InvalidCredentialException e) {
 			new MessageDialogDisplay()
