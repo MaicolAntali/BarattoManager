@@ -14,35 +14,35 @@ import com.barattoManager.ui.utils.ControllerNames;
 
 public class ViewMeetController implements BaseController {
 
-    private final ViewMeetView view;
+	private final ViewMeetView view;
 
-    public ViewMeetController(ViewMeetView view) {
-        this.view = view;
+	public ViewMeetController(ViewMeetView view) {
+		this.view = view;
 
-        var meetTreeController = new MeetTreeController(
-                new MeetTreeModel(
-                        MeetManagerFactory.getManager().getAvailableMeet()
-                ),
-                new MeetTreeView()
-        );
+		var meetTreeController = new MeetTreeController(
+				new MeetTreeModel(
+						MeetManagerFactory.getManager().getAvailableMeet()
+				),
+				new MeetTreeView()
+		);
 
-        this.view.setTreePanel(meetTreeController.getView().getMainJPanel());
+		this.view.setTreePanel(meetTreeController.getView().getMainJPanel());
 
-        ActionListenerInstaller.processAnnotations(this, view);
-    }
+		ActionListenerInstaller.processAnnotations(this, view);
+	}
 
-    @Override
-    public BaseModel getModel() {
-        return null;
-    }
+	@Override
+	public BaseModel getModel() {
+		return null;
+	}
 
-    @Override
-    public BaseView getView() {
-        return view;
-    }
+	@Override
+	public BaseView getView() {
+		return view;
+	}
 
-    @ActionListenerFor(sourceField = "backToHome")
-    private void clickOnBackToHome() {
-        ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE_VIEWER.toString());
-    }
+	@ActionListenerFor(sourceField = "backToHome")
+	private void clickOnBackToHome() {
+		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE_VIEWER.toString());
+	}
 }
