@@ -7,10 +7,12 @@ import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
-import com.barattoManager.ui.mvc.viewer.categoryView.ViewCategoryController;
-import com.barattoManager.ui.mvc.viewer.categoryView.ViewCategoryView;
-import com.barattoManager.ui.mvc.viewer.meetView.ViewMeetController;
-import com.barattoManager.ui.mvc.viewer.meetView.ViewMeetView;
+import com.barattoManager.ui.mvc.viewer.articleViewer.ViewerArticleController;
+import com.barattoManager.ui.mvc.viewer.articleViewer.ViewerArticleView;
+import com.barattoManager.ui.mvc.viewer.categoryViewer.ViewerCategoryController;
+import com.barattoManager.ui.mvc.viewer.categoryViewer.ViewerCategoryView;
+import com.barattoManager.ui.mvc.viewer.meetViewer.ViewerMeetController;
+import com.barattoManager.ui.mvc.viewer.meetViewer.ViewerMeetView;
 import com.barattoManager.ui.utils.ControllerNames;
 
 public class ViewerHomepageController implements BaseController {
@@ -36,7 +38,7 @@ public class ViewerHomepageController implements BaseController {
 	@ActionListenerFor(sourceField = "viewCategoryButton")
 	private void clickOnViewCategoryButton() {
 		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new ViewCategoryController(new ViewCategoryView()), ControllerNames.CATEGORY_VIEWER.toString()
+				new ViewerCategoryController(new ViewerCategoryView()), ControllerNames.CATEGORY_VIEWER.toString()
 		);
 		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.CATEGORY_VIEWER.toString());
 	}
@@ -44,14 +46,17 @@ public class ViewerHomepageController implements BaseController {
 	@ActionListenerFor(sourceField = "viewMeetButton")
 	private void clickOnViewMeetButton() {
 		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new ViewMeetController(new ViewMeetView()), ControllerNames.MEET_VIEWER.toString()
+				new ViewerMeetController(new ViewerMeetView()), ControllerNames.MEET_VIEWER.toString()
 		);
 		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.MEET_VIEWER.toString());
 	}
 
 	@ActionListenerFor(sourceField = "yourArticleButton")
 	private void clickOnYourArticleButton() {
-		System.out.println("I tuoi articoli");
+		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
+				new ViewerArticleController(new ViewerArticleView()), ControllerNames.ARTICLE_VIEWER.toString()
+		);
+		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.ARTICLE_VIEWER.toString());
 	}
 
 	@ActionListenerFor(sourceField = "storeArticleButton")

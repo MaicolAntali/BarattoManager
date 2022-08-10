@@ -1,11 +1,11 @@
-package com.barattoManager.ui.mvc.viewer.categoryView;
+package com.barattoManager.ui.mvc.viewer.categoryViewer;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
 import com.barattoManager.ui.mvc.base.BaseView;
 
 import javax.swing.*;
 
-public class ViewCategoryView implements BaseView {
+public class ViewerCategoryView implements BaseView {
 	private JPanel mainPanel;
 	@ActionListenerField
 	private JButton backToHome;

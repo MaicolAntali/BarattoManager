@@ -9,6 +9,7 @@ public enum ControllerNames {
 	REGISTER_VIEWER("register-viewer"),
 	CATEGORY_VIEWER("category-view"),
 	MEET_VIEWER("meet-view"),
+	ARTICLE_VIEWER("article-viewer"),
 
 	HOMEPAGE_CONFIGURATOR("homepage-configurator"),
 	CATEGORY_EDITOR("category-editor"),

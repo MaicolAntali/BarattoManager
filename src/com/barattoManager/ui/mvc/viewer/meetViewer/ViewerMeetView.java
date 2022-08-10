@@ -1,11 +1,11 @@
-package com.barattoManager.ui.mvc.viewer.meetView;
+package com.barattoManager.ui.mvc.viewer.meetViewer;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
 import com.barattoManager.ui.mvc.base.BaseView;
 
 import javax.swing.*;
 
-public class ViewMeetView implements BaseView {
+public class ViewerMeetView implements BaseView {
 	private JPanel mainPanel;
 	@ActionListenerField
 	private JButton backToHome;

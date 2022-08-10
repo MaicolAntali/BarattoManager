@@ -1,32 +1,32 @@
-package com.barattoManager.ui.mvc.viewer.categoryView;
+package com.barattoManager.ui.mvc.viewer.meetViewer;
 
-import com.barattoManager.services.category.CategoryManagerFactory;
+import com.barattoManager.services.meet.MeetManagerFactory;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
-import com.barattoManager.ui.mvc.tree.category.CategoryTreeController;
-import com.barattoManager.ui.mvc.tree.category.CategoryTreeModel;
-import com.barattoManager.ui.mvc.tree.category.CategoryTreeView;
+import com.barattoManager.ui.mvc.tree.meet.MeetTreeController;
+import com.barattoManager.ui.mvc.tree.meet.MeetTreeModel;
+import com.barattoManager.ui.mvc.tree.meet.MeetTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
 
-public class ViewCategoryController implements BaseController {
+public class ViewerMeetController implements BaseController {
 
-	private final ViewCategoryView view;
+	private final ViewerMeetView view;
 
-	public ViewCategoryController(ViewCategoryView view) {
+	public ViewerMeetController(ViewerMeetView view) {
 		this.view = view;
 
-		var categoryTreeController = new CategoryTreeController(
-				new CategoryTreeModel(
-						CategoryManagerFactory.getManager().getRootCategoryMap().values().stream().toList()
+		var meetTreeController = new MeetTreeController(
+				new MeetTreeModel(
+						MeetManagerFactory.getManager().getAvailableMeet()
 				),
-				new CategoryTreeView()
+				new MeetTreeView()
 		);
 
-		this.view.setTreePanel(categoryTreeController.getView().getMainJPanel());
+		this.view.setTreePanel(meetTreeController.getView().getMainJPanel());
 
 		ActionListenerInstaller.processAnnotations(this, view);
 	}
