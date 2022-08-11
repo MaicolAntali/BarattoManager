@@ -19,7 +19,7 @@ public class ArticleManagerFactory implements Runnable {
 	@Override
 	public void run() {
 		var jsonHandler = new JsonHandler<String, Article>(
-				AppConfigurator.getInstance().getFileName("meets"),
+				AppConfigurator.getInstance().getFileName("articles"),
 				JsonMapper.builder()
 						.addModule(new ParameterNamesModule())
 						.addModule(new Jdk8Module())

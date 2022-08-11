@@ -8,31 +8,31 @@ import com.barattoManager.ui.mvc.base.BaseView;
 
 public class YourArticleMenuController implements BaseController {
 
-    private final YourArticleMenuView view;
+	private final YourArticleMenuView view;
 
-    public YourArticleMenuController(YourArticleMenuView view) {
-        this.view = view;
+	public YourArticleMenuController(YourArticleMenuView view) {
+		this.view = view;
 
-        ActionListenerInstaller.processAnnotations(this, view);
-    }
+		ActionListenerInstaller.processAnnotations(this, view);
+	}
 
-    @Override
-    public BaseModel getModel() {
-        return null;
-    }
+	@Override
+	public BaseModel getModel() {
+		return null;
+	}
 
-    @Override
-    public BaseView getView() {
-        return view;
-    }
+	@Override
+	public BaseView getView() {
+		return view;
+	}
 
-    @ActionListenerFor(sourceField = "newArticleAction")
-    private void clickOnNewArticleAction() {
-        System.out.println("Aggiungi articolo");
-    }
+	@ActionListenerFor(sourceField = "newArticleAction")
+	private void clickOnNewArticleAction() {
+		System.out.println("Aggiungi articolo");
+	}
 
-    @ActionListenerFor(sourceField = "cancelArticleAction")
-    private void clickOnCancelArticleAction() {
-        System.out.println("Cancella articolo");
-    }
+	@ActionListenerFor(sourceField = "cancelArticleAction")
+	private void clickOnCancelArticleAction() {
+		System.out.println("Cancella articolo");
+	}
 }

@@ -1,5 +1,6 @@
 package com.barattoManager;
 
+import com.barattoManager.services.article.ArticleManagerFactory;
 import com.barattoManager.services.category.CategoryManagerFactory;
 import com.barattoManager.services.meet.MeetManagerFactory;
 import com.barattoManager.services.user.UserManagerFactory;
@@ -22,6 +23,7 @@ public class BarattoManager {
 		new Thread(new UserManagerFactory()).start();
 		new Thread(new CategoryManagerFactory()).start();
 		new Thread(new MeetManagerFactory()).start();
+		new Thread(new ArticleManagerFactory()).start();
 
 		var mainFrameController = new MainFrameController(new MainFrameModel(), new MainFrameView());
 		var homepageController  = new HomepageController(new HomepageView());
