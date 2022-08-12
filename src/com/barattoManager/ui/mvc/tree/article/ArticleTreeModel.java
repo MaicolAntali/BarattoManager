@@ -10,7 +10,10 @@ import java.util.List;
 public interface ArticleTreeModel extends BaseModel {
 
 	List<Article> getArticles();
+
 	TreeNode[] getTreeNodes();
+
 	void setTreeNodes(TreeNode[] treeNodes);
+
 	void addModelDataHasChangeListener(ModelDataHasChangeListener listener);
 }

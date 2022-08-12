@@ -1,52 +1,20 @@
 package com.barattoManager.ui.mvc.tree.category;
 
 import com.barattoManager.services.category.Category;
-import com.barattoManager.services.event.UpdateDataListener;
-import com.barattoManager.ui.mvc.base.BaseModel;
-import com.barattoManager.ui.mvc.tree.event.ModelDataHasChangeListener;
+import com.barattoManager.ui.mvc.tree.TreeModel;
 
-import javax.swing.tree.TreeNode;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class CategoryTreeModel implements BaseModel, UpdateDataListener<String, Category> {
-
-	private final ArrayList<ModelDataHasChangeListener> listeners;
-	private List<Category> categories;
-	private TreeNode[] treeNodes;
+public class CategoryTreeModel extends TreeModel<Category> {
 
 	public CategoryTreeModel(List<Category> categories) {
-		this.categories = categories;
-
-		listeners = new ArrayList<>();
-		treeNodes = null;
+		super(categories);
 	}
 
 	@Override
 	public void update(ConcurrentHashMap<String, Category> updatedMap) {
-		this.categories = updatedMap.values().stream().toList();
+		setData(updatedMap.values().stream().toList());
 		fireModelDataHasChangeListener();
-	}
-
-
-	public List<Category> getCategories() {
-		return categories;
-	}
-
-	public TreeNode[] getTreeNodes() {
-		return treeNodes;
-	}
-
-	public void setTreeNodes(TreeNode[] treeNodes) {
-		this.treeNodes = treeNodes;
-	}
-
-	public void addModelDataHasChangeListener(ModelDataHasChangeListener listener) {
-		this.listeners.add(listener);
-	}
-
-	private void fireModelDataHasChangeListener() {
-		this.listeners.forEach(ModelDataHasChangeListener::dataChange);
 	}
 }
