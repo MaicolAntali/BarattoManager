@@ -30,14 +30,12 @@ public class SelectCategoryModel implements BaseModel {
 	private ArrayList<String> generateCategoryName(List<Category> categories) {
 		var arrayList = new ArrayList<String>();
 
-		for (Category category : categories) {
-			arrayList.addAll(
-					generateComboBoxItems(
-							category.getSubCategory().values().stream().toList(),
-							category.getName()
-					)
-			);
-		}
+		categories.forEach(category -> arrayList.addAll(
+				generateComboBoxItems(
+						category.getSubCategory().values().stream().toList(),
+						category.getName()
+				)
+		));
 
 		return arrayList;
 	}
@@ -45,7 +43,7 @@ public class SelectCategoryModel implements BaseModel {
 	private ArrayList<String> generateComboBoxItems(List<Category> categories, String string) {
 		var arrayList = new ArrayList<String>();
 
-		for (Category category : categories) {
+		categories.forEach(category -> {
 			if (category.getSubCategory().isEmpty()) {
 				arrayList.add(string + " - %s".formatted(category.getName()));
 			}
@@ -57,7 +55,7 @@ public class SelectCategoryModel implements BaseModel {
 						)
 				);
 			}
-		}
+		});
 
 		return arrayList;
 	}
