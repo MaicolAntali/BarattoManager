@@ -8,6 +8,7 @@ import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.mvc.menu.yourArticle.YourArticleMenuController;
+import com.barattoManager.ui.mvc.menu.yourArticle.YourArticleMenuModel;
 import com.barattoManager.ui.mvc.menu.yourArticle.YourArticleMenuView;
 import com.barattoManager.ui.mvc.tree.article.ArticleTreeController;
 import com.barattoManager.ui.mvc.tree.article.ArticleTreeView;
@@ -28,7 +29,10 @@ public class YourArticleController implements BaseController {
 
 		this.view.setTreePanel(articleTreeController.getView().getMainJPanel());
 
-		var yourArticleMenu = new YourArticleMenuController(new YourArticleMenuView());
+		var yourArticleMenu = new YourArticleMenuController(
+				new YourArticleMenuModel(articleTreeController),
+				new YourArticleMenuView()
+		);
 		this.view.setMenuPanel(yourArticleMenu.getView().getMainJPanel());
 
 		ActionListenerInstaller.processAnnotations(this, view);
