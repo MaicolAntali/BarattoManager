@@ -31,7 +31,7 @@ public class SelectCategoryModel implements BaseModel {
 		var arrayList = new ArrayList<String>();
 
 		categories.forEach(category -> arrayList.addAll(
-				generateComboBoxItems(
+				generateCategoryName(
 						category.getSubCategory().values().stream().toList(),
 						category.getName()
 				)
@@ -40,7 +40,7 @@ public class SelectCategoryModel implements BaseModel {
 		return arrayList;
 	}
 
-	private ArrayList<String> generateComboBoxItems(List<Category> categories, String string) {
+	private ArrayList<String> generateCategoryName(List<Category> categories, String string) {
 		var arrayList = new ArrayList<String>();
 
 		categories.forEach(category -> {
@@ -49,7 +49,7 @@ public class SelectCategoryModel implements BaseModel {
 			}
 			else {
 				arrayList.addAll(
-						generateComboBoxItems(
+						generateCategoryName(
 								category.getSubCategory().values().stream().toList(),
 								string + " - %s".formatted(category.getName())
 						)
