@@ -1,5 +1,6 @@
 package com.barattoManager.ui.mvc.dialogs.selectCategory;
 
+import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 
@@ -10,6 +11,8 @@ import java.util.List;
 public class SelectCategoryView implements BaseView {
 
 	private final JPanel mainPanel;
+
+	@ActionListenerField
 	private final JComboBox<String> comboBox;
 
 	public SelectCategoryView() {
@@ -34,10 +37,12 @@ public class SelectCategoryView implements BaseView {
 
 		categoriesName.forEach(comboBox::addItem);
 
+		comboBox.setSelectedIndex(-1);
+
 		mainPanel.add(comboBox);
 	}
 
-	public String getSelectedCategoryName() {
+	protected String getSelectedCategoryName() {
 		return String.valueOf(comboBox.getSelectedItem());
 	}
 

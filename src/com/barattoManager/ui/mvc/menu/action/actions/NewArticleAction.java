@@ -36,6 +36,6 @@ public class NewArticleAction extends BaseAction {
 				.show();
 
 		if (option == JOptionPane.OK_OPTION)
-			System.out.println(selectCategoryController.getView().getSelectedCategoryName());
+			System.out.println(selectCategoryController.getModel().getCategoryNamesSelected());
 	}
 }

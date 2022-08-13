@@ -1,7 +1,8 @@
 package com.barattoManager.ui.mvc.dialogs.selectCategory;
 
+import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
+import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseModel;
 
 public class SelectCategoryController implements BaseController {
 
@@ -13,15 +14,22 @@ public class SelectCategoryController implements BaseController {
 		this.view = view;
 
 		this.view.draw(this.model.getCategoriesName());
+
+		ActionListenerInstaller.processAnnotations(this, view);
 	}
 
 	@Override
-	public BaseModel getModel() {
+	public SelectCategoryModel getModel() {
 		return model;
 	}
 
 	@Override
 	public SelectCategoryView getView() {
 		return view;
+	}
+
+	@ActionListenerFor(sourceField = "comboBox")
+	private void comboBoxValueHasChanged() {
+		model.setCategoryNamesSelected(view.getSelectedCategoryName());
 	}
 }

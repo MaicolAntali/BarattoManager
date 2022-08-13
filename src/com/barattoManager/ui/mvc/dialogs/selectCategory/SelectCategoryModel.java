@@ -9,6 +9,7 @@ import java.util.List;
 public class SelectCategoryModel implements BaseModel {
 
 	private final List<String> categoriesName;
+	private String categoryNamesSelected = "";
 
 	public SelectCategoryModel(List<Category> categories) {
 		this.categoriesName = generateCategoryName(categories);
@@ -16,6 +17,14 @@ public class SelectCategoryModel implements BaseModel {
 
 	public List<String> getCategoriesName() {
 		return categoriesName;
+	}
+
+	public String getCategoryNamesSelected() {
+		return categoryNamesSelected;
+	}
+
+	public void setCategoryNamesSelected(String categoryNamesSelected) {
+		this.categoryNamesSelected = categoryNamesSelected;
 	}
 
 	private ArrayList<String> generateCategoryName(List<Category> categories) {
