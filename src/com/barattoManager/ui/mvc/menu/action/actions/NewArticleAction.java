@@ -40,21 +40,21 @@ public class NewArticleAction extends BaseAction {
 				.setTitle("Selezione Categoria")
 				.show();
 
-		var categorySelected = SelectCategoryController.getCategoryFromCategoryPath(
-				selectCategoryController.getModel().getCategoryNamesSelected()
-		);
-
-		if (categorySelected.isEmpty()) {
-			new MessageDialogDisplay()
-					.setParentComponent(treeController.getView().getMainJPanel())
-					.setMessageType(JOptionPane.ERROR_MESSAGE)
-					.setTitle("Errore")
-					.setMessage("Non è stata seleziona nessuna categoria")
-					.show();
-			return;
-		}
-
 		if (option == JOptionPane.OK_OPTION) {
+			var categorySelected = SelectCategoryController.getCategoryFromCategoryPath(
+					selectCategoryController.getModel().getCategoryNamesSelected()
+			);
+
+			if (categorySelected.isEmpty()) {
+				new MessageDialogDisplay()
+						.setParentComponent(treeController.getView().getMainJPanel())
+						.setMessageType(JOptionPane.ERROR_MESSAGE)
+						.setTitle("Errore")
+						.setMessage("Non è stata seleziona nessuna categoria")
+						.show();
+				return;
+			}
+
 			var newArticleController = new NewArticleController(
 					new NewArticleModel(
 							categorySelected.get()

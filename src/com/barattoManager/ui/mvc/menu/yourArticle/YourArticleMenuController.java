@@ -6,6 +6,7 @@ import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.menu.action.actions.CancelOfferAction;
 import com.barattoManager.ui.mvc.menu.action.actions.NewArticleAction;
 
 public class YourArticleMenuController implements BaseController {
@@ -37,6 +38,6 @@ public class YourArticleMenuController implements BaseController {
 
 	@ActionListenerFor(sourceField = "cancelArticleAction")
 	private void clickOnCancelArticleAction() {
-		System.out.println("Cancella articolo");
+		new CancelOfferAction(Store.getLoggedUser(), model.getTreeController()).run();
 	}
 }
