@@ -11,6 +11,8 @@ import com.barattoManager.ui.mvc.viewer.categoryViewer.ViewerCategoryController;
 import com.barattoManager.ui.mvc.viewer.categoryViewer.ViewerCategoryView;
 import com.barattoManager.ui.mvc.viewer.meetViewer.ViewerMeetController;
 import com.barattoManager.ui.mvc.viewer.meetViewer.ViewerMeetView;
+import com.barattoManager.ui.mvc.viewer.storeArticle.StoreArticleController;
+import com.barattoManager.ui.mvc.viewer.storeArticle.StoreArticleView;
 import com.barattoManager.ui.mvc.viewer.yourArticle.YourArticleController;
 import com.barattoManager.ui.mvc.viewer.yourArticle.YourArticleView;
 import com.barattoManager.ui.utils.ControllerNames;
@@ -61,7 +63,10 @@ public class ViewerHomepageController implements BaseController {
 
 	@ActionListenerFor(sourceField = "storeArticleButton")
 	private void clickOnStoreArticleButton() {
-		System.out.println("Store articoli");
+		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
+				new StoreArticleController(new StoreArticleView()), ControllerNames.STORE_VIEWER.toString()
+		);
+		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.STORE_VIEWER.toString());
 	}
 
 	@ActionListenerFor(sourceField = "myTradesButton")
