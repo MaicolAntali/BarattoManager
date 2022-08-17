@@ -23,8 +23,6 @@ public class TradeDaemon extends TimerTask {
 
 	@Override
 	public void run() {
-		System.out.printf("Running TradeCheckerDaemon: %s%n", LocalDateTime.now());
-
 		tradeHashMap.values().stream()
 				.filter(trade -> trade.getTradeStatus() == TradeStatus.IN_PROGRESS)
 				.filter(trade -> LocalDateTime.now().isAfter(trade.getTradeEndDateTime()))
@@ -53,8 +51,6 @@ public class TradeDaemon extends TimerTask {
 							.orElseThrow(NullPointerException::new)
 							.setTradeStatus(TradeStatus.CANCELLED);
 				});
-
-		System.out.printf("Ended TradeCheckerDaemon: %s%n", LocalDateTime.now());
 	}
 
 }
