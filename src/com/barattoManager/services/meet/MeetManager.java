@@ -19,7 +19,7 @@ public class MeetManager {
 	private static final String ERROR_NO_DAY_SELECTED = "Non è stato selezionato nessun giorno.";
 
 	private final ConcurrentHashMap<String, Meet> meetMap;
-	private MeetDaemon meetDeamon;
+	private MeetDaemon meetDaemon;
 	private Thread daemonThread;
 
 	/**
@@ -29,7 +29,7 @@ public class MeetManager {
 	 */
 	public MeetManager(ConcurrentHashMap<String, Meet> meetMap) {
 		this.meetMap = meetMap;
-		this.meetDeamon = new MeetDaemon(meetMap);
+		this.meetDaemon = new MeetDaemon(meetMap);
 
 		runDaemon();
 	}
@@ -178,7 +178,7 @@ public class MeetManager {
 		if (daemonThread == null || !daemonThread.isAlive()) {
 			daemonThread = new Thread(
 					() -> new Timer().scheduleAtFixedRate(
-							meetDeamon,
+							meetDaemon,
 							0,
 							60000 // 1 Minutes
 					)
@@ -206,7 +206,7 @@ public class MeetManager {
 	}
 
 	private void saveData() {
-		this.meetDeamon = new MeetDaemon(this.meetMap);
+		this.meetDaemon = new MeetDaemon(this.meetMap);
 		MeetUpdateDataEventFactory.getEventHandler().fireUpdateListeners(this.meetMap);
 	}
 }
