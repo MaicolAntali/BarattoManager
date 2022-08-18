@@ -51,35 +51,34 @@ public class NewArticleView implements BaseView {
 		fieldsPanel.add(articleNameField);
 
 		categoryOfArticle.getCategoryFields().values()
-						.forEach(field -> {
-							articleFields.add(field);
+				.forEach(field -> {
+					articleFields.add(field);
 
-							fieldsPanel.add(new JLabel("%s%s:".formatted(field.name(), field.required() ? "*" : "")));
+					fieldsPanel.add(new JLabel("%s%s:".formatted(field.name(), field.required() ? "*" : "")));
 
-							var valueField = new JTextField();
+					var valueField = new JTextField();
 
-							valueField.getDocument().addDocumentListener(new DocumentListener() {
-								@Override
-								public void insertUpdate(DocumentEvent e) {
-									fireArticleFieldHasChangeListener();
-								}
+					valueField.getDocument().addDocumentListener(new DocumentListener() {
+						@Override
+						public void insertUpdate(DocumentEvent e) {
+							fireArticleFieldHasChangeListener();
+						}
 
-								@Override
-								public void removeUpdate(DocumentEvent e) {
-									fireArticleFieldHasChangeListener();
-								}
+						@Override
+						public void removeUpdate(DocumentEvent e) {
+							fireArticleFieldHasChangeListener();
+						}
 
-								@Override
-								public void changedUpdate(DocumentEvent e) {
-									fireArticleFieldHasChangeListener();
-								}
-							});
+						@Override
+						public void changedUpdate(DocumentEvent e) {
+							fireArticleFieldHasChangeListener();
+						}
+					});
 
-							articleFieldValueJField.add(valueField);
-							fieldsPanel.add(valueField);
+					articleFieldValueJField.add(valueField);
+					fieldsPanel.add(valueField);
 
-						});
-
+				});
 
 
 		mainPanel.add(fieldsPanel);

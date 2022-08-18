@@ -7,26 +7,26 @@ import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 
 public class StoreArticleMenuController implements BaseController {
-    private final StoreArticleMenuView view;
+	private final StoreArticleMenuView view;
 
-    public StoreArticleMenuController(StoreArticleMenuView view) {
-        this.view = view;
+	public StoreArticleMenuController(StoreArticleMenuView view) {
+		this.view = view;
 
-        ActionListenerInstaller.processAnnotations(this, view);
-    }
+		ActionListenerInstaller.processAnnotations(this, view);
+	}
 
-    @Override
-    public BaseModel getModel() {
-        return null;
-    }
+	@Override
+	public BaseModel getModel() {
+		return null;
+	}
 
-    @Override
-    public BaseView getView() {
-        return view;
-    }
+	@Override
+	public BaseView getView() {
+		return view;
+	}
 
-    @ActionListenerFor(sourceField = "newTradeAction")
-    private void clickOnNewTradeAction() {
-        System.out.println("Scambia articolo");
-    }
+	@ActionListenerFor(sourceField = "newTradeAction")
+	private void clickOnNewTradeAction() {
+		System.out.println("Scambia articolo");
+	}
 }

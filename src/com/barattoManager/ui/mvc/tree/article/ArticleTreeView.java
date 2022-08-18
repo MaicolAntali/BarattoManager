@@ -3,6 +3,7 @@ package com.barattoManager.ui.mvc.tree.article;
 import com.barattoManager.services.article.Article;
 import com.barattoManager.services.category.CategoryManagerFactory;
 import com.barattoManager.services.history.History;
+import com.barattoManager.ui.mvc.tree.TreeUtils;
 import com.barattoManager.ui.mvc.tree.TreeView;
 
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -54,7 +55,7 @@ public class ArticleTreeView extends TreeView<Article> {
 		articleNode.add(new DefaultMutableTreeNode("Proprietario: %s".formatted(article.getUserNameOwner())));
 		articleNode.add(new DefaultMutableTreeNode("UUID: %s".formatted(article.getUuid())));
 
-		articleNode.add(generateFields(article));
+		articleNode.add(TreeUtils.generateFields(article));
 
 		var historyNode = new DefaultMutableTreeNode("Log");
 		for (History history : article.getHistory()) {
@@ -69,20 +70,5 @@ public class ArticleTreeView extends TreeView<Article> {
 		articleNode.add(historyNode);
 
 		fatherNode.add(articleNode);
-	}
-
-	private DefaultMutableTreeNode generateFields(Article article) {
-		var fieldsNode = new DefaultMutableTreeNode("Campi");
-
-
-		article.getFieldValueMap().forEach((key, value) -> {
-			if (key.required())
-				fieldsNode.add(new DefaultMutableTreeNode(("%s: %s").formatted(key.name(), value)));
-
-			if (!key.required() && !value.isBlank())
-				fieldsNode.add(new DefaultMutableTreeNode(("%s: %s").formatted(key.name(), value)));
-		});
-
-		return fieldsNode;
 	}
 }

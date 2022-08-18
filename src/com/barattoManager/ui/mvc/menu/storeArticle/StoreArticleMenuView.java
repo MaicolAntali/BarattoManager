@@ -8,30 +8,30 @@ import java.awt.*;
 
 public class StoreArticleMenuView implements BaseView {
 
-    private final JPanel mainPanel;
-    @ActionListenerField
-    private final JMenuItem newTradeAction;
+	private final JPanel mainPanel;
+	@ActionListenerField
+	private final JMenuItem newTradeAction;
 
-    public StoreArticleMenuView() {
-        mainPanel = new JPanel();
-        var articleMenu = new JMenu("Scambi");
+	public StoreArticleMenuView() {
+		mainPanel = new JPanel();
+		var articleMenu = new JMenu("Scambi");
 
-        newTradeAction = articleMenu.add(new JMenuItem("Scambia Articolo"));
-        newTradeAction.setAccelerator(KeyStroke.getKeyStroke('T', Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
+		newTradeAction = articleMenu.add(new JMenuItem("Scambia Articolo"));
+		newTradeAction.setAccelerator(KeyStroke.getKeyStroke('T', Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
 
-        var menuBar = new JMenuBar();
-        menuBar.add(articleMenu);
-        menuBar.setPreferredSize(new Dimension(500, 30));
+		var menuBar = new JMenuBar();
+		menuBar.add(articleMenu);
+		menuBar.setPreferredSize(new Dimension(500, 30));
 
-        mainPanel.add(menuBar);
-    }
+		mainPanel.add(menuBar);
+	}
 
-    @Override
-    public JPanel getMainJPanel() {
-        return mainPanel;
-    }
+	@Override
+	public JPanel getMainJPanel() {
+		return mainPanel;
+	}
 
-    public JMenuItem getNewTradeAction() {
-        return newTradeAction;
-    }
+	public JMenuItem getNewTradeAction() {
+		return newTradeAction;
+	}
 }
