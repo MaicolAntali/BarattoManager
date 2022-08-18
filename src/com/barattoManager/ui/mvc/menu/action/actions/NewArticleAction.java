@@ -18,12 +18,8 @@ import javax.swing.*;
 
 public class NewArticleAction extends BaseAction {
 
-	private final User user;
-	private final TreeController<?> treeController;
-
 	public NewArticleAction(User user, TreeController<?> treeController) {
-		this.user = user;
-		this.treeController = treeController;
+		super(user, treeController);
 	}
 
 	@Override
@@ -35,7 +31,7 @@ public class NewArticleAction extends BaseAction {
 		);
 
 		var option = new OptionDialogDisplay()
-				.setParentComponent(treeController.getView().getMainJPanel())
+				.setParentComponent(getTreeController().getView().getMainJPanel())
 				.setMessage(selectCategoryController.getView().getMainJPanel())
 				.setTitle("Selezione Categoria")
 				.show();
@@ -47,7 +43,7 @@ public class NewArticleAction extends BaseAction {
 
 			if (categorySelected.isEmpty()) {
 				new MessageDialogDisplay()
-						.setParentComponent(treeController.getView().getMainJPanel())
+						.setParentComponent(getTreeController().getView().getMainJPanel())
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
 						.setTitle("Errore")
 						.setMessage("Non è stata seleziona nessuna categoria")
@@ -63,7 +59,7 @@ public class NewArticleAction extends BaseAction {
 			);
 
 			var articleOption = new OptionDialogDisplay()
-					.setParentComponent(treeController.getView().getMainJPanel())
+					.setParentComponent(getTreeController().getView().getMainJPanel())
 					.setMessage(newArticleController.getView().getMainJPanel())
 					.setTitle("Selezione Categoria")
 					.show();
@@ -72,7 +68,7 @@ public class NewArticleAction extends BaseAction {
 
 				if (newArticleController.getModel().getArticleName().isBlank()) {
 					new MessageDialogDisplay()
-							.setParentComponent(treeController.getView().getMainJPanel())
+							.setParentComponent(getTreeController().getView().getMainJPanel())
 							.setMessageType(JOptionPane.ERROR_MESSAGE)
 							.setTitle("Errore")
 							.setMessage("Il nome dell'articolo è vuoto.")
@@ -83,7 +79,7 @@ public class NewArticleAction extends BaseAction {
 				ArticleManagerFactory.getManager()
 						.addNewArticle(
 								newArticleController.getModel().getArticleName(),
-								user.getUsername(),
+								getUser().getUsername(),
 								categorySelected.get().getUuid(),
 								newArticleController.getModel().getArticleFields(),
 								newArticleController.getModel().getArticleFieldValues()

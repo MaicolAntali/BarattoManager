@@ -9,6 +9,15 @@ import java.util.stream.IntStream;
 
 public abstract class BaseAction {
 
+	private final User user;
+	private final TreeController<?> treeController;
+
+	public BaseAction(User user, TreeController<?> treeController) {
+		this.user = user;
+		this.treeController = treeController;
+	}
+
+
 	public TreeNode[] getNodePath(User user, TreeController<?> treeController) {
 
 		return treeController.getModel().getTreeNodes();
@@ -28,4 +37,12 @@ public abstract class BaseAction {
 	}
 
 	public abstract void run();
+
+	public User getUser() {
+		return user;
+	}
+
+	public TreeController<?> getTreeController() {
+		return treeController;
+	}
 }

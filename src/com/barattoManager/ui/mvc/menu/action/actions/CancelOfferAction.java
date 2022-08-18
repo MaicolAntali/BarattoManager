@@ -12,14 +12,10 @@ import javax.swing.*;
 
 public class CancelOfferAction extends BaseAction {
 
-	private final User user;
-	private final TreeController<?> treeController;
 
 	public CancelOfferAction(User user, TreeController<?> treeController) {
-		this.user = user;
-		this.treeController = treeController;
+		super(user, treeController);
 	}
-
 
 	@Override
 	public void run() {
@@ -27,13 +23,13 @@ public class CancelOfferAction extends BaseAction {
 		var article = ArticleManagerFactory.getManager()
 				.getArticleById(
 						getUUIDFromNodes(
-								getNodePath(user, treeController)
+								getNodePath(getUser(), getTreeController())
 						)
 				);
 
 		if (article.isEmpty()) {
 			new MessageDialogDisplay()
-					.setParentComponent(treeController.getView().getMainJPanel())
+					.setParentComponent(getTreeController().getView().getMainJPanel())
 					.setMessageType(JOptionPane.ERROR_MESSAGE)
 					.setTitle("Errore")
 					.setMessage("Non è stato selezionato un articolo. Riprovare.")
@@ -42,7 +38,7 @@ public class CancelOfferAction extends BaseAction {
 		}
 
 		var option = JOptionPane.showConfirmDialog(
-				treeController.getView().getMainJPanel(),
+				getTreeController().getView().getMainJPanel(),
 				"Sei sicuro di voler cambiare lo stato dell'articolo in: \"Offerta Cancellata\"?",
 				"Cancella Offerta",
 				JOptionPane.YES_NO_OPTION
@@ -51,7 +47,7 @@ public class CancelOfferAction extends BaseAction {
 		if (option == JOptionPane.YES_NO_OPTION) {
 			if (article.get().getArticleState() == Article.State.CANCELLED_OFFER) {
 				new MessageDialogDisplay()
-						.setParentComponent(treeController.getView().getMainJPanel())
+						.setParentComponent(getTreeController().getView().getMainJPanel())
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
 						.setTitle("Errore")
 						.setMessage("Lo stato di questo articolo è gia: \"Offerta Cancellata\"")
@@ -61,7 +57,7 @@ public class CancelOfferAction extends BaseAction {
 
 			if (article.get().getArticleState() != Article.State.OPEN_OFFER) {
 				new MessageDialogDisplay()
-						.setParentComponent(treeController.getView().getMainJPanel())
+						.setParentComponent(getTreeController().getView().getMainJPanel())
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
 						.setTitle("Errore")
 						.setMessage("Non è possibile cancellare un offerta nello stato: %s".formatted(article.get().getArticleState().toString()))
