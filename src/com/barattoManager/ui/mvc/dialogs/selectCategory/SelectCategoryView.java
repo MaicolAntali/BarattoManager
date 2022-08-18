@@ -46,7 +46,6 @@ public class SelectCategoryView implements BaseView {
 		return String.valueOf(comboBox.getSelectedItem());
 	}
 
-
 	@Override
 	public JPanel getMainJPanel() {
 		return mainPanel;

@@ -1,6 +1,6 @@
 package com.barattoManager.ui.mvc.viewer.storeArticle;
 
-import com.barattoManager.services.trade.TradeManagerFactory;
+import com.barattoManager.services.article.ArticleManagerFactory;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
@@ -8,10 +8,11 @@ import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuController;
+import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuModel;
 import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuView;
-import com.barattoManager.ui.mvc.tree.trade.TradeTreeController;
-import com.barattoManager.ui.mvc.tree.trade.TradeTreeModel;
-import com.barattoManager.ui.mvc.tree.trade.TradeTreeView;
+import com.barattoManager.ui.mvc.tree.article.ArticleTreeController;
+import com.barattoManager.ui.mvc.tree.article.ArticleTreeView;
+import com.barattoManager.ui.mvc.tree.article.StoreTreeModel;
 import com.barattoManager.ui.utils.ControllerNames;
 
 public class StoreArticleController implements BaseController {
@@ -21,14 +22,18 @@ public class StoreArticleController implements BaseController {
 	public StoreArticleController(StoreArticleView view) {
 		this.view = view;
 
-		var storeArticleMenu = new StoreArticleMenuController(new StoreArticleMenuView());
-		this.view.setMenuPanel(storeArticleMenu.getView().getMainJPanel());
-
-		var tradeTreeController = new TradeTreeController(
-				new TradeTreeModel(TradeManagerFactory.getManager().getTradeMap().values().stream().toList()),
-				new TradeTreeView()
+		var articleTreeController = new ArticleTreeController(
+				new StoreTreeModel(ArticleManagerFactory.getManager().getArticleMap().values().stream().toList()),
+				new ArticleTreeView()
 		);
-		this.view.setTreePanel(tradeTreeController.getView().getMainJPanel());
+
+		var storeArticleMenu = new StoreArticleMenuController(
+				new StoreArticleMenuModel(articleTreeController),
+				new StoreArticleMenuView()
+		);
+
+		this.view.setTreePanel(articleTreeController.getView().getMainJPanel());
+		this.view.setMenuPanel(storeArticleMenu.getView().getMainJPanel());
 
 		ActionListenerInstaller.processAnnotations(this, view);
 	}

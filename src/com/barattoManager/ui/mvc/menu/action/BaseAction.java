@@ -27,6 +27,9 @@ public abstract class BaseAction {
 
 		var stringAtomicReference = new AtomicReference<>("");
 
+		if (treeNodes == null)
+			return "";
+
 		IntStream.range(0, treeNodes[treeNodes.length - 1].getChildCount())
 				.forEach(i -> {
 					if (treeNodes[treeNodes.length - 1].getChildAt(i).toString().startsWith("UUID:"))

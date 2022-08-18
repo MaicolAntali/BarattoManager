@@ -13,5 +13,10 @@
     "username": "Pippo",
     "password": "WZRHGrsBESr8wYFZ9sx0tPURuZgG2lmzyvWpwXPKz8U=",
     "configurator": false
+  },
+  "pluto": {
+    "username": "Pluto",
+    "password": "WZRHGrsBESr8wYFZ9sx0tPURuZgG2lmzyvWpwXPKz8U=",
+    "configurator": false
   }
 }

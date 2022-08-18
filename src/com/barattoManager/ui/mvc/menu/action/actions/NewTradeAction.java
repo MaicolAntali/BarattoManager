@@ -3,9 +3,13 @@ package com.barattoManager.ui.mvc.menu.action.actions;
 import com.barattoManager.services.article.Article;
 import com.barattoManager.services.article.ArticleManagerFactory;
 import com.barattoManager.services.user.User;
+import com.barattoManager.ui.mvc.dialogs.selectArticle.SelectArticleController;
+import com.barattoManager.ui.mvc.dialogs.selectArticle.SelectArticleModel;
+import com.barattoManager.ui.mvc.dialogs.selectArticle.SelectArticleView;
 import com.barattoManager.ui.mvc.menu.action.BaseAction;
 import com.barattoManager.ui.mvc.tree.TreeController;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
+import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 
 import javax.swing.*;
 
@@ -45,5 +49,20 @@ public class NewTradeAction extends BaseAction {
 			return;
 		}
 
+		var selectArticleController = new SelectArticleController(
+				new SelectArticleModel(articlesUserCanTrade),
+				new SelectArticleView()
+		);
+
+		var option = new OptionDialogDisplay()
+				.setParentComponent(getTreeController().getView().getMainJPanel())
+				.setMessage(selectArticleController.getView().getMainJPanel())
+				.setTitle("Selezione Articolo")
+				.show();
+
+		if (option == JOptionPane.OK_OPTION) {
+			System.out.println(selectArticleController.getModel().getArticleSelected().getArticleName());
+			System.out.println("OK");
+		}
 	}
 }
