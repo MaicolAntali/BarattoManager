@@ -11,10 +11,12 @@ import com.barattoManager.ui.mvc.viewer.categoryViewer.ViewerCategoryController;
 import com.barattoManager.ui.mvc.viewer.categoryViewer.ViewerCategoryView;
 import com.barattoManager.ui.mvc.viewer.meetViewer.ViewerMeetController;
 import com.barattoManager.ui.mvc.viewer.meetViewer.ViewerMeetView;
-import com.barattoManager.ui.mvc.viewer.storeArticle.StoreArticleController;
-import com.barattoManager.ui.mvc.viewer.storeArticle.StoreArticleView;
-import com.barattoManager.ui.mvc.viewer.yourArticle.YourArticleController;
-import com.barattoManager.ui.mvc.viewer.yourArticle.YourArticleView;
+import com.barattoManager.ui.mvc.viewer.storeArticleViewer.ViewerStoreArticleController;
+import com.barattoManager.ui.mvc.viewer.storeArticleViewer.ViewerStoreArticleView;
+import com.barattoManager.ui.mvc.viewer.tradesViewer.ViewerTradesController;
+import com.barattoManager.ui.mvc.viewer.tradesViewer.ViewerTradesView;
+import com.barattoManager.ui.mvc.viewer.yourArticleViewer.ViewerYourArticleController;
+import com.barattoManager.ui.mvc.viewer.yourArticleViewer.ViewerYourArticleView;
 import com.barattoManager.ui.utils.ControllerNames;
 
 public class ViewerHomepageController implements BaseController {
@@ -56,7 +58,7 @@ public class ViewerHomepageController implements BaseController {
 	@ActionListenerFor(sourceField = "yourArticleButton")
 	private void clickOnYourArticleButton() {
 		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new YourArticleController(new YourArticleView()), ControllerNames.ARTICLE_VIEWER.toString()
+				new ViewerYourArticleController(new ViewerYourArticleView()), ControllerNames.ARTICLE_VIEWER.toString()
 		);
 		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.ARTICLE_VIEWER.toString());
 	}
@@ -64,13 +66,16 @@ public class ViewerHomepageController implements BaseController {
 	@ActionListenerFor(sourceField = "storeArticleButton")
 	private void clickOnStoreArticleButton() {
 		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new StoreArticleController(new StoreArticleView()), ControllerNames.STORE_VIEWER.toString()
+				new ViewerStoreArticleController(new ViewerStoreArticleView()), ControllerNames.STORE_VIEWER.toString()
 		);
 		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.STORE_VIEWER.toString());
 	}
 
 	@ActionListenerFor(sourceField = "myTradesButton")
 	private void clickOnMyTradesButton() {
-		System.out.println("I tuoi scambi");
+		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
+				new ViewerTradesController(new ViewerTradesView()), ControllerNames.TRADES_VIEWER.toString()
+		);
+		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.TRADES_VIEWER.toString());
 	}
 }

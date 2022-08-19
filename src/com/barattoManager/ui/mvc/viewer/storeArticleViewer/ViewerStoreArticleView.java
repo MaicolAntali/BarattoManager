@@ -1,11 +1,11 @@
-package com.barattoManager.ui.mvc.viewer.yourArticle;
+package com.barattoManager.ui.mvc.viewer.storeArticleViewer;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
 import com.barattoManager.ui.mvc.base.BaseView;
 
 import javax.swing.*;
 
-public class YourArticleView implements BaseView {
+public class ViewerStoreArticleView implements BaseView {
 	private JPanel mainPanel;
 	@ActionListenerField
 	private JButton backToHome;

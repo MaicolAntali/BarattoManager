@@ -53,7 +53,7 @@
               <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="3" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="I tuoi articoli"/>
+              <text value="I miei articoli"/>
             </properties>
           </component>
           <component id="c51d4" class="javax.swing.JButton" binding="viewMeetButton">
@@ -78,7 +78,7 @@
               <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="3" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="I tuoi scambi"/>
+              <text value="I miei scambi"/>
             </properties>
           </component>
           <vspacer id="2b639">

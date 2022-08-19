@@ -1,4 +1,4 @@
-package com.barattoManager.ui.mvc.viewer.yourArticle;
+package com.barattoManager.ui.mvc.viewer.storeArticleViewer;
 
 import com.barattoManager.services.article.ArticleManagerFactory;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
@@ -7,33 +7,33 @@ import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
-import com.barattoManager.ui.mvc.menu.yourArticle.YourArticleMenuController;
-import com.barattoManager.ui.mvc.menu.yourArticle.YourArticleMenuModel;
-import com.barattoManager.ui.mvc.menu.yourArticle.YourArticleMenuView;
+import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuController;
+import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuModel;
+import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuView;
 import com.barattoManager.ui.mvc.tree.article.ArticleTreeController;
 import com.barattoManager.ui.mvc.tree.article.ArticleTreeView;
-import com.barattoManager.ui.mvc.tree.article.YourArticleTreeModel;
+import com.barattoManager.ui.mvc.tree.article.StoreTreeModel;
 import com.barattoManager.ui.utils.ControllerNames;
 
-public class YourArticleController implements BaseController {
+public class ViewerStoreArticleController implements BaseController {
 
-	private final YourArticleView view;
+	private final ViewerStoreArticleView view;
 
-	public YourArticleController(YourArticleView view) {
+	public ViewerStoreArticleController(ViewerStoreArticleView view) {
 		this.view = view;
 
 		var articleTreeController = new ArticleTreeController(
-				new YourArticleTreeModel(ArticleManagerFactory.getManager().getArticleMap().values().stream().toList()),
+				new StoreTreeModel(ArticleManagerFactory.getManager().getArticleMap().values().stream().toList()),
 				new ArticleTreeView()
 		);
 
-		this.view.setTreePanel(articleTreeController.getView().getMainJPanel());
-
-		var yourArticleMenu = new YourArticleMenuController(
-				new YourArticleMenuModel(articleTreeController),
-				new YourArticleMenuView()
+		var storeArticleMenu = new StoreArticleMenuController(
+				new StoreArticleMenuModel(articleTreeController),
+				new StoreArticleMenuView()
 		);
-		this.view.setMenuPanel(yourArticleMenu.getView().getMainJPanel());
+
+		this.view.setTreePanel(articleTreeController.getView().getMainJPanel());
+		this.view.setMenuPanel(storeArticleMenu.getView().getMainJPanel());
 
 		ActionListenerInstaller.processAnnotations(this, view);
 	}

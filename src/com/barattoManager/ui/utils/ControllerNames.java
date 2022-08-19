@@ -11,6 +11,7 @@ public enum ControllerNames {
 	MEET_VIEWER("meet-view"),
 	ARTICLE_VIEWER("article-viewer"),
 	STORE_VIEWER("store-viewer"),
+	TRADES_VIEWER("trades-viewer"),
 
 	HOMEPAGE_CONFIGURATOR("homepage-configurator"),
 	CATEGORY_EDITOR("category-editor"),
