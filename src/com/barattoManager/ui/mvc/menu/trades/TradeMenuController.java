@@ -1,10 +1,12 @@
 package com.barattoManager.ui.mvc.menu.trades;
 
+import com.barattoManager.services.Store;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.menu.action.actions.AcceptTradeAction;
 
 public class TradeMenuController implements BaseController {
 
@@ -30,7 +32,7 @@ public class TradeMenuController implements BaseController {
 
     @ActionListenerFor(sourceField = "acceptTradeAction")
     private void clickOnAcceptTradeAction() {
-        System.out.println("Accetta Scambio");
+        new AcceptTradeAction(Store.getLoggedUser(), model.getTreeController()).run();
     }
 
     @ActionListenerFor(sourceField = "acceptRescheduleAction")
