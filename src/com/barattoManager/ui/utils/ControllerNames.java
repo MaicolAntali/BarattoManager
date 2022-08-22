@@ -16,7 +16,8 @@ public enum ControllerNames {
 	HOMEPAGE_CONFIGURATOR("homepage-configurator"),
 	CATEGORY_EDITOR("category-editor"),
 	MEET_EDITOR("meet-editor"),
-	REGISTER_CONFIGURATOR("register-configurator");
+	REGISTER_CONFIGURATOR("register-configurator"),
+	OFFER_VIEW_CONFIGURATOR("view-offer-configurator");
 
 	private final String controllerName;
 

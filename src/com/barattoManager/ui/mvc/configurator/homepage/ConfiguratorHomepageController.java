@@ -9,6 +9,8 @@ import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorContr
 import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorView;
 import com.barattoManager.ui.mvc.configurator.meetEditor.MeetEditorController;
 import com.barattoManager.ui.mvc.configurator.meetEditor.MeetEditorView;
+import com.barattoManager.ui.mvc.configurator.offerView.ViewOfferController;
+import com.barattoManager.ui.mvc.configurator.offerView.ViewOfferView;
 import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.mvc.register.RegisterController;
@@ -67,7 +69,10 @@ public class ConfiguratorHomepageController implements BaseController {
 
 	@ActionListenerFor(sourceField = "showOffer")
 	private void clickOnShowOffer() {
-		System.out.println("Mostra offerte");
+		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
+				new ViewOfferController(new ViewOfferView()), ControllerNames.OFFER_VIEW_CONFIGURATOR.toString()
+		);
+		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.OFFER_VIEW_CONFIGURATOR.toString());
 	}
 
 	@ActionListenerFor(sourceField = "loadJsonButton")
