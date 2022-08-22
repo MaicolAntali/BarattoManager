@@ -31,9 +31,14 @@
         "date_time": "2022-08-19T09:04:54.853297",
         "name": "State Update",
         "description": "The article state is updated from Offerta Aperta to Offerta selezionata"
+      },
+      {
+        "date_time": "2022-08-22T09:29:35.663245",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta selezionata to Offerta Aperta"
       }
     ],
-    "state": "SELECTED_OFFER"
+    "state": "OPEN_OFFER"
   },
   "8b278a32-a9fb-4b73-a0bd-ddc22ecb951a": {
     "uuid": "8b278a32-a9fb-4b73-a0bd-ddc22ecb951a",
@@ -67,9 +72,74 @@
         "date_time": "2022-08-19T09:04:54.824536",
         "name": "State Update",
         "description": "The article state is updated from Offerta Aperta to Offerta accoppiata"
+      },
+      {
+        "date_time": "2022-08-22T09:29:35.648046",
+        "name": "State Update",
+        "description": "The article state is updated from Offerta accoppiata to Offerta Aperta"
       }
     ],
-    "state": "LINKED_OFFER"
+    "state": "OPEN_OFFER"
+  },
+  "0a226e2b-dbf1-4ab2-a78d-7b51903b61e6": {
+    "uuid": "0a226e2b-dbf1-4ab2-a78d-7b51903b61e6",
+    "name": "Bic",
+    "owner": "Pippo",
+    "category_uuid": "ba1c4ae8-41c3-48a0-aebe-72a0b6f34fbc",
+    "fields": {
+      "Field[name=Spessore, required=true]": "0.5 mm",
+      "Field[name=Stato di conservazione, required=true]": "Nuovo",
+      "Field[name=Colore, required=true]": "Blue",
+      "Field[name=Descrizione, required=true]": "BIC"
+    },
+    "log": [
+      {
+        "date_time": "2022-08-22T09:34:43.182021",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Pippo"
+      },
+      {
+        "date_time": "2022-08-22T09:34:43.186883",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-08-22T09:34:43.186964",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      }
+    ],
+    "state": "OPEN_OFFER"
+  },
+  "18cc5ee8-5cce-4543-87c0-033e24b40cc9": {
+    "uuid": "18cc5ee8-5cce-4543-87c0-033e24b40cc9",
+    "name": "Pilot",
+    "owner": "Pippo",
+    "category_uuid": "ba1c4ae8-41c3-48a0-aebe-72a0b6f34fbc",
+    "fields": {
+      "Field[name=Spessore, required=true]": "0.3 mm",
+      "Field[name=Stato di conservazione, required=true]": "Nuovo",
+      "Field[name=Colore, required=true]": "Rosso",
+      "Field[name=Descrizione, required=true]": "pilot"
+    },
+    "log": [
+      {
+        "date_time": "2022-08-22T09:35:42.535919",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Pippo"
+      },
+      {
+        "date_time": "2022-08-22T09:35:42.536289",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-08-22T09:35:42.536332",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      }
+    ],
+    "state": "OPEN_OFFER"
   },
   "a59dd6ed-2106-4969-8a23-ffbec5d37a21": {
     "uuid": "a59dd6ed-2106-4969-8a23-ffbec5d37a21",

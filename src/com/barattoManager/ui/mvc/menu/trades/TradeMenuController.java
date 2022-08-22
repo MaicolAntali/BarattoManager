@@ -6,6 +6,7 @@ import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.base.BaseModel;
 import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.menu.action.actions.AcceptRescheduleTradeAction;
 import com.barattoManager.ui.mvc.menu.action.actions.AcceptTradeAction;
 
 public class TradeMenuController implements BaseController {
@@ -37,6 +38,6 @@ public class TradeMenuController implements BaseController {
 
     @ActionListenerFor(sourceField = "acceptRescheduleAction")
     private void clickOnAcceptRescheduleAction() {
-        System.out.println("Accetta Ma Riprogramma");
+      new AcceptRescheduleTradeAction(Store.getLoggedUser(), model.getTreeController()).run();
     }
 }
