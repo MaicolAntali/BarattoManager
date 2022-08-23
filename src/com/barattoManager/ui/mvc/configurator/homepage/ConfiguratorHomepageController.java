@@ -77,7 +77,7 @@ public class ConfiguratorHomepageController implements BaseController {
 
 	@ActionListenerFor(sourceField = "loadJsonButton")
 	private void clickOnLoadJsonButton() {
-		System.out.println("Carica file");
+		new JsonLoader().loadJson(view);
 	}
 
 	@ActionListenerFor(sourceField = "loadJsonQuestionButton")
