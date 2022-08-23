@@ -17,45 +17,45 @@ import com.barattoManager.ui.utils.ControllerNames;
 
 public class ViewerTradesController implements BaseController {
 
-    private final ViewerTradesView view;
+	private final ViewerTradesView view;
 
-    public ViewerTradesController(ViewerTradesView view) {
-        this.view = view;
+	public ViewerTradesController(ViewerTradesView view) {
+		this.view = view;
 
-        var tradeTreeController = new TradeTreeController(
-                new TradeTreeModel(TradeManagerFactory.getManager().getTradeMap().values().stream().toList()),
-                new TradeTreeView()
-        );
+		var tradeTreeController = new TradeTreeController(
+				new TradeTreeModel(TradeManagerFactory.getManager().getTradeMap().values().stream().toList()),
+				new TradeTreeView()
+		);
 
-        this.view.setTreePanel(tradeTreeController.getView().getMainJPanel());
+		this.view.setTreePanel(tradeTreeController.getView().getMainJPanel());
 
-        var tradeMenu = new TradeMenuController(
-                new TradeMenuModel(tradeTreeController),
-                new TradeMenuView()
-        );
+		var tradeMenu = new TradeMenuController(
+				new TradeMenuModel(tradeTreeController),
+				new TradeMenuView()
+		);
 
-        this.view.setMenuPanel(tradeMenu.getView().getMainJPanel());
+		this.view.setMenuPanel(tradeMenu.getView().getMainJPanel());
 
-        ActionListenerInstaller.processAnnotations(this, view);
-    }
+		ActionListenerInstaller.processAnnotations(this, view);
+	}
 
-    @Override
-    public BaseModel getModel() {
-        return null;
-    }
+	@Override
+	public BaseModel getModel() {
+		return null;
+	}
 
-    @Override
-    public BaseView getView() {
-        return view;
-    }
+	@Override
+	public BaseView getView() {
+		return view;
+	}
 
-    @ActionListenerFor(sourceField = "backToHome")
-    private void clickOnBackToHome() {
-        ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE_VIEWER.toString());
-    }
+	@ActionListenerFor(sourceField = "backToHome")
+	private void clickOnBackToHome() {
+		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE_VIEWER.toString());
+	}
 
-    @ActionListenerFor(sourceField = "questionButton")
-    private void clickOnQuestionButton() {
-        System.out.println("Informazioni");
-    }
+	@ActionListenerFor(sourceField = "questionButton")
+	private void clickOnQuestionButton() {
+		System.out.println("Informazioni");
+	}
 }
