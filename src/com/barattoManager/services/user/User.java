@@ -12,10 +12,10 @@ public class User {
 
 	@JsonProperty("username")
 	private final String username;
-	@JsonProperty("password")
-	private byte[] password;
 	@JsonProperty("configurator")
 	private final boolean isConfigurator;
+	@JsonProperty("password")
+	private byte[] password;
 
 
 	public User(String username, String password, boolean isConfigurator) {

@@ -62,7 +62,10 @@ public class ConfiguratorHomepageController implements BaseController {
 	@ActionListenerFor(sourceField = "addNewConfigurator")
 	private void clickOnAddNewConfigurator() {
 		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new RegisterController(new RegisterModel(true), new RegisterView()), ControllerNames.REGISTER_CONFIGURATOR.toString()
+				new RegisterController(
+						new RegisterModel(true),
+						new RegisterView()
+				), ControllerNames.REGISTER_CONFIGURATOR.toString()
 		);
 		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.REGISTER_CONFIGURATOR.toString());
 	}
