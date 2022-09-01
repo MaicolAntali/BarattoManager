@@ -17,6 +17,7 @@ public class NewArticleController implements BaseController, ArticleFieldHasChan
 		this.view.addArticleFieldHasChangeListener(this);
 
 		this.view.draw(this.model.getArticleCategory());
+		articleFieldHasChange();
 
 		DocumentListenerInstaller.processAnnotations(this, view);
 	}

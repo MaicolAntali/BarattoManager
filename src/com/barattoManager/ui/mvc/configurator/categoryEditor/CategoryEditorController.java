@@ -96,12 +96,12 @@ public class CategoryEditorController implements BaseController {
 	private void clickOnAddSubCategoryButton() {
 
 		TreeNode[] treeNodes = categoryTreeController.getModel().getTreeNodes();
-		if (treeNodes == null) {
+		if (treeNodes == null || treeNodes.length == 1) {
 			new MessageDialogDisplay()
 					.setParentComponent(view.getMainJPanel())
 					.setMessageType(JOptionPane.ERROR_MESSAGE)
 					.setTitle("Errore")
-					.setMessage("Per favore Selezionare un nodo.")
+					.setMessage("Per favore Selezionare un nodo valido.")
 					.show();
 			return;
 		}

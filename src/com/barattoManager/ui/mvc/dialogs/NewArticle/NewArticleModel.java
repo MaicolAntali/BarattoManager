@@ -10,8 +10,8 @@ public class NewArticleModel implements BaseModel {
 
 	private final Category articleCategory;
 	private String articleName = "";
-	private ArrayList<Field> articleFields;
-	private ArrayList<String> articleFieldValues;
+	private ArrayList<Field> articleFields = new ArrayList<>();
+	private ArrayList<String> articleFieldValues = new ArrayList<>();
 
 	public NewArticleModel(Category articleCategory) {
 		this.articleCategory = articleCategory;

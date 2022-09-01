@@ -44,8 +44,10 @@ public class UserManager {
 
 
 	public void addNewUser(String username, String password, Boolean isConfigurator) throws AlreadyExistException, InvalidArgumentException {
-		if (username.isBlank() || password.isBlank())
-			throw new InvalidArgumentException("Username o password non validi (stringa vuota o null).");
+		if (username.isBlank())
+			throw new InvalidArgumentException("Username non valido");
+		if ( password.isBlank())
+					throw new InvalidArgumentException("Password non valida");
 
 		if (userMap.containsKey(username.toLowerCase()))
 			throw new AlreadyExistException(ERROR_USER_ALREADY_EXIST.formatted(username));

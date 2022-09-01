@@ -18,7 +18,6 @@ public class CategoryManager {
 	private static final String ERROR_CATEGORY_PARAMS_NOT_VALID = "Il nome o la descrizione della categoria non è valido";
 	private static final String ERROR_CATEGORY_ALREADY_EXISTS = "La categoria che stai creando esiste già.";
 	private static final String POST_CONDITION_CATEGORY_NOT_IN_MAP = "Post-condition: The category is not present in the map.";
-	private static final String ERROR_INVALID_NAME_OF_SUBCATEGORY = "Il nome della sotto-categoria non è valido";
 	private static final String ERROR_NO_CATEGORY_HAS_BEEN_SELECTED = "Non è stata selezionata una categoria.";
 	private static final String POST_CONDITION_SUBCATEGORY_NOT_IN_MAP = "Post-condition: The sub-category is not present in the map.";
 	private static final String ERROR_FIELD_ALREADY_EXISTS = "Il campo che stai creando esiste già.";
@@ -79,7 +78,7 @@ public class CategoryManager {
 	 */
 	public void addNewSubCategory(ArrayList<String> pathOfSubcategory, String subCategoryName, String subCategoryDescription) throws AlreadyExistException, InvalidArgumentException, NullObjectException {
 		if (subCategoryName.trim().isBlank() || subCategoryDescription.isBlank())
-			throw new InvalidArgumentException(ERROR_INVALID_NAME_OF_SUBCATEGORY);
+			throw new InvalidArgumentException("Il nome e/o la descrizione della sotto-categoria non sono validi");
 
 		Optional<Category> fatherCategory = getCategoryFromPath(pathOfSubcategory);
 		var                newSubCategory = new Category(subCategoryName.trim(), subCategoryDescription);
@@ -108,7 +107,7 @@ public class CategoryManager {
 	 */
 	public void addNewField(ArrayList<String> pathOfCategory, String fieldName, boolean isRequired) throws AlreadyExistException, InvalidArgumentException, NullObjectException {
 		if (fieldName.trim().isBlank())
-			throw new InvalidArgumentException(ERROR_INVALID_NAME_OF_SUBCATEGORY);
+			throw new InvalidArgumentException("Il nome del campo non è valido");
 
 		Optional<Category> category = getCategoryFromPath(pathOfCategory);
 

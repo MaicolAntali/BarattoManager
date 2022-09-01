@@ -104,9 +104,6 @@ public class Article {
 	public Article(String articleName, String userNameOwner, String categoryUuid, ArrayList<Field> fields, ArrayList<String> values) {
 		assert !categoryUuid.isEmpty() : PRE_CONDITION_CATEGORY_UUID_IS_EMPTY;
 		assert !userNameOwner.isEmpty() : PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY;
-		assert !fields.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
-		assert !values.isEmpty() : PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY;
-
 
 		this.history = new ArrayList<>();
 		history.add(new History(ARTICLE_CREATED, ARTICLE_HAS_JUST_BEEN_CREATED_BY_THE_VIEWER.formatted(userNameOwner)));
