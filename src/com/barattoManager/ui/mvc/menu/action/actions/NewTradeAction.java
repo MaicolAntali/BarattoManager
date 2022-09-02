@@ -30,7 +30,7 @@ public class NewTradeAction extends BaseAction {
 	@Override
 	public void run() {
 		var article = ArticleManagerFactory.getManager().getArticleById(
-				getUUIDFromNodes(getNodePath(getUser(), getTreeController()))
+				getUUIDFromNodes(getNodePath())
 		);
 
 		if (article.isEmpty()) {

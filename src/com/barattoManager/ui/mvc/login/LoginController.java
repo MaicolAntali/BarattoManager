@@ -120,7 +120,7 @@ public class LoginController implements BaseController {
 			if (option == JOptionPane.CANCEL_OPTION)
 				break;
 
-			if (!User.checkPassword(changePasswordController.getPassword()))
+			if (User.isDefaultPassword(changePasswordController.getPassword()))
 				new MessageDialogDisplay()
 						.setParentComponent(view.getMainJPanel())
 						.setMessage("La password impostata non è valida. Riprovare")
@@ -133,6 +133,6 @@ public class LoginController implements BaseController {
 						changePasswordController.getPassword()
 				);
 
-		} while (!User.checkPassword(changePasswordController.getPassword()));
+		} while (User.isDefaultPassword(changePasswordController.getPassword()));
 	}
 }

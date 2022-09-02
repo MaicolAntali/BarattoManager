@@ -18,7 +18,7 @@ public abstract class BaseAction {
 	}
 
 
-	public TreeNode[] getNodePath(User user, TreeController<?> treeController) {
+	public TreeNode[] getNodePath() {
 
 		return treeController.getModel().getTreeNodes();
 	}

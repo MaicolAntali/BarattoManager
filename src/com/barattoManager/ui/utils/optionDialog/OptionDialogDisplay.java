@@ -8,7 +8,6 @@ public class OptionDialogDisplay {
 	private Component parentComponent;
 	private Object message = "";
 	private String title = "BarattoManager";
-	private int optionType = JOptionPane.OK_CANCEL_OPTION;
 	private int messageType = JOptionPane.INFORMATION_MESSAGE;
 
 	public OptionDialogDisplay setParentComponent(Component parentComponent) {
@@ -26,17 +25,12 @@ public class OptionDialogDisplay {
 		return this;
 	}
 
-	public OptionDialogDisplay setOptionType(int optionType) {
-		this.optionType = optionType;
-		return this;
-	}
-
 	public OptionDialogDisplay setMessageType(int messageType) {
 		this.messageType = messageType;
 		return this;
 	}
 
 	public int show() {
-		return JOptionPane.showOptionDialog(parentComponent, message, title, optionType, messageType, null, null, null);
+		return JOptionPane.showOptionDialog(parentComponent, message, title, JOptionPane.OK_CANCEL_OPTION, messageType, null, null, null);
 	}
 }

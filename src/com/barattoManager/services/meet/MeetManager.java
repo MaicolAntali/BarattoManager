@@ -131,15 +131,6 @@ public class MeetManager {
 	}
 
 	/**
-	 * Method used to get the {@link List} with all {@link Meet meets}
-	 *
-	 * @return {@link List} with all {@link Meet meets}
-	 */
-	public List<Meet> getMeets() {
-		return this.meetMap.values().stream().toList();
-	}
-
-	/**
 	 * Method used to get the {@link List} with all {@link Meet} available (meet not booked)
 	 *
 	 * @return {@link List} with all {@link Meet} available (meet not booked)

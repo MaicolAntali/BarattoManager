@@ -62,7 +62,7 @@ public class User {
 		return !Arrays.equals(this.password, SHA256.hash(AppConfigurator.getInstance().getPasswordSetting("default_pwd")));
 	}
 
-	public static boolean checkPassword(String password) {
-		return !Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
+	public static boolean isDefaultPassword(String password) {
+		return Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
 	}
 }

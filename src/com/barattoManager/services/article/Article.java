@@ -17,7 +17,6 @@ public class Article {
 	private static final String ARTICLE_CREATED = "Article Created";
 	private static final String ARTICLE_HAS_JUST_BEEN_CREATED_BY_THE_VIEWER = "Article has just been created by the viewer %s";
 	private static final String ARTICLE_IS_VALID_AND_PROPERLY_INITIALIZED_DESCRIPTION = "Article is valid and properly initialized";
-	private static final String PRE_CONDITION_FIELDS_ARRAY_LIST_IS_EMPTY = "Pre-condition: Fields ArrayList is empty";
 	private static final String POST_CONDITION_FIELD_VALUE_MAP_IS_EMPTY = "Post-condition: Fields values Map is empty";
 	private static final String PRE_CONDITION_OWNER_USER_NAME_IS_EMPTY = "Pre-condition: Owner userName is empty";
 	private static final String PRE_CONDITION_UUID_IS_EMPTY = "Pre-condition: Uuid is empty";

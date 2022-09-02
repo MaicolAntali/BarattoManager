@@ -23,7 +23,7 @@ public class CancelOfferAction extends BaseAction {
 		var article = ArticleManagerFactory.getManager()
 				.getArticleById(
 						getUUIDFromNodes(
-								getNodePath(getUser(), getTreeController())
+								getNodePath()
 						)
 				);
 

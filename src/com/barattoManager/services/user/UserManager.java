@@ -8,7 +8,6 @@ import com.barattoManager.utils.AppConfigurator;
 import com.barattoManager.utils.SHA256;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -46,8 +45,8 @@ public class UserManager {
 	public void addNewUser(String username, String password, Boolean isConfigurator) throws AlreadyExistException, InvalidArgumentException {
 		if (username.isBlank())
 			throw new InvalidArgumentException("Username non valido");
-		if ( password.isBlank())
-					throw new InvalidArgumentException("Password non valida");
+		if (password.isBlank())
+			throw new InvalidArgumentException("Password non valida");
 
 		if (userMap.containsKey(username.toLowerCase()))
 			throw new AlreadyExistException(ERROR_USER_ALREADY_EXIST.formatted(username));
@@ -84,12 +83,4 @@ public class UserManager {
 		UserUpdateDataEventFactory.getEventHandler().fireUpdateListeners(this.userMap);
 	}
 
-	/**
-	 * Method used to get the {@link List} with all {@link User users}
-	 *
-	 * @return {@link List} with all {@link User users}
-	 */
-	public List<User> getUserList() {
-		return userMap.values().stream().toList();
-	}
 }
