@@ -1,6 +1,6 @@
 package com.barattoManager.ui.mvc.tree;
 
-import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedField;
+import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedListenerField;
 import com.barattoManager.ui.mvc.base.BaseView;
 
 import javax.swing.*;
@@ -18,7 +18,7 @@ public abstract class TreeView<T> implements BaseView {
 
 	private final JPanel mainPanel;
 
-	@TreeNodeSelectedField
+	@TreeNodeSelectedListenerField
 	private JTree tree;
 	private DefaultMutableTreeNode rootNode;
 

@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-public class TreeNodeSelectedInstaller {
+public class TreeNodeSelectedListenerInstaller {
 
 	public static void processAnnotations(Object sourceMethodsObj, Object sourceFieldsObj) {
 		try {
@@ -18,7 +18,7 @@ public class TreeNodeSelectedInstaller {
 					Field field = sourceFieldsObj.getClass().getSuperclass().getDeclaredField(annotation.sourceField());
 					field.setAccessible(true);
 
-					if (field.getAnnotation(TreeNodeSelectedField.class) == null)
+					if (field.getAnnotation(TreeNodeSelectedListenerField.class) == null)
 						throw new IllegalArgumentException("Field is not annotated with ActionListenerLinked.");
 
 					method.setAccessible(true);

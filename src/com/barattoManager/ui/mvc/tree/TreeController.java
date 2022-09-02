@@ -1,7 +1,7 @@
 package com.barattoManager.ui.mvc.tree;
 
-import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedInstaller;
 import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedListenerFor;
+import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedListenerInstaller;
 import com.barattoManager.ui.mvc.base.BaseController;
 import com.barattoManager.ui.mvc.tree.event.ModelDataHasChangeListener;
 
@@ -18,7 +18,7 @@ public abstract class TreeController<T> implements BaseController, ModelDataHasC
 
 		this.view.drawTree(model.getData());
 
-		TreeNodeSelectedInstaller.processAnnotations(this, view);
+		TreeNodeSelectedListenerInstaller.processAnnotations(this, view);
 	}
 
 	@Override
@@ -42,6 +42,6 @@ public abstract class TreeController<T> implements BaseController, ModelDataHasC
 	@Override
 	public void dataChange() {
 		getView().drawTree(getModel().getData());
-		TreeNodeSelectedInstaller.processAnnotations(this, getView());
+		TreeNodeSelectedListenerInstaller.processAnnotations(this, getView());
 	}
 }
