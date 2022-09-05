@@ -6,9 +6,9 @@ import com.barattoManager.ui.mvc.Controller;
 import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorController;
-import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorView;
+import com.barattoManager.ui.mvc.configurator.categoryEditor.SimpleCategoryEditorView;
 import com.barattoManager.ui.mvc.configurator.meetEditor.MeetEditorController;
-import com.barattoManager.ui.mvc.configurator.meetEditor.MeetEditorView;
+import com.barattoManager.ui.mvc.configurator.meetEditor.SimpleMeetEditorView;
 import com.barattoManager.ui.mvc.configurator.offerView.ViewOfferController;
 import com.barattoManager.ui.mvc.configurator.offerView.ViewOfferView;
 import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
@@ -43,7 +43,7 @@ public class ConfiguratorHomepageController implements Controller {
 	@ActionListenerFor(sourceField = "configCategoryButton")
 	private void clickOnConfigCategoryButton() {
 		if (categoryEditorController == null) {
-			categoryEditorController = new CategoryEditorController(new CategoryEditorView());
+			categoryEditorController = new CategoryEditorController(new SimpleCategoryEditorView());
 			RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
 					categoryEditorController, ControllerNames.CATEGORY_EDITOR.toString()
 			);
@@ -54,7 +54,7 @@ public class ConfiguratorHomepageController implements Controller {
 	@ActionListenerFor(sourceField = "configMeetButton")
 	private void clickOnConfigMeetButton() {
 		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new MeetEditorController(new MeetEditorView()), ControllerNames.MEET_EDITOR.toString()
+				new MeetEditorController(new SimpleMeetEditorView()), ControllerNames.MEET_EDITOR.toString()
 		);
 		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.MEET_EDITOR.toString());
 	}
