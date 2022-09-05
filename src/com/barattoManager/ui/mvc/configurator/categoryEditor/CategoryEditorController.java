@@ -1,41 +1,25 @@
 package com.barattoManager.ui.mvc.configurator.categoryEditor;
 
-import com.barattoManager.exception.AlreadyExistException;
-import com.barattoManager.exception.InvalidArgumentException;
-import com.barattoManager.exception.NullObjectException;
 import com.barattoManager.services.category.CategoryManagerFactory;
-import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
-import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
-import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.action.actions.AddCategoryFieldAction;
+import com.barattoManager.ui.action.actions.AddRootCategoryAction;
+import com.barattoManager.ui.action.actions.AddSubCategoryAction;
+import com.barattoManager.ui.action.actions.GoToControllerAction;
+import com.barattoManager.ui.mvc.GraspController;
 import com.barattoManager.ui.mvc.Model;
-import com.barattoManager.ui.mvc.View;
-import com.barattoManager.ui.mvc.dialogs.newCategory.NewCategoryController;
-import com.barattoManager.ui.mvc.dialogs.newCategory.NewCategoryModel;
-import com.barattoManager.ui.mvc.dialogs.newCategory.NewCategoryView;
-import com.barattoManager.ui.mvc.dialogs.newField.NewFieldController;
-import com.barattoManager.ui.mvc.dialogs.newField.NewFieldModel;
-import com.barattoManager.ui.mvc.dialogs.newField.NewFieldView;
-import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
-import com.barattoManager.ui.mvc.tree.TreeUtils;
 import com.barattoManager.ui.mvc.tree.category.CategoryTreeController;
 import com.barattoManager.ui.mvc.tree.category.CategoryTreeModel;
 import com.barattoManager.ui.mvc.tree.category.CategoryTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
-import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
-import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 
-import javax.swing.*;
-import javax.swing.tree.TreeNode;
-
-public class CategoryEditorController implements Controller {
+public class CategoryEditorController extends GraspController {
 
 	private final CategoryEditorView view;
 	private final CategoryTreeController categoryTreeController;
 
 	public CategoryEditorController(CategoryEditorView view) {
 		this.view = view;
-
-		ActionListenerInstaller.processAnnotations(this, view);
+		this.view.addActionNotifierListener(this);
 
 		categoryTreeController = new CategoryTreeController(
 				new CategoryTreeModel(
@@ -43,8 +27,16 @@ public class CategoryEditorController implements Controller {
 				),
 				new CategoryTreeView()
 		);
+		this.view.setCategoryTree(categoryTreeController.getView().getMainJPanel());
 
-		this.view.setTreePanel(categoryTreeController.getView().getMainJPanel());
+		initAction();
+	}
+
+	private void initAction() {
+		addAction("Indietro", new GoToControllerAction(ControllerNames.HOMEPAGE_CONFIGURATOR));
+		addAction("Aggiungi_Categoria_Radice", new AddRootCategoryAction(this.view.getMainJPanel()));
+		addAction("Aggiungi_Sotto-Categoria", new AddSubCategoryAction(this.categoryTreeController, this.view.getMainJPanel()));
+		addAction("Aggiungi_Campo", new AddCategoryFieldAction(this.categoryTreeController, this.view.getMainJPanel()));
 	}
 
 	@Override
@@ -53,126 +45,7 @@ public class CategoryEditorController implements Controller {
 	}
 
 	@Override
-	public View getView() {
+	public CategoryEditorView getView() {
 		return view;
-	}
-
-	@ActionListenerFor(sourceField = "backToHome")
-	private void clickOnBackToHome() {
-		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.HOMEPAGE_CONFIGURATOR.toString());
-	}
-
-	@ActionListenerFor(sourceField = "addRootCategoryButton")
-	private void clickAddRootCategoryButton() {
-
-		var newCategoryController = new NewCategoryController(new NewCategoryModel(), new NewCategoryView());
-
-		var result = new OptionDialogDisplay()
-				.setParentComponent(view.getMainJPanel())
-				.setMessage(newCategoryController.getView().getMainJPanel())
-				.setTitle("Creazione di una categoria radice")
-				.setMessageType(JOptionPane.QUESTION_MESSAGE)
-				.show();
-
-		if (result == JOptionPane.OK_OPTION) {
-			try {
-				CategoryManagerFactory.getManager()
-						.addNewMainCategory(
-								newCategoryController.getModel().getCategoryName(),
-								newCategoryController.getModel().getCategoryDescription()
-						);
-			} catch (AlreadyExistException | InvalidArgumentException | NullObjectException e) {
-				new MessageDialogDisplay()
-						.setParentComponent(view.getMainJPanel())
-						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
-						.setMessage(e.getMessage())
-						.show();
-			}
-		}
-	}
-
-	@ActionListenerFor(sourceField = "addSubCategoryButton")
-	private void clickOnAddSubCategoryButton() {
-
-		TreeNode[] treeNodes = categoryTreeController.getModel().getTreeNodes();
-		if (treeNodes == null || treeNodes.length == 1) {
-			new MessageDialogDisplay()
-					.setParentComponent(view.getMainJPanel())
-					.setMessageType(JOptionPane.ERROR_MESSAGE)
-					.setTitle("Errore")
-					.setMessage("Per favore Selezionare un nodo valido.")
-					.show();
-			return;
-		}
-
-		var newCategoryController = new NewCategoryController(new NewCategoryModel(), new NewCategoryView());
-
-		var result = new OptionDialogDisplay()
-				.setParentComponent(view.getMainJPanel())
-				.setMessage(newCategoryController.getView().getMainJPanel())
-				.setTitle("Creazione di una categoria radice")
-				.setMessageType(JOptionPane.QUESTION_MESSAGE)
-				.show();
-
-		if (result == JOptionPane.OK_OPTION) {
-			try {
-				CategoryManagerFactory.getManager()
-						.addNewSubCategory(
-								TreeUtils.treeNodeArrayToArrayList(treeNodes, "~"),
-								newCategoryController.getModel().getCategoryName(),
-								newCategoryController.getModel().getCategoryDescription()
-						);
-			} catch (AlreadyExistException | InvalidArgumentException | NullObjectException e) {
-				new MessageDialogDisplay()
-						.setParentComponent(view.getMainJPanel())
-						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
-						.setMessage(e.getMessage())
-						.show();
-			}
-		}
-	}
-
-	@ActionListenerFor(sourceField = "addFieldButton")
-	private void clickOnAddFieldButton() {
-
-		TreeNode[] treeNodes = categoryTreeController.getModel().getTreeNodes();
-		if (treeNodes == null) {
-			new MessageDialogDisplay()
-					.setParentComponent(view.getMainJPanel())
-					.setMessageType(JOptionPane.ERROR_MESSAGE)
-					.setTitle("Errore")
-					.setMessage("Per favore Selezionare un nodo.")
-					.show();
-			return;
-		}
-
-		var newFieldController = new NewFieldController(new NewFieldModel(), new NewFieldView());
-
-		var result = new OptionDialogDisplay()
-				.setParentComponent(view.getMainJPanel())
-				.setMessage(newFieldController.getView().getMainJPanel())
-				.setTitle("Creazione di una categoria radice")
-				.setMessageType(JOptionPane.QUESTION_MESSAGE)
-				.show();
-
-		if (result == JOptionPane.OK_OPTION) {
-			try {
-				CategoryManagerFactory.getManager()
-						.addNewField(
-								TreeUtils.treeNodeArrayToArrayList(treeNodes, "~"),
-								newFieldController.getModel().getFieldName(),
-								newFieldController.getModel().isFieldRequired()
-						);
-			} catch (AlreadyExistException | InvalidArgumentException | NullObjectException e) {
-				new MessageDialogDisplay()
-						.setParentComponent(view.getMainJPanel())
-						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
-						.setMessage(e.getMessage())
-						.show();
-			}
-		}
 	}
 }
