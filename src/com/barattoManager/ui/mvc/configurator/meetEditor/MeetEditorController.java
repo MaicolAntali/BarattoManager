@@ -5,9 +5,9 @@ import com.barattoManager.exception.InvalidArgumentException;
 import com.barattoManager.services.meet.MeetManagerFactory;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseModel;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.Model;
+import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.mvc.dialogs.newMeet.NewMeetController;
 import com.barattoManager.ui.mvc.dialogs.newMeet.NewMeetModel;
 import com.barattoManager.ui.mvc.dialogs.newMeet.NewMeetView;
@@ -23,7 +23,7 @@ import com.barattoManager.utils.parser.TimeParser;
 
 import javax.swing.*;
 
-public class MeetEditorController implements BaseController {
+public class MeetEditorController implements Controller {
 
 	private final MeetEditorView view;
 
@@ -43,12 +43,12 @@ public class MeetEditorController implements BaseController {
 	}
 
 	@Override
-	public BaseModel getModel() {
+	public Model getModel() {
 		return null;
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

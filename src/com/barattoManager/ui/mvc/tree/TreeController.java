@@ -2,12 +2,12 @@ package com.barattoManager.ui.mvc.tree;
 
 import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedListenerFor;
 import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
+import com.barattoManager.ui.mvc.Controller;
 import com.barattoManager.ui.mvc.tree.event.ModelDataHasChangeListener;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-public abstract class TreeController<T> implements BaseController, ModelDataHasChangeListener {
+public abstract class TreeController<T> implements Controller, ModelDataHasChangeListener {
 
 	private final TreeModel<T> model;
 	private final TreeView<T> view;

@@ -8,9 +8,9 @@ import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerFor;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseModel;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.Model;
+import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.mvc.configurator.homepage.ConfiguratorHomepageController;
 import com.barattoManager.ui.mvc.configurator.homepage.ConfiguratorHomepageView;
 import com.barattoManager.ui.mvc.dialogs.changePassword.ChangePasswordController;
@@ -26,7 +26,7 @@ import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 
 import javax.swing.*;
 
-public class LoginController implements BaseController {
+public class LoginController implements Controller {
 	private final LoginModel model;
 	private final LoginView view;
 
@@ -39,12 +39,12 @@ public class LoginController implements BaseController {
 	}
 
 	@Override
-	public BaseModel getModel() {
+	public Model getModel() {
 		return model;
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

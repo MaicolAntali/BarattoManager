@@ -1,6 +1,6 @@
 package com.barattoManager.ui.mvc.mainFrame.events;
 
-import com.barattoManager.ui.mvc.base.BaseController;
+import com.barattoManager.ui.mvc.Controller;
 
 import java.util.ArrayList;
 
@@ -16,7 +16,7 @@ public class RegisterControllerHandler {
 		this.listeners.add(listener);
 	}
 
-	public void fireRegisterListeners(BaseController controller, String controllerName) {
+	public void fireRegisterListeners(Controller controller, String controllerName) {
 		this.listeners.forEach(listener -> listener.register(controller, controllerName));
 	}
 }

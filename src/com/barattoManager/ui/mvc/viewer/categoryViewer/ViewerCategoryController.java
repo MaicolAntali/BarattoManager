@@ -3,16 +3,16 @@ package com.barattoManager.ui.mvc.viewer.categoryViewer;
 import com.barattoManager.services.category.CategoryManagerFactory;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseModel;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.Model;
+import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.mvc.tree.category.CategoryTreeController;
 import com.barattoManager.ui.mvc.tree.category.CategoryTreeModel;
 import com.barattoManager.ui.mvc.tree.category.CategoryTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
 
-public class ViewerCategoryController implements BaseController {
+public class ViewerCategoryController implements Controller {
 
 	private final ViewerCategoryView view;
 
@@ -32,12 +32,12 @@ public class ViewerCategoryController implements BaseController {
 	}
 
 	@Override
-	public BaseModel getModel() {
+	public Model getModel() {
 		return null;
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

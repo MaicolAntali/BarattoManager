@@ -1,10 +1,10 @@
 package com.barattoManager.ui.mvc.dialogs.newMeet;
 
-import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.Model;
 
 import java.util.ArrayList;
 
-public class NewMeetModel implements BaseModel {
+public class NewMeetModel implements Model {
 
 	private String city;
 	private String square;

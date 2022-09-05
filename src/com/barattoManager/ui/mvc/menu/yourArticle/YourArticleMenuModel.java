@@ -1,9 +1,9 @@
 package com.barattoManager.ui.mvc.menu.yourArticle;
 
-import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.tree.TreeController;
 
-public class YourArticleMenuModel implements BaseModel {
+public class YourArticleMenuModel implements Model {
 
 	private final TreeController<?> treeController;
 

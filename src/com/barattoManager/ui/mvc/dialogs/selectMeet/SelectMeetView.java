@@ -2,14 +2,14 @@ package com.barattoManager.ui.mvc.dialogs.selectMeet;
 
 import com.barattoManager.services.meet.Meet;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class SelectMeetView implements BaseView {
+public class SelectMeetView implements View {
 
 	private final JPanel mainPanel;
 

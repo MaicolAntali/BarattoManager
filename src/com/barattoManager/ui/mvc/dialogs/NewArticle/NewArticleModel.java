@@ -2,11 +2,11 @@ package com.barattoManager.ui.mvc.dialogs.NewArticle;
 
 import com.barattoManager.services.category.Category;
 import com.barattoManager.services.category.field.Field;
-import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.Model;
 
 import java.util.ArrayList;
 
-public class NewArticleModel implements BaseModel {
+public class NewArticleModel implements Model {
 
 	private final Category articleCategory;
 	private String articleName = "";

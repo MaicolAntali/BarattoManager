@@ -2,10 +2,10 @@ package com.barattoManager.ui.mvc.dialogs.NewArticle;
 
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerFor;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.View;
 
-public class NewArticleController implements BaseController, ArticleFieldHasChangeListener {
+public class NewArticleController implements Controller, ArticleFieldHasChangeListener {
 
 	private final NewArticleModel model;
 	private final NewArticleView view;
@@ -28,7 +28,7 @@ public class NewArticleController implements BaseController, ArticleFieldHasChan
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

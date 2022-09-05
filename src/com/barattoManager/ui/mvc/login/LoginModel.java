@@ -1,8 +1,8 @@
 package com.barattoManager.ui.mvc.login;
 
-import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.Model;
 
-public class LoginModel implements BaseModel {
+public class LoginModel implements Model {
 	private String username;
 	private String password;
 

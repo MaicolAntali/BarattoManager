@@ -1,14 +1,14 @@
 package com.barattoManager.ui.mvc.tree;
 
 import com.barattoManager.services.event.UpdateDataListener;
-import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.tree.event.ModelDataHasChangeListener;
 
 import javax.swing.tree.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TreeModel<T> implements BaseModel, UpdateDataListener<String, T> {
+public abstract class TreeModel<T> implements Model, UpdateDataListener<String, T> {
 
 	private final ArrayList<ModelDataHasChangeListener> listeners;
 	private List<T> data;

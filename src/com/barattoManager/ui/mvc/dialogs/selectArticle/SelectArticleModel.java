@@ -1,11 +1,11 @@
 package com.barattoManager.ui.mvc.dialogs.selectArticle;
 
 import com.barattoManager.services.article.Article;
-import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.Model;
 
 import java.util.List;
 
-public class SelectArticleModel implements BaseModel {
+public class SelectArticleModel implements Model {
 
 	private final List<Article> articles;
 

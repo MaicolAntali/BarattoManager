@@ -2,11 +2,11 @@ package com.barattoManager.ui.mvc.dialogs.changePassword;
 
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerFor;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseModel;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.Model;
+import com.barattoManager.ui.mvc.View;
 
-public class ChangePasswordController implements BaseController {
+public class ChangePasswordController implements Controller {
 
 	private final ChangePasswordModel model;
 	private final ChangePasswordView view;
@@ -19,12 +19,12 @@ public class ChangePasswordController implements BaseController {
 	}
 
 	@Override
-	public BaseModel getModel() {
+	public Model getModel() {
 		return model;
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

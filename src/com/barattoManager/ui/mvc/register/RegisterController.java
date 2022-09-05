@@ -7,16 +7,16 @@ import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerFor;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseModel;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.Model;
+import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.utils.ControllerNames;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 
 import javax.swing.*;
 
-public class RegisterController implements BaseController {
+public class RegisterController implements Controller {
 
 	private final RegisterModel model;
 	private final RegisterView view;
@@ -30,12 +30,12 @@ public class RegisterController implements BaseController {
 	}
 
 	@Override
-	public BaseModel getModel() {
+	public Model getModel() {
 		return model;
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

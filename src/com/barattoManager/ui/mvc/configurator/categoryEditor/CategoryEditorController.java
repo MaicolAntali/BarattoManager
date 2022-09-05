@@ -6,9 +6,9 @@ import com.barattoManager.exception.NullObjectException;
 import com.barattoManager.services.category.CategoryManagerFactory;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseModel;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.Model;
+import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.mvc.dialogs.newCategory.NewCategoryController;
 import com.barattoManager.ui.mvc.dialogs.newCategory.NewCategoryModel;
 import com.barattoManager.ui.mvc.dialogs.newCategory.NewCategoryView;
@@ -27,7 +27,7 @@ import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
 
-public class CategoryEditorController implements BaseController {
+public class CategoryEditorController implements Controller {
 
 	private final CategoryEditorView view;
 	private final CategoryTreeController categoryTreeController;
@@ -48,12 +48,12 @@ public class CategoryEditorController implements BaseController {
 	}
 
 	@Override
-	public BaseModel getModel() {
+	public Model getModel() {
 		return null;
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

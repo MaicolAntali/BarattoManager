@@ -3,7 +3,7 @@ package com.barattoManager.ui.mvc.dialogs.NewArticle;
 import com.barattoManager.services.category.Category;
 import com.barattoManager.services.category.field.Field;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -13,7 +13,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
-public class NewArticleView implements BaseView {
+public class NewArticleView implements View {
 
 	private final ArrayList<ArticleFieldHasChangeListener> listeners;
 	private final JPanel mainPanel;

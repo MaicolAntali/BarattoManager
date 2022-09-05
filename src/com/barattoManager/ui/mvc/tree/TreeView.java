@@ -1,7 +1,7 @@
 package com.barattoManager.ui.mvc.tree;
 
 import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -10,7 +10,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class TreeView<T> implements BaseView {
+public abstract class TreeView<T> implements View {
 
 	private static final String ICON_CLOSE = "/icon/category_open.png";
 	private static final String ICON_OPEN = "/icon/category_close.png";

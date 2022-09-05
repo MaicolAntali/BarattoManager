@@ -1,8 +1,8 @@
 package com.barattoManager.ui.mvc.dialogs.newCategory;
 
-import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.Model;
 
-public class NewCategoryModel implements BaseModel {
+public class NewCategoryModel implements Model {
 
 	private String categoryName;
 	private String categoryDescription;

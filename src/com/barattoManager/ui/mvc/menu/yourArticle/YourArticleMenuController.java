@@ -3,13 +3,13 @@ package com.barattoManager.ui.mvc.menu.yourArticle;
 import com.barattoManager.services.Store;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseModel;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.Model;
+import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.mvc.menu.action.actions.CancelOfferAction;
 import com.barattoManager.ui.mvc.menu.action.actions.NewArticleAction;
 
-public class YourArticleMenuController implements BaseController {
+public class YourArticleMenuController implements Controller {
 
 	private final YourArticleMenuModel model;
 	private final YourArticleMenuView view;
@@ -22,12 +22,12 @@ public class YourArticleMenuController implements BaseController {
 	}
 
 	@Override
-	public BaseModel getModel() {
+	public Model getModel() {
 		return null;
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

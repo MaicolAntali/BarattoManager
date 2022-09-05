@@ -1,10 +1,10 @@
 package com.barattoManager.ui.mvc.mainFrame;
 
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 
-public class MainFrameView extends JPanel implements BaseView {
+public class MainFrameView extends JPanel implements View {
 	private JPanel mainPanel;
 	private JPanel contentPanel;
 	private JLabel versionLabel;

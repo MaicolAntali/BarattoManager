@@ -1,14 +1,14 @@
 package com.barattoManager.ui.mvc.dialogs.selectCategory;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class SelectCategoryView implements BaseView {
+public class SelectCategoryView implements View {
 
 	private final JPanel mainPanel;
 

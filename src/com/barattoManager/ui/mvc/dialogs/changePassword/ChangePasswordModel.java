@@ -1,8 +1,8 @@
 package com.barattoManager.ui.mvc.dialogs.changePassword;
 
-import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.Model;
 
-public class ChangePasswordModel implements BaseModel {
+public class ChangePasswordModel implements Model {
 
 	private String password;
 

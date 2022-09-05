@@ -4,12 +4,12 @@ import com.barattoManager.services.category.Category;
 import com.barattoManager.services.category.CategoryManagerFactory;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
+import com.barattoManager.ui.mvc.Controller;
 
 import java.util.Objects;
 import java.util.Optional;
 
-public class SelectCategoryController implements BaseController {
+public class SelectCategoryController implements Controller {
 
 	private final SelectCategoryModel model;
 	private final SelectCategoryView view;

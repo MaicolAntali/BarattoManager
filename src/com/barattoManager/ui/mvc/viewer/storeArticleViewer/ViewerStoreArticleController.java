@@ -3,9 +3,9 @@ package com.barattoManager.ui.mvc.viewer.storeArticleViewer;
 import com.barattoManager.services.article.ArticleManagerFactory;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseModel;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.Model;
+import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuController;
 import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuModel;
@@ -15,7 +15,7 @@ import com.barattoManager.ui.mvc.tree.article.ArticleTreeView;
 import com.barattoManager.ui.mvc.tree.article.StoreTreeModel;
 import com.barattoManager.ui.utils.ControllerNames;
 
-public class ViewerStoreArticleController implements BaseController {
+public class ViewerStoreArticleController implements Controller {
 
 	private final ViewerStoreArticleView view;
 
@@ -39,12 +39,12 @@ public class ViewerStoreArticleController implements BaseController {
 	}
 
 	@Override
-	public BaseModel getModel() {
+	public Model getModel() {
 		return null;
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

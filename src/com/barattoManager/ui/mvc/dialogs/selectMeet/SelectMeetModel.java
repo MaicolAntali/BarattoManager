@@ -1,11 +1,11 @@
 package com.barattoManager.ui.mvc.dialogs.selectMeet;
 
 import com.barattoManager.services.meet.Meet;
-import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.Model;
 
 import java.util.List;
 
-public class SelectMeetModel implements BaseModel {
+public class SelectMeetModel implements Model {
 
 	private final List<Meet> meets;
 

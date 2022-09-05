@@ -1,9 +1,9 @@
 package com.barattoManager.ui.mvc.register;
 
-import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.utils.AppConfigurator;
 
-public class RegisterModel implements BaseModel {
+public class RegisterModel implements Model {
 
 	private final String defaultPassword;
 	private final boolean isConfigurator;

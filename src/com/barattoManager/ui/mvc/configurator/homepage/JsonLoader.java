@@ -5,7 +5,7 @@ import com.barattoManager.exception.InvalidArgumentException;
 import com.barattoManager.exception.JsonException;
 import com.barattoManager.exception.NullObjectException;
 import com.barattoManager.services.category.CategoryManagerFactory;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -20,7 +20,7 @@ import java.util.*;
 
 public class JsonLoader {
 
-	public void loadJson(BaseView view) {
+	public void loadJson(View view) {
 		var jFileChooser = new JFileChooser();
 		jFileChooser.setFileFilter(new FileNameExtensionFilter("*.json", "JSON"));
 

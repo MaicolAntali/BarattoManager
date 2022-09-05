@@ -1,12 +1,12 @@
 package com.barattoManager.ui.mvc.dialogs.selectCategory;
 
 import com.barattoManager.services.category.Category;
-import com.barattoManager.ui.mvc.base.BaseModel;
+import com.barattoManager.ui.mvc.Model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectCategoryModel implements BaseModel {
+public class SelectCategoryModel implements Model {
 
 	private final List<String> categoriesName;
 	private String categoryNamesSelected = "";

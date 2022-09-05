@@ -1,13 +1,13 @@
 package com.barattoManager.ui.mvc.dialogs.newMeet;
 
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class NewMeetView implements BaseView {
+public class NewMeetView implements View {
 
 	private static final String[] DAYS = {"Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"};
 	private static final String LABEL_FILL_ALL_FIELDS = "Compila tutti i campi richiesti per inserire un nuovo luogo di incontro.";

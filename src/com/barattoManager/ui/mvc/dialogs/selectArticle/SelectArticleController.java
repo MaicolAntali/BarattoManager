@@ -2,10 +2,10 @@ package com.barattoManager.ui.mvc.dialogs.selectArticle;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.View;
 
-public class SelectArticleController implements BaseController {
+public class SelectArticleController implements Controller {
 
 	private final SelectArticleView view;
 	private final SelectArticleModel model;
@@ -25,7 +25,7 @@ public class SelectArticleController implements BaseController {
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

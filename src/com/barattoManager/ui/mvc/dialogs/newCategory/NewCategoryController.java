@@ -2,10 +2,10 @@ package com.barattoManager.ui.mvc.dialogs.newCategory;
 
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerFor;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.View;
 
-public class NewCategoryController implements BaseController {
+public class NewCategoryController implements Controller {
 
 	private final NewCategoryModel model;
 	private final NewCategoryView view;
@@ -23,7 +23,7 @@ public class NewCategoryController implements BaseController {
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

@@ -4,10 +4,10 @@ import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerFor;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.View;
 
-public class NewFieldController implements BaseController {
+public class NewFieldController implements Controller {
 
 	private final NewFieldModel model;
 	private final NewFieldView view;
@@ -26,7 +26,7 @@ public class NewFieldController implements BaseController {
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

@@ -2,12 +2,12 @@ package com.barattoManager.ui.mvc.dialogs.newField;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class NewFieldView implements BaseView {
+public class NewFieldView implements View {
 
 	private final JPanel mainPanel;
 

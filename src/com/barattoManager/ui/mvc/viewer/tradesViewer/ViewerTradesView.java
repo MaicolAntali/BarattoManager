@@ -1,11 +1,11 @@
 package com.barattoManager.ui.mvc.viewer.tradesViewer;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 
-public class ViewerTradesView implements BaseView {
+public class ViewerTradesView implements View {
 	private JPanel mainPanel;
 	@ActionListenerField
 	private JButton backToHome;

@@ -1,12 +1,12 @@
 package com.barattoManager.ui.mvc.dialogs.newCategory;
 
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class NewCategoryView implements BaseView {
+public class NewCategoryView implements View {
 
 	private final JPanel mainPanel;
 

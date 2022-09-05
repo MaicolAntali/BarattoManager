@@ -1,12 +1,12 @@
 package com.barattoManager.ui.mvc.dialogs.changePassword;
 
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ChangePasswordView implements BaseView {
+public class ChangePasswordView implements View {
 
 	public static final String LABEL_CHANGE_YOUR_PASSWORD = "Cambia la tua password di accesso.";
 	public static final String LABEL_NEW_PASSWORD = "Nuova Password";

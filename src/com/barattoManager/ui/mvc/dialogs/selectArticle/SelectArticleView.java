@@ -2,13 +2,13 @@ package com.barattoManager.ui.mvc.dialogs.selectArticle;
 
 import com.barattoManager.services.article.Article;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class SelectArticleView implements BaseView {
+public class SelectArticleView implements View {
 
 	private final JPanel mainPanel;
 

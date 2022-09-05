@@ -2,11 +2,11 @@ package com.barattoManager.ui.mvc.register;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 
-public class RegisterView implements BaseView {
+public class RegisterView implements View {
 	private JPanel mainPanel;
 	@ActionListenerField
 	private JButton registerButton;

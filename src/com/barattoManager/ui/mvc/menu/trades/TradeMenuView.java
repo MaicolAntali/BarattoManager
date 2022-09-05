@@ -1,12 +1,12 @@
 package com.barattoManager.ui.mvc.menu.trades;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class TradeMenuView implements BaseView {
+public class TradeMenuView implements View {
 
 	private final JPanel mainPanel;
 	@ActionListenerField

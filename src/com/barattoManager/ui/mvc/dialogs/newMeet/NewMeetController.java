@@ -2,10 +2,10 @@ package com.barattoManager.ui.mvc.dialogs.newMeet;
 
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerFor;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.View;
 
-public class NewMeetController implements BaseController, DaysCheckboxListener {
+public class NewMeetController implements Controller, DaysCheckboxListener {
 
 	private final NewMeetModel model;
 	private final NewMeetView view;
@@ -24,7 +24,7 @@ public class NewMeetController implements BaseController, DaysCheckboxListener {
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 

@@ -2,9 +2,9 @@ package com.barattoManager.ui.mvc.homepage;
 
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
-import com.barattoManager.ui.mvc.base.BaseController;
-import com.barattoManager.ui.mvc.base.BaseModel;
-import com.barattoManager.ui.mvc.base.BaseView;
+import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.Model;
+import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.mvc.login.LoginController;
 import com.barattoManager.ui.mvc.login.LoginModel;
 import com.barattoManager.ui.mvc.login.LoginView;
@@ -15,7 +15,7 @@ import com.barattoManager.ui.mvc.register.RegisterModel;
 import com.barattoManager.ui.mvc.register.RegisterView;
 import com.barattoManager.ui.utils.ControllerNames;
 
-public class HomepageController implements BaseController {
+public class HomepageController implements Controller {
 
 	private final HomepageView view;
 
@@ -26,12 +26,12 @@ public class HomepageController implements BaseController {
 	}
 
 	@Override
-	public BaseModel getModel() {
+	public Model getModel() {
 		return null;
 	}
 
 	@Override
-	public BaseView getView() {
+	public View getView() {
 		return view;
 	}
 
