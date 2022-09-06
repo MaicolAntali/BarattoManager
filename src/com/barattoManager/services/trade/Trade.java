@@ -22,6 +22,7 @@ public class Trade {
 	private static final String PRE_CONDITION_ANSWER_IS_NULL = "Pre_condition: Answer is null";
 	private static final String SUCCESSFUL_EXCHANGE_CREATION = "Creazione dello scambio avvenuta con successo";
 	private static final String TRADE_REPROGRAMMED_WAITING_REPLY = "Il trade è riprogrammato. Attesa di un risposta da: %s";
+	private static final String TRADE_CLOSED = "Il trade è stato accettato da entrambe le parti e quindi chiuso.";
 
 	@JsonProperty("uuid")
 	private final String uuid;
@@ -217,6 +218,15 @@ public class Trade {
 		getAnswer().invertWaitingUser();
 
 		history.add(new History("Trade Riprogrammati", TRADE_REPROGRAMMED_WAITING_REPLY.formatted(answer.getWaitingUserAnswer())));
+		TradeManagerFactory.getManager().saveData();
+	}
+
+	public void closeTrade() {
+		this.tradeStatus = TradeStatus.CLOSED;
+		getAnswer().setWaitingUserAnswer(null);
+
+		history.add(new History("Trade Chiuso", TRADE_CLOSED));
+
 		TradeManagerFactory.getManager().saveData();
 	}
 

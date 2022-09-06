@@ -16,6 +16,8 @@ public class AcceptTradeAction extends TradeBaseAction {
 		var trade = getTrade();
 
 		if (trade.isPresent()) {
+			trade.get().closeTrade();
+
 			changeArticleState(trade.get().getArticleOneUuid(), Article.State.CLOSE_OFFER);
 			changeArticleState(trade.get().getArticleTwoUuid(), Article.State.CLOSE_OFFER);
 		}

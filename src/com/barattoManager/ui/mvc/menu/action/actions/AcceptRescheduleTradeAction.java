@@ -1,11 +1,12 @@
 package com.barattoManager.ui.mvc.menu.action.actions;
 
 import com.barattoManager.services.article.Article;
+import com.barattoManager.services.meet.Meet;
 import com.barattoManager.services.meet.MeetManagerFactory;
 import com.barattoManager.services.user.User;
-import com.barattoManager.ui.mvc.dialogs.selectMeet.SelectMeetController;
-import com.barattoManager.ui.mvc.dialogs.selectMeet.SelectMeetModel;
-import com.barattoManager.ui.mvc.dialogs.selectMeet.SelectMeetView;
+import com.barattoManager.ui.mvc.dialogs.select.selectMeet.SelectMeetController;
+import com.barattoManager.ui.mvc.dialogs.select.selectMeet.SelectMeetModel;
+import com.barattoManager.ui.mvc.dialogs.select.selectMeet.SelectMeetView;
 import com.barattoManager.ui.mvc.menu.action.TradeBaseAction;
 import com.barattoManager.ui.mvc.tree.TreeController;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
@@ -23,7 +24,7 @@ public class AcceptRescheduleTradeAction extends TradeBaseAction {
 	public void run() {
 		var selectMeetController = new SelectMeetController(
 				new SelectMeetModel(MeetManagerFactory.getManager().getAvailableMeet()),
-				new SelectMeetView()
+				new SelectMeetView(Meet.class)
 		);
 
 		var option = new OptionDialogDisplay()

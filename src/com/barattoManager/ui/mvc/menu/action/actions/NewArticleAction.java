@@ -6,9 +6,9 @@ import com.barattoManager.services.user.User;
 import com.barattoManager.ui.mvc.dialogs.NewArticle.NewArticleController;
 import com.barattoManager.ui.mvc.dialogs.NewArticle.NewArticleModel;
 import com.barattoManager.ui.mvc.dialogs.NewArticle.NewArticleView;
-import com.barattoManager.ui.mvc.dialogs.selectCategory.SelectCategoryController;
-import com.barattoManager.ui.mvc.dialogs.selectCategory.SelectCategoryModel;
-import com.barattoManager.ui.mvc.dialogs.selectCategory.SelectCategoryView;
+import com.barattoManager.ui.mvc.dialogs.select.selectCategory.SelectCategoryController;
+import com.barattoManager.ui.mvc.dialogs.select.selectCategory.SelectCategoryModel;
+import com.barattoManager.ui.mvc.dialogs.select.selectCategory.SelectCategoryView;
 import com.barattoManager.ui.mvc.menu.action.BaseAction;
 import com.barattoManager.ui.mvc.tree.TreeController;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
@@ -27,7 +27,7 @@ public class NewArticleAction extends BaseAction {
 
 		var selectCategoryController = new SelectCategoryController(
 				new SelectCategoryModel(CategoryManagerFactory.getManager().getRootCategoryMap().values().stream().toList()),
-				new SelectCategoryView()
+				new SelectCategoryView(String.class)
 		);
 
 		var option = new OptionDialogDisplay()

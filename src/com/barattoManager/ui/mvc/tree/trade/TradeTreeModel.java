@@ -18,6 +18,7 @@ public class TradeTreeModel extends TreeModel<Trade> {
 	@Override
 	public void update(ConcurrentHashMap<String, Trade> updatedMap) {
 		setData(filterList(updatedMap.values().stream().toList()));
+		fireModelDataHasChangeListener();
 	}
 
 	private static List<Trade> filterList(List<Trade> trades) {
