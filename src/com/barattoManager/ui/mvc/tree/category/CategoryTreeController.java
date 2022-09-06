@@ -2,7 +2,6 @@ package com.barattoManager.ui.mvc.tree.category;
 
 import com.barattoManager.services.category.Category;
 import com.barattoManager.services.category.CategoryUpdateDataEventFactory;
-import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedListenerInstaller;
 import com.barattoManager.ui.mvc.tree.TreeController;
 import com.barattoManager.ui.mvc.tree.event.ModelDataHasChangeListener;
 
@@ -13,11 +12,5 @@ public class CategoryTreeController extends TreeController<Category> implements 
 
 		getModel().addModelDataHasChangeListener(this);
 		CategoryUpdateDataEventFactory.getEventHandler().addListener(model);
-	}
-
-	@Override
-	public void dataChange() {
-		getView().drawTree(getModel().getData());
-		TreeNodeSelectedListenerInstaller.processAnnotations(this, getView());
 	}
 }

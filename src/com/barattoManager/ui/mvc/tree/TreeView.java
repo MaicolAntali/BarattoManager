@@ -1,6 +1,6 @@
 package com.barattoManager.ui.mvc.tree;
 
-import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedListenerField;
+import com.barattoManager.ui.action.event.ActionNotifierHandler;
 import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
@@ -10,7 +10,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class TreeView<T> implements View {
+public abstract class TreeView<T> extends ActionNotifierHandler implements View {
 
 	private static final String ICON_CLOSE = "/icon/category_open.png";
 	private static final String ICON_OPEN = "/icon/category_close.png";
@@ -18,7 +18,6 @@ public abstract class TreeView<T> implements View {
 
 	private final JPanel mainPanel;
 
-	@TreeNodeSelectedListenerField
 	private JTree tree;
 	private DefaultMutableTreeNode rootNode;
 
@@ -44,6 +43,7 @@ public abstract class TreeView<T> implements View {
 		drawNodes(list);
 
 		tree = new JTree(rootNode);
+		tree.addTreeSelectionListener(e -> fireActionNotifierListener("nodeSelectedChange"));
 
 		DefaultTreeCellRenderer renderer = (DefaultTreeCellRenderer) tree.getCellRenderer();
 		renderer.setClosedIcon(new ImageIcon(Objects.requireNonNull(this.getClass().getResource(ICON_CLOSE))));

@@ -1,13 +1,11 @@
 package com.barattoManager.ui.mvc.tree;
 
-import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedListenerFor;
-import com.barattoManager.ui.annotations.treeNodeSelectedListener.TreeNodeSelectedListenerInstaller;
-import com.barattoManager.ui.mvc.Controller;
+import com.barattoManager.ui.mvc.GraspController;
 import com.barattoManager.ui.mvc.tree.event.ModelDataHasChangeListener;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-public abstract class TreeController<T> implements Controller, ModelDataHasChangeListener {
+public abstract class TreeController<T> extends GraspController implements ModelDataHasChangeListener {
 
 	private final TreeModel<T> model;
 	private final TreeView<T> view;
@@ -16,10 +14,13 @@ public abstract class TreeController<T> implements Controller, ModelDataHasChang
 		this.model = model;
 		this.view = view;
 
-		this.view.drawTree(model.getData());
+		initAction();
 
-		TreeNodeSelectedListenerInstaller.processAnnotations(this, view);
+		this.view.addActionNotifierListener(this);
+		this.view.drawTree(model.getData());
 	}
+
+
 
 	@Override
 	public TreeModel<T> getModel() {
@@ -31,17 +32,17 @@ public abstract class TreeController<T> implements Controller, ModelDataHasChang
 		return view;
 	}
 
-	@TreeNodeSelectedListenerFor(sourceField = "tree")
-	private void nodeSelectedChange() {
-		Object lastSelectedPathComponent = view.getTree().getLastSelectedPathComponent();
-
-		if (lastSelectedPathComponent != null)
-			model.setTreeNodes(((DefaultMutableTreeNode) lastSelectedPathComponent).getPath());
-	}
-
 	@Override
 	public void dataChange() {
 		getView().drawTree(getModel().getData());
-		TreeNodeSelectedListenerInstaller.processAnnotations(this, getView());
+	}
+
+	private void initAction() {
+		addAction("nodeSelectedChange", () -> {
+			Object lastSelectedPathComponent = view.getTree().getLastSelectedPathComponent();
+
+			if (lastSelectedPathComponent != null)
+				model.setTreeNodes(((DefaultMutableTreeNode) lastSelectedPathComponent).getPath());
+		});
 	}
 }
