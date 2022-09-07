@@ -10,6 +10,8 @@ import java.util.Objects;
 
 public class User {
 
+	private static final String PRE_CONDITION_USER_USERNAME_IS_BLANK = "Pre-condition: User username is blank";
+	private static final String PRE_CONDITION_USER_PASSWORD_IS_BLANK = "Pre-condition: User password is blank";
 	@JsonProperty("username")
 	private final String username;
 	@JsonProperty("configurator")
@@ -20,8 +22,8 @@ public class User {
 
 	public User(String username, String password, boolean isConfigurator) {
 
-		assert !username.isBlank() : "Pre-condition: User username is blank";
-		assert !password.isBlank() : "Pre-condition: User password is blank";
+		assert !username.isBlank() : PRE_CONDITION_USER_USERNAME_IS_BLANK;
+		assert !password.isBlank() : PRE_CONDITION_USER_PASSWORD_IS_BLANK;
 
 		this.username = username;
 		this.password = SHA256.hash(password);

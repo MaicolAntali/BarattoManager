@@ -17,6 +17,7 @@ public class MeetManager {
 
 	private static final String ERROR_INSERT_ALL_FIELDS = "Uno dei valore richiesti è stato lasciato vuoto. Inserire tutti i campi.";
 	private static final String ERROR_NO_DAY_SELECTED = "Non è stato selezionato nessun giorno.";
+	private static final String ERROR_MEETS_ALREADY_EXIST = "Alcuni meet esistono gia:\n";
 
 	private final ConcurrentHashMap<String, Meet> meetMap;
 	private MeetDaemon meetDaemon;
@@ -73,7 +74,7 @@ public class MeetManager {
 
 		if (!notUniqueMeet.isEmpty()) {
 			var error = new StringBuffer();
-			error.append("Alcuni meet esistono gia:\n");
+			error.append(ERROR_MEETS_ALREADY_EXIST);
 			notUniqueMeet.forEach(meet -> error.append("\t• %s %s %s: %s-%s\n".formatted(meet.getCity(), meet.getSquare(), meet.getDay().toString(), meet.getStartTime().toString(), meet.getEndTime().toString())));
 			throw new AlreadyExistException(error.toString());
 		}
@@ -157,7 +158,7 @@ public class MeetManager {
 	}
 
 	/**
-	 * method used to remove/delete a {@link Meet}
+	 * Method used to remove/delete a {@link Meet}
 	 *
 	 * @param meetUuid uuid of the {@link Meet} to be removed
 	 */
@@ -167,7 +168,7 @@ public class MeetManager {
 	}
 
 	/**
-	 * method used to start the thread where every minute will run {@link MeetDaemon}
+	 * Method used to start the thread where every minute will run {@link MeetDaemon}
 	 */
 	private void runDaemon() {
 		if (daemonThread == null || !daemonThread.isAlive()) {

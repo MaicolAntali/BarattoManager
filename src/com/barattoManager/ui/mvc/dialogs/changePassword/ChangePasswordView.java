@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class ChangePasswordView implements View {
 
-	public static final String LABEL_CHANGE_YOUR_PASSWORD = "Cambia la tua password di accesso.";
-	public static final String LABEL_NEW_PASSWORD = "Nuova Password";
+	private static final String LABEL_CHANGE_YOUR_PASSWORD = "Cambia la tua password di accesso.";
+	private static final String LABEL_NEW_PASSWORD = "Nuova Password";
 
 	private final JPanel mainPanel;
 	@DocumentListenerField

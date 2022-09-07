@@ -15,6 +15,7 @@ import com.barattoManager.utils.parser.TimeParser;
 import javax.swing.*;
 
 public class AddMeetAction implements Action {
+	private static final String TITLE_CREATION_OF_NEW_MEET = "Creazione di un nuovo incontro";
 	private final JPanel parentPanel;
 
 	public AddMeetAction(JPanel parentPanel) {
@@ -28,7 +29,7 @@ public class AddMeetAction implements Action {
 		var result = new OptionDialogDisplay()
 				.setParentComponent(parentPanel)
 				.setMessage(newMeetController.getView().getMainJPanel())
-				.setTitle("Creazione di un nuovo incontro")
+				.setTitle(TITLE_CREATION_OF_NEW_MEET)
 				.setMessageType(JOptionPane.QUESTION_MESSAGE)
 				.show();
 

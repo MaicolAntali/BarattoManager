@@ -11,6 +11,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class ArticleManager {
 
+	private static final String POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP = "Post-Condition: The article is not present in the map";
+	private static final String UUID_NOT_FOUND = "UUID non trovato";
 	private final ConcurrentHashMap<String, Article> articleMap;
 
 	/**
@@ -36,7 +38,7 @@ public class ArticleManager {
 		this.articleMap.put(article.getUuid(), article);
 		ArticleUpdateDataEventFactory.getEventHandler().fireUpdateListeners(this.articleMap);
 
-		assert this.articleMap.containsKey(article.getUuid()) : "Post-Condition: The article is not present in the map";
+		assert this.articleMap.containsKey(article.getUuid()) : POST_CONDITION_THE_ARTICLE_IS_NOT_PRESENT_IN_THE_MAP;
 	}
 
 	/**
@@ -70,7 +72,7 @@ public class ArticleManager {
 		var article = getArticleById(articleUuid);
 
 		if (article.isEmpty())
-			throw new InvalidArgumentException("UUID non trovato");
+			throw new InvalidArgumentException(UUID_NOT_FOUND);
 
 		article.get().setArticleState(state);
 		ArticleUpdateDataEventFactory.getEventHandler().fireUpdateListeners(this.articleMap);

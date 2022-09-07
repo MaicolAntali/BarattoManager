@@ -13,6 +13,7 @@ public class NewMeetView implements View {
 	private static final String LABEL_FILL_ALL_FIELDS = "Compila tutti i campi richiesti per inserire un nuovo luogo di incontro.";
 	private static final String LABEL_START_TIME = "Orario di inizio (HH:MM): ";
 	private static final String LABEL_END_TIME = "Orario di Fine (HH:MM): ";
+	public static final String LABEL_DAYS_TO_CONFIRM = "Giorni per confermare:";
 
 	private final ArrayList<DaysCheckboxListener> listeners;
 	private final JPanel mainPanel;
@@ -75,7 +76,7 @@ public class NewMeetView implements View {
 		endTimePanel.add(endTimeField);
 
 		var daysBeforeExpirePanel = new JPanel();
-		daysBeforeExpirePanel.add(new JLabel("Giorni per confermare:"));
+		daysBeforeExpirePanel.add(new JLabel(LABEL_DAYS_TO_CONFIRM));
 		daysBeforeExpirePanel.add(daysBeforeExpireField);
 
 		mainPanel.add(cityPanel);

@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 public class NewArticleView implements View {
 
+	private static final String LABEL_ENTER_THE_REQUIRED_FIELDS = "Inserire tutti i campi obbligatori:";
 	private final ArrayList<ArticleFieldHasChangeListener> listeners;
 	private final JPanel mainPanel;
 	@DocumentListenerField
@@ -42,7 +43,7 @@ public class NewArticleView implements View {
 
 	public void draw(Category categoryOfArticle) {
 
-		mainPanel.add(new JLabel("Inserire tutti i campi obbligatori:"));
+		mainPanel.add(new JLabel(LABEL_ENTER_THE_REQUIRED_FIELDS));
 
 		var fieldsPanel = new JPanel();
 		fieldsPanel.setLayout(new GridLayout(0, 2));

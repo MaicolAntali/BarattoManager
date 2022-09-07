@@ -15,6 +15,7 @@ import javax.swing.*;
 
 public class AddRootCategoryAction implements Action {
 
+	private static final String TITLE_CREATION_OF_A_ROOT_CATEGORY = "Creazione di una categoria radice";
 	private final JPanel parentPanel;
 
 	public AddRootCategoryAction(JPanel parentPanel) {
@@ -28,7 +29,7 @@ public class AddRootCategoryAction implements Action {
 		var result = new OptionDialogDisplay()
 				.setParentComponent(parentPanel)
 				.setMessage(newCategoryController.getView().getMainJPanel())
-				.setTitle("Creazione di una categoria radice")
+				.setTitle(TITLE_CREATION_OF_A_ROOT_CATEGORY)
 				.setMessageType(JOptionPane.QUESTION_MESSAGE)
 				.show();
 

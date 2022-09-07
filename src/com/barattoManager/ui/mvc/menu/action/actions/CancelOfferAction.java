@@ -13,6 +13,12 @@ import javax.swing.*;
 public class CancelOfferAction extends BaseAction {
 
 
+	private static final String MESSAGE_NO_ARTICLE_HAS_BEEN_CHOSEN = "Non è stato selezionato un articolo. Riprovare.";
+	private static final String MESSAGE_SURE_TO_CANCEL_THE_OFFER = "Sei sicuro di voler cambiare lo stato dell'articolo in: \"Offerta Cancellata\"?";
+	private static final String TITLE_CANCEL_OFFER = "Cancella Offerta";
+	private static final String ERROR_STATE_IS_ALREADY_CANCELED = "Lo stato di questo articolo è gia: \"Offerta Cancellata\"";
+	private static final String ERROR_IS_NOT_POSSIBILE_TO_CHANGE_FROM_CANCEL_OFFER = "Non è possibile cancellare un offerta nello stato: %s";
+
 	public CancelOfferAction(User user, TreeController<?> treeController) {
 		super(user, treeController);
 	}
@@ -32,15 +38,15 @@ public class CancelOfferAction extends BaseAction {
 					.setParentComponent(getTreeController().getView().getMainJPanel())
 					.setMessageType(JOptionPane.ERROR_MESSAGE)
 					.setTitle("Errore")
-					.setMessage("Non è stato selezionato un articolo. Riprovare.")
+					.setMessage(MESSAGE_NO_ARTICLE_HAS_BEEN_CHOSEN)
 					.show();
 			return;
 		}
 
 		var option = JOptionPane.showConfirmDialog(
 				getTreeController().getView().getMainJPanel(),
-				"Sei sicuro di voler cambiare lo stato dell'articolo in: \"Offerta Cancellata\"?",
-				"Cancella Offerta",
+				MESSAGE_SURE_TO_CANCEL_THE_OFFER,
+				TITLE_CANCEL_OFFER,
 				JOptionPane.YES_NO_OPTION
 		);
 
@@ -50,7 +56,7 @@ public class CancelOfferAction extends BaseAction {
 						.setParentComponent(getTreeController().getView().getMainJPanel())
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
 						.setTitle("Errore")
-						.setMessage("Lo stato di questo articolo è gia: \"Offerta Cancellata\"")
+						.setMessage(ERROR_STATE_IS_ALREADY_CANCELED)
 						.show();
 				return;
 			}
@@ -60,7 +66,7 @@ public class CancelOfferAction extends BaseAction {
 						.setParentComponent(getTreeController().getView().getMainJPanel())
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
 						.setTitle("Errore")
-						.setMessage("Non è possibile cancellare un offerta nello stato: %s".formatted(article.get().getArticleState().toString()))
+						.setMessage(ERROR_IS_NOT_POSSIBILE_TO_CHANGE_FROM_CANCEL_OFFER.formatted(article.get().getArticleState().toString()))
 						.show();
 				return;
 			}

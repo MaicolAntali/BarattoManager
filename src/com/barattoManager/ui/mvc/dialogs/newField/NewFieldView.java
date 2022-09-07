@@ -9,6 +9,9 @@ import java.awt.*;
 
 public class NewFieldView implements View {
 
+	private static final String LABEL_CREATION_OF_NEW_FIELD = "Creazione di un nuovo campo:";
+	private static final String LABEL_FILED_NAME = "Nome Campo:";
+	private static final String LABEL_REQUIRED_FIELD = "Campo Obbligatorio:";
 	private final JPanel mainPanel;
 
 	@DocumentListenerField
@@ -23,14 +26,14 @@ public class NewFieldView implements View {
 
 		mainPanel.setLayout(new GridLayout(0, 1));
 
-		mainPanel.add(new JLabel("Creazione di un nuovo campo:"));
+		mainPanel.add(new JLabel(LABEL_CREATION_OF_NEW_FIELD));
 
 		var categoryNamePanel = new JPanel();
-		categoryNamePanel.add(new JLabel("Nome Campo:"));
+		categoryNamePanel.add(new JLabel(LABEL_FILED_NAME));
 		categoryNamePanel.add(fieldName);
 
 		var categoryDescriptionPanel = new JPanel();
-		categoryDescriptionPanel.add(new JLabel("Campo Obbligatorio:"));
+		categoryDescriptionPanel.add(new JLabel(LABEL_REQUIRED_FIELD));
 		categoryDescriptionPanel.add(fieldRequired);
 
 		mainPanel.add(categoryNamePanel);

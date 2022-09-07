@@ -10,20 +10,23 @@ import java.util.List;
 public class SelectMeetView extends SelectView<Meet> {
 
 
+	private static final String LABEL_CHOOSE_MEET = "Seleziona un incontro:";
+	private static final String THERE_ARENT_MEET_AVAILABLE = "Non ci sono incontri disponibili.";
+
 	public SelectMeetView(Class<Meet> clazz) {
 		super(clazz);
 	}
 
 	@Override
 	public void draw(List<Meet> data) {
-		getMainJPanel().add(new JLabel("Seleziona un incontro:"));
+		getMainJPanel().add(new JLabel(LABEL_CHOOSE_MEET));
 
 		if (data.isEmpty()) {
 			new MessageDialogDisplay()
 					.setParentComponent(getMainJPanel())
 					.setMessageType(JOptionPane.ERROR_MESSAGE)
 					.setTitle("Errore")
-					.setMessage("Non ci sono incontri disponibili.")
+					.setMessage(THERE_ARENT_MEET_AVAILABLE)
 					.show();
 			return;
 		}

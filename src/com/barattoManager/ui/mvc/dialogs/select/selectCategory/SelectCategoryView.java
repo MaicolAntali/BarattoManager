@@ -9,20 +9,23 @@ import java.util.List;
 public class SelectCategoryView extends SelectView<String> {
 
 
+	private static final String LABEL_CHOOSE_AN_CATEGORY = "Seleziona la categoria:";
+	private static final String THERE_ARENT_ANY_CATEGORY = "Non ci sono Categorie disponibili.";
+
 	public SelectCategoryView(Class<String> clazz) {
 		super(clazz);
 	}
 
 	@Override
 	public void draw(List<String> data) {
-		getMainJPanel().add(new JLabel("Seleziona la categoria:"));
+		getMainJPanel().add(new JLabel(LABEL_CHOOSE_AN_CATEGORY));
 
 		if (data.isEmpty()) {
 			new MessageDialogDisplay()
 					.setParentComponent(getMainJPanel())
 					.setMessageType(JOptionPane.ERROR_MESSAGE)
 					.setTitle("Errore")
-					.setMessage("Non ci sono Categorie disponibili.")
+					.setMessage(THERE_ARENT_ANY_CATEGORY)
 					.show();
 			return;
 		}

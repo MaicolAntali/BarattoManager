@@ -20,6 +20,19 @@ import java.util.*;
 
 public class JsonLoaderAction implements Action {
 
+	private static final String LOAD_A_FILE_JSON = "Devi caricare un file JSON";
+	private static final String ERROR = "Errore";
+	private static final String ERROR_JSON_CONTAINS_FORMATTING_ERROR = "Il JSON contiene un errore nella formattazione\n\nErrore: %s";
+	private static final String ERROR_IN_JSON_KEY = "Errore nelle chiavi del JSON";
+	private static final String ERROR_CATEGORY_ALREADY_EXISTS = "La categoria %s esiste già";
+	private static final String ERROR_INVALID_PATH_OF_CATEGORY = "Il percorso specificato per la categoria %s non è valido.";
+	private static final String ERROR_INVALID_PATH_OF_THE_FIELD = "Il percorso specificato per il campo %s non è valido.";
+	private static final String ERROR_FIELD_ALREADY_EXISTS = "Il campo %s esiste già";
+	private static final String CATEGORY_NAME = "nome_categoria";
+	private static final String FIELD_NAME = "nome_campo";
+	private static final String DESCRIPTION = "descrizione";
+	private static final String PATH = "percorso";
+	private static final String OBLIGATORY = "obbligatorio";
 	private final JPanel parentPanel;
 
 	public JsonLoaderAction(JPanel parentPanel) {
@@ -40,8 +53,8 @@ public class JsonLoaderAction implements Action {
 				new MessageDialogDisplay()
 						.setParentComponent(parentPanel)
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
-						.setMessage("Devi caricare un file JSON")
+						.setTitle(ERROR)
+						.setMessage(LOAD_A_FILE_JSON)
 						.show();
 				return;
 			}
@@ -53,7 +66,7 @@ public class JsonLoaderAction implements Action {
 				new MessageDialogDisplay()
 						.setParentComponent(parentPanel)
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
+						.setTitle(ERROR)
 						.setMessage(e.getMessage())
 						.show();
 				return;
@@ -69,7 +82,7 @@ public class JsonLoaderAction implements Action {
 						new MessageDialogDisplay()
 								.setParentComponent(parentPanel)
 								.setMessageType(JOptionPane.ERROR_MESSAGE)
-								.setTitle("Errore")
+								.setTitle(ERROR)
 								.setMessage(e.getMessage())
 								.show();
 						return;
@@ -82,7 +95,7 @@ public class JsonLoaderAction implements Action {
 						new MessageDialogDisplay()
 								.setParentComponent(parentPanel)
 								.setMessageType(JOptionPane.ERROR_MESSAGE)
-								.setTitle("Errore")
+								.setTitle(ERROR)
 								.setMessage(e.getMessage())
 								.show();
 						return;
@@ -94,7 +107,7 @@ public class JsonLoaderAction implements Action {
 				new MessageDialogDisplay()
 						.setParentComponent(parentPanel)
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
+						.setTitle(ERROR)
 						.setMessage(String.join("\n", errors))
 						.show();
 			}
@@ -119,7 +132,7 @@ public class JsonLoaderAction implements Action {
 		try {
 			node = objectMapper.readValue(selectedFile, ObjectNode[].class);
 		} catch (JsonMappingException ex) {
-			throw new InvalidArgumentException("Il JSON contiene un errore nella formattazione\n\nErrore: %s".formatted(ex.getMessage()));
+			throw new InvalidArgumentException(ERROR_JSON_CONTAINS_FORMATTING_ERROR.formatted(ex.getMessage()));
 		} catch (IOException ex) {
 			throw new RuntimeException(ex);
 		}
@@ -143,12 +156,12 @@ public class JsonLoaderAction implements Action {
 	private ArrayList<String> getPercorso(HashMap<String, String> jsonMap) throws JsonException {
 		var array = new ArrayList<String>();
 
-		if (jsonMap.get("percorso") == null) {
-			throw new JsonException("Errore nelle chiavi del JSON");
+		if (jsonMap.get(PATH) == null) {
+			throw new JsonException(ERROR_IN_JSON_KEY);
 		}
 
 		array.add("root");
-		Collections.addAll(array, jsonMap.get("percorso").split("\\|"));
+		Collections.addAll(array, jsonMap.get(PATH).split("\\|"));
 
 		return array;
 	}
@@ -156,30 +169,30 @@ public class JsonLoaderAction implements Action {
 	private void createCategory(ArrayList<String> errors, ObjectNode jsonNode) throws JsonException {
 		var jsonMap = getJsonNodeFields(jsonNode);
 
-		if (Objects.equals(jsonMap.get("percorso"), "null")) {
-			if (jsonMap.get("nome_categoria") == null || jsonMap.get("descrizione") == null)
-				throw new JsonException("Errore nelle chiavi del JSON");
+		if (Objects.equals(jsonMap.get(PATH), "null")) {
+			if (jsonMap.get(CATEGORY_NAME) == null || jsonMap.get(DESCRIPTION) == null)
+				throw new JsonException(ERROR_IN_JSON_KEY);
 
 			try {
 				CategoryManagerFactory.getManager()
-						.addNewMainCategory(String.valueOf(jsonMap.get("nome_categoria")), jsonMap.get("descrizione"));
+						.addNewMainCategory(String.valueOf(jsonMap.get(CATEGORY_NAME)), jsonMap.get(DESCRIPTION));
 			} catch (AlreadyExistException ex) {
-				errors.add("La categoria %s esiste già".formatted(jsonMap.get("nome_categoria")));
+				errors.add(ERROR_CATEGORY_ALREADY_EXISTS.formatted(jsonMap.get(CATEGORY_NAME)));
 			} catch (InvalidArgumentException | NullObjectException ex) {
 				throw new RuntimeException(ex);
 			}
 		}
 		else {
-			if (jsonMap.get("nome_categoria") == null || jsonMap.get("descrizione") == null)
-				throw new JsonException("Errore nelle chiavi del JSON");
+			if (jsonMap.get(CATEGORY_NAME) == null || jsonMap.get(DESCRIPTION) == null)
+				throw new JsonException(ERROR_IN_JSON_KEY);
 
 			try {
 				CategoryManagerFactory.getManager()
-						.addNewSubCategory(getPercorso(jsonMap), jsonMap.get("nome_categoria"), jsonMap.get("descrizione"));
+						.addNewSubCategory(getPercorso(jsonMap), jsonMap.get(CATEGORY_NAME), jsonMap.get(DESCRIPTION));
 			} catch (AlreadyExistException ex) {
-				errors.add("La categoria %s esiste già".formatted(jsonMap.get("nome_categoria")));
+				errors.add(ERROR_CATEGORY_ALREADY_EXISTS.formatted(jsonMap.get(CATEGORY_NAME)));
 			} catch (NullObjectException ex) {
-				errors.add("Il percorso specificato per la categoria %s non è valido.".formatted(jsonMap.get("nome_categoria")));
+				errors.add(ERROR_INVALID_PATH_OF_CATEGORY.formatted(jsonMap.get(CATEGORY_NAME)));
 			} catch (InvalidArgumentException ex) {
 				throw new RuntimeException(ex);
 			}
@@ -189,16 +202,16 @@ public class JsonLoaderAction implements Action {
 	private void createField(ArrayList<String> errors, ObjectNode jsonNode) throws JsonException {
 		var jsonMap = getJsonNodeFields(jsonNode);
 
-		if (jsonMap.get("nome_campo") == null || jsonMap.get("obbligatorio") == null)
-			throw new JsonException("Errore nelle chiavi del JSON");
+		if (jsonMap.get(FIELD_NAME) == null || jsonMap.get(OBLIGATORY) == null)
+			throw new JsonException(ERROR_IN_JSON_KEY);
 
 		try {
 			CategoryManagerFactory.getManager()
-					.addNewField(getPercorso(jsonMap), jsonMap.get("nome_campo"), Objects.equals(jsonMap.get("obbligatorio"), "true"));
+					.addNewField(getPercorso(jsonMap), jsonMap.get(FIELD_NAME), Objects.equals(jsonMap.get(OBLIGATORY), "true"));
 		} catch (AlreadyExistException ex) {
-			errors.add("Il campo %s esiste già".formatted(jsonMap.get("nome_campo")));
+			errors.add(ERROR_FIELD_ALREADY_EXISTS.formatted(jsonMap.get(FIELD_NAME)));
 		} catch (NullObjectException ex) {
-			errors.add("Il percorso specificato per il campo %s non è valido.".formatted(jsonMap.get("nome_campo")));
+			errors.add(ERROR_INVALID_PATH_OF_THE_FIELD.formatted(jsonMap.get(FIELD_NAME)));
 		} catch (InvalidArgumentException ex) {
 			throw new RuntimeException(ex);
 		}

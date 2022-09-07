@@ -22,6 +22,9 @@ public class CategoryManager {
 	private static final String POST_CONDITION_SUBCATEGORY_NOT_IN_MAP = "Post-condition: The sub-category is not present in the map.";
 	private static final String ERROR_FIELD_ALREADY_EXISTS = "Il campo che stai creando esiste già.";
 	private static final String POST_CONDITION_FIELD_NOT_IN_MAP = "Post-condition: The field is not present in the map.";
+	private static final String ERROR_NAME_OR_DESCRIPTION_ARE_INVALID = "Il nome e/o la descrizione della sotto-categoria non sono validi";
+	private static final String ERROR_SUB_CATEGORY_ALREADY_EXISTS = "La sotto-categoria che stai creando esiste già.";
+	private static final String ERROR_INVALID_FIELD_NAME = "Il nome del campo non è valido";
 
 
 	private final ConcurrentHashMap<String, Category> categoryMap;
@@ -75,7 +78,7 @@ public class CategoryManager {
 	 * @throws NullObjectException      Is thrown if it cannot find the category in which to add the fields
 	 */
 	public void addNewSubCategory(ArrayList<String> pathOfSubcategory, String subCategoryName, String subCategoryDescription) throws AlreadyExistException, InvalidArgumentException, NullObjectException {
-		nameDescriptionChecker(subCategoryName, subCategoryDescription, "Il nome e/o la descrizione della sotto-categoria non sono validi");
+		nameDescriptionChecker(subCategoryName, subCategoryDescription, ERROR_NAME_OR_DESCRIPTION_ARE_INVALID);
 
 		Optional<Category> fatherCategory = getCategoryFromPath(pathOfSubcategory);
 		var                newSubCategory = new Category(subCategoryName.trim(), subCategoryDescription);
@@ -83,7 +86,7 @@ public class CategoryManager {
 		if (fatherCategory.isEmpty())
 			throw new NullObjectException(ERROR_NO_CATEGORY_HAS_BEEN_SELECTED);
 
-		isUniqueCategoryChecker(newSubCategory, "La sotto-categoria che stai creando esiste già.");
+		isUniqueCategoryChecker(newSubCategory, ERROR_SUB_CATEGORY_ALREADY_EXISTS);
 
 		fatherCategory.get().addSubCategory(newSubCategory);
 		CategoryUpdateDataEventFactory.getEventHandler().fireUpdateListeners(this.categoryMap);
@@ -104,7 +107,7 @@ public class CategoryManager {
 	public void addNewField(ArrayList<String> pathOfCategory, String fieldName, boolean isRequired)
 			throws AlreadyExistException, InvalidArgumentException, NullObjectException {
 		if (fieldName.trim().isBlank())
-			throw new InvalidArgumentException("Il nome del campo non è valido");
+			throw new InvalidArgumentException(ERROR_INVALID_FIELD_NAME);
 
 		Optional<Category> category = getCategoryFromPath(pathOfCategory);
 

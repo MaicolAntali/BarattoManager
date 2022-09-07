@@ -27,6 +27,8 @@ import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 import javax.swing.*;
 
 public class LoginController implements Controller {
+	private static final String MESSAGE_INVALID_PASSWORD_RETRY = "La password impostata non è valida. Riprovare";
+	private static final String TITLE_PASSWORD_NOT_VALID = "Password NON valida";
 	private final LoginModel model;
 	private final LoginView view;
 
@@ -123,8 +125,8 @@ public class LoginController implements Controller {
 			if (User.isDefaultPassword(changePasswordController.getPassword()))
 				new MessageDialogDisplay()
 						.setParentComponent(view.getMainJPanel())
-						.setMessage("La password impostata non è valida. Riprovare")
-						.setTitle("Password NON valida")
+						.setMessage(MESSAGE_INVALID_PASSWORD_RETRY)
+						.setTitle(TITLE_PASSWORD_NOT_VALID)
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
 						.show();
 			else

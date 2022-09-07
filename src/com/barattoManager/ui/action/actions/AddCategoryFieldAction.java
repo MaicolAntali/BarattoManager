@@ -18,6 +18,9 @@ import javax.swing.tree.TreeNode;
 
 public class AddCategoryFieldAction implements Action {
 
+	private static final String MESSAGE_CHOOSE_A_NODE = "Per favore selezionare un nodo.";
+	private static final String TITLE_CREATION_OF_NEW_ROOT_CATEGORY = "Creazione di una categoria radice";
+	private static final String ERROR = "Errore";
 	private final CategoryTreeController categoryTreeController;
 	private final JPanel parentPanel;
 
@@ -33,8 +36,8 @@ public class AddCategoryFieldAction implements Action {
 			new MessageDialogDisplay()
 					.setParentComponent(parentPanel)
 					.setMessageType(JOptionPane.ERROR_MESSAGE)
-					.setTitle("Errore")
-					.setMessage("Per favore Selezionare un nodo.")
+					.setTitle(ERROR)
+					.setMessage(MESSAGE_CHOOSE_A_NODE)
 					.show();
 			return;
 		}
@@ -44,7 +47,7 @@ public class AddCategoryFieldAction implements Action {
 		var result = new OptionDialogDisplay()
 				.setParentComponent(parentPanel)
 				.setMessage(newFieldController.getView().getMainJPanel())
-				.setTitle("Creazione di una categoria radice")
+				.setTitle(TITLE_CREATION_OF_NEW_ROOT_CATEGORY)
 				.setMessageType(JOptionPane.QUESTION_MESSAGE)
 				.show();
 
@@ -60,7 +63,7 @@ public class AddCategoryFieldAction implements Action {
 				new MessageDialogDisplay()
 						.setParentComponent(parentPanel)
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
+						.setTitle(ERROR)
 						.setMessage(e.getMessage())
 						.show();
 			}

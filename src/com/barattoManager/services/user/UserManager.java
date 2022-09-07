@@ -16,6 +16,7 @@ public class UserManager {
 	private static final String ERROR_USER_ALREADY_EXIST = "L'utente %s esiste gia. Impossible crearlo nuovamente";
 	private static final String POST_CONDITION_USER_NOT_IN_MAP = "Post-condition: The user is not present in the map.";
 	private static final String SET_DEFAULT_CREDENTIALS = "Sono state impostate delle credenziali di base per il primo configuratore. \n\nUsername: Configurator\nPassword: %s";
+	private static final String DEFAULT_CREDENTIALS = "Credenziali di Default";
 	private final ConcurrentHashMap<String, User> userMap;
 
 	/**
@@ -36,7 +37,7 @@ public class UserManager {
 
 			new MessageDialogDisplay()
 					.setMessage(SET_DEFAULT_CREDENTIALS.formatted(AppConfigurator.getInstance().getPasswordSetting("default_pwd")))
-					.setTitle("Credenziali di Default")
+					.setTitle(DEFAULT_CREDENTIALS)
 					.show();
 		}
 	}
