@@ -44,13 +44,11 @@ public class CategoryManager {
 	 * @throws InvalidArgumentException Is thrown if the name or the description is blank
 	 */
 	public void addNewMainCategory(String categoryName, String categoryDescription) throws AlreadyExistException, InvalidArgumentException, NullObjectException {
-		if (categoryName.trim().isBlank() || categoryDescription.isBlank())
-			throw new InvalidArgumentException(ERROR_CATEGORY_PARAMS_NOT_VALID);
+		nameDescriptionChecker(categoryName, categoryDescription, ERROR_CATEGORY_PARAMS_NOT_VALID);
 
 		var newMainCategory = new Category(categoryName, categoryDescription);
 
-		if (!isUniqueCategory(this.categoryMap.values().stream().toList(), newMainCategory.hashCode()))
-			throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
+		isUniqueCategoryChecker(newMainCategory, ERROR_CATEGORY_ALREADY_EXISTS);
 
 		this.categoryMap.put(newMainCategory.getUuid(), newMainCategory);
 
@@ -77,8 +75,7 @@ public class CategoryManager {
 	 * @throws NullObjectException      Is thrown if it cannot find the category in which to add the fields
 	 */
 	public void addNewSubCategory(ArrayList<String> pathOfSubcategory, String subCategoryName, String subCategoryDescription) throws AlreadyExistException, InvalidArgumentException, NullObjectException {
-		if (subCategoryName.trim().isBlank() || subCategoryDescription.isBlank())
-			throw new InvalidArgumentException("Il nome e/o la descrizione della sotto-categoria non sono validi");
+		nameDescriptionChecker(subCategoryName, subCategoryDescription, "Il nome e/o la descrizione della sotto-categoria non sono validi");
 
 		Optional<Category> fatherCategory = getCategoryFromPath(pathOfSubcategory);
 		var                newSubCategory = new Category(subCategoryName.trim(), subCategoryDescription);
@@ -86,8 +83,7 @@ public class CategoryManager {
 		if (fatherCategory.isEmpty())
 			throw new NullObjectException(ERROR_NO_CATEGORY_HAS_BEEN_SELECTED);
 
-		if (!isUniqueCategory(this.categoryMap.values().stream().toList(), newSubCategory.hashCode()))
-			throw new AlreadyExistException(ERROR_CATEGORY_ALREADY_EXISTS);
+		isUniqueCategoryChecker(newSubCategory, "La sotto-categoria che stai creando esiste già.");
 
 		fatherCategory.get().addSubCategory(newSubCategory);
 		CategoryUpdateDataEventFactory.getEventHandler().fireUpdateListeners(this.categoryMap);
@@ -105,7 +101,8 @@ public class CategoryManager {
 	 * @throws InvalidArgumentException Is thrown if the name is an empty string
 	 * @throws NullObjectException      Is thrown if it cannot find the category in which to add the fields
 	 */
-	public void addNewField(ArrayList<String> pathOfCategory, String fieldName, boolean isRequired) throws AlreadyExistException, InvalidArgumentException, NullObjectException {
+	public void addNewField(ArrayList<String> pathOfCategory, String fieldName, boolean isRequired)
+			throws AlreadyExistException, InvalidArgumentException, NullObjectException {
 		if (fieldName.trim().isBlank())
 			throw new InvalidArgumentException("Il nome del campo non è valido");
 
@@ -157,6 +154,16 @@ public class CategoryManager {
 	 */
 	public Optional<Category> getCategoryByUuid(String uuid) {
 		return getCategory(this.categoryMap.values().stream().toList(), uuid);
+	}
+
+	private static void nameDescriptionChecker(String name, String description, String error) throws InvalidArgumentException {
+		if (name.trim().isBlank() || description.isBlank())
+			throw new InvalidArgumentException(error);
+	}
+
+	private void isUniqueCategoryChecker(Category newMainCategory, String error) throws AlreadyExistException {
+		if (!isUniqueCategory(this.categoryMap.values().stream().toList(), newMainCategory.hashCode()))
+			throw new AlreadyExistException(error);
 	}
 
 	private Optional<Category> getCategory(List<Category> categories, String uuid) {
