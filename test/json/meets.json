@@ -1,0 +1,75 @@
+
+{
+  "cdbc044e-d5f0-40de-9cbd-b9e6a7b9bedc": {
+    "uuid": "cdbc044e-d5f0-40de-9cbd-b9e6a7b9bedc",
+    "city": "Bergamo",
+    "square": "Stazione",
+    "day": "MONDAY",
+    "start_time": "13:00:00",
+    "end_time": "13:30:00",
+    "user_booked_uuid": "BOOKED",
+    "day_before_expire": 3,
+    "date_of_meet": "2022-09-12",
+    "meet_not_in_past": true
+  },
+  "1a3a9572-faab-4240-911f-f1803345c7b9": {
+    "uuid": "1a3a9572-faab-4240-911f-f1803345c7b9",
+    "city": "Bergamo",
+    "square": "Stazione",
+    "day": "MONDAY",
+    "start_time": "14:30:00",
+    "end_time": "15:00:00",
+    "user_booked_uuid": null,
+    "day_before_expire": 3,
+    "date_of_meet": "2022-09-12",
+    "meet_not_in_past": true
+  },
+  "22fb9c99-396a-4f31-a36e-f36b58e6b705": {
+    "uuid": "22fb9c99-396a-4f31-a36e-f36b58e6b705",
+    "city": "Bergamo",
+    "square": "Stazione",
+    "day": "MONDAY",
+    "start_time": "12:30:00",
+    "end_time": "13:00:00",
+    "user_booked_uuid": null,
+    "day_before_expire": 3,
+    "date_of_meet": "2022-09-12",
+    "meet_not_in_past": true
+  },
+  "3146f12e-2495-4c81-bf35-38447db9beac": {
+    "uuid": "3146f12e-2495-4c81-bf35-38447db9beac",
+    "city": "Bergamo",
+    "square": "Stazione",
+    "day": "MONDAY",
+    "start_time": "12:00:00",
+    "end_time": "12:30:00",
+    "user_booked_uuid": null,
+    "day_before_expire": 3,
+    "date_of_meet": "2022-09-12",
+    "meet_not_in_past": true
+  },
+  "2364a7b8-6199-41e0-8057-88c4ac232f4f": {
+    "uuid": "2364a7b8-6199-41e0-8057-88c4ac232f4f",
+    "city": "Bergamo",
+    "square": "Stazione",
+    "day": "MONDAY",
+    "start_time": "13:30:00",
+    "end_time": "14:00:00",
+    "user_booked_uuid": null,
+    "day_before_expire": 3,
+    "date_of_meet": "2022-09-12",
+    "meet_not_in_past": true
+  },
+  "4b6f531d-f78f-4523-8d91-5599e3e6c437": {
+    "uuid": "4b6f531d-f78f-4523-8d91-5599e3e6c437",
+    "city": "Bergamo",
+    "square": "Stazione",
+    "day": "MONDAY",
+    "start_time": "14:00:00",
+    "end_time": "14:30:00",
+    "user_booked_uuid": null,
+    "day_before_expire": 3,
+    "date_of_meet": "2022-09-12",
+    "meet_not_in_past": true
+  }
+}

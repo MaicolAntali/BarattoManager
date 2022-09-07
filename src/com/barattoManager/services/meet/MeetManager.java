@@ -130,6 +130,10 @@ public class MeetManager {
 		}
 	}
 
+	public ConcurrentHashMap<String, Meet> getMeets() {
+		return meetMap;
+	}
+
 	/**
 	 * Method used to get the {@link List} with all {@link Meet} available (meet not booked)
 	 *

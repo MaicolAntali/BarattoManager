@@ -1,0 +1,59 @@
+
+{
+  "a59dd6ed-2106-4969-8a23-ffbec5d37a20": {
+    "uuid": "a59dd6ed-2106-4969-8a23-ffbec5d37a20",
+    "owner": "Luca",
+    "category_uuid": "671c4f25-1a72-4f49-8436-76a2a7d0cd90",
+    "state": "OPEN_OFFER",
+    "fields": {
+      "Field[name=Stato di conservazione, required=true]": "Ottimo",
+      "Field[name=Descrizione, required=true]": "libro"
+    },
+    "log": [
+      {
+        "date_time": "2022-07-12T10:23:20.674813",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Luca"
+      },
+      {
+        "date_time": "2022-07-12T10:23:20.698538",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-07-12T10:23:20.698588",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      }
+    ],
+    "name": "Divina Commedia"
+  },
+  "a59dd6ed-2106-4969-8a23-ffbec5d37a21": {
+    "uuid": "a59dd6ed-2106-4969-8a23-ffbec5d37a21",
+    "owner": "Michele",
+    "category_uuid": "671c4f25-1a72-4f49-8436-76a2a7d0cd90",
+    "state": "OPEN_OFFER",
+    "fields": {
+      "Field[name=Stato di conservazione, required=true]": "Buono",
+      "Field[name=Descrizione, required=true]": "libro"
+    },
+    "log": [
+      {
+        "date_time": "2022-07-12T10:23:20.674813",
+        "name": "Article Created",
+        "description": "Article has just been created by the viewer Luca"
+      },
+      {
+        "date_time": "2022-07-12T10:23:20.698538",
+        "name": "Article Validated",
+        "description": "Article is valid and properly initialized"
+      },
+      {
+        "date_time": "2022-07-12T10:23:20.698588",
+        "name": "State Update",
+        "description": "The article state is updated from Non validato to Offerta Aperta"
+      }
+    ],
+    "name": "Promessi Sposi"
+  }
+}

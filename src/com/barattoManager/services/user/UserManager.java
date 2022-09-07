@@ -83,4 +83,7 @@ public class UserManager {
 		UserUpdateDataEventFactory.getEventHandler().fireUpdateListeners(this.userMap);
 	}
 
+	public ConcurrentHashMap<String, User> getUsers() {
+		return userMap;
+	}
 }

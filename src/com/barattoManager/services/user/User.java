@@ -20,8 +20,8 @@ public class User {
 
 	public User(String username, String password, boolean isConfigurator) {
 
-		assert username.isBlank() : "Pre-condition: User username is blank";
-		assert password.isBlank() : "Pre-condition: User password is blank";
+		assert !username.isBlank() : "Pre-condition: User username is blank";
+		assert !password.isBlank() : "Pre-condition: User password is blank";
 
 		this.username = username;
 		this.password = SHA256.hash(password);
