@@ -1,12 +1,11 @@
 package com.barattoManager.ui.mvc.viewer.homepage;
 
+import com.barattoManager.ui.action.actions.RegisterShowControllerAction;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
 import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.Controller;
 import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.View;
-import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFactory;
-import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.mvc.viewer.categoryViewer.ViewerCategoryController;
 import com.barattoManager.ui.mvc.viewer.categoryViewer.ViewerCategoryView;
 import com.barattoManager.ui.mvc.viewer.meetViewer.ViewerMeetController;
@@ -41,41 +40,41 @@ public class ViewerHomepageController implements Controller {
 
 	@ActionListenerFor(sourceField = "viewCategoryButton")
 	private void clickOnViewCategoryButton() {
-		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new ViewerCategoryController(new ViewerCategoryView()), ControllerNames.CATEGORY_VIEWER.toString()
-		);
-		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.CATEGORY_VIEWER.toString());
+		new RegisterShowControllerAction(
+				ControllerNames.CATEGORY_VIEWER,
+				new ViewerCategoryController(new ViewerCategoryView())
+		).run();
 	}
 
 	@ActionListenerFor(sourceField = "viewMeetButton")
 	private void clickOnViewMeetButton() {
-		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new ViewerMeetController(new ViewerMeetView()), ControllerNames.MEET_VIEWER.toString()
-		);
-		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.MEET_VIEWER.toString());
+		new RegisterShowControllerAction(
+				ControllerNames.MEET_VIEWER,
+				new ViewerMeetController(new ViewerMeetView())
+		).run();
 	}
 
 	@ActionListenerFor(sourceField = "yourArticleButton")
 	private void clickOnYourArticleButton() {
-		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new ViewerYourArticleController(new ViewerYourArticleView()), ControllerNames.ARTICLE_VIEWER.toString()
-		);
-		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.ARTICLE_VIEWER.toString());
+		new RegisterShowControllerAction(
+				ControllerNames.ARTICLE_VIEWER,
+				new ViewerYourArticleController(new ViewerYourArticleView())
+		).run();
 	}
 
 	@ActionListenerFor(sourceField = "storeArticleButton")
 	private void clickOnStoreArticleButton() {
-		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new ViewerStoreArticleController(new ViewerStoreArticleView()), ControllerNames.STORE_VIEWER.toString()
-		);
-		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.STORE_VIEWER.toString());
+		new RegisterShowControllerAction(
+				ControllerNames.STORE_VIEWER,
+				new ViewerStoreArticleController(new ViewerStoreArticleView())
+		).run();
 	}
 
 	@ActionListenerFor(sourceField = "myTradesButton")
 	private void clickOnMyTradesButton() {
-		RegisterControllerHandlerFactory.getHandler().fireRegisterListeners(
-				new ViewerTradesController(new ViewerTradesView()), ControllerNames.TRADES_VIEWER.toString()
-		);
-		ShowControllerHandlerFactory.getHandler().fireShowListeners(ControllerNames.TRADES_VIEWER.toString());
+		new RegisterShowControllerAction(
+				ControllerNames.TRADES_VIEWER,
+				new ViewerTradesController(new ViewerTradesView())
+		).run();
 	}
 }
