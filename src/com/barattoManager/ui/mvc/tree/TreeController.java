@@ -21,7 +21,6 @@ public abstract class TreeController<T> extends GraspController implements Model
 	}
 
 
-
 	@Override
 	public TreeModel<T> getModel() {
 		return model;
