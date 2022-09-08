@@ -13,6 +13,9 @@ public class UserUpdateDataEvent implements UpdateDataHandler<String, User> {
 
 	private final ArrayList<UpdateDataListener<String, User>> listeners;
 
+	/**
+	 * Constructor of {@link UserUpdateDataEvent}
+	 */
 	public UserUpdateDataEvent() {
 		this.listeners = new ArrayList<>();
 	}

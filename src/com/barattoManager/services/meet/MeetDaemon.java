@@ -10,7 +10,7 @@ import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * {@link TimerTask} used to check if meet is in the past and update it
+ * {@link TimerTask} used to check if a meet is in the past and update it
  */
 public class MeetDaemon extends TimerTask {
 

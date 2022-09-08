@@ -23,6 +23,9 @@ public class NewArticleView implements View {
 	private final ArrayList<Field> articleFields;
 	private final ArrayList<JTextField> articleFieldValueJField;
 
+	/**
+	 * Constructor of {@link NewArticleView}
+	 */
 	public NewArticleView() {
 		listeners = new ArrayList<>();
 
@@ -85,10 +88,18 @@ public class NewArticleView implements View {
 		mainPanel.add(fieldsPanel);
 	}
 
+	/**
+	 * Method used to get the article name from the {@link JTextField}
+	 * @return articleNameField as a String
+	 */
 	public String getArticleName() {
 		return articleNameField.getText();
 	}
 
+	/**
+	 * Method used to get
+	 * @return
+	 */
 	public ArrayList<Field> getArticleFields() {
 		return articleFields;
 	}

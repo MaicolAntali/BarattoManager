@@ -39,7 +39,8 @@ public class MeetEditorController extends GraspController {
 		return view;
 	}
 
-	private void initAction() {
+	@Override
+	protected void initAction() {
 		addAction("Indietro", new GoToControllerAction(ControllerNames.HOMEPAGE_CONFIGURATOR));
 		addAction("Aggiungi_nuovo_incontro", new AddMeetAction(view.getMainJPanel()));
 	}

@@ -32,7 +32,7 @@ public class CategoryEditorController extends GraspController {
 		initAction();
 	}
 
-	private void initAction() {
+	protected void initAction() {
 		addAction("Indietro", new GoToControllerAction(ControllerNames.HOMEPAGE_CONFIGURATOR));
 		addAction("Aggiungi_Categoria_Radice", new AddRootCategoryAction(this.view.getMainJPanel()));
 		addAction("Aggiungi_Sotto-Categoria", new AddSubCategoryAction(this.categoryTreeController, this.view.getMainJPanel()));

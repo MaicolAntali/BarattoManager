@@ -53,8 +53,8 @@ public class SelectCategoryController extends GraspController {
 
 		return optionalCategory;
 	}
-
-	private void initAction() {
+	@Override
+	protected void initAction() {
 		addAction("comboBoxChanged", () -> model.setCategoryNamesSelected(view.getSelectedObject()));
 	}
 }

@@ -5,6 +5,9 @@ import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 
+/**
+ * View that shows the trades (this view is only for the Viewer)
+ */
 public class ViewerTradesView implements View {
 	private JPanel mainPanel;
 	@ActionListenerField
@@ -19,10 +22,18 @@ public class ViewerTradesView implements View {
 		return mainPanel;
 	}
 
+	/**
+	 * Method used to set the treePanel
+	 * @param tree {@link JPanel}
+	 */
 	public void setTreePanel(JPanel tree) {
 		this.treePanel.add(tree);
 	}
 
+	/**
+	 * Method used to set the menuPanel
+	 * @param menuPanel {@link JPanel}
+	 */
 	public void setMenuPanel(JPanel menuPanel) {
 		this.menuPanel.add(menuPanel);
 	}

@@ -13,6 +13,9 @@ public class ArticleUpdateDataEvent implements UpdateDataHandler<String, Article
 
 	private final ArrayList<UpdateDataListener<String, Article>> listeners;
 
+	/**
+	 * Constructor of {@link ArticleUpdateDataEvent}
+	 */
 	public ArticleUpdateDataEvent() {
 		this.listeners = new ArrayList<>();
 	}

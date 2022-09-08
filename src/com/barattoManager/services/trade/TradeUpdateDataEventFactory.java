@@ -10,6 +10,10 @@ public class TradeUpdateDataEventFactory {
 
 	private static final UpdateDataHandler<String, Trade> EVENT_HANDLER = new TradeUpdateDataEvent();
 
+	/**
+	 * Method used to get the {@link UpdateDataHandler}
+	 * @return EVENT_HANDLER {@link UpdateDataHandler}
+	 */
 	public static UpdateDataHandler<String, Trade> getEventHandler() {
 		return EVENT_HANDLER;
 	}

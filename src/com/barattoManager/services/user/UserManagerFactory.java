@@ -1,6 +1,7 @@
 package com.barattoManager.services.user;
 
 import com.barattoManager.services.json.JsonHandler;
+import com.barattoManager.services.meet.MeetManager;
 import com.barattoManager.utils.AppConfigurator;
 
 /**
@@ -11,7 +12,10 @@ import com.barattoManager.utils.AppConfigurator;
 public class UserManagerFactory implements Runnable {
 
 	private static UserManager USER_MANAGER;
-
+	/**
+	 * Method used to get the user manager
+	 * @return USER_MANAGER {@link UserManager}
+	 */
 	public static UserManager getManager() {
 		return USER_MANAGER;
 	}

@@ -17,6 +17,10 @@ public class ArticleManagerFactory implements Runnable {
 
 	private static ArticleManager ARTICLE_MANAGER;
 
+	/**
+	 * Method used to get the article manager
+	 * @return ARTICLE_MANAGER {@link ArticleManager}
+	 */
 	public static ArticleManager getManager() {
 		return ARTICLE_MANAGER;
 	}

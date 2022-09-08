@@ -13,6 +13,9 @@ public class TradeUpdateDataEvent implements UpdateDataHandler<String, Trade> {
 
 	private final ArrayList<UpdateDataListener<String, Trade>> listeners;
 
+	/**
+	 * Constructor of {@link TradeUpdateDataEvent}
+	 */
 	public TradeUpdateDataEvent() {
 		this.listeners = new ArrayList<>();
 	}

@@ -29,7 +29,8 @@ public class SelectMeetController extends GraspController {
 		return view;
 	}
 
-	private void initAction() {
+	@Override
+	protected void initAction() {
 		addAction("comboBoxChanged", () -> model.setMeetSelected(view.getSelectedObject()));
 	}
 }

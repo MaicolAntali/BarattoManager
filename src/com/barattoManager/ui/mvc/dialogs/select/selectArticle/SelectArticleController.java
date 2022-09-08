@@ -30,7 +30,8 @@ public class SelectArticleController extends GraspController {
 		return view;
 	}
 
-	private void initAction() {
+	@Override
+	protected void initAction() {
 		addAction("comboBoxChanged", () -> model.setArticleSelected(view.getSelectedObject()));
 	}
 }

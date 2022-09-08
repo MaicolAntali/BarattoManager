@@ -5,6 +5,10 @@ import com.barattoManager.ui.mvc.tree.event.ModelDataHasChangeListener;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
+/**
+ * Generic abstract class that represent a tree controller
+ * @param <T> The type of {@link TreeModel} and {@link TreeView}
+ */
 public abstract class TreeController<T> extends GraspController implements ModelDataHasChangeListener {
 
 	private final TreeModel<T> model;
@@ -36,7 +40,8 @@ public abstract class TreeController<T> extends GraspController implements Model
 		getView().drawTree(getModel().getData());
 	}
 
-	private void initAction() {
+	@Override
+	protected void initAction() {
 		addAction("nodeSelectedChange", () -> {
 			Object lastSelectedPathComponent = view.getTree().getLastSelectedPathComponent();
 

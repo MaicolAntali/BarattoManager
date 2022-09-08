@@ -27,7 +27,8 @@ public class ConfiguratorHomepageController extends GraspController {
 		initAction();
 	}
 
-	private void initAction() {
+	@Override
+	protected void initAction() {
 		addAction("Configura_Categorie", new RegisterShowControllerAction(
 						ControllerNames.CATEGORY_EDITOR,
 						new CategoryEditorController(new SimpleCategoryEditorView())

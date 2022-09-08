@@ -7,6 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Generic class that represent a select view
+ * @param <T>
+ */
 public abstract class SelectView<T> extends ActionNotifierHandler implements View {
 
 	private final JPanel mainPanel;

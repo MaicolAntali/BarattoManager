@@ -15,6 +15,10 @@ public class LoginModel implements Model {
 		return username;
 	}
 
+	/**
+	 * Method used to get the password as a {@link String}
+	 * @return password
+	 */
 	public String getPassword() {
 		return password;
 	}
@@ -23,6 +27,10 @@ public class LoginModel implements Model {
 		this.username = username;
 	}
 
+	/**
+	 * Method used to set the password
+	 * @param password {@link String}
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}

@@ -1,5 +1,6 @@
 package com.barattoManager.services.meet;
 
+import com.barattoManager.services.category.CategoryManager;
 import com.barattoManager.services.json.JsonHandler;
 import com.barattoManager.utils.AppConfigurator;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -16,7 +17,10 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 public class MeetManagerFactory implements Runnable {
 
 	private static MeetManager MEET_MANAGER;
-
+	/**
+	 * Method used to get the meet manager
+	 * @return MEET_MANAGER {@link MeetManager}
+	 */
 	public static MeetManager getManager() {
 		return MEET_MANAGER;
 	}

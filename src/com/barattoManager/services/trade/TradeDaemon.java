@@ -8,7 +8,9 @@ import java.time.LocalDateTime;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
-
+/**
+ * {@link TimerTask} used to check if a trade is expired and update its status.
+ */
 public class TradeDaemon extends TimerTask {
 
 	private final ConcurrentHashMap<String, Trade> tradeHashMap;

@@ -28,6 +28,11 @@ public class MainFrameModel implements Model {
 		this.controllerHashMap.put(controllerName.toLowerCase(), controller);
 	}
 
+	/**
+	 * Method used to get a controller by name
+	 * @param controllerName used to search a controller by name
+	 * @return controller
+	 */
 	public Optional<Controller> getControllerByName(String controllerName) {
 		return Optional.of(this.controllerHashMap.get(controllerName));
 	}
