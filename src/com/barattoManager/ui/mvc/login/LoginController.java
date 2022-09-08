@@ -26,12 +26,21 @@ import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 
 import javax.swing.*;
 
+/**
+ * Controller that handle the events of the {@link LoginView} and update the data in the {@link LoginModel}
+ */
 public class LoginController implements Controller {
 	private static final String MESSAGE_INVALID_PASSWORD_RETRY = "La password impostata non è valida. Riprovare";
 	private static final String TITLE_PASSWORD_NOT_VALID = "Password NON valida";
 	private final LoginModel model;
 	private final LoginView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param model {@link LoginModel} represent the model of the controller
+	 * @param view {@link  LoginView} represent the view of the controller
+	 */
 	public LoginController(LoginModel model, LoginView view) {
 		this.model = model;
 		this.view = view;

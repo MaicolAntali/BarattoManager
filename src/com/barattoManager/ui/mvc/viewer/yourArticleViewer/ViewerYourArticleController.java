@@ -15,10 +15,18 @@ import com.barattoManager.ui.mvc.tree.article.ArticleTreeView;
 import com.barattoManager.ui.mvc.tree.article.YourArticleTreeModel;
 import com.barattoManager.ui.utils.ControllerNames;
 
+/**
+ * Controller that handles the events of the {@link ViewerYourArticleView}
+ */
 public class ViewerYourArticleController implements Controller {
 
 	private final ViewerYourArticleView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param view {@link ViewerYourArticleView} represent the view of the controller
+	 */
 	public ViewerYourArticleController(ViewerYourArticleView view) {
 		this.view = view;
 

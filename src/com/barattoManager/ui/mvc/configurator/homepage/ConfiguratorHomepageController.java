@@ -16,10 +16,18 @@ import com.barattoManager.ui.mvc.register.RegisterModel;
 import com.barattoManager.ui.mvc.register.RegisterView;
 import com.barattoManager.ui.utils.ControllerNames;
 
+/**
+ * Controller that handles the events of the {@link ConfiguratorHomepageView}
+ */
 public class ConfiguratorHomepageController extends GraspController {
 
 	private final ConfiguratorHomepageView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param view {@link ConfiguratorHomepageView} represent the view of the controller
+	 */
 	public ConfiguratorHomepageController(ConfiguratorHomepageView view) {
 		this.view = view;
 		this.view.addActionNotifierListener(this);

@@ -4,6 +4,9 @@ import com.barattoManager.ui.mvc.Controller;
 
 import java.util.ArrayList;
 
+/**
+ * Class used to handle the events of {@link  RegisterControllerListener}
+ */
 public class RegisterControllerHandler {
 
 	private final ArrayList<RegisterControllerListener> listeners;

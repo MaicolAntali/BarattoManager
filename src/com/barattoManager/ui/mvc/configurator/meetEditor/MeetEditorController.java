@@ -10,10 +10,18 @@ import com.barattoManager.ui.mvc.tree.meet.MeetTreeModel;
 import com.barattoManager.ui.mvc.tree.meet.MeetTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
 
+/**
+ * Controller that handles the events of the {@link MeetEditorView}
+ */
 public class MeetEditorController extends GraspController {
 
 	private final MeetEditorView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param view {@link MeetEditorView} represent the view of the controller
+	 */
 	public MeetEditorController(MeetEditorView view) {
 		this.view = view;
 		this.view.addActionNotifierListener(this);

@@ -4,6 +4,9 @@ import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 
+/**
+ * View that shows you the main frame
+ */
 public class MainFrameView extends JPanel implements View {
 	private JPanel mainPanel;
 	private JPanel contentPanel;
@@ -11,14 +14,25 @@ public class MainFrameView extends JPanel implements View {
 
 	private JPanel loadedPanel;
 
+	/**
+	 * Constructor of the class
+	 */
 	public MainFrameView() {
 		setSize(600, 500);
 	}
 
+	/**
+	 * Method used to set the version
+	 * @param versionLabel {@link String}
+	 */
 	public void setVersion(String versionLabel) {
 		this.versionLabel.setText(versionLabel);
 	}
 
+	/**
+	 * Method used to update the content panel
+	 * @param panel {@link JPanel}
+	 */
 	public void updateContentPanel(JPanel panel) {
 		if (loadedPanel != null)
 			contentPanel.remove(loadedPanel);

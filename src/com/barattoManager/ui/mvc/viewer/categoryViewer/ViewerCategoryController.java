@@ -12,10 +12,18 @@ import com.barattoManager.ui.mvc.tree.category.CategoryTreeModel;
 import com.barattoManager.ui.mvc.tree.category.CategoryTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
 
+/**
+ * Controller that handles the events of the {@link ViewerCategoryView}
+ */
 public class ViewerCategoryController implements Controller {
 
 	private final ViewerCategoryView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param view {@link ViewerCategoryView} represent the view of the controller
+	 */
 	public ViewerCategoryController(ViewerCategoryView view) {
 		this.view = view;
 

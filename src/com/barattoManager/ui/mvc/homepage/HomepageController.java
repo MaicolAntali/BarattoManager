@@ -5,6 +5,7 @@ import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.Controller;
 import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.View;
+import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorView;
 import com.barattoManager.ui.mvc.login.LoginController;
 import com.barattoManager.ui.mvc.login.LoginModel;
 import com.barattoManager.ui.mvc.login.LoginView;
@@ -15,10 +16,18 @@ import com.barattoManager.ui.mvc.register.RegisterModel;
 import com.barattoManager.ui.mvc.register.RegisterView;
 import com.barattoManager.ui.utils.ControllerNames;
 
+/**
+ * Controller that handles the events of the {@link HomepageView}
+ */
 public class HomepageController implements Controller {
 
 	private final HomepageView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param view {@link HomepageView} represent the view of the controller
+	 */
 	public HomepageController(HomepageView view) {
 		this.view = view;
 

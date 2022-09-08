@@ -2,10 +2,14 @@ package com.barattoManager.ui.mvc.dialogs.changePassword;
 
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerField;
 import com.barattoManager.ui.mvc.View;
+import com.barattoManager.ui.mvc.dialogs.NewArticle.NewArticleView;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * View that shows the panel which is used to change the password
+ */
 public class ChangePasswordView implements View {
 
 	private static final String LABEL_CHANGE_YOUR_PASSWORD = "Cambia la tua password di accesso.";
@@ -15,6 +19,9 @@ public class ChangePasswordView implements View {
 	@DocumentListenerField
 	private final JPasswordField passwordField;
 
+	/**
+	 * Constructor of {@link ChangePasswordView}
+	 */
 	public ChangePasswordView() {
 		this.mainPanel = new JPanel();
 		this.passwordField = new JPasswordField(13);
@@ -34,6 +41,10 @@ public class ChangePasswordView implements View {
 		return mainPanel;
 	}
 
+	/**
+	 * Method used to get the password
+	 * @return {@link JPasswordField}
+	 */
 	public String getPassword() {
 		return String.valueOf(passwordField.getPassword());
 	}

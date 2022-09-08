@@ -12,11 +12,19 @@ import com.barattoManager.ui.mvc.tree.category.CategoryTreeModel;
 import com.barattoManager.ui.mvc.tree.category.CategoryTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
 
+/**
+ * Controller that handles the events of the {@link CategoryEditorView}
+ */
 public class CategoryEditorController extends GraspController {
 
 	private final CategoryEditorView view;
 	private final CategoryTreeController categoryTreeController;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param view {@link CategoryEditorView} represent the view of the controller
+	 */
 	public CategoryEditorController(CategoryEditorView view) {
 		this.view = view;
 		this.view.addActionNotifierListener(this);

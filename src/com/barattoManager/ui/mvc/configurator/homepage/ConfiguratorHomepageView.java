@@ -5,6 +5,9 @@ import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 
+/**
+ * View that shows the homepage configurator
+ */
 public class ConfiguratorHomepageView extends ActionNotifierHandler implements View {
 	private JPanel mainPanel;
 	private JButton configCategoryButton;
@@ -14,6 +17,9 @@ public class ConfiguratorHomepageView extends ActionNotifierHandler implements V
 	private JButton loadJsonButton;
 	private JButton loadJsonQuestionButton;
 
+	/**
+	 * Constructor of the class
+	 */
 	public ConfiguratorHomepageView() {
 		configCategoryButton.addActionListener(e -> fireActionNotifierListener(e.getActionCommand().replace(" ", "_")));
 		configMeetButton.addActionListener(e -> fireActionNotifierListener(e.getActionCommand().replace(" ", "_")));

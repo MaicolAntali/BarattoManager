@@ -18,10 +18,18 @@ import com.barattoManager.ui.mvc.viewer.yourArticleViewer.ViewerYourArticleContr
 import com.barattoManager.ui.mvc.viewer.yourArticleViewer.ViewerYourArticleView;
 import com.barattoManager.ui.utils.ControllerNames;
 
+/**
+ * Controller that handles the events of the {@link ViewerHomepageView}
+ */
 public class ViewerHomepageController implements Controller {
 
 	private final ViewerHomepageView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param view {@link ViewerHomepageView} represent the view of the controller
+	 */
 	public ViewerHomepageController(ViewerHomepageView view) {
 		this.view = view;
 

@@ -12,10 +12,18 @@ import com.barattoManager.ui.mvc.tree.meet.MeetTreeModel;
 import com.barattoManager.ui.mvc.tree.meet.MeetTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
 
+/**
+ * Controller that handles the events of the {@link ViewerMeetView}
+ */
 public class ViewerMeetController implements Controller {
 
 	private final ViewerMeetView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param view {@link ViewerMeetView} represent the view of the controller
+	 */
 	public ViewerMeetController(ViewerMeetView view) {
 		this.view = view;
 

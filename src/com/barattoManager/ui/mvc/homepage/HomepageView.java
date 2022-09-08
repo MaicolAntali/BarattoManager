@@ -5,6 +5,9 @@ import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 
+/**
+ * View that shows the homepage
+ */
 public class HomepageView implements View {
 
 	private JPanel mainPanel;

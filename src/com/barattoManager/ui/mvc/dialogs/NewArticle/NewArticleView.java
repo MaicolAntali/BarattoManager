@@ -13,6 +13,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * View that shows the panel used to add a new article
+ */
 public class NewArticleView implements View {
 
 	private static final String LABEL_ENTER_THE_REQUIRED_FIELDS = "Inserire tutti i campi obbligatori:";
@@ -44,6 +47,10 @@ public class NewArticleView implements View {
 
 	}
 
+	/**
+	 * Method used to add a {@link JPanel} to the {@link #mainPanel}
+	 * @param categoryOfArticle used to select the category fields values
+	 */
 	public void draw(Category categoryOfArticle) {
 
 		mainPanel.add(new JLabel(LABEL_ENTER_THE_REQUIRED_FIELDS));
@@ -104,12 +111,20 @@ public class NewArticleView implements View {
 		return articleFields;
 	}
 
+	/**
+	 * Method used to get the fields values
+	 * @return {@link ArrayList} of
+	 */
 	public ArrayList<String> getFieldsValue() {
 		return articleFieldValueJField.stream()
 				.map(JTextComponent::getText)
 				.collect(Collectors.toCollection(ArrayList::new));
 	}
 
+	/**
+	 * Method used to add a listener
+	 * @param listener {@link ArticleFieldHasChangeListener}
+	 */
 	public void addArticleFieldHasChangeListener(ArticleFieldHasChangeListener listener) {
 		listeners.add(listener);
 	}

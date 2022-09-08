@@ -12,10 +12,18 @@ import com.barattoManager.ui.mvc.tree.article.ArticleTreeView;
 import com.barattoManager.ui.mvc.tree.article.ConfiguratorTreeModel;
 import com.barattoManager.ui.utils.ControllerNames;
 
+/**
+ * Controller that handles the events of the {@link ViewOfferView}
+ */
 public class ViewOfferController implements Controller {
 
 	private final ViewOfferView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param view {@link ViewOfferView} represent the view of the controller
+	 */
 	public ViewOfferController(ViewOfferView view) {
 		this.view = view;
 

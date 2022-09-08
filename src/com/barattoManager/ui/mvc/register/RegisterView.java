@@ -6,6 +6,9 @@ import com.barattoManager.ui.mvc.View;
 
 import javax.swing.*;
 
+/**
+ * View that shows the panel which is used to register
+ */
 public class RegisterView implements View {
 	private JPanel mainPanel;
 	@ActionListenerField
@@ -20,6 +23,10 @@ public class RegisterView implements View {
 		return mainPanel;
 	}
 
+	/**
+	 * Method used to get the username as a {@link String}
+	 * @return username
+	 */
 	public String getUsername() {
 		return usernameField.getText();
 	}

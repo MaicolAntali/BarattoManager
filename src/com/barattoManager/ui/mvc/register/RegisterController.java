@@ -10,17 +10,28 @@ import com.barattoManager.ui.annotations.documentListener.DocumentListenerInstal
 import com.barattoManager.ui.mvc.Controller;
 import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.View;
+import com.barattoManager.ui.mvc.login.LoginModel;
+import com.barattoManager.ui.mvc.login.LoginView;
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.utils.ControllerNames;
 import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 
 import javax.swing.*;
 
+/**
+ * Controller that handle the events of the {@link RegisterView} and update the data in the {@link RegisterModel}
+ */
 public class RegisterController implements Controller {
 
 	private final RegisterModel model;
 	private final RegisterView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param model {@link RegisterModel} represent the model of the controller
+	 * @param view {@link  RegisterView} represent the view of the controller
+	 */
 	public RegisterController(RegisterModel model, RegisterView view) {
 		this.model = model;
 		this.view = view;

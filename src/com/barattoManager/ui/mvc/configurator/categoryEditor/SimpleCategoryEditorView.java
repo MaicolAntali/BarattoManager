@@ -2,6 +2,9 @@ package com.barattoManager.ui.mvc.configurator.categoryEditor;
 
 import javax.swing.*;
 
+/**
+ * View that shows the category editor (this view is only for the Configurator)
+ */
 public class SimpleCategoryEditorView extends CategoryEditorView {
 	private JPanel mainPanel;
 	private JPanel treeContainer;
@@ -10,6 +13,9 @@ public class SimpleCategoryEditorView extends CategoryEditorView {
 	private JButton addSubCategoryButton;
 	private JButton addFieldButton;
 
+	/**
+	 * Constructor of the class
+	 */
 	public SimpleCategoryEditorView() {
 		backToHome.addActionListener(e -> fireActionNotifierListener(e.getActionCommand().replace(" ", "_")));
 		addRootCategoryButton.addActionListener(e -> fireActionNotifierListener(e.getActionCommand().replace(" ", "_")));
