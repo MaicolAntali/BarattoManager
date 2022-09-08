@@ -16,6 +16,9 @@ import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
 
+/**
+ * Action used to add a sub category
+ */
 public class AddSubCategoryAction implements Action {
 
 	private static final String TITLE_CREATION_OF_A_ROOT_CATEGORY = "Creazione di una categoria radice";

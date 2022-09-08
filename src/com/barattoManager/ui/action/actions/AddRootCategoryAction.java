@@ -13,11 +13,19 @@ import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 
 import javax.swing.*;
 
+/**
+ * Action used to add a root category
+ */
 public class AddRootCategoryAction implements Action {
 
 	private static final String TITLE_CREATION_OF_A_ROOT_CATEGORY = "Creazione di una categoria radice";
 	private final JPanel parentPanel;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param parentPanel The {@link JPanel} used to display the dialog
+	 */
 	public AddRootCategoryAction(JPanel parentPanel) {
 		this.parentPanel = parentPanel;
 	}

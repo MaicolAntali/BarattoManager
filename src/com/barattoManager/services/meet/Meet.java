@@ -12,7 +12,6 @@ import java.util.UUID;
 
 public class Meet {
 
-
 	private static final String PRE_CONDITION_CITY_NAME_IS_BLANK = "Pre-condition: City name is blank";
 	private static final String PRE_CONDITION_SQUARE_IS_BLANK = "Pre-condition: Square name is blank";
 	private static final String PRE_CONDITION_DAYS_BEFORE_EXPIRE = "Pre-condition: The days before expire are < 0";

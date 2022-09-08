@@ -24,6 +24,11 @@ public enum ControllerNames {
 
 	private final String controllerName;
 
+	/**
+	 * Constructor of the enum
+	 *
+	 * @param controllerName {@link String} that represent the controller name
+	 */
 	ControllerNames(String controllerName) {
 		this.controllerName = controllerName;
 	}

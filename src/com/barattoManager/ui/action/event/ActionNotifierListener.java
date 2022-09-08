@@ -1,5 +1,8 @@
 package com.barattoManager.ui.action.event;
 
+/**
+ * Interface that define the {@link #notify(String)} method which is used to notify that an action has been executed
+ */
 public interface ActionNotifierListener {
 
 	/**

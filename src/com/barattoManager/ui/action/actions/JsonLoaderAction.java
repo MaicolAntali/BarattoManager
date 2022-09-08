@@ -18,6 +18,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Action used to load a Json file
+ */
 public class JsonLoaderAction implements Action {
 
 	private static final String LOAD_A_FILE_JSON = "Devi caricare un file JSON";
@@ -35,6 +38,11 @@ public class JsonLoaderAction implements Action {
 	private static final String OBLIGATORY = "obbligatorio";
 	private final JPanel parentPanel;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param parentPanel The {@link JPanel} used to display the dialog
+	 */
 	public JsonLoaderAction(JPanel parentPanel) {
 		this.parentPanel = parentPanel;
 	}

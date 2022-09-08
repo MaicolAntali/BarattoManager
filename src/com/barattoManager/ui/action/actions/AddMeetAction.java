@@ -14,10 +14,18 @@ import com.barattoManager.utils.parser.TimeParser;
 
 import javax.swing.*;
 
+/**
+ * Action used to add a meet
+ */
 public class AddMeetAction implements Action {
 	private static final String TITLE_CREATION_OF_NEW_MEET = "Creazione di un nuovo incontro";
 	private final JPanel parentPanel;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param parentPanel The {@link JPanel} used to display the dialog
+	 */
 	public AddMeetAction(JPanel parentPanel) {
 		this.parentPanel = parentPanel;
 	}

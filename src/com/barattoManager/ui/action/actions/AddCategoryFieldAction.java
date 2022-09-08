@@ -16,6 +16,9 @@ import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 import javax.swing.*;
 import javax.swing.tree.TreeNode;
 
+/**
+ * Action used to add a category field
+ */
 public class AddCategoryFieldAction implements Action {
 
 	private static final String MESSAGE_CHOOSE_A_NODE = "Per favore selezionare un nodo.";

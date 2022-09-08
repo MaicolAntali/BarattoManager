@@ -6,6 +6,9 @@ import com.barattoManager.ui.mvc.mainFrame.events.RegisterControllerHandlerFacto
 import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerHandlerFactory;
 import com.barattoManager.ui.utils.ControllerNames;
 
+/**
+ * Action used to register and show a controller
+ */
 public class RegisterShowControllerAction implements Action {
 
 	private final ControllerNames controllerName;
