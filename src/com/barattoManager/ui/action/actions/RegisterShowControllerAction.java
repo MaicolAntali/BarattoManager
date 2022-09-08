@@ -11,6 +11,12 @@ public class RegisterShowControllerAction implements Action {
 	private final ControllerNames controllerName;
 	private final Controller controller;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param controllerName used to register and show a controller
+	 * @param controller     used to register a controller
+	 */
 	public RegisterShowControllerAction(ControllerNames controllerName, Controller controller) {
 		this.controllerName = controllerName;
 		this.controller = controller;

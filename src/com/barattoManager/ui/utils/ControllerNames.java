@@ -1,5 +1,8 @@
 package com.barattoManager.ui.utils;
 
+/**
+ * Enum used to represent the controller names
+ */
 public enum ControllerNames {
 
 	HOMEPAGE("homepage"),

@@ -24,6 +24,12 @@ public class AddSubCategoryAction implements Action {
 	private final CategoryTreeController categoryTreeController;
 	private final JPanel parentPanel;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param categoryTreeController used to get the selected node
+	 * @param parentPanel            The {@link JPanel} used to display the dialog
+	 */
 	public AddSubCategoryAction(CategoryTreeController categoryTreeController, JPanel parentPanel) {
 		this.categoryTreeController = categoryTreeController;
 		this.parentPanel = parentPanel;

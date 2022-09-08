@@ -3,6 +3,9 @@ package com.barattoManager.utils.parser;
 import java.time.DayOfWeek;
 import java.util.HashMap;
 
+/**
+ * Class used to parte a {@link String} into a {@link DayOfWeek} object
+ */
 public class DateParser {
 	private final static HashMap<String, DayOfWeek> dayHashMap = new HashMap<>() {{
 		put("LUNEDI", DayOfWeek.MONDAY);

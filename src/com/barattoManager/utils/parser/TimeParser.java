@@ -2,6 +2,9 @@ package com.barattoManager.utils.parser;
 
 import com.barattoManager.exception.InvalidArgumentException;
 
+/**
+ * Class used to hour time into minutes time
+ */
 public class TimeParser {
 
 	private static final String ERROR_TIME_FORMAT = "L'orario inserito non è valido.\nPer favore rispettare il formato: HH:MM";
