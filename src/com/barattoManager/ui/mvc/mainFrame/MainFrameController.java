@@ -12,7 +12,7 @@ import com.barattoManager.ui.mvc.mainFrame.events.ShowControllerListener;
 import java.util.Objects;
 
 /**
- * Controller that handles the events of the {@link MainFrameView} and update the data in the {@link MainFrameModel}
+ * Controller that handle the events of the {@link MainFrameView} and update the data in the {@link MainFrameModel}
  */
 public class MainFrameController implements Controller, RegisterControllerListener, ShowControllerListener {
 

@@ -16,7 +16,7 @@ import com.barattoManager.ui.mvc.tree.article.StoreTreeModel;
 import com.barattoManager.ui.utils.ControllerNames;
 
 /**
- * Controller that handles the events of the {@link ViewerStoreArticleView}
+ * Controller that handle the events of the {@link ViewerStoreArticleView}
  */
 public class ViewerStoreArticleController implements Controller {
 

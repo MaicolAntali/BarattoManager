@@ -23,7 +23,7 @@ public class MainFrameView extends JPanel implements View {
 
 	/**
 	 * Method used to set the version
-	 * @param versionLabel {@link String}
+	 * @param versionLabel {@link String} to set
 	 */
 	public void setVersion(String versionLabel) {
 		this.versionLabel.setText(versionLabel);
@@ -31,7 +31,7 @@ public class MainFrameView extends JPanel implements View {
 
 	/**
 	 * Method used to update the content panel
-	 * @param panel {@link JPanel}
+	 * @param panel {@link JPanel} which will be added to the content panel
 	 */
 	public void updateContentPanel(JPanel panel) {
 		if (loadedPanel != null)

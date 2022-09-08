@@ -13,7 +13,7 @@ import com.barattoManager.ui.mvc.tree.article.ConfiguratorTreeModel;
 import com.barattoManager.ui.utils.ControllerNames;
 
 /**
- * Controller that handles the events of the {@link ViewOfferView}
+ * Controller that handle the events of the {@link ViewOfferView}
  */
 public class ViewOfferController implements Controller {
 

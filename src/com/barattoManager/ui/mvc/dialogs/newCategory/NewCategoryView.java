@@ -6,6 +6,9 @@ import com.barattoManager.ui.mvc.View;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * View that shows the panel used to create a new category
+ */
 public class NewCategoryView implements View {
 
 	private final JPanel mainPanel;
@@ -15,6 +18,9 @@ public class NewCategoryView implements View {
 	@DocumentListenerField
 	private final JTextField categoryDescriptionField;
 
+	/**
+	 * Constructor of the class
+	 */
 	public NewCategoryView() {
 		mainPanel = new JPanel();
 		categoryNameField = new JTextField(13);
@@ -41,10 +47,18 @@ public class NewCategoryView implements View {
 		return mainPanel;
 	}
 
+	/**
+	 * Method used to get the name of category from a {@link JTextField}
+	 * @return Name of the category as a {@link String}
+	 */
 	public String getCategoryName() {
 		return categoryNameField.getText();
 	}
 
+	/**
+	 * Method used to get the description of category from a {@link JTextField}
+	 * @return Description of the category as a {@link String}
+	 */
 	public String getCategoryDescription() {
 		return categoryDescriptionField.getText();
 	}

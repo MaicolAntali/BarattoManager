@@ -17,7 +17,7 @@ import com.barattoManager.ui.mvc.register.RegisterView;
 import com.barattoManager.ui.utils.ControllerNames;
 
 /**
- * Controller that handles the events of the {@link ConfiguratorHomepageView}
+ * Controller that handle the events of the {@link ConfiguratorHomepageView}
  */
 public class ConfiguratorHomepageController extends GraspController {
 

@@ -13,7 +13,7 @@ import com.barattoManager.ui.mvc.tree.category.CategoryTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
 
 /**
- * Controller that handles the events of the {@link CategoryEditorView}
+ * Controller that handle the events of the {@link CategoryEditorView}
  */
 public class CategoryEditorController extends GraspController {
 

@@ -11,7 +11,7 @@ import com.barattoManager.ui.mvc.tree.meet.MeetTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
 
 /**
- * Controller that handles the events of the {@link MeetEditorView}
+ * Controller that handle the events of the {@link MeetEditorView}
  */
 public class MeetEditorController extends GraspController {
 

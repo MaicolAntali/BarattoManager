@@ -19,7 +19,7 @@ import com.barattoManager.ui.mvc.viewer.yourArticleViewer.ViewerYourArticleView;
 import com.barattoManager.ui.utils.ControllerNames;
 
 /**
- * Controller that handles the events of the {@link ViewerHomepageView}
+ * Controller that handle the events of the {@link ViewerHomepageView}
  */
 public class ViewerHomepageController implements Controller {
 

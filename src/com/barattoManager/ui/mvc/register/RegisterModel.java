@@ -23,8 +23,8 @@ public class RegisterModel implements Model {
 	}
 
 	/**
-	 * Constructor  of the class
-	 * @param isConfigurator {@link RegisterModel} used to define whether the user is a configurator or a viewer
+	 * Constructor of the class
+	 * @param isConfigurator used to define whether the user is a configurator or a viewer
 	 */
 	public RegisterModel(boolean isConfigurator) {
 		this.defaultPassword = AppConfigurator.getInstance().getPasswordSetting("default_pwd");
@@ -33,24 +33,24 @@ public class RegisterModel implements Model {
 	}
 
 	/**
-	 * Method used to get the default password as a {@link String}
-	 * @return defaultPassword
+	 * Method used to get the default password
+	 * @return defaultPassword as a {@link String}
 	 */
 	public String getDefaultPassword() {
 		return defaultPassword;
 	}
 
 	/**
-	 * Method used to get the isConfigurator as a {@link Boolean}
-	 * @return isConfigurator
+	 * Method used to get the isConfigurator
+	 * @return isConfigurator as a {@link Boolean}
 	 */
 	public boolean isConfigurator() {
 		return isConfigurator;
 	}
 
 	/**
-	 * Method used to get the username as a {@link String}
-	 * @return username
+	 * Method used to get the username
+	 * @return username as a {@link String}
 	 */
 	public String getUsername() {
 		return username;
@@ -58,7 +58,7 @@ public class RegisterModel implements Model {
 
 	/**
 	 * Method used to set the username
-	 * @param username {@link String}
+	 * @param username {@link String} to set
 	 */
 	public void setUsername(String username) {
 		this.username = username;

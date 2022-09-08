@@ -13,7 +13,7 @@ import com.barattoManager.ui.mvc.tree.meet.MeetTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
 
 /**
- * Controller that handles the events of the {@link ViewerMeetView}
+ * Controller that handle the events of the {@link ViewerMeetView}
  */
 public class ViewerMeetController implements Controller {
 

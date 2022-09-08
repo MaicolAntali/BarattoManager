@@ -1,5 +1,6 @@
 package com.barattoManager.ui.mvc.mainFrame;
 
+import com.barattoManager.services.category.Category;
 import com.barattoManager.ui.mvc.Controller;
 import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.login.LoginController;
@@ -25,8 +26,8 @@ public class MainFrameModel implements Model {
 	}
 
 	/**
-	 * Method used to get the version as a {@link String}
-	 * @return version
+	 * Method used to get the version
+	 * @return version as a {@link String}
 	 */
 	public String getVersion() {
 		return version;
@@ -46,8 +47,8 @@ public class MainFrameModel implements Model {
 
 	/**
 	 * Method used to get a controller by name
-	 * @param controllerName used to search a controller by name
-	 * @return controller
+	 * @param controllerName used to get a controller by name
+	 * @return An {@link Optional} with the object {@link Controller} otherwise an empty {@link Optional}
 	 */
 	public Optional<Controller> getControllerByName(String controllerName) {
 		return Optional.of(this.controllerHashMap.get(controllerName));

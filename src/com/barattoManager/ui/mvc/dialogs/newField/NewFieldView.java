@@ -7,6 +7,9 @@ import com.barattoManager.ui.mvc.View;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * View that shows the panel used to create a new field
+ */
 public class NewFieldView implements View {
 
 	private static final String LABEL_CREATION_OF_NEW_FIELD = "Creazione di un nuovo campo:";
@@ -19,6 +22,9 @@ public class NewFieldView implements View {
 	@ActionListenerField
 	private final JCheckBox fieldRequired;
 
+	/**
+	 * Constructor of the class
+	 */
 	public NewFieldView() {
 		mainPanel = new JPanel();
 		fieldName = new JTextField(13);
@@ -45,10 +51,18 @@ public class NewFieldView implements View {
 		return mainPanel;
 	}
 
+	/**
+	 * Method used to get the field name from a {@link JTextField}
+	 * @return Name of the field as a {@link String}
+	 */
 	public String getFieldName() {
 		return fieldName.getText();
 	}
 
+	/**
+	 * Method used to get the field requirement from a {@link JCheckBox}
+	 * @return field requirement as a {@link Boolean}
+	 */
 	public boolean getFieldRequired() {
 		return fieldRequired.isSelected();
 	}

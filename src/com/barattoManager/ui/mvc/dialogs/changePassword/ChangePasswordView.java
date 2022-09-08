@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * View that shows the panel which is used to change the password
+ * View that shows the panel used to change the password
  */
 public class ChangePasswordView implements View {
 
@@ -20,7 +20,7 @@ public class ChangePasswordView implements View {
 	private final JPasswordField passwordField;
 
 	/**
-	 * Constructor of {@link ChangePasswordView}
+	 * Constructor of the class
 	 */
 	public ChangePasswordView() {
 		this.mainPanel = new JPanel();
@@ -42,8 +42,8 @@ public class ChangePasswordView implements View {
 	}
 
 	/**
-	 * Method used to get the password
-	 * @return {@link JPasswordField}
+	 * Method used to get the password from a {@link JPasswordField}
+	 * @return password as a {@link String}
 	 */
 	public String getPassword() {
 		return String.valueOf(passwordField.getPassword());

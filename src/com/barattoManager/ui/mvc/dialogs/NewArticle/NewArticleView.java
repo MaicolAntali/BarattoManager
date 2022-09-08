@@ -2,6 +2,7 @@ package com.barattoManager.ui.mvc.dialogs.NewArticle;
 
 import com.barattoManager.services.category.Category;
 import com.barattoManager.services.category.field.Field;
+import com.barattoManager.ui.action.event.ActionNotifierListener;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerField;
 import com.barattoManager.ui.mvc.View;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 /**
- * View that shows the panel used to add a new article
+ * View that shows the panel used to create a new article
  */
 public class NewArticleView implements View {
 
@@ -96,24 +97,24 @@ public class NewArticleView implements View {
 	}
 
 	/**
-	 * Method used to get the article name from the {@link JTextField}
-	 * @return articleNameField as a String
+	 * Method used to get the article name from a {@link JTextField}
+	 * @return articleNameField as a {@link String}
 	 */
 	public String getArticleName() {
 		return articleNameField.getText();
 	}
 
 	/**
-	 * Method used to get
-	 * @return
+	 * Method used to return an {@link ArrayList} that contains the article fields
+	 * @return {@link ArrayList} that contains the article fields
 	 */
 	public ArrayList<Field> getArticleFields() {
 		return articleFields;
 	}
 
 	/**
-	 * Method used to get the fields values
-	 * @return {@link ArrayList} of
+	 * Method used to return an {@link ArrayList} that contains the fields values
+	 * @return {@link ArrayList} that contains the fields values
 	 */
 	public ArrayList<String> getFieldsValue() {
 		return articleFieldValueJField.stream()
@@ -129,6 +130,9 @@ public class NewArticleView implements View {
 		listeners.add(listener);
 	}
 
+	/**
+	 * Method used to fire a {@link ArticleFieldHasChangeListener}
+	 */
 	private void fireArticleFieldHasChangeListener() {
 		listeners.forEach(ArticleFieldHasChangeListener::articleFieldHasChange);
 	}

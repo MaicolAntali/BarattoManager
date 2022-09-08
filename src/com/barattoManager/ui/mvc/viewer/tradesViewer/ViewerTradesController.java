@@ -16,7 +16,7 @@ import com.barattoManager.ui.mvc.tree.trade.TradeTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
 
 /**
- * Controller that handles the events of the {@link ViewerTradesView}
+ * Controller that handle the events of the {@link ViewerTradesView}
  */
 public class ViewerTradesController implements Controller {
 

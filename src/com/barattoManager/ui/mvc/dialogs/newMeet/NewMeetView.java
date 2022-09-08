@@ -2,11 +2,16 @@ package com.barattoManager.ui.mvc.dialogs.newMeet;
 
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerField;
 import com.barattoManager.ui.mvc.View;
+import com.barattoManager.ui.mvc.dialogs.NewArticle.ArticleFieldHasChangeListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * View that shows the panel used create a new meet
+ */
 public class NewMeetView implements View {
 
 	private static final String[] DAYS = {"Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"};
@@ -29,6 +34,9 @@ public class NewMeetView implements View {
 	@DocumentListenerField
 	private final JTextField daysBeforeExpireField;
 
+	/**
+	 * Constructor of the class
+	 */
 	public NewMeetView() {
 		listeners = new ArrayList<>();
 		mainPanel = new JPanel();
@@ -92,30 +100,59 @@ public class NewMeetView implements View {
 		return mainPanel;
 	}
 
+	/**
+	 * Method used to get the city of the meet from a {@link JTextField}
+	 * @return City of the meet as a {@link String}
+	 */
 	public String getCityField() {
 		return cityField.getText();
 	}
 
+	/**
+	 * Method used to get the square of the meet from a {@link JTextField}
+	 * @return square of the meet as a {@link String}
+	 */
 	public String getSquareField() {
 		return squareField.getText();
 	}
 
+	/**
+	 * Method used to get the start time of the meet from a {@link JTextField}
+	 * @return start time of the meet as a {@link String}
+	 */
 	public String getStartTimeField() {
 		return startTimeField.getText();
 	}
 
+	/**
+	 * Method used to get the end time of the meet from a {@link JTextField}
+	 * @return end time of the meet as a {@link String}
+	 */
 	public String getEndTimeField() {
 		return endTimeField.getText();
 	}
 
+	/**
+	 * Method used to get the day before expire of the meet from a {@link JTextField}
+	 * @return day before expire of the meet as a {@link String}
+	 */
 	public String getDaysBeforeExpireField() {
 		return daysBeforeExpireField.getText();
 	}
 
+	/**
+	 * Method used to add a listener
+	 * @param listener {@link DaysCheckboxListener}
+	 */
 	public void addDaysCheckboxListener(DaysCheckboxListener listener) {
 		listeners.add(listener);
 	}
 
+	/**
+	 * Method used to fire a {@link ArticleFieldHasChangeListener}
+	 * @param day that represent the day of the week
+	 * @param selected that represent whether the checkbox is selected or not
+	 */
 	private void fireDaysCheckboxListener(String day, boolean selected) {
 		listeners.forEach(daysCheckboxListener -> daysCheckboxListener.daysUpdate(day, selected));
 	}
