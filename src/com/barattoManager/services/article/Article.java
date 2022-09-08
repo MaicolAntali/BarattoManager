@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
+/**
+ * Class that represent an article object
+ */
 public class Article {
 	private static final String NOT_VALID_FIELDS_ERROR = "Not Valid fields";
 	private static final String FIELDS_HAVE_NOT_BEEN_INITIALIZED_ERROR_DESCRIPTION = "One or more required fields have not been properly initialized";

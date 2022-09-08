@@ -8,6 +8,11 @@ import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
+/**
+ * Class that constructs the {@link MeetManager}<br/>
+ * {@link MeetManager}is declared in the class as a static field, to ensure one instance for the whole project.
+ * It implements {@link Runnable} because it is run in a separated thread
+ */
 public class MeetManagerFactory implements Runnable {
 
 	private static MeetManager MEET_MANAGER;

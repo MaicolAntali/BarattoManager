@@ -2,6 +2,9 @@ package com.barattoManager.services.trade.answer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Class that represent an answer object
+ */
 public class Answer {
 
 	@JsonProperty("user_one")

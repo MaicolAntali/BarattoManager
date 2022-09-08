@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * Class that represent a user object
+ */
 public class User {
 
 	private static final String PRE_CONDITION_USER_USERNAME_IS_BLANK = "Pre-condition: User username is blank";

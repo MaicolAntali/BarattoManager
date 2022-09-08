@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.KeyDeserializer;
 
 import java.io.IOException;
 
+/**
+ * Class used to properly deserialize the field object
+ */
 public class FieldDeserializer extends KeyDeserializer {
 	private static final String CANNOT_READ_THE_JSON_PROPERTY_ERROR = "Cannot read the JSON property";
 

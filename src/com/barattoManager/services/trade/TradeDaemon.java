@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 
+
 public class TradeDaemon extends TimerTask {
 
 	private final ConcurrentHashMap<String, Trade> tradeHashMap;

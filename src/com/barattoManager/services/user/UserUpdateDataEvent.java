@@ -6,6 +6,9 @@ import com.barattoManager.services.event.UpdateDataListener;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * UpdateDataHandler used to notify the listeners that the user manager data structure is changed
+ */
 public class UserUpdateDataEvent implements UpdateDataHandler<String, User> {
 
 	private final ArrayList<UpdateDataListener<String, User>> listeners;

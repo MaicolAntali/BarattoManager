@@ -6,6 +6,9 @@ import com.barattoManager.services.event.UpdateDataListener;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * UpdateDataHandler used to notify the listeners that the meet manager data structure is changed
+ */
 public class MeetUpdateDataEvent implements UpdateDataHandler<String, Meet> {
 
 	private final ArrayList<UpdateDataListener<String, Meet>> listeners;

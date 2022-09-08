@@ -13,6 +13,9 @@ import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.IntStream;
 
+/**
+ * Class that handles and contains the data structure of the meets
+ */
 public class MeetManager {
 
 	private static final String ERROR_INSERT_ALL_FIELDS = "Uno dei valore richiesti è stato lasciato vuoto. Inserire tutti i campi.";

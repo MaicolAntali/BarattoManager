@@ -6,6 +6,9 @@ import com.barattoManager.services.event.UpdateDataListener;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * UpdateDataHandler used to notify the listeners that the category manager data structure is changed
+ */
 public class CategoryUpdateDataEvent implements UpdateDataHandler<String, Category> {
 
 	private final ArrayList<UpdateDataListener<String, Category>> listeners;

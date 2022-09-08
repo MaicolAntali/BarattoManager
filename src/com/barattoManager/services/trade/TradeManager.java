@@ -9,6 +9,9 @@ import java.util.Optional;
 import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Class that handles and contains the data structure of the trades
+ */
 public class TradeManager {
 	private final ConcurrentHashMap<String, Trade> tradeMap;
 	private TradeDaemon tradeDaemon;

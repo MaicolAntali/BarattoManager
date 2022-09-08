@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Class that represent a trade object
+ */
 public class Trade {
 	private static final String PRE_CONDITION_TRADE_END_DATE_TIME_IS_NULL = "Pre_condition: trade end date time is null";
 	private static final String PRE_CONDITION_ARTICLE_ONE_UUID_IS_BLANK = "Pre_condition: Article one UUID is blank";

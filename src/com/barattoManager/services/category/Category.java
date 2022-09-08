@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Class that represent a category object
+ */
 public class Category {
 	private static final String PRE_CONDITION_SUBCATEGORY_ALREADY_EXIST = "Pre-condition: Subcategory already exist in the hashmap.";
 	private static final String PRE_CONDITION_CATEGORY_NAME_IS_BLANK = "Pre-condition: Category name is blank";

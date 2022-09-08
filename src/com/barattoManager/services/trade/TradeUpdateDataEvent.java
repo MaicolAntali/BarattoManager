@@ -6,6 +6,9 @@ import com.barattoManager.services.event.UpdateDataListener;
 import java.util.ArrayList;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * UpdateDataHandler used to notify the listeners that the trade manager data structure is changed
+ */
 public class TradeUpdateDataEvent implements UpdateDataHandler<String, Trade> {
 
 	private final ArrayList<UpdateDataListener<String, Trade>> listeners;
