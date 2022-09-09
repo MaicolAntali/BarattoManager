@@ -15,6 +15,9 @@ import com.barattoManager.ui.mvc.register.RegisterController;
 import com.barattoManager.ui.mvc.register.RegisterModel;
 import com.barattoManager.ui.mvc.register.RegisterView;
 import com.barattoManager.ui.utils.ControllerNames;
+import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
+
+import javax.swing.*;
 
 /**
  * Controller that handle the events of the {@link ConfiguratorHomepageView}
@@ -82,7 +85,13 @@ public class ConfiguratorHomepageController extends GraspController {
 				)
 		);
 		addAction("Caricare_configurazione_JSON", new JsonLoaderAction(view.getMainJPanel()));
-		addAction("info_json_load", () -> System.out.println("INFORMAZIONI JSON"));
+		addAction("info_json_load", () -> new MessageDialogDisplay()
+				.setParentComponent(view.getMainJPanel())
+				.setMessageType(JOptionPane.INFORMATION_MESSAGE)
+				.setTitle("HELP")
+				.setMessage(HELP_MESSAGE)
+				.show()
+		);
 	}
 
 	@Override

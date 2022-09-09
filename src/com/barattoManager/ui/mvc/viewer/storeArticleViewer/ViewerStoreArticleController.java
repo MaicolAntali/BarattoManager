@@ -14,12 +14,17 @@ import com.barattoManager.ui.mvc.tree.article.ArticleTreeController;
 import com.barattoManager.ui.mvc.tree.article.ArticleTreeView;
 import com.barattoManager.ui.mvc.tree.article.StoreTreeModel;
 import com.barattoManager.ui.utils.ControllerNames;
+import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
+
+import javax.swing.*;
 
 /**
  * Controller that handle the events of the {@link ViewerStoreArticleView}
  */
 public class ViewerStoreArticleController implements Controller {
 
+	private static final String HELP_MESSAGE = "Nello store dei articoli puoi visualizzare gli articoli che gli altri utenti hanno messo in baratto " +
+			"\n Per scambiare un tuo articolo con uno di questi puoi cliccare sul menu in alto a sinistra e scegliere l'opzione di scambio.";
 	private final ViewerStoreArticleView view;
 
 	/**
@@ -63,6 +68,11 @@ public class ViewerStoreArticleController implements Controller {
 
 	@ActionListenerFor(sourceField = "questionButton")
 	private void clickOnQuestionButton() {
-		System.out.println("Informazioni");
+		new MessageDialogDisplay()
+				.setParentComponent(view.getMainJPanel())
+				.setMessageType(JOptionPane.INFORMATION_MESSAGE)
+				.setTitle("HELP")
+				.setMessage(HELP_MESSAGE)
+				.show();
 	}
 }

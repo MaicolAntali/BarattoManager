@@ -14,12 +14,20 @@ import com.barattoManager.ui.mvc.tree.article.ArticleTreeController;
 import com.barattoManager.ui.mvc.tree.article.ArticleTreeView;
 import com.barattoManager.ui.mvc.tree.article.YourArticleTreeModel;
 import com.barattoManager.ui.utils.ControllerNames;
+import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
+
+import javax.swing.*;
 
 /**
  * Controller that handle the events of the {@link ViewerYourArticleView}
  */
 public class ViewerYourArticleController implements Controller {
 
+	private static final String HELP_MESSAGE = """
+			In questa pagina puoi visualizzare i tuoi articoli
+			Per effettuare un operazione su un tuo articolo puoi cliccare sul menu in alto al sinistra e scegliere di:
+				 - Aggiungere un nuovo articolo da barattare;
+				 - Cancellare l'offerta di un articolo.""";
 	private final ViewerYourArticleView view;
 
 	/**
@@ -63,6 +71,11 @@ public class ViewerYourArticleController implements Controller {
 
 	@ActionListenerFor(sourceField = "questionButton")
 	private void clickOnQuestionButton() {
-		System.out.println("Informazioni");
+		new MessageDialogDisplay()
+				.setParentComponent(view.getMainJPanel())
+				.setMessageType(JOptionPane.INFORMATION_MESSAGE)
+				.setTitle("HELP")
+				.setMessage(HELP_MESSAGE)
+				.show();
 	}
 }

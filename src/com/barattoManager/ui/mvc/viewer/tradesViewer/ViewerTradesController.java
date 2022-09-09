@@ -14,12 +14,20 @@ import com.barattoManager.ui.mvc.tree.trade.TradeTreeController;
 import com.barattoManager.ui.mvc.tree.trade.TradeTreeModel;
 import com.barattoManager.ui.mvc.tree.trade.TradeTreeView;
 import com.barattoManager.ui.utils.ControllerNames;
+import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
+
+import javax.swing.*;
 
 /**
  * Controller that handle the events of the {@link ViewerTradesView}
  */
 public class ViewerTradesController implements Controller {
 
+	private static final String HELP_MESSAGE = """
+			In questa pagina puoi visualizzare i tuoi scambi
+			Per effettuare un operazione su uno scambio puoi cliccare sul menu in alto al sinistra e scegliere di:
+				 - Accettare una proposta di scambio;
+				 - Accettare e riprogrammare una proposta di scambio.""";
 	private final ViewerTradesView view;
 
 	/**
@@ -64,6 +72,11 @@ public class ViewerTradesController implements Controller {
 
 	@ActionListenerFor(sourceField = "questionButton")
 	private void clickOnQuestionButton() {
-		System.out.println("Informazioni");
+		new MessageDialogDisplay()
+				.setParentComponent(view.getMainJPanel())
+				.setMessageType(JOptionPane.INFORMATION_MESSAGE)
+				.setTitle("HELP")
+				.setMessage(HELP_MESSAGE)
+				.show();
 	}
 }
