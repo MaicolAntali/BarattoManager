@@ -95,7 +95,7 @@ public class MeetManager {
 	 * @throws AlreadyExistException    Is thrown if the meet already exists
 	 * @throws InvalidArgumentException Is thrown if the meet contains illegal values
 	 */
-	public void addNewMeet(String city, String square, ArrayList<String> days, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws InvalidArgumentException, AlreadyExistException  {
+	public void addNewMeet(String city, String square, ArrayList<String> days, int intervalStartTime, int intervalEndTime, int daysBeforeExpire) throws InvalidArgumentException, AlreadyExistException {
 
 		if (days.isEmpty())
 			throw new InvalidArgumentException(ERROR_NO_DAY_SELECTED);
