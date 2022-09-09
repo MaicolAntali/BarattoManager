@@ -22,7 +22,7 @@ import javax.swing.tree.TreeNode;
 public class AddCategoryFieldAction implements Action {
 
 	private static final String MESSAGE_CHOOSE_A_NODE = "Per favore selezionare un nodo.";
-	private static final String TITLE_CREATION_OF_NEW_ROOT_CATEGORY = "Creazione di una categoria radice";
+	private static final String TITLE_CREATION_OF_NEW_ROOT_CATEGORY = "Creazione di una campo";
 	private static final String ERROR = "Errore";
 	private final CategoryTreeController categoryTreeController;
 	private final JPanel parentPanel;
