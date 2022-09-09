@@ -21,7 +21,6 @@ import javax.swing.*;
 public class AcceptRescheduleTradeAction extends TradeBaseAction {
 
 	private static final String TITLE_SELECT_MEET = "Selezione Incontro";
-	private static final String MESSAGE_NO_TRADE_HAS_BEEN_SELECTED = "Non è stato selezionato uno scambio. Riprovare.";
 
 	/**
 	 * Constructor of the class
