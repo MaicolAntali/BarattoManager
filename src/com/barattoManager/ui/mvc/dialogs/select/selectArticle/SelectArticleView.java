@@ -6,10 +6,18 @@ import com.barattoManager.ui.mvc.dialogs.select.SelectView;
 import javax.swing.*;
 import java.util.List;
 
+/**
+ * View used to create the selection an article
+ */
 public class SelectArticleView extends SelectView<Article> {
 
 	public static final String LABEL_SELECT_ARTICLE_TO_EXCHANGE = "Seleziona un articolo da barattare";
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param clazz {@link Class}
+	 */
 	public SelectArticleView(Class<Article> clazz) {
 		super(clazz);
 	}

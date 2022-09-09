@@ -6,6 +6,9 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicComboBoxRenderer;
 import java.awt.*;
 
+/**
+ * Class used to specify the custom renderer for {@link JComboBox}
+ */
 public class ArticleComboBoxRenderer extends BasicComboBoxRenderer {
 
 	@Override
