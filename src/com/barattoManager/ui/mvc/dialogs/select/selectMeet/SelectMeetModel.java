@@ -1,5 +1,6 @@
 package com.barattoManager.ui.mvc.dialogs.select.selectMeet;
 
+import com.barattoManager.exception.NullObjectException;
 import com.barattoManager.services.meet.Meet;
 import com.barattoManager.ui.mvc.Model;
 
@@ -37,7 +38,10 @@ public class SelectMeetModel implements Model {
 	 *
 	 * @return selected {@link Meet}
 	 */
-	public Meet getMeetSelected() {
+	public Meet getMeetSelected() throws NullObjectException {
+		if (meetSelected == null)
+			throw new NullObjectException("Non è stato selezionato un incontro");
+
 		return meetSelected;
 	}
 

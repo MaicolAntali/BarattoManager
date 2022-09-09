@@ -250,17 +250,7 @@ public class Meet {
 				&& getSquare().equalsIgnoreCase(meet.getSquare())
 				&& getDay() == meet.getDay()
 				&& getDateOfMeet().isEqual(meet.getDateOfMeet())
-				&& (
-				(
-						(getStartTime().isBefore(meet.getStartTime()))
-								&& (getEndTime().isAfter(meet.getStartTime()))
-				)
-						||
-						(
-								(getEndTime().isAfter(meet.getEndTime()))
-										&& (getStartTime().isBefore(meet.getEndTime()))
-						)
-		);
+				&& getStartTime().isBefore(meet.getEndTime()) && meet.getStartTime().isBefore(getEndTime());
 	}
 
 	@Override

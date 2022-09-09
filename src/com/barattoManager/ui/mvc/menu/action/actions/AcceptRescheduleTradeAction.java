@@ -1,5 +1,6 @@
 package com.barattoManager.ui.mvc.menu.action.actions;
 
+import com.barattoManager.exception.NullObjectException;
 import com.barattoManager.services.article.Article;
 import com.barattoManager.services.meet.Meet;
 import com.barattoManager.services.meet.MeetManagerFactory;
@@ -60,8 +61,18 @@ public class AcceptRescheduleTradeAction extends TradeBaseAction {
 			MeetManagerFactory.getManager()
 					.unBookMeet(getTrade().get().getMeetUuid());
 
-			MeetManagerFactory.getManager()
-					.bookMeet(selectMeetController.getModel().getMeetSelected().getUuid(), getUser().getUsername());
+			try {
+				MeetManagerFactory.getManager()
+						.bookMeet(selectMeetController.getModel().getMeetSelected().getUuid(), getUser().getUsername());
+			} catch (NullObjectException e) {
+				new MessageDialogDisplay()
+						.setParentComponent(getTreeController().getView().getMainJPanel())
+						.setMessageType(JOptionPane.ERROR_MESSAGE)
+						.setTitle("Errore")
+						.setMessage(e.getMessage())
+						.show();
+				return;
+			}
 
 			changeArticleState(getTrade().get().getArticleOneUuid(), Article.State.IN_TRADE_OFFER);
 			changeArticleState(getTrade().get().getArticleTwoUuid(), Article.State.IN_TRADE_OFFER);

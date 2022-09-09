@@ -1,5 +1,6 @@
 package com.barattoManager.ui.mvc.dialogs.select.selectArticle;
 
+import com.barattoManager.exception.NullObjectException;
 import com.barattoManager.services.article.Article;
 import com.barattoManager.ui.mvc.Model;
 
@@ -37,7 +38,10 @@ public class SelectArticleModel implements Model {
 	 *
 	 * @return selected {@link Article}
 	 */
-	public Article getArticleSelected() {
+	public Article getArticleSelected() throws NullObjectException {
+		if (articleSelected == null)
+			throw new NullObjectException("Non è stato selezionato un articolo");
+
 		return articleSelected;
 	}
 

@@ -1,6 +1,8 @@
 package com.barattoManager.ui.mvc.menu.action.actions;
 
+import com.barattoManager.exception.NullObjectException;
 import com.barattoManager.services.article.ArticleManagerFactory;
+import com.barattoManager.services.category.Category;
 import com.barattoManager.services.category.CategoryManagerFactory;
 import com.barattoManager.services.user.User;
 import com.barattoManager.ui.mvc.dialogs.NewArticle.NewArticleController;
@@ -15,6 +17,7 @@ import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 
 import javax.swing.*;
+import java.util.Optional;
 
 /**
  * BaseAction used to add a new article
@@ -51,9 +54,20 @@ public class NewArticleAction extends BaseAction {
 				.show();
 
 		if (option == JOptionPane.OK_OPTION) {
-			var categorySelected = SelectCategoryController.getCategoryFromCategoryPath(
-					selectCategoryController.getModel().getCategoryNamesSelected()
-			);
+			Optional<Category> categorySelected = null;
+			try {
+				categorySelected = SelectCategoryController.getCategoryFromCategoryPath(
+						selectCategoryController.getModel().getCategoryNamesSelected()
+				);
+			} catch (NullObjectException e) {
+				new MessageDialogDisplay()
+						.setParentComponent(getTreeController().getView().getMainJPanel())
+						.setMessageType(JOptionPane.ERROR_MESSAGE)
+						.setTitle("Errore")
+						.setMessage(e.getMessage())
+						.show();
+				return;
+			}
 
 			if (categorySelected.isEmpty()) {
 				new MessageDialogDisplay()

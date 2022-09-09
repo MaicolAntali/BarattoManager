@@ -1,5 +1,6 @@
 package com.barattoManager.ui.mvc.menu.action.actions;
 
+import com.barattoManager.exception.NullObjectException;
 import com.barattoManager.services.Store;
 import com.barattoManager.services.article.Article;
 import com.barattoManager.services.article.ArticleManagerFactory;
@@ -94,17 +95,36 @@ public class NewTradeAction extends BaseAction {
 					.show();
 
 			if (meetOption == JOptionPane.OK_OPTION) {
-				TradeManagerFactory.getManager().addNewTrade(
-						LocalDateTime.now().plusDays(selectMeetController.getModel().getMeetSelected().getDaysBeforeExpire()),
-						selectArticleController.getModel().getArticleSelected().getUuid(),
-						article.get().getUuid(),
-						selectMeetController.getModel().getMeetSelected().getUuid()
-				);
+				try {
+					TradeManagerFactory.getManager().addNewTrade(
+							LocalDateTime.now().plusDays(selectMeetController.getModel().getMeetSelected().getDaysBeforeExpire()),
+							selectArticleController.getModel().getArticleSelected().getUuid(),
+							article.get().getUuid(),
+							selectMeetController.getModel().getMeetSelected().getUuid()
+					);
+				} catch (NullObjectException e) {
+					new MessageDialogDisplay()
+							.setParentComponent(getTreeController().getView().getMainJPanel())
+							.setMessageType(JOptionPane.ERROR_MESSAGE)
+							.setTitle("Errore")
+							.setMessage(e.getMessage())
+							.show();
+					return;
+				}
 
-				MeetManagerFactory.getManager().bookMeet(
-						selectMeetController.getModel().getMeetSelected().getUuid(),
-						Store.getLoggedUser().getUsername()
-				);
+				try {
+					MeetManagerFactory.getManager().bookMeet(
+							selectMeetController.getModel().getMeetSelected().getUuid(),
+							Store.getLoggedUser().getUsername()
+					);
+				} catch (NullObjectException e) {
+					new MessageDialogDisplay()
+							.setParentComponent(getTreeController().getView().getMainJPanel())
+							.setMessageType(JOptionPane.ERROR_MESSAGE)
+							.setTitle("Errore")
+							.setMessage(e.getMessage())
+							.show();
+				}
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 package com.barattoManager.ui.mvc.dialogs.select.selectCategory;
 
+import com.barattoManager.exception.NullObjectException;
 import com.barattoManager.services.category.Category;
 import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.dialogs.select.selectArticle.SelectArticleController;
@@ -38,7 +39,10 @@ public class SelectCategoryModel implements Model {
 	 *
 	 * @return {@link String} of the selected category name
 	 */
-	public String getCategoryNamesSelected() {
+	public String getCategoryNamesSelected() throws NullObjectException {
+		if (categoryNamesSelected == null)
+			throw new NullObjectException("Non è stato selezionato una categoria");
+
 		return categoryNamesSelected;
 	}
 
