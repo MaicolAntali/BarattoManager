@@ -18,6 +18,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class TradeTreeView extends TreeView<Trade> {
+
+	private static final String MESSAGE_YOU_ARE_WAITING_FOR_A_REPLY = "Stai attendendo risposta";
+	private static final String MESSAGE_YOU_HAVE_TO_REPLY = "Devi rispondere";
+	private static final String EXPIRE_DATE = "Data di validità: %s";
+	private static final String MEET_DATE = "Data dell'incontro: %s";
+	private static final String TIME_OF_MEET = "Orario dell'incontro: %s ~ %s";
+	private static final String UUID = "UUID: %s";
+	private static final String STATE = "Stato: %s";
+	private static final String LOG = "Log";
+
 	@Override
 	protected void drawNodes(List<Trade> list) {
 
@@ -28,7 +38,7 @@ public class TradeTreeView extends TreeView<Trade> {
 			var tradeKey = trade.getTradeStatus() != TradeStatus.IN_PROGRESS
 					? trade.getTradeStatus().toString()
 					: Objects.equals(trade.getAnswer().getWaitingUserAnswer(), Store.getLoggedUser().getUsername())
-					? "Stai attendendo risposta" : "Devi rispondere";
+					? MESSAGE_YOU_ARE_WAITING_FOR_A_REPLY : MESSAGE_YOU_HAVE_TO_REPLY;
 
 
 			if (!nodeMap.containsKey(tradeKey)) {
@@ -63,27 +73,27 @@ public class TradeTreeView extends TreeView<Trade> {
 
 		));
 
-		tradeNode.add(new DefaultMutableTreeNode("Data di validità: %s".formatted(trade.getTradeStartDateTime().format(DateTimeFormatter.ofPattern("hh:mm ~ dd/MM/yyyy")))));
-		tradeNode.add(new DefaultMutableTreeNode("Data dell'incontro: %s".formatted(
+		tradeNode.add(new DefaultMutableTreeNode(EXPIRE_DATE.formatted(trade.getTradeStartDateTime().format(DateTimeFormatter.ofPattern("hh:mm ~ dd/MM/yyyy")))));
+		tradeNode.add(new DefaultMutableTreeNode(MEET_DATE.formatted(
 				meet.getDateOfMeet().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
 		)));
-		tradeNode.add(new DefaultMutableTreeNode("Orario dell'incontro: %s ~ %s".formatted(
+		tradeNode.add(new DefaultMutableTreeNode(TIME_OF_MEET.formatted(
 				meet.getStartTime().format(DateTimeFormatter.ofPattern("hh:mm")),
 				meet.getEndTime().format(DateTimeFormatter.ofPattern("hh:mm"))
 
 		)));
-		tradeNode.add(new DefaultMutableTreeNode("UUID: %s".formatted(trade.getUuid())));
+		tradeNode.add(new DefaultMutableTreeNode(UUID.formatted(trade.getUuid())));
 
 
 		var articleOneNode = new DefaultMutableTreeNode(articleOne.getArticleName());
 		articleOneNode.add(TreeUtils.generateFields(articleOne));
-		articleOneNode.add(new DefaultMutableTreeNode("Stato: %s".formatted(articleOne.getArticleState().toString())));
+		articleOneNode.add(new DefaultMutableTreeNode(STATE.formatted(articleOne.getArticleState().toString())));
 
 		var articleTwoNode = new DefaultMutableTreeNode(articleTwo.getArticleName());
 		articleTwoNode.add(TreeUtils.generateFields(articleTwo));
-		articleTwoNode.add(new DefaultMutableTreeNode("Stato: %s".formatted(articleTwo.getArticleState().toString())));
+		articleTwoNode.add(new DefaultMutableTreeNode(STATE.formatted(articleTwo.getArticleState().toString())));
 
-		var historyNode = new DefaultMutableTreeNode("Log");
+		var historyNode = new DefaultMutableTreeNode(LOG);
 		trade.getHistory()
 				.forEach(history -> historyNode.add(
 						new DefaultMutableTreeNode("%s %s - %s - %s".formatted(

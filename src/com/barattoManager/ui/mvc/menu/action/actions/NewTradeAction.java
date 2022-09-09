@@ -21,9 +21,21 @@ import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 import javax.swing.*;
 import java.time.LocalDateTime;
 
+/**
+ * BaseAction used to add a new trade
+ */
 public class NewTradeAction extends BaseAction {
 
+	private static final String ERROR = "Errore";
+	private static final String MESSAGE_NO_TRADE_HAS_BEEN_SELECTED = "Non è stato selezionato uno scambio";
+	private static final String MESSAGE_YOU_DONT_HAVE_ANY_ARTICLE_TO_EXCHANGE = "Non possiedi nessun articolo che può essere barattato con l'articolo selezionato.";
+	private static final String TITLE_SELECT_ARTICLE = "Selezione Articolo";
 
+	/**
+	 * Constructor of the class
+	 * @param user {@link User} who has to do the action, who has logged in
+	 * @param treeController {@link TreeController}
+	 */
 	public NewTradeAction(User user, TreeController<?> treeController) {
 		super(user, treeController);
 	}
@@ -38,8 +50,8 @@ public class NewTradeAction extends BaseAction {
 			new MessageDialogDisplay()
 					.setParentComponent(getTreeController().getView().getMainJPanel())
 					.setMessageType(JOptionPane.ERROR_MESSAGE)
-					.setTitle("Errore")
-					.setMessage("Non è stato selezionato uno scambio")
+					.setTitle(ERROR)
+					.setMessage(MESSAGE_NO_TRADE_HAS_BEEN_SELECTED)
 					.show();
 			return;
 		}
@@ -51,8 +63,8 @@ public class NewTradeAction extends BaseAction {
 			new MessageDialogDisplay()
 					.setParentComponent(getTreeController().getView().getMainJPanel())
 					.setMessageType(JOptionPane.ERROR_MESSAGE)
-					.setTitle("Errore")
-					.setMessage("Non possiedi nessun articolo che può essere barattato con l'articolo selezionato.")
+					.setTitle(ERROR)
+					.setMessage(MESSAGE_YOU_DONT_HAVE_ANY_ARTICLE_TO_EXCHANGE)
 					.show();
 			return;
 		}
@@ -65,7 +77,7 @@ public class NewTradeAction extends BaseAction {
 		var option = new OptionDialogDisplay()
 				.setParentComponent(getTreeController().getView().getMainJPanel())
 				.setMessage(selectArticleController.getView().getMainJPanel())
-				.setTitle("Selezione Articolo")
+				.setTitle(TITLE_SELECT_ARTICLE)
 				.show();
 
 		if (option == JOptionPane.OK_OPTION) {
@@ -77,7 +89,7 @@ public class NewTradeAction extends BaseAction {
 			var meetOption = new OptionDialogDisplay()
 					.setParentComponent(getTreeController().getView().getMainJPanel())
 					.setMessage(selectMeetController.getView().getMainJPanel())
-					.setTitle("Selezione Incontro")
+					.setTitle(TITLE_SELECT_ARTICLE)
 					.show();
 
 			if (meetOption == JOptionPane.OK_OPTION) {

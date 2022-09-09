@@ -5,8 +5,16 @@ import com.barattoManager.services.user.User;
 import com.barattoManager.ui.mvc.menu.action.TradeBaseAction;
 import com.barattoManager.ui.mvc.tree.TreeController;
 
+/**
+ * TradeBaseAction used to accept a trade
+ */
 public class AcceptTradeAction extends TradeBaseAction {
 
+	/**
+	 * Constructor of the class
+	 * @param user {@link User} who has to do the action, who has logged in
+	 * @param treeController {@link TreeController}
+	 */
 	public AcceptTradeAction(User user, TreeController<?> treeController) {
 		super(user, treeController);
 	}

@@ -134,6 +134,10 @@ public class MeetManager {
 		}
 	}
 
+	/**
+	 * Method used to get the meets
+	 * @return {@link ConcurrentHashMap} of meets
+	 */
 	public ConcurrentHashMap<String, Meet> getMeets() {
 		return meetMap;
 	}

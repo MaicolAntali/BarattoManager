@@ -42,6 +42,7 @@ public class SelectArticleModel implements Model {
 
 	/**
 	 * Method used to set the selected article
+	 * @param articleSelected Selected {@link Article}
 	 */
 	public void setArticleSelected(Article articleSelected) {
 		this.articleSelected = articleSelected;

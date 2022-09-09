@@ -10,7 +10,15 @@ package com.barattoManager.ui.mvc;
  */
 public interface Controller {
 
+	/**
+	 * Method used to get a {@link Model}
+	 * @return  {@link Model}
+	 */
 	Model getModel();
 
+	/**
+	 * Method used to get a {@link View}
+	 * @return  {@link View}
+	 */
 	View getView();
 }

@@ -43,16 +43,28 @@ public class User {
 		this.isConfigurator = isConfigurator;
 	}
 
+	/**
+	 * Method used to get username
+	 * @return {@link String} of username
+	 */
 	@JsonProperty("username")
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * Method used to get the password
+	 * @return {@code byte} array
+	 */
 	@JsonIgnore
 	public byte[] getPassword() {
 		return this.password;
 	}
 
+	/**
+	 * Method used to get true if the {@link User} is a configurator
+	 * @return True if the {@link User} is a configurator
+	 */
 	@JsonProperty("configurator")
 	public boolean isConfigurator() {
 		return isConfigurator;
@@ -62,6 +74,10 @@ public class User {
 		this.password = SHA256.hash(password);
 	}
 
+	/**
+	 * Method used to check if the password is valid
+	 * @return true if is valid
+	 */
 	@JsonIgnore
 	public boolean isPasswordValid() {
 		return !Arrays.equals(this.password, SHA256.hash(AppConfigurator.getInstance().getPasswordSetting("default_pwd")));

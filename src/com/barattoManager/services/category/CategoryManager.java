@@ -48,6 +48,7 @@ public class CategoryManager {
 	 * @param categoryDescription Description of the new category
 	 * @throws AlreadyExistException    Is thrown if the category or fields that are trying to add already exist
 	 * @throws InvalidArgumentException Is thrown if the name or the description is blank
+	 * @throws NullObjectException  Is thrown if the category is empty
 	 */
 	public void addNewMainCategory(String categoryName, String categoryDescription) throws AlreadyExistException, InvalidArgumentException, NullObjectException {
 		nameDescriptionChecker(categoryName, categoryDescription, ERROR_CATEGORY_PARAMS_NOT_VALID);

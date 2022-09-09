@@ -23,6 +23,7 @@ import javax.swing.*;
  */
 public class RegisterController implements Controller {
 
+	private static final String MESSAGE_REGISTRATION_SUCCESSFUL_PSW_DEFAULT = "Registrazione avvenuta con successo.\n\nLo username impostato è: %s\nÈ stata impostata la password di default: %s";
 	private final RegisterModel model;
 	private final RegisterView view;
 
@@ -89,7 +90,7 @@ public class RegisterController implements Controller {
 		new MessageDialogDisplay()
 				.setParentComponent(view.getMainJPanel())
 				.setMessage(
-						"Registrazione avvenuta con successo.\n\nLo username impostato è: %s\nÈ stata impostata la password di default: %s"
+						MESSAGE_REGISTRATION_SUCCESSFUL_PSW_DEFAULT
 								.formatted(model.getUsername(), model.getDefaultPassword()))
 				.show();
 

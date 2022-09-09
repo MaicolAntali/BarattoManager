@@ -8,6 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MeetTreeView extends TreeView<Meet> {
+
+	private static final String DAY_TO_ACCEPT_THE_OFFER = "Giorni per accettare l'offerta: %d";
+	private static final String DAYS = "Giorno: %s";
+	private static final String TIME = "Orario: %s-%s";
+
 	@Override
 	protected void drawNodes(List<Meet> list) {
 
@@ -37,9 +42,9 @@ public class MeetTreeView extends TreeView<Meet> {
 	private void createMeetNode(Meet meet, DefaultMutableTreeNode fatherNode) {
 		var meetNode = new DefaultMutableTreeNode(meet.getSquare());
 
-		meetNode.add(new DefaultMutableTreeNode("Giorno: %s".formatted(meet.getDay().toString())));
-		meetNode.add(new DefaultMutableTreeNode("Orario: %s-%s".formatted(meet.getStartTime(), meet.getEndTime())));
-		meetNode.add(new DefaultMutableTreeNode("Giorni per accettare l'offerta: %d".formatted(meet.getDaysBeforeExpire())));
+		meetNode.add(new DefaultMutableTreeNode(DAYS.formatted(meet.getDay().toString())));
+		meetNode.add(new DefaultMutableTreeNode(TIME.formatted(meet.getStartTime(), meet.getEndTime())));
+		meetNode.add(new DefaultMutableTreeNode(DAY_TO_ACCEPT_THE_OFFER.formatted(meet.getDaysBeforeExpire())));
 
 		fatherNode.add(meetNode);
 	}

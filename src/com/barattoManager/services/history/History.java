@@ -6,6 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * Record to represent the history
+ * @param dateTime {@link LocalDateTime}
+ * @param name Name of the history
+ * @param error Error of the history
+ * @param description description of the history
+ */
 public record History(
 		@JsonProperty("date_time") LocalDateTime dateTime,
 		@JsonProperty("name") @JsonInclude(JsonInclude.Include.NON_ABSENT) Optional<String> name,

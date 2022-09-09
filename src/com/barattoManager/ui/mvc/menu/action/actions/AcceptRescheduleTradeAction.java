@@ -14,8 +14,19 @@ import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 
 import javax.swing.*;
 
+/**
+ * TradeBaseAction used to accept and reschedule a trade
+ */
 public class AcceptRescheduleTradeAction extends TradeBaseAction {
 
+	private static final String TITLE_SELECT_MEET = "Selezione Incontro";
+	private static final String MESSAGE_NO_TRADE_HAS_BEEN_SELECTED = "Non è stato selezionato uno scambio. Riprovare.";
+
+	/**
+	 * Constructor of the class
+	 * @param user {@link User} who has to do the action, who has logged in
+	 * @param treeController {@link TreeController}
+	 */
 	public AcceptRescheduleTradeAction(User user, TreeController<?> treeController) {
 		super(user, treeController);
 	}
@@ -30,7 +41,7 @@ public class AcceptRescheduleTradeAction extends TradeBaseAction {
 		var option = new OptionDialogDisplay()
 				.setParentComponent(getTreeController().getView().getMainJPanel())
 				.setMessage(selectMeetController.getView().getMainJPanel())
-				.setTitle("Selezione Incontro")
+				.setTitle(TITLE_SELECT_MEET)
 				.show();
 
 		if (option == JOptionPane.OK_OPTION) {
@@ -40,7 +51,7 @@ public class AcceptRescheduleTradeAction extends TradeBaseAction {
 						.setParentComponent(getTreeController().getView().getMainJPanel())
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
 						.setTitle("Errore")
-						.setMessage("Non è stato selezionato uno scambio. Riprovare.")
+						.setMessage(MESSAGE_NO_TRADE_HAS_BEEN_SELECTED)
 						.show();
 				return;
 			}

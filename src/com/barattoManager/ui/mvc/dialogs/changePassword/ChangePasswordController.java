@@ -38,7 +38,7 @@ public class ChangePasswordController implements Controller {
 	}
 
 	@DocumentListenerFor(sourceField = "passwordField")
-	public void passwordHasChange() {
+	private void passwordHasChange() {
 		model.setPassword(view.getPassword());
 	}
 

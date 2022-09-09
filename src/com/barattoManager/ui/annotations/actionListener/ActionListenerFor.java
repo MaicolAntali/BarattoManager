@@ -11,8 +11,8 @@ import java.lang.annotation.*;
 public @interface ActionListenerFor {
 
 	/**
-	 * @return Name of field where the action listener runtime will be added <br>
-	 * The field must be marked with the {@link ActionListenerField} annotation
+	 * Name of field where the action listener runtime will be added
+	 * @return {@link String} name of the field
 	 */
 	String sourceField();
 

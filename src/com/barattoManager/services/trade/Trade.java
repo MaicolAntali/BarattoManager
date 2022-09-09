@@ -224,6 +224,9 @@ public class Trade {
 		TradeManagerFactory.getManager().saveData();
 	}
 
+	/**
+	 * Method used to close trade
+	 */
 	public void closeTrade() {
 		this.tradeStatus = TradeStatus.CLOSED;
 		getAnswer().setWaitingUserAnswer(null);

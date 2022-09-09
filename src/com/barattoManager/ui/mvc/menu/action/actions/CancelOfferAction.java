@@ -10,6 +10,10 @@ import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 
 import javax.swing.*;
 
+/**
+ * BaseAction used to cancel an offer
+ *
+ */
 public class CancelOfferAction extends BaseAction {
 
 
@@ -18,7 +22,13 @@ public class CancelOfferAction extends BaseAction {
 	private static final String TITLE_CANCEL_OFFER = "Cancella Offerta";
 	private static final String ERROR_STATE_IS_ALREADY_CANCELED = "Lo stato di questo articolo è gia: \"Offerta Cancellata\"";
 	private static final String ERROR_IS_NOT_POSSIBILE_TO_CHANGE_FROM_CANCEL_OFFER = "Non è possibile cancellare un offerta nello stato: %s";
+	private static final String ERROR = "Errore";
 
+	/**
+	 * Constructor of the class
+	 * @param user {@link User} who has to do the action, who has logged in
+	 * @param treeController {@link TreeController}
+	 */
 	public CancelOfferAction(User user, TreeController<?> treeController) {
 		super(user, treeController);
 	}
@@ -37,7 +47,7 @@ public class CancelOfferAction extends BaseAction {
 			new MessageDialogDisplay()
 					.setParentComponent(getTreeController().getView().getMainJPanel())
 					.setMessageType(JOptionPane.ERROR_MESSAGE)
-					.setTitle("Errore")
+					.setTitle(ERROR)
 					.setMessage(MESSAGE_NO_ARTICLE_HAS_BEEN_CHOSEN)
 					.show();
 			return;
@@ -55,7 +65,7 @@ public class CancelOfferAction extends BaseAction {
 				new MessageDialogDisplay()
 						.setParentComponent(getTreeController().getView().getMainJPanel())
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
+						.setTitle(ERROR)
 						.setMessage(ERROR_STATE_IS_ALREADY_CANCELED)
 						.show();
 				return;
@@ -65,7 +75,7 @@ public class CancelOfferAction extends BaseAction {
 				new MessageDialogDisplay()
 						.setParentComponent(getTreeController().getView().getMainJPanel())
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
+						.setTitle(ERROR)
 						.setMessage(ERROR_IS_NOT_POSSIBILE_TO_CHANGE_FROM_CANCEL_OFFER.formatted(article.get().getArticleState().toString()))
 						.show();
 				return;

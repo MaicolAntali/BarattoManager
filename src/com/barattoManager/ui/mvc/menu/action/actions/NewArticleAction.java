@@ -16,8 +16,21 @@ import com.barattoManager.ui.utils.optionDialog.OptionDialogDisplay;
 
 import javax.swing.*;
 
+/**
+ * BaseAction used to add a new article
+ */
 public class NewArticleAction extends BaseAction {
 
+	private static final String TITLE_SELECT_CATEGORY = "Selezione Categoria";
+	private static final String ERROR = "Errore";
+	private static final String MESSAGE_NO_CATEGORY_HAS_BEEN_SELECTED = "Non è stata seleziona nessuna categoria";
+	private static final String MESSAGE_NAME_OF_ARTICLE_IS_EMPTY = "Il nome dell'articolo è vuoto.";
+
+	/**
+	 * Constructor of the class
+	 * @param user {@link User} who has to do the action, who has logged in
+	 * @param treeController {@link TreeController}
+	 */
 	public NewArticleAction(User user, TreeController<?> treeController) {
 		super(user, treeController);
 	}
@@ -33,7 +46,7 @@ public class NewArticleAction extends BaseAction {
 		var option = new OptionDialogDisplay()
 				.setParentComponent(getTreeController().getView().getMainJPanel())
 				.setMessage(selectCategoryController.getView().getMainJPanel())
-				.setTitle("Selezione Categoria")
+				.setTitle(TITLE_SELECT_CATEGORY)
 				.show();
 
 		if (option == JOptionPane.OK_OPTION) {
@@ -45,8 +58,8 @@ public class NewArticleAction extends BaseAction {
 				new MessageDialogDisplay()
 						.setParentComponent(getTreeController().getView().getMainJPanel())
 						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
-						.setMessage("Non è stata seleziona nessuna categoria")
+						.setTitle(ERROR)
+						.setMessage(MESSAGE_NO_CATEGORY_HAS_BEEN_SELECTED)
 						.show();
 				return;
 			}
@@ -61,7 +74,7 @@ public class NewArticleAction extends BaseAction {
 			var articleOption = new OptionDialogDisplay()
 					.setParentComponent(getTreeController().getView().getMainJPanel())
 					.setMessage(newArticleController.getView().getMainJPanel())
-					.setTitle("Selezione Categoria")
+					.setTitle(TITLE_SELECT_CATEGORY)
 					.show();
 
 			if (articleOption == JOptionPane.OK_OPTION) {
@@ -70,8 +83,8 @@ public class NewArticleAction extends BaseAction {
 					new MessageDialogDisplay()
 							.setParentComponent(getTreeController().getView().getMainJPanel())
 							.setMessageType(JOptionPane.ERROR_MESSAGE)
-							.setTitle("Errore")
-							.setMessage("Il nome dell'articolo è vuoto.")
+							.setTitle(ERROR)
+							.setMessage(MESSAGE_NAME_OF_ARTICLE_IS_EMPTY)
 							.show();
 					return;
 				}
@@ -84,7 +97,6 @@ public class NewArticleAction extends BaseAction {
 								newArticleController.getModel().getArticleFields(),
 								newArticleController.getModel().getArticleFieldValues()
 						);
-
 			}
 		}
 	}

@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class SelectArticleView extends SelectView<Article> {
 
-	public static final String LABEL_SELECT_ARTICLE_TO_EXCHANGE = "Seleziona un articolo da barattare";
+	private static final String LABEL_SELECT_ARTICLE_TO_EXCHANGE = "Seleziona un articolo da barattare";
 
 	/**
 	 * Constructor of the class

@@ -17,8 +17,15 @@ import com.barattoManager.ui.utils.ControllerNames;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Main class
+ */
 public class BarattoManager {
 
+	/**
+	 * Main method
+	 * @param args no args
+	 */
 	public static void main(String[] args) {
 
 		new Thread(new UserManagerFactory()).start();

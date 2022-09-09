@@ -7,5 +7,9 @@ import com.barattoManager.ui.mvc.Controller;
  */
 public interface ShowControllerListener {
 
+	/**
+	 * Method used to show a controller
+	 * @param controllerName {@link String} controller name
+	 */
 	void show(String controllerName);
 }
