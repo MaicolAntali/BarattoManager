@@ -48,26 +48,28 @@ public class AcceptRescheduleTradeAction extends TradeBaseAction {
 
 		if (option == JOptionPane.OK_OPTION) {
 
-			MeetManagerFactory.getManager()
-					.unBookMeet(getTrade().get().getMeetUuid());
-
-			try {
+			if (getTrade().isPresent()) {
 				MeetManagerFactory.getManager()
-						.bookMeet(selectMeetController.getModel().getMeetSelected().getUuid(), getUser().getUsername());
-			} catch (NullObjectException e) {
-				new MessageDialogDisplay()
-						.setParentComponent(getTreeController().getView().getMainJPanel())
-						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
-						.setMessage(e.getMessage())
-						.show();
-				return;
+						.unBookMeet(getTrade().get().getMeetUuid());
+
+				try {
+					MeetManagerFactory.getManager()
+							.bookMeet(selectMeetController.getModel().getMeetSelected().getUuid(), getUser().getUsername());
+				} catch (NullObjectException e) {
+					new MessageDialogDisplay()
+							.setParentComponent(getTreeController().getView().getMainJPanel())
+							.setMessageType(JOptionPane.ERROR_MESSAGE)
+							.setTitle("Errore")
+							.setMessage(e.getMessage())
+							.show();
+					return;
+				}
+
+				changeArticleState(getTrade().get().getArticleOneUuid(), Article.State.IN_TRADE_OFFER);
+				changeArticleState(getTrade().get().getArticleTwoUuid(), Article.State.IN_TRADE_OFFER);
+
+				getTrade().get().rescheduleTrade();
 			}
-
-			changeArticleState(getTrade().get().getArticleOneUuid(), Article.State.IN_TRADE_OFFER);
-			changeArticleState(getTrade().get().getArticleTwoUuid(), Article.State.IN_TRADE_OFFER);
-
-			getTrade().get().rescheduleTrade();
 		}
 	}
 }
