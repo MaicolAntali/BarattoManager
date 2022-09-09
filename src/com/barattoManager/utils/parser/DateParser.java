@@ -10,8 +10,8 @@ public class DateParser {
 	private final static HashMap<String, DayOfWeek> dayHashMap = new HashMap<>() {{
 		put("LUNEDI", DayOfWeek.MONDAY);
 		put("MARTEDI", DayOfWeek.TUESDAY);
-		put("MERCOLEDI", DayOfWeek.THURSDAY);
-		put("GIOVEDI", DayOfWeek.WEDNESDAY);
+		put("MERCOLEDI", DayOfWeek.WEDNESDAY);
+		put("GIOVEDI", DayOfWeek.THURSDAY);
 		put("VENERDI", DayOfWeek.FRIDAY);
 		put("SABATO", DayOfWeek.SATURDAY);
 		put("DOMENICA", DayOfWeek.SUNDAY);

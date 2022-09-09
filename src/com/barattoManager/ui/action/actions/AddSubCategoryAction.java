@@ -21,7 +21,7 @@ import javax.swing.tree.TreeNode;
  */
 public class AddSubCategoryAction implements Action {
 
-	private static final String TITLE_CREATION_OF_A_ROOT_CATEGORY = "Creazione di una categoria radice";
+	private static final String TITLE_CREATION_OF_A_ROOT_CATEGORY = "Creazione di una sotto-categoria radice";
 	private static final String MESSAGE_CHOOSE_A_VALID_NODE = "Per favore selezionare un nodo valido.";
 	private static final String ERROR = "Errore";
 	private final CategoryTreeController categoryTreeController;
