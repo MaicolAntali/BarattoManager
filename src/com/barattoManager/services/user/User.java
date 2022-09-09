@@ -112,6 +112,6 @@ public class User {
 	 * @return {@link Boolean}
 	 */
 	public static boolean isDefaultPassword(String password) {
-		return Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
+		return Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_pwd")) || password.isBlank();
 	}
 }
