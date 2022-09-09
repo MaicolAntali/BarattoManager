@@ -1,7 +1,6 @@
 package com.barattoManager.services.trade;
 
 import com.barattoManager.services.json.JsonHandler;
-import com.barattoManager.services.meet.MeetManager;
 import com.barattoManager.utils.AppConfigurator;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -17,8 +16,10 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 public class TradeManagerFactory implements Runnable {
 
 	private static TradeManager TRADE_MANAGER;
+
 	/**
 	 * Method used to get the trade manager
+	 *
 	 * @return TRADE_MANAGER {@link TradeManager}
 	 */
 	public static TradeManager getManager() {

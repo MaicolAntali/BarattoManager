@@ -21,6 +21,7 @@ public class ViewerMeetView implements View {
 
 	/**
 	 * Method used to set the treePanel
+	 *
 	 * @param tree {@link JPanel}
 	 */
 	public void setTreePanel(JPanel tree) {

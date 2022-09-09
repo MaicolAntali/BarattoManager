@@ -11,6 +11,7 @@ public interface View {
 
 	/**
 	 * Method used to get a {@link JPanel}
+	 *
 	 * @return {@link JPanel}
 	 */
 	JPanel getMainJPanel();

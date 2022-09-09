@@ -1,7 +1,6 @@
 package com.barattoManager.ui.mvc.register;
 
 import com.barattoManager.ui.mvc.Model;
-import com.barattoManager.ui.mvc.login.LoginController;
 import com.barattoManager.utils.AppConfigurator;
 
 /**
@@ -24,6 +23,7 @@ public class RegisterModel implements Model {
 
 	/**
 	 * Constructor of the class
+	 *
 	 * @param isConfigurator used to define whether the user is a configurator or a viewer
 	 */
 	public RegisterModel(boolean isConfigurator) {
@@ -34,6 +34,7 @@ public class RegisterModel implements Model {
 
 	/**
 	 * Method used to get the default password
+	 *
 	 * @return defaultPassword as a {@link String}
 	 */
 	public String getDefaultPassword() {
@@ -42,6 +43,7 @@ public class RegisterModel implements Model {
 
 	/**
 	 * Method used to get the isConfigurator
+	 *
 	 * @return isConfigurator as a {@link Boolean}
 	 */
 	public boolean isConfigurator() {
@@ -50,6 +52,7 @@ public class RegisterModel implements Model {
 
 	/**
 	 * Method used to get the username
+	 *
 	 * @return username as a {@link String}
 	 */
 	public String getUsername() {
@@ -58,6 +61,7 @@ public class RegisterModel implements Model {
 
 	/**
 	 * Method used to set the username
+	 *
 	 * @param username {@link String} to set
 	 */
 	public void setUsername(String username) {

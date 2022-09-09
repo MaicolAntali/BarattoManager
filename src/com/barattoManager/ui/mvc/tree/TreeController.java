@@ -7,6 +7,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  * Generic abstract class that represent a tree controller
+ *
  * @param <T> The type of {@link TreeModel} and {@link TreeView}
  */
 public abstract class TreeController<T> extends GraspController implements ModelDataHasChangeListener {
@@ -16,8 +17,9 @@ public abstract class TreeController<T> extends GraspController implements Model
 
 	/**
 	 * Constructor of the class
+	 *
 	 * @param model {@link TreeModel}
-	 * @param view {@link TreeView}
+	 * @param view  {@link TreeView}
 	 */
 	protected TreeController(TreeModel<T> model, TreeView<T> view) {
 		this.model = model;

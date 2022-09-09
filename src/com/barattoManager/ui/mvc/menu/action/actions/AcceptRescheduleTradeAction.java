@@ -24,7 +24,8 @@ public class AcceptRescheduleTradeAction extends TradeBaseAction {
 
 	/**
 	 * Constructor of the class
-	 * @param user {@link User} who has to do the action, who has logged in
+	 *
+	 * @param user           {@link User} who has to do the action, who has logged in
 	 * @param treeController {@link TreeController}
 	 */
 	public AcceptRescheduleTradeAction(User user, TreeController<?> treeController) {

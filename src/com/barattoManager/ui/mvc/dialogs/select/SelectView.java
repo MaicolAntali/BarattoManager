@@ -2,7 +2,6 @@ package com.barattoManager.ui.mvc.dialogs.select;
 
 import com.barattoManager.ui.action.event.ActionNotifierHandler;
 import com.barattoManager.ui.mvc.View;
-import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,6 +35,7 @@ public abstract class SelectView<T> extends ActionNotifierHandler implements Vie
 
 	/**
 	 * Method used to draw a view
+	 *
 	 * @param data {@link List} used to draw the view
 	 */
 	public abstract void draw(List<T> data);
@@ -47,6 +47,7 @@ public abstract class SelectView<T> extends ActionNotifierHandler implements Vie
 
 	/**
 	 * Method used to get a selected object
+	 *
 	 * @return selected object
 	 */
 	public T getSelectedObject() {
@@ -55,6 +56,7 @@ public abstract class SelectView<T> extends ActionNotifierHandler implements Vie
 
 	/**
 	 * Method used to get a {@link JComboBox}
+	 *
 	 * @return {@link JComboBox}
 	 */
 	public JComboBox<T> getComboBox() {

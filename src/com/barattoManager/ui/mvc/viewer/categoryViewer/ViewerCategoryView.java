@@ -6,8 +6,8 @@ import com.barattoManager.ui.mvc.View;
 import javax.swing.*;
 
 /**
-* View that shows the category (this view is only for the Viewer)
-*/
+ * View that shows the category (this view is only for the Viewer)
+ */
 public class ViewerCategoryView implements View {
 	private JPanel mainPanel;
 	@ActionListenerField
@@ -21,6 +21,7 @@ public class ViewerCategoryView implements View {
 
 	/**
 	 * Method used to set the treePanel
+	 *
 	 * @param tree {@link JPanel}
 	 */
 	public void setTreePanel(JPanel tree) {

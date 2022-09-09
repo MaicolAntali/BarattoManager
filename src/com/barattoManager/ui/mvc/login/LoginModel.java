@@ -19,6 +19,7 @@ public class LoginModel implements Model {
 
 	/**
 	 * Method used to get the username
+	 *
 	 * @return username as a {@link String}
 	 */
 	public String getUsername() {
@@ -27,6 +28,7 @@ public class LoginModel implements Model {
 
 	/**
 	 * Method used to get the password
+	 *
 	 * @return password as a {@link String}
 	 */
 	public String getPassword() {
@@ -35,6 +37,7 @@ public class LoginModel implements Model {
 
 	/**
 	 * Method used to set the username
+	 *
 	 * @param username {@link String} to set
 	 */
 	public void setUsername(String username) {
@@ -43,6 +46,7 @@ public class LoginModel implements Model {
 
 	/**
 	 * Method used to set the password
+	 *
 	 * @param password {@link String} to set
 	 */
 	public void setPassword(String password) {

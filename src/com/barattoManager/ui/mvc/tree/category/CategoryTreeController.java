@@ -3,8 +3,6 @@ package com.barattoManager.ui.mvc.tree.category;
 import com.barattoManager.services.category.Category;
 import com.barattoManager.services.category.CategoryUpdateDataEventFactory;
 import com.barattoManager.ui.mvc.tree.TreeController;
-import com.barattoManager.ui.mvc.tree.TreeModel;
-import com.barattoManager.ui.mvc.tree.article.ArticleTreeView;
 import com.barattoManager.ui.mvc.tree.event.ModelDataHasChangeListener;
 
 /**
@@ -16,7 +14,7 @@ public class CategoryTreeController extends TreeController<Category> implements 
 	 * Constructor of the class
 	 *
 	 * @param model {@link CategoryTreeModel} represent the model of the controller
-	 * @param view {@link  CategoryTreeView} represent the view of the controller
+	 * @param view  {@link  CategoryTreeView} represent the view of the controller
 	 */
 	public CategoryTreeController(CategoryTreeModel model, CategoryTreeView view) {
 		super(model, view);

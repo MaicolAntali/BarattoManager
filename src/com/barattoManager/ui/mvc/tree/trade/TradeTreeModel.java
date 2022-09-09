@@ -4,7 +4,6 @@ import com.barattoManager.services.Store;
 import com.barattoManager.services.article.ArticleManagerFactory;
 import com.barattoManager.services.trade.Trade;
 import com.barattoManager.ui.mvc.tree.TreeModel;
-import com.barattoManager.ui.mvc.tree.category.CategoryTreeController;
 
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +16,7 @@ public class TradeTreeModel extends TreeModel<Trade> {
 
 	/**
 	 * Constructor of the class
+	 *
 	 * @param data {@link List}
 	 */
 	public TradeTreeModel(List<Trade> data) {

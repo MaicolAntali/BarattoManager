@@ -6,8 +6,6 @@ import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.Controller;
 import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.View;
-import com.barattoManager.ui.mvc.dialogs.select.SelectView;
-import com.barattoManager.ui.mvc.dialogs.select.selectArticle.SelectArticleModel;
 import com.barattoManager.ui.mvc.menu.action.actions.NewTradeAction;
 
 /**
@@ -22,7 +20,7 @@ public class StoreArticleMenuController implements Controller {
 	 * Constructor of the class
 	 *
 	 * @param model {@link StoreArticleMenuModel} represent the model of the controller
-	 * @param view {@link StoreArticleMenuView} represent the view of the controller
+	 * @param view  {@link StoreArticleMenuView} represent the view of the controller
 	 */
 	public StoreArticleMenuController(StoreArticleMenuModel model, StoreArticleMenuView view) {
 		this.model = model;

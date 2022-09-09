@@ -1,8 +1,5 @@
 package com.barattoManager.ui.annotations.documentListener;
 
-import com.barattoManager.ui.annotations.actionListener.ActionListenerField;
-import com.barattoManager.ui.annotations.actionListener.ActionListenerFor;
-
 import javax.swing.event.DocumentListener;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
@@ -10,7 +7,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- *Class used to add action listener by searching all the methods with {@link DocumentListenerFor} annotation
+ * Class used to add action listener by searching all the methods with {@link DocumentListenerFor} annotation
  */
 public class DocumentListenerInstaller {
 
@@ -18,7 +15,7 @@ public class DocumentListenerInstaller {
 	 * Method that process all the {@link DocumentListenerFor} in the in the sourceMethodsObj class
 	 *
 	 * @param sourceMethodsObj {@link Object} of which the methods may have {@link DocumentListenerFor} annotations
-	 * @param sourceFieldsObj {@link Object} of which the methods may have {@link DocumentListenerField} annotations
+	 * @param sourceFieldsObj  {@link Object} of which the methods may have {@link DocumentListenerField} annotations
 	 */
 	public static void processAnnotations(Object sourceMethodsObj, Object sourceFieldsObj) {
 		try {

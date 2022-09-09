@@ -23,8 +23,9 @@ public abstract class GraspController implements Controller, ActionNotifierListe
 
 	/**
 	 * Method used to add an {@link Action} to the {@link HashMap}
+	 *
 	 * @param actionName {@link String} Key of the {@link HashMap}
-	 * @param action {@link Action} Value of the {@link HashMap}
+	 * @param action     {@link Action} Value of the {@link HashMap}
 	 */
 	public void addAction(String actionName, Action action) {
 		actionHashMap.put(actionName, action);

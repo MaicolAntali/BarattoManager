@@ -33,7 +33,8 @@ public class NewTradeAction extends BaseAction {
 
 	/**
 	 * Constructor of the class
-	 * @param user {@link User} who has to do the action, who has logged in
+	 *
+	 * @param user           {@link User} who has to do the action, who has logged in
 	 * @param treeController {@link TreeController}
 	 */
 	public NewTradeAction(User user, TreeController<?> treeController) {

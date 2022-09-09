@@ -1,7 +1,5 @@
 package com.barattoManager.ui.mvc.mainFrame.events;
 
-import com.barattoManager.ui.mvc.Controller;
-
 import java.util.ArrayList;
 
 /**

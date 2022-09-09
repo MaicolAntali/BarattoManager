@@ -14,6 +14,7 @@ public class YourArticleTreeModel extends TreeModel<Article> {
 
 	/**
 	 * Constructor of the class
+	 *
 	 * @param articles {@link List}
 	 */
 	public YourArticleTreeModel(List<Article> articles) {

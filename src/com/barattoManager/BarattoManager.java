@@ -24,6 +24,7 @@ public class BarattoManager {
 
 	/**
 	 * Main method
+	 *
 	 * @param args no args
 	 */
 	public static void main(String[] args) {

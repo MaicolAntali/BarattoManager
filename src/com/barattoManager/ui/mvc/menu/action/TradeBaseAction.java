@@ -26,7 +26,8 @@ public abstract class TradeBaseAction extends BaseAction {
 
 	/**
 	 * Constructor of the class
-	 * @param user {@link User} who has to do the action, who has logged in
+	 *
+	 * @param user           {@link User} who has to do the action, who has logged in
 	 * @param treeController {@link TreeController}
 	 */
 	public TradeBaseAction(User user, TreeController<?> treeController) {
@@ -35,6 +36,7 @@ public abstract class TradeBaseAction extends BaseAction {
 
 	/**
 	 * Method used get an {@link Optional} of {@link Trade}
+	 *
 	 * @return {@link Optional} of {@link Trade}
 	 */
 	public Optional<Trade> getTrade() {
@@ -77,8 +79,9 @@ public abstract class TradeBaseAction extends BaseAction {
 
 	/**
 	 * Method used to change an article state
+	 *
 	 * @param articleUuid {@link Article} UUID
-	 * @param state new {@link Article} {@link Article.State}
+	 * @param state       new {@link Article} {@link Article.State}
 	 */
 	public void changeArticleState(String articleUuid, Article.State state) {
 		try {

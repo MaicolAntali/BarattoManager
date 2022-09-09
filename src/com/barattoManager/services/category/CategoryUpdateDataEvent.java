@@ -1,6 +1,5 @@
 package com.barattoManager.services.category;
 
-import com.barattoManager.services.article.ArticleUpdateDataEvent;
 import com.barattoManager.services.event.UpdateDataHandler;
 import com.barattoManager.services.event.UpdateDataListener;
 
@@ -13,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CategoryUpdateDataEvent implements UpdateDataHandler<String, Category> {
 
 	private final ArrayList<UpdateDataListener<String, Category>> listeners;
+
 	/**
 	 * Constructor of {@link CategoryUpdateDataEvent}
 	 */

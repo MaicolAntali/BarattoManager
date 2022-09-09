@@ -3,7 +3,6 @@ package com.barattoManager.ui.mvc.dialogs.NewArticle;
 import com.barattoManager.services.category.Category;
 import com.barattoManager.services.category.field.Field;
 import com.barattoManager.ui.mvc.Model;
-import com.barattoManager.ui.mvc.login.LoginController;
 
 import java.util.ArrayList;
 
@@ -28,6 +27,7 @@ public class NewArticleModel implements Model {
 
 	/**
 	 * Method used to get an article category as a {@link Category}
+	 *
 	 * @return article category
 	 */
 	public Category getArticleCategory() {
@@ -36,6 +36,7 @@ public class NewArticleModel implements Model {
 
 	/**
 	 * Method used to get an article name as a {@link String}
+	 *
 	 * @return article name
 	 */
 	public String getArticleName() {
@@ -44,6 +45,7 @@ public class NewArticleModel implements Model {
 
 	/**
 	 * Method used to set an article name as a {@link String}
+	 *
 	 * @param articleName {@link String} to set
 	 */
 	public void setArticleName(String articleName) {
@@ -52,6 +54,7 @@ public class NewArticleModel implements Model {
 
 	/**
 	 * Method used to return an {@link ArrayList} that contains the article fields
+	 *
 	 * @return {@link ArrayList} that contains the article fields
 	 */
 	public ArrayList<Field> getArticleFields() {
@@ -60,6 +63,7 @@ public class NewArticleModel implements Model {
 
 	/**
 	 * Method used to set an article field as a {@link Field}
+	 *
 	 * @param articleFields {@link Field} to set
 	 */
 	public void setArticleFields(ArrayList<Field> articleFields) {
@@ -68,6 +72,7 @@ public class NewArticleModel implements Model {
 
 	/**
 	 * Method used to return an {@link ArrayList} that contains the article fields values
+	 *
 	 * @return {@link ArrayList} that contains the article fields values
 	 */
 	public ArrayList<String> getArticleFieldValues() {
@@ -76,6 +81,7 @@ public class NewArticleModel implements Model {
 
 	/**
 	 * Method used to set an article field value as a {@link String}
+	 *
 	 * @param articleFieldValues {@link String} to set
 	 */
 	public void setArticleFieldValues(ArrayList<String> articleFieldValues) {

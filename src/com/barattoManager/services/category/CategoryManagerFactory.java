@@ -1,6 +1,5 @@
 package com.barattoManager.services.category;
 
-import com.barattoManager.services.article.ArticleManager;
 import com.barattoManager.services.json.JsonHandler;
 import com.barattoManager.utils.AppConfigurator;
 
@@ -15,6 +14,7 @@ public class CategoryManagerFactory implements Runnable {
 
 	/**
 	 * Method used to get the category manager
+	 *
 	 * @return CATEGORY_MANAGER {@link CategoryManager}
 	 */
 	public static CategoryManager getManager() {

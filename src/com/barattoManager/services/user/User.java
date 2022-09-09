@@ -24,8 +24,9 @@ public class User {
 
 	/**
 	 * Constructor of the class
-	 * @param username {@link String} represent the username
-	 * @param password {@link String} represent the password of the user
+	 *
+	 * @param username       {@link String} represent the username
+	 * @param password       {@link String} represent the password of the user
 	 * @param isConfigurator {@link Boolean} represent whether the user is a configurator or not
 	 */
 	public User(String username, String password, boolean isConfigurator) {
@@ -40,8 +41,9 @@ public class User {
 
 	/**
 	 * Constructor of the class
-	 * @param username {@link String} represent the username
-	 * @param password {@link String} represent the password of the user
+	 *
+	 * @param username       {@link String} represent the username
+	 * @param password       {@link String} represent the password of the user
 	 * @param isConfigurator {@link Boolean} represent whether the user is a configurator or not
 	 */
 	public User(
@@ -56,6 +58,7 @@ public class User {
 
 	/**
 	 * Method used to get username
+	 *
 	 * @return {@link String} of username
 	 */
 	@JsonProperty("username")
@@ -65,6 +68,7 @@ public class User {
 
 	/**
 	 * Method used to get the password
+	 *
 	 * @return {@code byte} array
 	 */
 	@JsonIgnore
@@ -74,6 +78,7 @@ public class User {
 
 	/**
 	 * Method used to get true if the {@link User} is a configurator
+	 *
 	 * @return True if the {@link User} is a configurator
 	 */
 	@JsonProperty("configurator")
@@ -83,6 +88,7 @@ public class User {
 
 	/**
 	 * Method used to set a password
+	 *
 	 * @param password {@link String} password coded
 	 */
 	public void setPassword(String password) {
@@ -91,6 +97,7 @@ public class User {
 
 	/**
 	 * Method used to check if the password is valid
+	 *
 	 * @return true if is valid
 	 */
 	@JsonIgnore
@@ -100,6 +107,7 @@ public class User {
 
 	/**
 	 * Method used to get whether the password is a default or not
+	 *
 	 * @param password {@link String} represent the password of the user
 	 * @return {@link Boolean}
 	 */

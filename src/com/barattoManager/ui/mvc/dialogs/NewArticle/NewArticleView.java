@@ -2,7 +2,6 @@ package com.barattoManager.ui.mvc.dialogs.NewArticle;
 
 import com.barattoManager.services.category.Category;
 import com.barattoManager.services.category.field.Field;
-import com.barattoManager.ui.action.event.ActionNotifierListener;
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerField;
 import com.barattoManager.ui.mvc.View;
 
@@ -50,6 +49,7 @@ public class NewArticleView implements View {
 
 	/**
 	 * Method used to add a {@link JPanel} to the {@link #mainPanel}
+	 *
 	 * @param categoryOfArticle used to select the category fields values
 	 */
 	public void draw(Category categoryOfArticle) {
@@ -98,6 +98,7 @@ public class NewArticleView implements View {
 
 	/**
 	 * Method used to get the article name from a {@link JTextField}
+	 *
 	 * @return articleNameField as a {@link String}
 	 */
 	public String getArticleName() {
@@ -106,6 +107,7 @@ public class NewArticleView implements View {
 
 	/**
 	 * Method used to return an {@link ArrayList} that contains the article fields
+	 *
 	 * @return {@link ArrayList} that contains the article fields
 	 */
 	public ArrayList<Field> getArticleFields() {
@@ -114,6 +116,7 @@ public class NewArticleView implements View {
 
 	/**
 	 * Method used to return an {@link ArrayList} that contains the fields values
+	 *
 	 * @return {@link ArrayList} that contains the fields values
 	 */
 	public ArrayList<String> getFieldsValue() {
@@ -124,6 +127,7 @@ public class NewArticleView implements View {
 
 	/**
 	 * Method used to add a listener
+	 *
 	 * @param listener {@link ArticleFieldHasChangeListener}
 	 */
 	public void addArticleFieldHasChangeListener(ArticleFieldHasChangeListener listener) {

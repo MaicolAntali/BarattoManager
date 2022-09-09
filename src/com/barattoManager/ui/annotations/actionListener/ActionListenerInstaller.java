@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- *Class used to add action listener by searching all the methods with {@link ActionListenerFor} annotation
+ * Class used to add action listener by searching all the methods with {@link ActionListenerFor} annotation
  */
 public class ActionListenerInstaller {
 
@@ -15,7 +15,7 @@ public class ActionListenerInstaller {
 	 * Method that process all the {@link ActionListenerFor} in the in the sourceMethodsObj class
 	 *
 	 * @param sourceMethodsObj {@link Object} of which the methods may have {@link ActionListenerFor} annotations
-	 * @param sourceFieldsObj {@link Object} of which the methods may have {@link ActionListenerField} annotations
+	 * @param sourceFieldsObj  {@link Object} of which the methods may have {@link ActionListenerField} annotations
 	 */
 	public static void processAnnotations(Object sourceMethodsObj, Object sourceFieldsObj) {
 		try {

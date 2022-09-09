@@ -2,7 +2,6 @@ package com.barattoManager.ui.mvc.configurator.meetEditor;
 
 import com.barattoManager.ui.action.event.ActionNotifierHandler;
 import com.barattoManager.ui.mvc.View;
-import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorController;
 
 import javax.swing.*;
 

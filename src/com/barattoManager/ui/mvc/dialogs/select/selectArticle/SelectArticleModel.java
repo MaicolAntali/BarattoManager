@@ -2,7 +2,6 @@ package com.barattoManager.ui.mvc.dialogs.select.selectArticle;
 
 import com.barattoManager.services.article.Article;
 import com.barattoManager.ui.mvc.Model;
-import com.barattoManager.ui.mvc.dialogs.newMeet.NewMeetController;
 
 import java.util.List;
 
@@ -26,6 +25,7 @@ public class SelectArticleModel implements Model {
 
 	/**
 	 * Method used to get the articles
+	 *
 	 * @return {@link List} of article
 	 */
 	public List<Article> getArticles() {
@@ -34,6 +34,7 @@ public class SelectArticleModel implements Model {
 
 	/**
 	 * Method used to get the selected article
+	 *
 	 * @return selected {@link Article}
 	 */
 	public Article getArticleSelected() {
@@ -42,6 +43,7 @@ public class SelectArticleModel implements Model {
 
 	/**
 	 * Method used to set the selected article
+	 *
 	 * @param articleSelected Selected {@link Article}
 	 */
 	public void setArticleSelected(Article articleSelected) {

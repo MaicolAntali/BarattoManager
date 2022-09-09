@@ -49,6 +49,7 @@ public class NewCategoryView implements View {
 
 	/**
 	 * Method used to get the name of category from a {@link JTextField}
+	 *
 	 * @return Name of the category as a {@link String}
 	 */
 	public String getCategoryName() {
@@ -57,6 +58,7 @@ public class NewCategoryView implements View {
 
 	/**
 	 * Method used to get the description of category from a {@link JTextField}
+	 *
 	 * @return Description of the category as a {@link String}
 	 */
 	public String getCategoryDescription() {

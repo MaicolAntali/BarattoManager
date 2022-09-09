@@ -39,7 +39,7 @@ public class LoginController implements Controller {
 	 * Constructor of the class
 	 *
 	 * @param model {@link LoginModel} represent the model of the controller
-	 * @param view {@link  LoginView} represent the view of the controller
+	 * @param view  {@link  LoginView} represent the view of the controller
 	 */
 	public LoginController(LoginModel model, LoginView view) {
 		this.model = model;

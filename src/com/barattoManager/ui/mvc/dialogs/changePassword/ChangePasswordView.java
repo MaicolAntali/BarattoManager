@@ -2,7 +2,6 @@ package com.barattoManager.ui.mvc.dialogs.changePassword;
 
 import com.barattoManager.ui.annotations.documentListener.DocumentListenerField;
 import com.barattoManager.ui.mvc.View;
-import com.barattoManager.ui.mvc.dialogs.NewArticle.NewArticleView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,6 +42,7 @@ public class ChangePasswordView implements View {
 
 	/**
 	 * Method used to get the password from a {@link JPasswordField}
+	 *
 	 * @return password as a {@link String}
 	 */
 	public String getPassword() {

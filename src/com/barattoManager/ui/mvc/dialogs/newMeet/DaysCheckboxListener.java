@@ -7,7 +7,8 @@ public interface DaysCheckboxListener {
 
 	/**
 	 * Method used to update the day
-	 * @param day Selected/not selected day
+	 *
+	 * @param day      Selected/not selected day
 	 * @param selected Is true if is selected otherwise false
 	 */
 	void daysUpdate(String day, boolean selected);

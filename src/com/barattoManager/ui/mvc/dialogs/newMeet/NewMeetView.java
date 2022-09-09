@@ -6,7 +6,6 @@ import com.barattoManager.ui.mvc.dialogs.NewArticle.ArticleFieldHasChangeListene
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
@@ -102,6 +101,7 @@ public class NewMeetView implements View {
 
 	/**
 	 * Method used to get the city of the meet from a {@link JTextField}
+	 *
 	 * @return City of the meet as a {@link String}
 	 */
 	public String getCityField() {
@@ -110,6 +110,7 @@ public class NewMeetView implements View {
 
 	/**
 	 * Method used to get the square of the meet from a {@link JTextField}
+	 *
 	 * @return square of the meet as a {@link String}
 	 */
 	public String getSquareField() {
@@ -118,6 +119,7 @@ public class NewMeetView implements View {
 
 	/**
 	 * Method used to get the start time of the meet from a {@link JTextField}
+	 *
 	 * @return start time of the meet as a {@link String}
 	 */
 	public String getStartTimeField() {
@@ -126,6 +128,7 @@ public class NewMeetView implements View {
 
 	/**
 	 * Method used to get the end time of the meet from a {@link JTextField}
+	 *
 	 * @return end time of the meet as a {@link String}
 	 */
 	public String getEndTimeField() {
@@ -134,6 +137,7 @@ public class NewMeetView implements View {
 
 	/**
 	 * Method used to get the day before expire of the meet from a {@link JTextField}
+	 *
 	 * @return day before expire of the meet as a {@link String}
 	 */
 	public String getDaysBeforeExpireField() {
@@ -142,6 +146,7 @@ public class NewMeetView implements View {
 
 	/**
 	 * Method used to add a listener
+	 *
 	 * @param listener {@link DaysCheckboxListener}
 	 */
 	public void addDaysCheckboxListener(DaysCheckboxListener listener) {
@@ -150,7 +155,8 @@ public class NewMeetView implements View {
 
 	/**
 	 * Method used to fire a {@link ArticleFieldHasChangeListener}
-	 * @param day that represent the day of the week
+	 *
+	 * @param day      that represent the day of the week
 	 * @param selected that represent whether the checkbox is selected or not
 	 */
 	private void fireDaysCheckboxListener(String day, boolean selected) {

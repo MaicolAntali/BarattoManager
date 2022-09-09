@@ -17,8 +17,8 @@ public class ChangePasswordController implements Controller {
 	/**
 	 * Constructor of the class
 	 *
-	 *@param model {@link ChangePasswordModel} represent the model of the controller
-	 *@param view {@link  ChangePasswordView} represent the view of the controller
+	 * @param model {@link ChangePasswordModel} represent the model of the controller
+	 * @param view  {@link  ChangePasswordView} represent the view of the controller
 	 */
 	public ChangePasswordController(ChangePasswordModel model, ChangePasswordView view) {
 		this.model = model;
@@ -44,6 +44,7 @@ public class ChangePasswordController implements Controller {
 
 	/**
 	 * Method used to get the password as a {@link String}
+	 *
 	 * @return password
 	 */
 	public String getPassword() {

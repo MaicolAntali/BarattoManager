@@ -53,6 +53,7 @@ public class NewFieldView implements View {
 
 	/**
 	 * Method used to get the field name from a {@link JTextField}
+	 *
 	 * @return Name of the field as a {@link String}
 	 */
 	public String getFieldName() {
@@ -61,6 +62,7 @@ public class NewFieldView implements View {
 
 	/**
 	 * Method used to get the field requirement from a {@link JCheckBox}
+	 *
 	 * @return field requirement as a {@link Boolean}
 	 */
 	public boolean getFieldRequired() {

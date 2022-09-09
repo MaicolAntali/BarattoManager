@@ -12,6 +12,7 @@ public class TradeUpdateDataEventFactory {
 
 	/**
 	 * Method used to get the {@link UpdateDataHandler}
+	 *
 	 * @return EVENT_HANDLER {@link UpdateDataHandler}
 	 */
 	public static UpdateDataHandler<String, Trade> getEventHandler() {

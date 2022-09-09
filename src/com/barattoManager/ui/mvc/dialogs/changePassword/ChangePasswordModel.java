@@ -18,6 +18,7 @@ public class ChangePasswordModel implements Model {
 
 	/**
 	 * Method used to get the password as a {@link String}
+	 *
 	 * @return password
 	 */
 	public String getPassword() {
@@ -26,6 +27,7 @@ public class ChangePasswordModel implements Model {
 
 	/**
 	 * Method used to set the password
+	 *
 	 * @param password {@link String}
 	 */
 	public void setPassword(String password) {

@@ -1,7 +1,6 @@
 package com.barattoManager.ui.mvc.dialogs.newCategory;
 
 import com.barattoManager.ui.mvc.Model;
-import com.barattoManager.ui.mvc.login.LoginController;
 
 /**
  * Model of {@link NewCategoryController} that contains the data
@@ -21,6 +20,7 @@ public class NewCategoryModel implements Model {
 
 	/**
 	 * Method used to get the name of category as a {@link String}
+	 *
 	 * @return Name of the category
 	 */
 	public String getCategoryName() {
@@ -29,6 +29,7 @@ public class NewCategoryModel implements Model {
 
 	/**
 	 * Method used to set a category name as a {@link String}
+	 *
 	 * @param categoryName {@link String} to set
 	 */
 	public void setCategoryName(String categoryName) {
@@ -37,6 +38,7 @@ public class NewCategoryModel implements Model {
 
 	/**
 	 * Method used to get the description of category as a {@link String}
+	 *
 	 * @return Description of the category
 	 */
 	public String getCategoryDescription() {
@@ -45,6 +47,7 @@ public class NewCategoryModel implements Model {
 
 	/**
 	 * Method used to set the description of category as a {@link String}
+	 *
 	 * @param categoryDescription {@link String} to set
 	 */
 	public void setCategoryDescription(String categoryDescription) {

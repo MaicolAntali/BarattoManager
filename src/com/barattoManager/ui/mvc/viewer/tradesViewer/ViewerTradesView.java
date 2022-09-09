@@ -24,6 +24,7 @@ public class ViewerTradesView implements View {
 
 	/**
 	 * Method used to set the treePanel
+	 *
 	 * @param tree {@link JPanel}
 	 */
 	public void setTreePanel(JPanel tree) {
@@ -32,6 +33,7 @@ public class ViewerTradesView implements View {
 
 	/**
 	 * Method used to set the menuPanel
+	 *
 	 * @param menuPanel {@link JPanel}
 	 */
 	public void setMenuPanel(JPanel menuPanel) {

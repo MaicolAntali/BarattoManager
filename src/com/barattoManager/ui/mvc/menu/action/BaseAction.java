@@ -17,7 +17,8 @@ public abstract class BaseAction {
 
 	/**
 	 * Constructor of the class
-	 * @param user {@link User} who has to do the action, who has logged in
+	 *
+	 * @param user           {@link User} who has to do the action, who has logged in
 	 * @param treeController {@link TreeController}
 	 */
 	public BaseAction(User user, TreeController<?> treeController) {
@@ -27,6 +28,7 @@ public abstract class BaseAction {
 
 	/**
 	 * Method used to get a {@link TreeNode} array
+	 *
 	 * @return {@link TreeNode} array
 	 */
 	public TreeNode[] getNodePath() {
@@ -36,6 +38,7 @@ public abstract class BaseAction {
 
 	/**
 	 * Method used to get a UUID as a {@link String} from a {@link TreeNode} array
+	 *
 	 * @param treeNodes {@link TreeNode} array
 	 * @return UUID as a {@link String}
 	 */
@@ -60,6 +63,7 @@ public abstract class BaseAction {
 
 	/**
 	 * Method used to get a {@link User}
+	 *
 	 * @return {@link User}
 	 */
 	public User getUser() {
@@ -68,6 +72,7 @@ public abstract class BaseAction {
 
 	/**
 	 * Method used to get a {@link TreeController}
+	 *
 	 * @return {@link TreeController}
 	 */
 	public TreeController<?> getTreeController() {

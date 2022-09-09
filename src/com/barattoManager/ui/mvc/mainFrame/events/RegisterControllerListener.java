@@ -9,7 +9,8 @@ public interface RegisterControllerListener {
 
 	/**
 	 * Method used to register a controller
-	 * @param controller {@link Controller}
+	 *
+	 * @param controller     {@link Controller}
 	 * @param controllerName {@link String} controller name
 	 */
 	void register(Controller controller, String controllerName);

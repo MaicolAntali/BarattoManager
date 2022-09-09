@@ -12,6 +12,7 @@ public class ArticleUpdateDataEventFactory {
 
 	/**
 	 * Method used to get the {@link UpdateDataHandler}
+	 *
 	 * @return EVENT_HANDLER {@link UpdateDataHandler}
 	 */
 	public static UpdateDataHandler<String, Article> getEventHandler() {

@@ -47,11 +47,12 @@ public class JsonHandler<K, V> implements UpdateDataListener<K, V> {
 		this.jsonFile = new File(jsonFilePath);
 		this.objectMapper = objectMapper;
 	}
+
 	/**
 	 * Method used by read the JSON file declared in the constructor<br/>
 	 * If JSON file does not exist it returns an empty {@link ConcurrentHashMap}
 	 *
-	 * @param keyClass {@link Class} that represents the key of the {@link ConcurrentHashMap}
+	 * @param keyClass   {@link Class} that represents the key of the {@link ConcurrentHashMap}
 	 * @param valueClass {@link Class} that represents the key of the {@link ConcurrentHashMap}
 	 * @return A {@link ConcurrentHashMap} with all the values read by the JSON otherwise an empty {@link ConcurrentHashMap}.
 	 */

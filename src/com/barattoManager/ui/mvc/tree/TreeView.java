@@ -12,6 +12,7 @@ import java.util.Objects;
 
 /**
  * Generic abstract class that represent a tree view
+ *
  * @param <T> The type of data structure
  */
 public abstract class TreeView<T> extends ActionNotifierHandler implements View {
@@ -40,6 +41,7 @@ public abstract class TreeView<T> extends ActionNotifierHandler implements View 
 
 	/**
 	 * Method used to draw a tree
+	 *
 	 * @param list {@link List}
 	 */
 	public void drawTree(List<T> list) {
@@ -65,6 +67,7 @@ public abstract class TreeView<T> extends ActionNotifierHandler implements View 
 
 	/**
 	 * Method used to get a root node
+	 *
 	 * @return root node
 	 */
 	public DefaultMutableTreeNode getRootNode() {
@@ -73,6 +76,7 @@ public abstract class TreeView<T> extends ActionNotifierHandler implements View 
 
 	/**
 	 * Method used to get a tree
+	 *
 	 * @return {@link JTree}
 	 */
 	public JTree getTree() {

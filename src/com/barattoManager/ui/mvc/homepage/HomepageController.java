@@ -5,7 +5,6 @@ import com.barattoManager.ui.annotations.actionListener.ActionListenerInstaller;
 import com.barattoManager.ui.mvc.Controller;
 import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.View;
-import com.barattoManager.ui.mvc.configurator.categoryEditor.CategoryEditorView;
 import com.barattoManager.ui.mvc.login.LoginController;
 import com.barattoManager.ui.mvc.login.LoginModel;
 import com.barattoManager.ui.mvc.login.LoginView;

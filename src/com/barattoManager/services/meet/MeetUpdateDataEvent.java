@@ -1,6 +1,5 @@
 package com.barattoManager.services.meet;
 
-import com.barattoManager.services.article.ArticleUpdateDataEvent;
 import com.barattoManager.services.event.UpdateDataHandler;
 import com.barattoManager.services.event.UpdateDataListener;
 
@@ -13,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class MeetUpdateDataEvent implements UpdateDataHandler<String, Meet> {
 
 	private final ArrayList<UpdateDataListener<String, Meet>> listeners;
+
 	/**
 	 * Constructor of {@link MeetUpdateDataEvent}
 	 */

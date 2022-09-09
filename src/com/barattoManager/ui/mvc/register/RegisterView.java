@@ -25,6 +25,7 @@ public class RegisterView implements View {
 
 	/**
 	 * Method used to get the username from a {@link JTextField}
+	 *
 	 * @return username as a {@link String}
 	 */
 	public String getUsername() {

@@ -14,6 +14,7 @@ public class StoreTreeModel extends TreeModel<Article> {
 
 	/**
 	 * Constructor of the class
+	 *
 	 * @param articles {@link List}
 	 */
 	public StoreTreeModel(List<Article> articles) {

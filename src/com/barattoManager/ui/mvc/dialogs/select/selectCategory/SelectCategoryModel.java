@@ -17,6 +17,7 @@ public class SelectCategoryModel implements Model {
 
 	/**
 	 * Constructor of the class
+	 *
 	 * @param categories {@link List} of categories
 	 */
 	public SelectCategoryModel(List<Category> categories) {
@@ -25,6 +26,7 @@ public class SelectCategoryModel implements Model {
 
 	/**
 	 * Method used to get {@link List} of categories
+	 *
 	 * @return {@link List} of categories
 	 */
 	public List<String> getCategoriesName() {
@@ -33,6 +35,7 @@ public class SelectCategoryModel implements Model {
 
 	/**
 	 * Method used to get the selected category name
+	 *
 	 * @return {@link String} of the selected category name
 	 */
 	public String getCategoryNamesSelected() {
@@ -41,6 +44,7 @@ public class SelectCategoryModel implements Model {
 
 	/**
 	 * Method used to set the selected category name
+	 *
 	 * @param categoryNamesSelected {@link String} to set
 	 */
 	public void setCategoryNamesSelected(String categoryNamesSelected) {

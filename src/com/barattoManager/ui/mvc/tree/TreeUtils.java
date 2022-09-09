@@ -13,6 +13,7 @@ public class TreeUtils {
 
 	/**
 	 * Method used to parse a {@link TreeNode} array into an {@link ArrayList}
+	 *
 	 * @param treeNodes {@link TreeNode} array
 	 * @param separator {@link String} represent the line separator
 	 * @return parsed arraylist
@@ -27,6 +28,7 @@ public class TreeUtils {
 
 	/**
 	 * Method used to generate fields
+	 *
 	 * @param article {@link Article} object
 	 * @return {@link DefaultMutableTreeNode} that contains all article fields
 	 */

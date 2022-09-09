@@ -8,9 +8,10 @@ import java.util.Optional;
 
 /**
  * Record to represent the history
- * @param dateTime {@link LocalDateTime}
- * @param name Name of the history
- * @param error Error of the history
+ *
+ * @param dateTime    {@link LocalDateTime}
+ * @param name        Name of the history
+ * @param error       Error of the history
  * @param description description of the history
  */
 public record History(
