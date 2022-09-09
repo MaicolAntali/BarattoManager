@@ -48,16 +48,6 @@ public class AcceptRescheduleTradeAction extends TradeBaseAction {
 
 		if (option == JOptionPane.OK_OPTION) {
 
-			if (getTrade().isEmpty()) {
-				new MessageDialogDisplay()
-						.setParentComponent(getTreeController().getView().getMainJPanel())
-						.setMessageType(JOptionPane.ERROR_MESSAGE)
-						.setTitle("Errore")
-						.setMessage(MESSAGE_NO_TRADE_HAS_BEEN_SELECTED)
-						.show();
-				return;
-			}
-
 			MeetManagerFactory.getManager()
 					.unBookMeet(getTrade().get().getMeetUuid());
 
