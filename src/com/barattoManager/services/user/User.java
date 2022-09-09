@@ -22,7 +22,12 @@ public class User {
 	@JsonProperty("password")
 	private byte[] password;
 
-
+	/**
+	 * Constructor of the class
+	 * @param username {@link String} represent the username
+	 * @param password {@link String} represent the password of the user
+	 * @param isConfigurator {@link Boolean} represent whether the user is a configurator or not
+	 */
 	public User(String username, String password, boolean isConfigurator) {
 
 		assert !username.isBlank() : PRE_CONDITION_USER_USERNAME_IS_BLANK;
@@ -33,6 +38,12 @@ public class User {
 		this.isConfigurator = isConfigurator;
 	}
 
+	/**
+	 * Constructor of the class
+	 * @param username {@link String} represent the username
+	 * @param password {@link String} represent the password of the user
+	 * @param isConfigurator {@link Boolean} represent whether the user is a configurator or not
+	 */
 	public User(
 			@JsonProperty("username") String username,
 			@JsonProperty("password") byte[] password,
@@ -70,6 +81,10 @@ public class User {
 		return isConfigurator;
 	}
 
+	/**
+	 * Method used to set a password
+	 * @param password {@link String} password coded
+	 */
 	public void setPassword(String password) {
 		this.password = SHA256.hash(password);
 	}
@@ -83,6 +98,11 @@ public class User {
 		return !Arrays.equals(this.password, SHA256.hash(AppConfigurator.getInstance().getPasswordSetting("default_pwd")));
 	}
 
+	/**
+	 * Method used to get whether the password is a default or not
+	 * @param password {@link String} represent the password of the user
+	 * @return {@link Boolean}
+	 */
 	public static boolean isDefaultPassword(String password) {
 		return Objects.equals(password, AppConfigurator.getInstance().getPasswordSetting("default_pwd"));
 	}

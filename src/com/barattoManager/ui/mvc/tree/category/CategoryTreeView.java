@@ -7,6 +7,9 @@ import com.barattoManager.ui.mvc.tree.TreeView;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.List;
 
+/**
+ * View used to represent the view of the category tree
+ */
 public class CategoryTreeView extends TreeView<Category> {
 
 	@Override

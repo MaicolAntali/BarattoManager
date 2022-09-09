@@ -7,12 +7,20 @@ import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 import javax.swing.*;
 import java.util.List;
 
+/**
+ * View used to create the selection of a meet
+ */
 public class SelectMeetView extends SelectView<Meet> {
 
 
 	private static final String LABEL_CHOOSE_MEET = "Seleziona un incontro:";
 	private static final String THERE_ARENT_MEET_AVAILABLE = "Non ci sono incontri disponibili.";
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param clazz {@link Class}
+	 */
 	public SelectMeetView(Class<Meet> clazz) {
 		super(clazz);
 	}

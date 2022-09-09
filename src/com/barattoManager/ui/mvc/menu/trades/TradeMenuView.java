@@ -6,6 +6,9 @@ import com.barattoManager.ui.mvc.View;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * View used to show the trade menu
+ */
 public class TradeMenuView implements View {
 
 	private final JPanel mainPanel;
@@ -14,6 +17,9 @@ public class TradeMenuView implements View {
 	@ActionListenerField
 	private final JMenuItem acceptRescheduleAction;
 
+	/**
+	 * Constructor of the class
+	 */
 	public TradeMenuView() {
 		mainPanel = new JPanel();
 		var articleMenu = new JMenu("Scambi");
@@ -34,13 +40,5 @@ public class TradeMenuView implements View {
 	@Override
 	public JPanel getMainJPanel() {
 		return mainPanel;
-	}
-
-	public JMenuItem getAcceptTradeAction() {
-		return acceptTradeAction;
-	}
-
-	public JMenuItem getAcceptRescheduleAction() {
-		return acceptRescheduleAction;
 	}
 }

@@ -10,6 +10,10 @@ import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Generic abstract class that represent a tree view
+ * @param <T> The type of data structure
+ */
 public abstract class TreeView<T> extends ActionNotifierHandler implements View {
 
 	private static final String ICON_CLOSE = "/icon/category_open.png";
@@ -34,6 +38,10 @@ public abstract class TreeView<T> extends ActionNotifierHandler implements View 
 		return mainPanel;
 	}
 
+	/**
+	 * Method used to draw a tree
+	 * @param list {@link List}
+	 */
 	public void drawTree(List<T> list) {
 		if (tree != null)
 			mainPanel.removeAll();
@@ -55,10 +63,18 @@ public abstract class TreeView<T> extends ActionNotifierHandler implements View 
 		mainPanel.revalidate();
 	}
 
+	/**
+	 * Method used to get a root node
+	 * @return root node
+	 */
 	public DefaultMutableTreeNode getRootNode() {
 		return rootNode;
 	}
 
+	/**
+	 * Method used to get a tree
+	 * @return {@link JTree}
+	 */
 	public JTree getTree() {
 		return tree;
 	}

@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * View used to represent the view of the trade tree
+ */
 public class TradeTreeView extends TreeView<Trade> {
 
 	private static final String MESSAGE_YOU_ARE_WAITING_FOR_A_REPLY = "Stai attendendo risposta";

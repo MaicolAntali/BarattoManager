@@ -8,12 +8,23 @@ import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.mvc.menu.action.actions.AcceptRescheduleTradeAction;
 import com.barattoManager.ui.mvc.menu.action.actions.AcceptTradeAction;
+import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuModel;
+import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuView;
 
+/**
+ * Controller that handle the events of the {@link TradeMenuView} and update the data in the {@link TradeMenuModel}
+ */
 public class TradeMenuController implements Controller {
 
 	private final TradeMenuModel model;
 	private final TradeMenuView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param model {@link TradeMenuModel} represent the model of the controller
+	 * @param view {@link TradeMenuView} represent the view of the controller
+	 */
 	public TradeMenuController(TradeMenuModel model, TradeMenuView view) {
 		this.model = model;
 		this.view = view;

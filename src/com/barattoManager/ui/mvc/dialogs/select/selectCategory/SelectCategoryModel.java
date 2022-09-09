@@ -39,6 +39,10 @@ public class SelectCategoryModel implements Model {
 		return categoryNamesSelected;
 	}
 
+	/**
+	 * Method used to set the selected category name
+	 * @param categoryNamesSelected {@link String} to set
+	 */
 	public void setCategoryNamesSelected(String categoryNamesSelected) {
 		this.categoryNamesSelected = categoryNamesSelected;
 	}

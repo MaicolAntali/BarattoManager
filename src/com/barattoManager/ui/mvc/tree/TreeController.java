@@ -14,6 +14,11 @@ public abstract class TreeController<T> extends GraspController implements Model
 	private final TreeModel<T> model;
 	private final TreeView<T> view;
 
+	/**
+	 * Constructor of the class
+	 * @param model {@link TreeModel}
+	 * @param view {@link TreeView}
+	 */
 	protected TreeController(TreeModel<T> model, TreeView<T> view) {
 		this.model = model;
 		this.view = view;

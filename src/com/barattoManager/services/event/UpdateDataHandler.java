@@ -2,6 +2,11 @@ package com.barattoManager.services.event;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Interface used to handle the data changes
+ * @param <K> value of the {@link ConcurrentHashMap}
+ * @param <V> value of the {@link ConcurrentHashMap}
+ */
 public interface UpdateDataHandler<K, V> {
 
 	/**

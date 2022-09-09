@@ -20,6 +20,30 @@ import com.barattoManager.ui.utils.ControllerNames;
  * Controller that handle the events of the {@link ConfiguratorHomepageView}
  */
 public class ConfiguratorHomepageController extends GraspController {
+	private static final String HELP_MESSAGE = """
+			Formato del JSON:
+			[
+				{
+					"nome_categoria": "nome_categoria",
+			        "descrizione": "descrizione_categoria",
+			        "percorso": null
+			    },
+			    {
+					"nome_categoria": "nome_categoria",
+					"descrizione": "descrizione_categoria",
+					"percorso": "main|sub|sub"
+				},
+				{
+					"nome_campo": "nome_campo",
+					"obbligatorio": true,
+					"percorso": "main|sub|sub"
+					}
+			]
+			NB: - in una categoria radice il percorso deve essere null
+			    - in una sotto categoria e in un campo"
+			           - il percorso non deve essere null
+			           - il percorso deve essere descritto con il carattere: |
+			""";
 
 	private final ConfiguratorHomepageView view;
 

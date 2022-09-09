@@ -7,6 +7,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * View used to represent the view of the meet tree
+ */
 public class MeetTreeView extends TreeView<Meet> {
 
 	private static final String DAY_TO_ACCEPT_THE_OFFER = "Giorni per accettare l'offerta: %d";

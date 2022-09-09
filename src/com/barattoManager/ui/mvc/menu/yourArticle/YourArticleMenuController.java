@@ -8,12 +8,23 @@ import com.barattoManager.ui.mvc.Model;
 import com.barattoManager.ui.mvc.View;
 import com.barattoManager.ui.mvc.menu.action.actions.CancelOfferAction;
 import com.barattoManager.ui.mvc.menu.action.actions.NewArticleAction;
+import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuModel;
+import com.barattoManager.ui.mvc.menu.storeArticle.StoreArticleMenuView;
 
+/**
+ * Controller that handle the events of the {@link YourArticleMenuView} and update the data in the {@link YourArticleMenuModel}
+ */
 public class YourArticleMenuController implements Controller {
 
 	private final YourArticleMenuModel model;
 	private final YourArticleMenuView view;
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param model {@link YourArticleMenuModel} represent the model of the controller
+	 * @param view {@link YourArticleMenuView} represent the view of the controller
+	 */
 	public YourArticleMenuController(YourArticleMenuModel model, YourArticleMenuView view) {
 		this.model = model;
 		this.view = view;

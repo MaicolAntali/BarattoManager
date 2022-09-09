@@ -45,7 +45,14 @@ public class UserManager {
 		}
 	}
 
-
+	/**
+	 * Method used to add a new user
+	 * @param username {@link String} represent the username
+	 * @param password {@link String} represent the password of the user
+	 * @param isConfigurator {@link Boolean} represent whether the user is a configurator or not
+	 * @throws AlreadyExistException Is thrown if the user already exist
+	 * @throws InvalidArgumentException Is thrown if the username or the password is blank
+	 */
 	public void addNewUser(String username, String password, Boolean isConfigurator) throws AlreadyExistException, InvalidArgumentException {
 		if (username.isBlank())
 			throw new InvalidArgumentException("Username non valido");
@@ -63,7 +70,13 @@ public class UserManager {
 
 	}
 
-
+	/**
+	 * Method used to login a user
+	 * @param username {@link String} represent the username
+	 * @param password {@link String} represent the password of the user
+	 * @return {@link User} if is logged in
+	 * @throws InvalidCredentialException is thrown if the username and password dont match
+	 */
 	public User loginUser(String username, String password) throws InvalidCredentialException {
 		User user = userMap.get(Objects.requireNonNull(username).toLowerCase());
 
@@ -87,6 +100,10 @@ public class UserManager {
 		UserUpdateDataEventFactory.getEventHandler().fireUpdateListeners(this.userMap);
 	}
 
+	/**
+	 * Method used to get {@link ConcurrentHashMap} of users
+	 * @return {@link ConcurrentHashMap} of users
+	 */
 	public ConcurrentHashMap<String, User> getUsers() {
 		return userMap;
 	}

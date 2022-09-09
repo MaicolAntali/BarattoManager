@@ -10,6 +10,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * View used to represent the view of the article tree
+ */
 public class ArticleTreeView extends TreeView<Article> {
 	@Override
 	protected void drawNodes(List<Article> list) {

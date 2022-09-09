@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.util.List;
 
 /**
- * View used to create the selection an article
+ * View used to create the selection of an article
  */
 public class SelectArticleView extends SelectView<Article> {
 

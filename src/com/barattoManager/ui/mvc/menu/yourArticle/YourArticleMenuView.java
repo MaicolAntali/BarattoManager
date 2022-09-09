@@ -6,6 +6,9 @@ import com.barattoManager.ui.mvc.View;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * View used to show your article menu
+ */
 public class YourArticleMenuView implements View {
 
 	private final JPanel mainPanel;
@@ -14,6 +17,9 @@ public class YourArticleMenuView implements View {
 	@ActionListenerField
 	private final JMenuItem cancelArticleAction;
 
+	/**
+	 * Constructor of the class
+	 */
 	public YourArticleMenuView() {
 		mainPanel = new JPanel();
 		var articleMenu = new JMenu("Articoli");
@@ -35,11 +41,4 @@ public class YourArticleMenuView implements View {
 		return mainPanel;
 	}
 
-	public JMenuItem getNewArticleAction() {
-		return newArticleAction;
-	}
-
-	public JMenuItem getCancelArticleAction() {
-		return cancelArticleAction;
-	}
 }

@@ -6,12 +6,20 @@ import com.barattoManager.ui.utils.messageDialog.MessageDialogDisplay;
 import javax.swing.*;
 import java.util.List;
 
+/**
+ * View used to create the selection a category
+ */
 public class SelectCategoryView extends SelectView<String> {
 
 
 	private static final String LABEL_CHOOSE_AN_CATEGORY = "Seleziona la categoria:";
 	private static final String THERE_ARENT_ANY_CATEGORY = "Non ci sono Categorie disponibili.";
 
+	/**
+	 * Constructor of the class
+	 *
+	 * @param clazz {@link Class}
+	 */
 	public SelectCategoryView(Class<String> clazz) {
 		super(clazz);
 	}

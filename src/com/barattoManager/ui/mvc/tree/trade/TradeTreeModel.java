@@ -4,13 +4,21 @@ import com.barattoManager.services.Store;
 import com.barattoManager.services.article.ArticleManagerFactory;
 import com.barattoManager.services.trade.Trade;
 import com.barattoManager.ui.mvc.tree.TreeModel;
+import com.barattoManager.ui.mvc.tree.category.CategoryTreeController;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Model of {@link TradeTreeController} that contains the data
+ */
 public class TradeTreeModel extends TreeModel<Trade> {
 
+	/**
+	 * Constructor of the class
+	 * @param data {@link List}
+	 */
 	public TradeTreeModel(List<Trade> data) {
 		super(filterList(data));
 	}
